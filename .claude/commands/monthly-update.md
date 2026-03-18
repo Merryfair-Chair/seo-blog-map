@@ -40,6 +40,10 @@ Perform the monthly content intelligence update. Do ALL of the following automat
 
 9. Save everything back to merryfair_content_map.json.
 
+9a. Copy merryfair_content_map.json to visual-map/public/merryfair_content_map.json so the visual map reflects updated data.
+
+9b. Update project-context.md: refresh performance data highlights, update gap statuses, update last monthly update date.
+
 10. Print a full report:
     - Performance changes: posts with significant traffic gains or losses
     - New gaps suggested (with full rationale)

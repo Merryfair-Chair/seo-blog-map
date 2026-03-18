@@ -24,7 +24,11 @@ When a new blog post is published, do ALL of the following automatically without
 
 7. Save all changes back to merryfair_content_map.json.
 
-8. Print a summary report showing:
+7a. Copy merryfair_content_map.json to visual-map/public/merryfair_content_map.json so the visual map reflects the update.
+
+8. Update project-context.md to reflect the new post (add it to the correct cluster section, update total post count, mark any gap as published if applicable).
+
+9. Print a summary report showing:
    - Post title and assigned cluster
    - Internal links found (in and out)
    - Missing links that should be added

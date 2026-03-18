@@ -14,4 +14,6 @@ Run a full internal linking audit. Do ALL of the following automatically without
 
 5. Generate a specific action list: "Add a link FROM [post A] TO [post B] because [reason]."
 
-6. Print the full report with action items grouped by cluster.
+6. After any links are confirmed added, copy merryfair_content_map.json to visual-map/public/merryfair_content_map.json so the visual map reflects updated link data.
+
+7. Print the full report with action items grouped by cluster.
