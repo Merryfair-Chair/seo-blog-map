@@ -43,8 +43,8 @@ From the SEO strategy document — follow these always:
 
 ## Master content standard
 The master blog creation prompt is the single standard for all content creation and optimization work. It lives at:
-`C:\Users\wenxi.lee\Desktop\blog creation prompt\`
-Always read the most recently modified `.md` file in that folder before any content or optimization task. The user updates this file periodically — never assume the version you've seen is current.
+`blog-creation-prompt/master-blog-prompt-v4.3.md` (in this repo)
+Always read this file before any content or optimization task. When a newer version is added to this folder, always use the most recently modified `.md` file.
 
 ## Available slash commands
 - `/new-post [url]` — Process a newly published blog post (crawl, summarize, assign cluster, check links)
