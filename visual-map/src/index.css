@@ -1,19 +1,21 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0f1117;
-  --bg2: #161b27;
-  --bg3: #1c2133;
-  --border: #252b3b;
-  --border2: #2e3549;
-  --text: #dde1ed;
-  --text2: #8b93aa;
-  --text3: #4e5568;
-  --accent: #4f8ef7;
-  --gap-color: #d4841a;
-  --gap-bg: rgba(212,132,26,0.07);
-  --gap-border: rgba(212,132,26,0.3);
+  --bg: #f0f2f7;
+  --bg2: #ffffff;
+  --bg3: #e8ebf4;
+  --border: #c8cde0;
+  --border2: #b0b6cc;
+  --text: #111827;
+  --text2: #374151;
+  --text3: #6b7280;
+  --accent: #2563eb;
+  --gap-color: #b45309;
+  --gap-bg: rgba(180,83,9,0.07);
+  --gap-border: rgba(180,83,9,0.35);
   --radius: 10px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.07);
 }
 
 body {
@@ -41,11 +43,26 @@ button {
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
 .react-flow__background { background: var(--bg); }
+.react-flow__controls {
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
 .react-flow__controls button {
   background: var(--bg2);
-  border: 1px solid var(--border);
+  border: none;
+  border-bottom: 1px solid var(--border);
   color: var(--text2);
   fill: var(--text2);
+  width: 28px;
+  height: 28px;
 }
+.react-flow__controls button:last-child { border-bottom: none; }
 .react-flow__controls button:hover { background: var(--bg3); }
-.react-flow__minimap { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; }
+.react-flow__minimap {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}

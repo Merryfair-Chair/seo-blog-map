@@ -37,36 +37,33 @@ except ImportError:
 
 BASE_URL = "https://www.merryfair.com"
 BLOG_PATH = "/latest_updates/blog/"
+BLOG_SITEMAP = "https://www.merryfair.com/cpt-blogs-sitemap.xml"
 MAP_FILE = "merryfair_content_map.json"
 
-BLOG_SLUGS = [
-    "why-executive-comfort-is-the-new-productivity",
-    "redefine-holiday-gifting-with-merryfair-ergonomic-chairs",
-    "gaming-chair-vs-office-chair-which-one-should-you-really-buy",
-    "playing-with-colours-workspace-decor-to-boost-inspiration",
-    "cute-ergonomic-chairs-for-a-stylish-comfortable-cafe-experience",
-    "eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair",
-    "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
-    "be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia",
-    "office-chairs-to-sit-with-power-focus-and-intention",
-    "how-to-choose-the-best-ergonomic-chair-for-solo-movie-nights",
-    "6-affordable-ergonomic-chairs-for-your-home-and-office",
-    "how-to-choose-the-best-ergonomic-chair-in-malaysia",
-    "how-merryfair-redefines-ergonomics-for-gamers-in-malaysia",
-    "why-everyones-switching-to-ergonomics-swivel-chairs-in-2025",
-    "upgrade-your-workspace-affordable-working-chairs-under-rm1000",
-    "do-posture-correctors-work",
-    "best-ergonomic-office-chairs-every-budget",
-    "office-chair-material-guide-malaysia",
-    "how-to-choose-office-chair-body-fit-test",
-    "what-is-lumbar-support",
-    "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade",
-    "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
-    "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
-    "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-    "best-study-chairs-students-guide",
-    "office-chair-tilt-mechanism-guide",
-]
+
+def discover_slugs():
+    """Read all blog post slugs from the Yoast sitemap — always up to date."""
+    print("  Fetching sitemap to discover blog posts...")
+    try:
+        resp = requests.get(BLOG_SITEMAP, timeout=30, headers={
+            "User-Agent": "Mozilla/5.0 (compatible; MerryfairContentAudit/1.0)"
+        })
+        resp.raise_for_status()
+    except requests.RequestException as e:
+        print(f"  ERROR fetching sitemap: {e}")
+        return []
+
+    slugs = []
+    for m in re.finditer(
+        rf"<loc>{re.escape(BASE_URL)}{re.escape(BLOG_PATH)}([^/<]+)/?</loc>",
+        resp.text
+    ):
+        slug = m.group(1).strip()
+        if slug and slug not in slugs:
+            slugs.append(slug)
+
+    print(f"  Found {len(slugs)} blog posts in sitemap.")
+    return slugs
 
 
 def fetch_blog_post(slug):
@@ -102,24 +99,54 @@ def fetch_blog_post(slug):
     body_text = main_content.get_text(separator="\n", strip=True)
     body_text = re.sub(r"\n{3,}", "\n\n", body_text)
 
-    all_links = []
-    for a_tag in soup.find_all("a", href=True):
-        href = a_tag["href"]
-        if href.startswith("/"):
-            href = BASE_URL + href
-        all_links.append(href)
+    # ── Remove "more posts / related posts" sections before extracting links ──
+    # These are widget areas that show the latest N posts — not contextual links.
+    NOISE_PATTERNS = re.compile(
+        r"related.?posts?|more.?posts?|latest.?posts?|recent.?posts?|"
+        r"you.?may.?also|read.?more|also.?read|post.?navigation|"
+        r"elementor.?posts|wp-block-latest-posts|blog.?list|post.?list",
+        re.I
+    )
+    for tag in main_content.find_all(True):
+        classes = " ".join(tag.get("class", []))
+        tag_id  = tag.get("id", "")
+        if NOISE_PATTERNS.search(classes) or NOISE_PATTERNS.search(tag_id):
+            tag.decompose()
 
+    # ── Extract only in-content links (inside <p> or <li> in prose body) ────
+    # Anchor text must be meaningful: skip "Read more", bare URLs, icon-only etc.
+    SKIP_ANCHORS = re.compile(
+        r"^(read more|learn more|click here|here|this|more|→|»|view|see|back)$",
+        re.I
+    )
     self_url = f"{BASE_URL}{BLOG_PATH}{slug}/"
-    blog_links_out = []
-    for link in all_links:
-        if BLOG_PATH in link and link != self_url:
-            match = re.search(rf"{re.escape(BLOG_PATH)}([^/]+)/?", link)
-            if match:
-                linked_slug = match.group(1)
-                if linked_slug != slug and linked_slug not in blog_links_out:
-                    blog_links_out.append(linked_slug)
+    blog_links_out = []   # [{slug, anchor}]
+    seen_slugs = set()
 
-    product_links = set(l for l in all_links if "/products/" in l or "/store/" in l)
+    for container in main_content.find_all(["p", "li"]):
+        for a_tag in container.find_all("a", href=True):
+            href = a_tag["href"]
+            if href.startswith("/"):
+                href = BASE_URL + href
+            if BLOG_PATH not in href or href == self_url:
+                continue
+            match = re.search(rf"{re.escape(BLOG_PATH)}([^/?#]+)/?", href)
+            if not match:
+                continue
+            linked_slug = match.group(1)
+            if linked_slug == slug or linked_slug in seen_slugs:
+                continue
+            anchor = a_tag.get_text(strip=True)
+            if not anchor or SKIP_ANCHORS.match(anchor):
+                continue
+            seen_slugs.add(linked_slug)
+            blog_links_out.append({"slug": linked_slug, "anchor": anchor})
+
+    product_links = set(
+        (BASE_URL + a["href"]) if a["href"].startswith("/") else a["href"]
+        for a in soup.find_all("a", href=True)
+        if "/products/" in a["href"] or "/store/" in a["href"]
+    )
 
     text_lower = body_text.lower()
     all_models = ["wau", "zenit", "aire", "ronin", "spinelly", "boba", "saga",
@@ -133,14 +160,16 @@ def fetch_blog_post(slug):
         "url": self_url,
         "title": title,
         "word_count": len(body_text.split()),
-        "extracted_text": body_text[:5000],
-        "internal_blog_links_out": blog_links_out,
+        "extracted_text": body_text,
+        "internal_blog_links_out": blog_links_out,   # [{slug, anchor}]
         "product_links_count": len(product_links),
         "models_mentioned": models_found,
     }
 
 
 def build_link_matrix(all_posts):
+    # links_out_to  = [{slug, anchor}]
+    # linked_from   = [{slug, anchor}]  (from the SOURCE post's perspective)
     matrix = {}
     for post in all_posts:
         matrix[post["slug"]] = {
@@ -149,40 +178,63 @@ def build_link_matrix(all_posts):
         }
 
     for post in all_posts:
-        for target_slug in post["internal_blog_links_out"]:
+        for link_obj in post["internal_blog_links_out"]:
+            target_slug = link_obj["slug"]
             if target_slug in matrix:
-                matrix[target_slug]["linked_from"].append(post["slug"])
+                matrix[target_slug]["linked_from"].append({
+                    "slug":   post["slug"],
+                    "anchor": link_obj["anchor"],
+                })
 
     return matrix
 
 
 def update_content_map(all_posts, link_matrix):
     if os.path.exists(MAP_FILE):
-        with open(MAP_FILE, "r") as f:
+        with open(MAP_FILE, "r", encoding="utf-8") as f:
             content_map = json.load(f)
     else:
         print(f"WARNING: {MAP_FILE} not found. Creating new.")
         content_map = {"meta": {}, "clusters": []}
 
-    content_map["post_details"] = {}
+    existing_details = content_map.get("post_details", {})
+
+    # MERGE crawl data into existing post_details — preserve enriched fields
+    # (cluster, page_type, triage_status, gsc_*, ahrefs_*, top_keyword, etc.)
+    CRAWL_FIELDS = {
+        "title", "url", "word_count", "extracted_text", "models_mentioned",
+        "internal_links_out", "internal_links_in",
+        "internal_links_out_count", "internal_links_in_count",
+        "product_links_count",
+    }
 
     for post in all_posts:
         slug = post["slug"]
         links = link_matrix.get(slug, {"links_out_to": [], "linked_from": []})
 
-        content_map["post_details"][slug] = {
-            "title": post["title"],
-            "url": post["url"],
-            "word_count": post["word_count"],
-            "extracted_text": post["extracted_text"],
-            "models_mentioned": post["models_mentioned"],
-            "internal_links_out": links["links_out_to"],
-            "internal_links_in": links["linked_from"],
+        crawl_data = {
+            "title":                    post["title"],
+            "url":                      post["url"],
+            "word_count":               post["word_count"],
+            "extracted_text":           post["extracted_text"],
+            "models_mentioned":         post["models_mentioned"],
+            "internal_links_out":       links["links_out_to"],   # [{slug, anchor}]
+            "internal_links_in":        links["linked_from"],    # [{slug, anchor}]
             "internal_links_out_count": len(links["links_out_to"]),
-            "internal_links_in_count": len(links["linked_from"]),
-            "product_links_count": post["product_links_count"],
-            "content_summary": None,
+            "internal_links_in_count":  len(links["linked_from"]),
+            "product_links_count":      post["product_links_count"],
         }
+
+        existing = existing_details.get(slug, {})
+        # Start from existing (preserves enriched fields), then overwrite crawl fields
+        merged = {**existing, **crawl_data}
+        # Keep content_summary if it already exists
+        if "content_summary" not in merged:
+            merged["content_summary"] = None
+
+        existing_details[slug] = merged
+
+    content_map["post_details"] = existing_details
 
     content_map["meta"]["last_crawl"] = time.strftime("%Y-%m-%d %H:%M:%S")
     content_map["meta"]["posts_crawled"] = len(all_posts)
@@ -203,8 +255,8 @@ def update_content_map(all_posts, link_matrix):
         "average_outbound_links": avg_out,
     }
 
-    with open(MAP_FILE, "w") as f:
-        json.dump(content_map, f, indent=2, default=str)
+    with open(MAP_FILE, "w", encoding="utf-8") as f:
+        json.dump(content_map, f, indent=2, default=str, ensure_ascii=False)
 
     return content_map
 
@@ -215,15 +267,20 @@ def main():
     print("No API key needed")
     print("=" * 60)
 
-    print(f"\n[1/3] Fetching {len(BLOG_SLUGS)} blog posts...")
+    blog_slugs = discover_slugs()
+    if not blog_slugs:
+        print("ERROR: No slugs discovered. Check sitemap URL or network.")
+        return
+
+    print(f"\n[1/3] Fetching {len(blog_slugs)} blog posts...")
     all_posts = []
-    for slug in BLOG_SLUGS:
+    for slug in blog_slugs:
         result = fetch_blog_post(slug)
         if result:
             all_posts.append(result)
         time.sleep(1)
 
-    print(f"\n  Fetched: {len(all_posts)}/{len(BLOG_SLUGS)}")
+    print(f"\n  Fetched: {len(all_posts)}/{len(blog_slugs)}")
 
     print("\n[2/3] Building internal link matrix...")
     link_matrix = build_link_matrix(all_posts)

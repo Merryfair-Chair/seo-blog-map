@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 26 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 31 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -81,7 +81,7 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 ### Cluster 1: How to choose an ergonomic chair (buying-guide)
 - **Pillar:** the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (EXISTS)
 - **Pillar performance:** 137 GSC clicks, 36,901 impressions, position 17 for "ergonomic chair" (1,100 vol/mo), 1 referring domain
-- **Posts (7):**
+- **Posts (8):**
   - the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (PILLAR)
   - how-to-choose-the-best-ergonomic-chair-in-malaysia (351 clicks — outperforms pillar)
   - how-to-choose-office-chair-body-fit-test (2 clicks, but architecturally important)
@@ -89,30 +89,35 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
   - office-chair-tilt-mechanism-guide (0 clicks, topical authority asset)
   - what-is-lumbar-support (0 clicks, topical authority asset)
   - how-to-know-when-its-time-for-an-ergonomic-chair-upgrade (5 clicks)
+  - ergonomic-chair-size-guide (NEW — published 2026-03-23, fills gap-BG-1)
+  - how-to-adjust-office-chair (NEW — published 2026-04-06, fills gap-BG-2)
 - **Head term:** "ergonomic chair features" — 1,100/mo
-- **Approved gaps for this cluster:** Ergonomic chair size guide (150/mo), How to adjust ergonomic chair (300/mo)
+- **Approved gaps for this cluster:** ~~Ergonomic chair size guide (150/mo)~~ PUBLISHED 2026-03-23 → `ergonomic-chair-size-guide`, ~~How to adjust ergonomic chair (40/mo MY · 4,050 global)~~ PUBLISHED 2026-04-06 → `how-to-adjust-office-chair`
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
 - **Pillar performance:** 25 GSC clicks, 24,556 impressions, position 5 for "best ergonomic office chairs" (100 vol/mo) — new post, strong early signal
-- **Posts (4):**
+- **Posts (5):**
   - best-ergonomic-office-chairs-every-budget (PILLAR)
   - 6-affordable-ergonomic-chairs-for-your-home-and-office (393 clicks — top performer site-wide)
   - upgrade-your-workspace-affordable-working-chairs-under-rm1000 (10 clicks)
   - best-study-chairs-students-guide (0 clicks, new post)
+  - office-chair-cost-calculator (0 clicks, published March 19 2026 — fills gap-BB-3)
 - **Head term:** "best ergonomic office chair" — 250/mo
 - **Approved gaps:** None new (mid-range RM2K gap deprioritized — strengthen existing pillar instead). "Best home office chair Malaysia" reframed as optimization of existing "6 Affordable" post.
 
 ### Cluster 3: Health & posture (health-posture)
 - **Pillar:** the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (EXISTS)
 - **Pillar performance:** 5 GSC clicks, 926 impressions — weak search performance but architecturally critical as health cluster hub. Was an ORPHAN (zero contextual inbound links) — now fixed after internal linking update.
-- **Posts (4):**
+- **Posts (6):**
   - the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (PILLAR)
   - the-role-of-ergonomic-office-chairs-in-preventing-back-pain (1 click)
   - effects-of-poor-sitting-posture-and-how-ergonomics-can-help (3 clicks)
   - do-posture-correctors-work (3 clicks, 1,352 impressions, position 7.6 for "office chair posture corrector")
+  - standing-desk-vs-ergonomic-chair (NEW — published 2026-03-30, fills gap-HP-2)
+  - correct-sitting-posture-guide (NEW — published 2026-04-01, fills gap-HP-1 — HIGHEST PRIORITY GAP)
 - **Head term:** "benefits of ergonomics" — 200/mo
-- **Approved gaps:** How to sit properly office chair (500/mo — HIGHEST PRIORITY), Ergonomic chair vs standing desk (150/mo)
+- **Approved gaps:** ~~How to sit properly office chair (500/mo — HIGHEST PRIORITY)~~ PUBLISHED 2026-04-01 → `correct-sitting-posture-guide`, ~~Ergonomic chair vs standing desk (reframed → standing desk malaysia, 200/mo)~~ PUBLISHED 2026-03-30 → `standing-desk-vs-ergonomic-chair`
 
 ### Cluster 4: Gaming & specialized (gaming)
 - **Pillar:** gaming-chair-vs-office-chair-which-one-should-you-really-buy (EXISTS)
@@ -126,14 +131,17 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 - **Approved gaps:** Best chair for long gaming sessions (120/mo — lower priority)
 
 ### Cluster 5: Workspace design & productivity (workspace)
-- **Pillar:** NONE — NEEDS CREATION (this is the weakest cluster architecturally)
-- **Posts (4):**
+- **Pillar:** ergonomic-home-office-setup-guide (PUBLISHED 2026-03-24 — fills gap-WS-1)
+- **Pillar title:** "Ergonomic Home Office Setup: A 5-Zone Guide That Works"
+- **Posts (6):**
+  - ergonomic-home-office-setup-guide (PILLAR — NEW, published 2026-03-24)
   - why-executive-comfort-is-the-new-productivity (0 clicks, but 5 contextual inbound links)
   - playing-with-colours-workspace-decor-to-boost-inspiration (2 clicks, orphan)
   - cute-ergonomic-chairs-for-a-stylish-comfortable-cafe-experience (23 clicks)
   - why-everyones-switching-to-ergonomics-swivel-chairs-in-2025 (9 clicks, ranks #9 for "swivel chair" at 700 vol/mo — strong signal despite low clicks)
+  - small-home-office-ideas (NEW — published 2026-03-25, fills gap-WS-2)
 - **Head term:** "ergonomic workspace setup" — 150/mo
-- **Approved gaps:** Complete guide to ergonomic home office setup (300/mo — THIS IS THE MISSING PILLAR, second priority after gap 5). Small space setup deprioritized until pillar exists.
+- **Approved gaps:** ~~Complete guide to ergonomic home office setup (300/mo)~~ PUBLISHED 2026-03-24 → `ergonomic-home-office-setup-guide`. ~~Small space setup (gap-WS-2, 100/mo)~~ PUBLISHED 2026-03-25 → `small-home-office-ideas`.
 
 ### Cluster 6: Brand & seasonal (brand)
 - **Pillar:** None needed (campaign content)
@@ -153,26 +161,47 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 | Ergonomic home office setup guide | ergonomic home office setup guide | 300/mo | APPROVED — #2 PRIORITY | Missing Workspace PILLAR. No Malaysian result ranks. Architecturally critical. |
 | How to adjust ergonomic chair | how to adjust ergonomic chair | 300/mo | APPROVED — #3 PRIORITY | SERP: CCOHS, Mayo Clinic, brand-specific guides. Post-purchase EEAT builder. Can feature Merryfair-specific controls. |
 | Ergonomic chair size guide | ergonomic chair size guide | 150/mo | APPROVED — #4 PRIORITY | SERP: generic brands (Protoarc, Eureka, Sihoo). No Malaysian result. No overlap with existing Body Fit Test post. |
-| Ergonomic chair vs standing desk | ergonomic chair vs standing desk | 150/mo | APPROVED — #5 PRIORITY | SERP: Sihoo, health sites. Universal conclusion is "use both" — good angle for chair manufacturer. No Merryfair page ranks. |
+| Ergonomic chair vs standing desk | ergonomic chair vs standing desk | 150/mo | PUBLISHED 2026-03-30 → `standing-desk-vs-ergonomic-chair` | Reframed to "standing desk malaysia" (200/mo MY, KD 4, TP 1,100). 7 internal outbound links including health-posture pillar. |
 | Best chair for long gaming sessions | best chair for gaming long hours | 120/mo | APPROVED — #6 PRIORITY | Different intent from existing gaming comparison. Lower priority — gaming cluster is already strongest. |
 | Ergonomic chair under RM2,000 | ergonomic chair under RM2000 | 80/mo | DEPRIORITIZED | Low volume. "Every Budget" pillar already covers this tier. Strengthen existing pillar instead. |
-| Ergonomic setup small space | ergonomic setup small space | 100/mo | DEPRIORITIZED | Wait until Workspace pillar (gap 2) is published. Writing this now without a pillar wastes architectural value. |
+| Ergonomic setup small space | ergonomic setup small space | 100/mo | PUBLISHED 2026-03-25 → `small-home-office-ideas` | Pillar (`ergonomic-home-office-setup-guide`) published first as planned. Small space post now properly anchored to pillar. |
 | Best home office chair Malaysia | best home office chair malaysia | 200/mo | REFRAMED | Optimize existing "6 Affordable" post to better target home office intent, OR write a new dedicated WFH post. Owner's call. |
+
+---
+
+## Ahrefs keyword validation (completed 2026-03-30)
+
+Live MY and global volume data pulled from Ahrefs API for all active gaps. Key findings and revisions:
+
+| Gap | Original keyword/vol | Ahrefs MY vol | Ahrefs global vol | KD | Verdict |
+|-----|---------------------|---------------|-------------------|----|---------|
+| gap-HP-1: Sit properly | how to sit properly (500/mo est.) | "correct sitting posture" 80/mo · "sitting posture" 150/mo | 2,600–4,100/mo | 0–35 | CONFIRMED #1. Target "sitting posture" cluster (~370/mo MY total) |
+| gap-HP-2: Chair vs standing desk | ergonomic chair vs standing desk (150/mo est.) | 0 MY | 0 global | — | PUBLISHED 2026-03-30 → `standing-desk-vs-ergonomic-chair` |
+| gap-BG-2: Adjust chair | how to adjust ergonomic chair (300/mo est.) | 40/mo MY | 4,050/mo global | — | APPROVED. Low MY but strong global + EEAT value |
+| gap-BB-2: Home office chair | best home office chair malaysia (200/mo est.) | 0 MY | 0 global | — | REFRAMED → "best office chair malaysia" (150/mo, KD 0) or "ergonomic office chair malaysia" (200/mo, KD 1). HIGH CANNIBALIZATION RISK — see note below. Optimize existing pillar first. |
+| gap-GM-1: Gaming chair | best chair for gaming long hours (120/mo est.) | 0 MY | 250/mo global | — | REFRAMED → "best gaming chair malaysia" (100/mo, KD 39). Competitive — deprioritise. |
+| gap-BG-3: Chair lifespan | — | 0 MY | 370/mo global | — | DEPRIORITIZED — no MY demand |
+| gap-BG-4: BIFMA cert | — | 0 MY | 40/mo global | — | DEPRIORITIZED — negligible demand |
+| gap-BG-5: Test-sit checklist | — | 0 MY | 0 global | — | DEPRIORITIZED — no demand |
+| gap-BB-1: Chair under RM2K | — | 0 MY | 0 global | — | DEPRIORITIZED — confirmed zero volume |
+
+**Cannibalization note for gap-BB-2:** "Best office chair malaysia" and "ergonomic office chair malaysia" target virtually identical intent to the existing "best-ergonomic-office-chairs-every-budget" pillar (already ranks pos. 5 for "best ergonomic office chairs", 100/mo). Writing a second post creates strong cannibalization risk — Google would struggle to choose which to rank. **Recommended action: optimise the existing pillar** to incorporate "Malaysia" into title/H1 and add local pricing/context, rather than creating a competing page.
 
 ---
 
 ## Approved content calendar (priority order)
 
-| Priority | Post title | Target keyword | Est. vol | Cluster | Notes |
-|----------|-----------|----------------|----------|---------|-------|
-| 1 | How to sit properly in an office chair | how to sit properly office chair | 500/mo | Health & posture | Highest volume. Links to back pain, posture effects, posture correctors posts. |
-| 2 | Complete guide to setting up an ergonomic home office | ergonomic home office setup guide | 300/mo | Workspace (PILLAR) | Architecturally critical — creates the missing pillar. Links to all 4 workspace posts. |
-| 3 | How to adjust your ergonomic chair properly | how to adjust ergonomic chair | 300/mo | Buying guide | Post-purchase EEAT. Feature Merryfair-specific chair controls (Wau, Zenit, Spinelly). |
-| 4 | Ergonomic chair size guide by height and weight | ergonomic chair size guide | 150/mo | Buying guide | Lookup table format. Links to/from Body Fit Test post. |
-| 5 | Ergonomic chair vs standing desk | ergonomic chair vs standing desk | 150/mo | Health & posture | Comparison format. Honest angle: standing desks have benefits, but chair matters for seated hours. |
-| 6 | Best ergonomic chair for long gaming sessions | best chair for gaming long hours | 120/mo | Gaming | Endurance-focused (vs existing comparison-focused pillar). Feature Ronin prominently. |
+| Priority | Post title | Target keyword | MY vol | Cluster | Notes |
+|----------|-----------|----------------|--------|---------|-------|
+| 1 | ~~How to sit properly in an office chair~~ | correct sitting posture / sitting posture | ~370/mo cluster | Health & posture | PUBLISHED 2026-04-01 → `correct-sitting-posture-guide` |
+| 2 | ~~Complete guide to setting up an ergonomic home office~~ | ergonomic home office setup guide | — | Workspace (PILLAR) | PUBLISHED 2026-03-24 → `ergonomic-home-office-setup-guide` |
+| 3 | How to adjust your ergonomic chair properly | how to adjust office chair | 40/mo MY · 4,050 global | Buying guide | Low MY but EEAT + post-purchase value. Feature Merryfair-specific controls. |
+| 4 | ~~Ergonomic chair size guide by height and weight~~ | ergonomic chair size guide | — | Buying guide | PUBLISHED 2026-03-23 → `ergonomic-chair-size-guide` |
+| 5 | ~~Standing desk vs ergonomic chair (reframed)~~ | standing desk malaysia | 200/mo MY · KD 4 · TP 1,100 | Health & posture | PUBLISHED 2026-03-30 → `standing-desk-vs-ergonomic-chair` |
+| 6 | Best gaming chair Malaysia | best gaming chair malaysia | 100/mo MY · KD 39 | Gaming | Reframed from "long gaming sessions". Competitive (KD 39) — lower priority. Feature Ronin. |
+| — | ~~Small home office ideas~~ | ergonomic setup small space | — | Workspace | PUBLISHED 2026-03-25 → `small-home-office-ideas` (fills gap-WS-2) |
 
-**Combined estimated new monthly search volume: ~1,520/mo**
+**Combined estimated MY search volume (unpublished posts): ~140/mo** (correct-sitting-posture-guide published 2026-04-01, removed ~370/mo cluster volume)
 
 **For each new post, after publishing, run:**
 ```
@@ -189,7 +218,7 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 | `.claude/commands/new-post.md` | Slash command: process a newly published blog post | DONE |
 | `.claude/commands/monthly-update.md` | Slash command: monthly data refresh + gap analysis | DONE |
 | `.claude/commands/linking-audit.md` | Slash command: internal link health check | DONE |
-| `merryfair_content_map.json` | Source of truth — clusters, posts, gaps, summaries, links, performance data | DONE (needs re-crawl to reflect newly added internal links) |
+| `merryfair_content_map.json` | Source of truth — clusters, posts, gaps, summaries, links, performance data | DONE (re-crawled 2026-03-30, 27 links pending action) |
 | `crawl_and_summarize.py` | Crawls all blog posts, extracts internal links and body text | DONE |
 | `check_new_posts.py` | Auto-detects new posts not yet in the map | DONE |
 | `merryfair_master_inventory.xlsx` | Raw merged data from GSC + Ahrefs + GA4 (3 tabs) | DONE |
@@ -201,18 +230,70 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 
 ## Immediate next actions
 
-1. **Re-run crawl** to verify the 19 newly added internal links are live:
-   ```
-   python crawl_and_summarize.py
-   ```
+### Linking audit — 2026-03-30 (27 links to add + 1 broken link to fix + 3 new links for standing-desk post)
 
-2. **Start writing post #1** — "How to sit properly in an office chair" — through your existing WordPress writing workflow.
+**No sidebar links detected** (max inbound = 13, threshold 20). All links in the matrix are contextual.
 
-3. **After publishing post #1**, run `/new-post [url]` to add it to the map.
+**Broken link — fix first:**
+- `be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia` links to `on-to-the-year-of-the-dragon-5-tips-to-sit-like-a-leader` which does not exist. Replace with `office-chairs-to-sit-with-power-focus-and-intention` (likely same post, renamed) or remove the link.
 
-4. **Continue through the content calendar** in priority order.
+**CRITICAL — Workspace cluster (4 posts have zero outbound links):**
+- `ergonomic-home-office-setup-guide` → `why-executive-comfort-is-the-new-productivity` — anchor: "why your seating choice is the foundation of a productive home office"
+- `ergonomic-home-office-setup-guide` → `playing-with-colours-workspace-decor-to-boost-inspiration` — anchor: "how colour and decor can transform your home office into a creative environment"
+- `ergonomic-home-office-setup-guide` → `cute-ergonomic-chairs-for-a-stylish-comfortable-cafe-experience` — anchor: "ergonomic chairs that look great in any home office style"
+- `ergonomic-home-office-setup-guide` → `why-everyones-switching-to-ergonomics-swivel-chairs-in-2025` — anchor: "why ergonomic swivel chairs have become the default home office chair"
+- `ergonomic-home-office-setup-guide` → `small-home-office-ideas` — anchor: "ergonomic setup ideas for compact home offices and Malaysian apartments"
+- `why-executive-comfort-is-the-new-productivity` → `ergonomic-home-office-setup-guide` — anchor: "complete guide to setting up an ergonomic home office" (0 outbound links currently)
+- `playing-with-colours-workspace-decor-to-boost-inspiration` → `ergonomic-home-office-setup-guide` — anchor: "the full ergonomic home office setup guide" (0 outbound links currently)
+- `cute-ergonomic-chairs-for-a-stylish-comfortable-cafe-experience` → `ergonomic-home-office-setup-guide` — anchor: "how to set up a complete ergonomic home office around your chair" (0 outbound links currently)
+- `why-everyones-switching-to-ergonomics-swivel-chairs-in-2025` → `ergonomic-home-office-setup-guide` — anchor: "complete ergonomic home office setup guide" (0 outbound links currently)
 
-5. **In ~30 days**, export fresh CSVs and run `/monthly-update` for the first real data refresh cycle.
+**HIGH — Buying guide pillar missing member links:**
+- `the-ultimate-guide...` → `ergonomic-chair-size-guide` — anchor: "the right chair size for your height and weight" (new post, not yet linked from pillar)
+- `the-ultimate-guide...` → `office-chair-tilt-mechanism-guide` — anchor: "understanding tilt mechanisms before you buy"
+- `the-ultimate-guide...` → `how-to-choose-office-chair-body-fit-test` — anchor: "use this body fit test in the showroom"
+- `the-ultimate-guide...` → `office-chair-material-guide-malaysia` — anchor: "choosing the right chair material for Malaysian conditions"
+- `how-to-know-when-its-time-for-an-ergonomic-chair-upgrade` → `the-ultimate-guide...` — anchor: "use this buying guide for your next ergonomic chair" (only cluster member missing the pillar link)
+
+**HIGH — Budget cluster pillar missing member links:**
+- `best-ergonomic-office-chairs-every-budget` → `office-chair-cost-calculator` — anchor: "calculate the true cost per sit before choosing your budget tier"
+- `best-ergonomic-office-chairs-every-budget` → `best-study-chairs-students-guide` — anchor: "our dedicated student chair guide for the tightest budgets"
+
+**MEDIUM — Orphan resolution (cross-cluster):**
+- `how-to-choose-the-best-ergonomic-chair-in-malaysia` → `ergonomic-chair-size-guide` — anchor: "find your ideal chair size before buying"
+- `how-to-choose-office-chair-body-fit-test` → `ergonomic-chair-size-guide` — anchor: "know your size before you go to the showroom"
+- `how-to-choose-office-chair-body-fit-test` → `office-chair-tilt-mechanism-guide` — anchor: "how the tilt mechanism should feel during your test sit"
+- `6-affordable-ergonomic-chairs-for-your-home-and-office` → `office-chair-cost-calculator` — anchor: "is a cheap chair really cheaper? See the cost-per-sit breakdown"
+- `6-affordable-ergonomic-chairs-for-your-home-and-office` → `best-study-chairs-students-guide` — anchor: "specifically looking for a study chair? We have a dedicated guide"
+- `upgrade-your-workspace-affordable-working-chairs-under-rm1000` → `office-chair-cost-calculator` — anchor: "why spending slightly more upfront can cost less per year"
+
+**MEDIUM — Brand islands:**
+- `why-executive-comfort-is-the-new-productivity` → `office-chairs-to-sit-with-power-focus-and-intention` — anchor: "sitting with power and intention — why it matters for your work"
+- `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` → `eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair` — anchor: "the added benefit of choosing eco-friendly ergonomic materials"
+- `best-ergonomic-office-chairs-every-budget` → `redefine-holiday-gifting-with-merryfair-ergonomic-chairs` — anchor: "ergonomic chairs also make a genuinely useful gift for professionals"
+
+**LOW — Thin outbound posts:**
+- `6-affordable-ergonomic-chairs-for-your-home-and-office` → `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` — anchor: "the health case for investing in proper ergonomics"
+- `upgrade-your-workspace-affordable-working-chairs-under-rm1000` → `ergonomic-home-office-setup-guide` — anchor: "how to set up a complete ergonomic home office around your new chair"
+
+**NEW — standing-desk-vs-ergonomic-chair (published 2026-03-30, currently an ORPHAN):**
+- `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` → `standing-desk-vs-ergonomic-chair` — anchor: "ergonomic chair vs standing desk: which is better for your health?" (pillar should link to new cluster member)
+- `the-role-of-ergonomic-office-chairs-in-preventing-back-pain` → `standing-desk-vs-ergonomic-chair` — anchor: "whether a standing desk or an ergonomic chair better prevents back pain"
+- `effects-of-poor-sitting-posture-and-how-ergonomics-can-help` → `standing-desk-vs-ergonomic-chair` — anchor: "ergonomic chair vs standing desk for reducing the effects of poor posture"
+
+**After adding all links, run `/linking-audit` again to verify.**
+
+---
+
+### Content writing
+
+1. **Next post to write** — "How to adjust your ergonomic chair properly" (gap-BG-2), targeting "how to adjust office chair" (40/mo MY, 4,050 global). Priority #3 from the content calendar. EEAT + post-purchase value; feature Merryfair-specific controls.
+
+2. **After publishing**, run `/new-post [url]` to add it to the map.
+
+3. **Continue through the content calendar** in priority order (remaining unpublished: gap-BG-2, gap-GM-1/best gaming chair).
+
+4. **In ~30 days**, export fresh CSVs and run `/monthly-update` for the first real data refresh cycle.
 
 ---
 
@@ -221,7 +302,7 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 - **Visual map:** Build React Flow app + Vercel deployment, or defer? Owner undecided.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post? Owner's call.
 - **Eco-friendly / Sustainability cluster:** The eco-friendly post (115 clicks) could seed a new cluster. Worth considering after the 6 approved gaps are published.
-- **Ahrefs competitor gap analysis:** Deferred until API credits reset. Manual CSVs cover own-site data. Competitor intelligence requires Ahrefs Lite ($129/mo) which owner has but API units were exhausted this month.
+- **Ahrefs competitor gap analysis:** API credits restored 2026-03-30. Gap keyword validation completed. Competitor gap analysis not yet run — available for next session.
 
 ---
 
@@ -243,10 +324,11 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 
 ## Key data points to remember
 
+- **Total published posts:** 33 (up from 32)
 - **Top performing post:** "6 Affordable Ergonomic Chairs" — 393 GSC clicks, 43K impressions
 - **Strongest competitive position:** "Gaming Chair vs Office Chair" — Ahrefs position #4 for head term, 1 referring domain
-- **Highest potential new post:** "How to sit properly" — 500/mo estimated, no Merryfair page ranks
-- **Biggest architectural gap:** Workspace cluster has no pillar page
+- **Highest potential new post:** ~~"How to sit properly" — 500/mo estimated, no Merryfair page ranks~~ PUBLISHED 2026-04-01 → `correct-sitting-posture-guide`
+- **Biggest architectural gap:** ~~Workspace cluster has no pillar page~~ RESOLVED 2026-03-24. ~~Small space gap (WS-2)~~ RESOLVED 2026-03-25 → `small-home-office-ideas`. ~~Standing desk comparison (gap-HP-2)~~ RESOLVED 2026-03-30 → `standing-desk-vs-ergonomic-chair`. ~~How to sit properly (gap-HP-1 — #1 PRIORITY)~~ RESOLVED 2026-04-01 → `correct-sitting-posture-guide`. Now: all 6 clusters have pillar pages; health-posture cluster now has 6 posts; all approved health-posture gaps published.
 - **Only 2 posts have referring domains** (external backlinks) — gaming comparison (1) and ultimate guide (1). Internal linking is critical since external signals are thin.
 - **Sidebar "Read More" inflation:** 4 posts (material guide, body fit test, study chairs, tilt mechanism) show 25 inbound links each — these are sitewide sidebar links, not contextual. Exclude from linking analysis.
 - **Swivel chairs post** ranks #9 for "swivel chair" (700 vol/mo) — strong signal despite only 9 clicks. Worth monitoring.

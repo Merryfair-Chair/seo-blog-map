@@ -41,10 +41,16 @@ From the SEO strategy document — follow these always:
 - For low/zero volume suggestions, flag the volume but still explain strategic rationale if one exists (topical completeness, cluster coherence).
 - Before suggesting a new post, always check if an existing post already covers the topic partially. If it does, the right output may be "optimize this existing post" rather than "write a new one."
 
+## Master content standard
+The master blog creation prompt is the single standard for all content creation and optimization work. It lives at:
+`C:\Users\wenxi.lee\Desktop\blog creation prompt\`
+Always read the most recently modified `.md` file in that folder before any content or optimization task. The user updates this file periodically — never assume the version you've seen is current.
+
 ## Available slash commands
 - `/new-post [url]` — Process a newly published blog post (crawl, summarize, assign cluster, check links)
 - `/monthly-update` — Monthly data refresh with fresh CSV exports (merge data, find gaps, report)
 - `/linking-audit` — Full internal linking health check
+- `/optimize-post [slug]` — Full audit of an existing post against the master content standard. Outputs prioritized optimization checklist with exact fixes, quick wins, and rewrite suggestions
 
 ## Sidebar links to exclude from linking analysis
 The site has a "Read More" sidebar section that creates sitewide links to recent posts. These are NOT contextual editorial links. Any slug appearing as an outbound link from 20+ posts is a sidebar link — exclude from linking analysis.

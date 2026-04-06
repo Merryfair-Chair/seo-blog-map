@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.merryfair.com)",
+      "Bash(jq -r \".posts | to_entries[] | \"\"\\\\\\(.key\\) | \\\\\\(.value.title\\) | \\\\\\(.value.content_summary\\)\"\"\")",
+      "Bash(python3:*)",
+      "Bash(python crawl_and_summarize.py)",
+      "Bash(node:*)",
+      "Bash(python -c \":*)"
+    ]
+  }
+}

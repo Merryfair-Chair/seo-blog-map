@@ -1,284 +1,433 @@
-import { useMemo, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
-  ReactFlow,
-  Background,
-  Controls,
-  MiniMap,
-  useNodesState,
-  useEdgesState,
-  BackgroundVariant,
+  ReactFlow, Background, Controls, MiniMap,
+  useNodesState, useEdgesState, useStore,
+  BackgroundVariant, Panel, Handle, Position,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
+import {
+  forceSimulation, forceManyBody, forceLink,
+  forceCenter, forceCollide,
+} from 'd3-force'
 
-const CLUSTER_LAYOUT = {
-  'buying-guide':      { cx: 300,  cy: 300  },
-  'best-chairs-budget':{ cx: 900,  cy: 300  },
-  'health-posture':    { cx: 1500, cy: 300  },
-  'gaming-specialized':{ cx: 300,  cy: 850  },
-  'workspace-lifestyle':{ cx: 900, cy: 850  },
-  'brand-seasonal':    { cx: 1500, cy: 850  },
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+const DEFAULT_FORCES = {
+  repulsion:     -500,
+  linkDistance:  160,
+  linkStrength:  0.35,
+  clusterForce:  0.15,
+  centerForce:   0.03,
+}
+const STORAGE_KEY = 'merryfair-graph-forces'
+const PAD = 56
+
+function loadForces() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    return saved ? { ...DEFAULT_FORCES, ...JSON.parse(saved) } : DEFAULT_FORCES
+  } catch { return DEFAULT_FORCES }
 }
 
-function buildGraph(clusters, postDetails) {
-  const nodes = []
-  const edges = []
-  const slugToNodeId = {}
+// ── Invisible handle style (needed for edges to connect) ──────────────────────
+
+const HANDLE_STYLE = {
+  width: 6, height: 6,
+  background: 'transparent',
+  border: '1.5px solid #94a3b8',
+  opacity: 0,
+}
+
+// ── Simulation ────────────────────────────────────────────────────────────────
+
+function runSimulation(clusters, postDetails, forces) {
+  const simNodes = []
+  const links    = []
+  const clusterCenters = {}
+
+  const active = clusters.filter(c => (c.posts?.length || 0) > 0)
+  const R = active.length <= 3 ? 380 : 560
+  active.forEach((c, i) => {
+    const a = (2 * Math.PI * i) / active.length - Math.PI / 2
+    clusterCenters[c.id] = { x: Math.cos(a) * R, y: Math.sin(a) * R }
+  })
 
   clusters.forEach(cluster => {
-    const layout = CLUSTER_LAYOUT[cluster.id] || { cx: 500, cy: 500 }
-    const { cx, cy } = layout
-    const posts = cluster.posts || []
-    const pillarSlug = cluster.pillarSlug
-    const color = cluster.color || '#555'
-
-    // Group background node
-    nodes.push({
-      id: `group-${cluster.id}`,
-      type: 'group',
-      position: { x: cx - 260, y: cy - 220 },
-      style: {
-        width: 520,
-        height: posts.length > 5 ? 480 : 440,
-        background: `${color}08`,
-        border: `1.5px solid ${color}30`,
-        borderRadius: 16,
-      },
-      data: { label: cluster.name },
+    const center = clusterCenters[cluster.id] || { x: 0, y: 0 }
+    ;(cluster.posts || []).forEach(slug => {
+      const post = postDetails[slug]
+      if (!post) return
+      simNodes.push({
+        id: `post-${slug}`, slug,
+        cluster: cluster.id, clusterColor: cluster.color,
+        isPillar: cluster.pillarSlug === slug,
+        needsPillar: cluster.pillarStatus === 'needs-creation',
+        post,
+        x: center.x + (Math.random() - 0.5) * 60,
+        y: center.y + (Math.random() - 0.5) * 60,
+      })
     })
+    // Only show gaps that are not yet published or rejected
+    ;(cluster.gaps || []).filter(g => g.status !== 'published' && g.status !== 'rejected').forEach((gap, gi) => {
+      const id = gap.id || `gap-${cluster.id}-${gi}`
+      simNodes.push({
+        id, gap, gapId: id,
+        cluster: cluster.id, clusterColor: cluster.color,
+        isGap: true,
+        x: (center.x || 0) + (Math.random() - 0.5) * 100,
+        y: (center.y || 0) + (Math.random() - 0.5) * 100,
+      })
+    })
+  })
 
-    // Cluster label node
-    nodes.push({
-      id: `label-${cluster.id}`,
-      type: 'default',
-      position: { x: cx - 250, y: cy - 210 },
-      parentId: `group-${cluster.id}`,
-      extent: 'parent',
-      draggable: false,
-      selectable: false,
-      style: { background: 'transparent', border: 'none', width: 500, pointerEvents: 'none' },
-      data: {
-        label: (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 8, height: 8, borderRadius: 2, background: color, flexShrink: 0 }} />
-            <span style={{ fontWeight: 600, fontSize: 11, color: color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              {cluster.name}
+  const nodeIdSet = new Set(simNodes.map(n => n.id))
+
+  Object.entries(postDetails).forEach(([slug, post]) => {
+    ;(post.internal_links_out || []).forEach(link => {
+      // support both old string format and new {slug, anchor} format
+      const targetSlug = typeof link === 'string' ? link : link.slug
+      const s = `post-${slug}`, t = `post-${targetSlug}`
+      if (nodeIdSet.has(s) && nodeIdSet.has(t)) links.push({ source: s, target: t })
+    })
+  })
+  clusters.forEach(cluster => {
+    if (!cluster.pillarSlug) return
+    ;(cluster.gaps || []).forEach(gap => {
+      const s = gap.id, t = `post-${cluster.pillarSlug}`
+      if (nodeIdSet.has(s) && nodeIdSet.has(t)) links.push({ source: s, target: t, weak: true })
+    })
+  })
+
+  const sim = forceSimulation(simNodes)
+    .force('charge',    forceManyBody().strength(forces.repulsion))
+    .force('link',      forceLink(links).id(d => d.id).distance(forces.linkDistance).strength(d => d.weak ? 0.04 : forces.linkStrength))
+    .force('center',    forceCenter(0, 0).strength(forces.centerForce))
+    .force('collision', forceCollide(d => d.isPillar ? 90 : 70))
+    .force('cluster', alpha => {
+      simNodes.forEach(n => {
+        const c = clusterCenters[n.cluster]
+        if (!c) return
+        n.vx += (c.x - n.x) * forces.clusterForce * alpha
+        n.vy += (c.y - n.y) * forces.clusterForce * alpha
+      })
+    })
+    .stop()
+
+  for (let i = 0; i < 300; i++) sim.tick()
+  return { simNodes, links }
+}
+
+function computeClusterBoxes(simNodes, clusters) {
+  const bounds = {}
+  simNodes.forEach(n => {
+    if (!bounds[n.cluster]) bounds[n.cluster] = { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
+    const b = bounds[n.cluster]
+    const hw = n.isPillar ? 98 : 83
+    const hh = n.isPillar ? 50 : 44
+    b.minX = Math.min(b.minX, n.x - hw)
+    b.minY = Math.min(b.minY, n.y - hh)
+    b.maxX = Math.max(b.maxX, n.x + hw)
+    b.maxY = Math.max(b.maxY, n.y + hh)
+  })
+  return clusters.filter(c => bounds[c.id]).map(c => ({
+    id: c.id, color: c.color, name: c.name,
+    needsPillar: c.pillarStatus === 'needs-creation',
+    x: bounds[c.id].minX - PAD,
+    y: bounds[c.id].minY - PAD,
+    w: bounds[c.id].maxX - bounds[c.id].minX + PAD * 2,
+    h: bounds[c.id].maxY - bounds[c.id].minY + PAD * 2,
+  }))
+}
+
+// ── Cluster background layer ──────────────────────────────────────────────────
+// Uses useStore to sync viewport transform — rendered as ReactFlow child
+// so it has access to the store context
+
+function ClusterBgLayer({ boxes }) {
+  const [tx, ty, zoom] = useStore(s => s.transform)
+
+  return (
+    <div style={{
+      position: 'absolute',
+      top: 0, left: 0,
+      transform: `translate(${tx}px,${ty}px) scale(${zoom})`,
+      transformOrigin: '0 0',
+      pointerEvents: 'none',
+      zIndex: 0,
+    }}>
+      {boxes.map(box => (
+        <div key={box.id} style={{
+          position: 'absolute',
+          left: box.x, top: box.y,
+          width: box.w, height: box.h,
+          background: `${box.color}0c`,
+          border: `1.5px solid ${box.color}40`,
+          borderRadius: 22,
+        }}>
+          <div style={{ position: 'absolute', top: 12, left: 16, display: 'flex', alignItems: 'center', gap: 7 }}>
+            <div style={{ width: 8, height: 8, borderRadius: 2, background: box.color }} />
+            <span style={{ fontSize: 11, fontWeight: 800, color: box.color, textTransform: 'uppercase', letterSpacing: '0.07em', whiteSpace: 'nowrap' }}>
+              {box.name}
             </span>
-            {cluster.pillarStatus === 'needs-creation' && (
-              <span style={{ fontSize: 9, padding: '1px 6px', borderRadius: 3, background: '#4a1515', color: '#f07070', fontWeight: 600 }}>
+            {box.needsPillar && (
+              <span style={{ fontSize: 9, padding: '2px 6px', borderRadius: 4, background: '#fef2f2', color: '#dc2626', fontWeight: 800, border: '1px solid #fecaca' }}>
                 NEEDS PILLAR
               </span>
             )}
           </div>
-        )
-      },
-    })
-
-    // Post positions: pillar center, others in arc
-    const nonPillarPosts = posts.filter(s => s !== pillarSlug)
-    const positions = {}
-
-    if (pillarSlug) {
-      positions[pillarSlug] = { x: cx, y: cy - 60 }
-    }
-
-    nonPillarPosts.forEach((slug, i) => {
-      const cols = Math.min(nonPillarPosts.length, 3)
-      const col = i % cols
-      const row = Math.floor(i / cols)
-      positions[slug] = {
-        x: cx - ((cols - 1) * 130) / 2 + col * 130,
-        y: cy + 80 + row * 110,
-      }
-    })
-
-    posts.forEach(slug => {
-      const post = postDetails[slug]
-      if (!post) return
-      const pos = positions[slug] || { x: cx, y: cy }
-      const isPillar = slug === pillarSlug
-      const nodeId = `post-${slug}`
-      slugToNodeId[slug] = nodeId
-      const clicks = post.gsc_clicks || 0
-      const triageColor = clicks > 100 ? '#34c77b' : clicks >= 10 ? '#4f8ef7' : clicks >= 1 ? '#c9c142' : '#4e5568'
-
-      nodes.push({
-        id: nodeId,
-        position: pos,
-        data: {
-          slug,
-          label: post.title,
-          isPillar,
-          clicks,
-          triageColor,
-          clusterColor: color,
-          pageType: post.page_type,
-        },
-        style: {
-          background: isPillar ? `${color}18` : 'var(--bg2)',
-          border: isPillar ? `2px solid ${color}` : `1px solid var(--border2)`,
-          borderRadius: isPillar ? 12 : 8,
-          padding: '8px 12px',
-          width: isPillar ? 220 : 180,
-          cursor: 'pointer',
-          boxShadow: isPillar ? `0 0 20px ${color}20` : 'none',
-        },
-        label: undefined,
-        type: 'default',
-      })
-    })
-
-    // Gap nodes
-    ;(cluster.gaps || []).forEach((gap, gi) => {
-      const gapId = `gap-${gap.id || `${cluster.id}-${gi}`}`
-      const pos = {
-        x: cx - 100 + gi * 220,
-        y: cy + (nonPillarPosts.length > 2 ? 340 : 250),
-      }
-      nodes.push({
-        id: gapId,
-        position: pos,
-        data: { gap, clusterColor: color, isGap: true },
-        style: {
-          background: 'var(--gap-bg)',
-          border: `1px dashed ${color}50`,
-          borderRadius: 8,
-          padding: '7px 11px',
-          width: 180,
-          cursor: 'pointer',
-        },
-        type: 'default',
-      })
-    })
-  })
-
-  // Internal link edges
-  Object.entries(postDetails).forEach(([slug, post]) => {
-    const sourceId = `post-${slug}`
-    ;(post.internal_links_out || []).forEach(targetSlug => {
-      const targetId = `post-${targetSlug}`
-      if (slugToNodeId[targetSlug]) {
-        edges.push({
-          id: `e-${slug}-${targetSlug}`,
-          source: sourceId,
-          target: targetId,
-          animated: false,
-          style: { stroke: '#2e3549', strokeWidth: 1.5 },
-          markerEnd: { type: 'arrowclosed', color: '#2e3549', width: 12, height: 12 },
-        })
-      }
-    })
-  })
-
-  return { nodes, edges }
-}
-
-function CustomNodeContent({ data }) {
-  if (data.isGap) {
-    return (
-      <div>
-        <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--gap-color)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>
-          Suggested
         </div>
-        <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--text)', lineHeight: 1.3 }}>
-          {data.gap.title}
-        </div>
-        {data.gap.estVolume > 0 && (
-          <div style={{ fontSize: 10, color: 'var(--text3)', marginTop: 3 }}>
-            {data.gap.estVolume}/mo
-          </div>
-        )}
-      </div>
-    )
-  }
-  return (
-    <div>
-      {data.isPillar && (
-        <div style={{ fontSize: 9, fontWeight: 700, color: data.clusterColor, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>
-          Pillar
-        </div>
-      )}
-      <div style={{ fontSize: data.isPillar ? 12 : 11, fontWeight: data.isPillar ? 600 : 500, color: 'var(--text)', lineHeight: 1.3 }}>
-        {data.label}
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-        <div style={{ width: 6, height: 6, borderRadius: '50%', background: data.triageColor, flexShrink: 0 }} />
-        <span style={{ fontSize: 10, color: 'var(--text3)' }}>
-          {data.clicks > 0 ? `${data.clicks} clicks` : 'No traffic'}
-        </span>
-      </div>
+      ))}
     </div>
   )
 }
 
-export default function GraphView({ clusters, postDetails, selected, onSelect }) {
-  const { nodes: initialNodes, edges: initialEdges } = useMemo(
-    () => buildGraph(clusters, postDetails),
-    [clusters, postDetails]
-  )
+// ── Custom node types ─────────────────────────────────────────────────────────
+// IMPORTANT: Handle components are required for edges to connect correctly.
+// Without them, React Flow renders edges as zero-length lines.
 
-  const [nodes, , onNodesChange] = useNodesState(initialNodes)
-  const [edges, , onEdgesChange] = useEdgesState(initialEdges)
+function PostNodeComponent({ data }) {
+  const { post, isPillar, clusterColor, isSelected } = data
+  if (!post) return null
+  const clicks = post.gsc_clicks || 0
+  const dot = clicks > 100 ? '#16a34a' : clicks >= 10 ? '#2563eb' : clicks >= 1 ? '#ca8a04' : '#9ca3af'
+
+  return (
+    <>
+      <Handle type="target" position={Position.Top}    style={HANDLE_STYLE} />
+      <Handle type="target" position={Position.Left}   style={HANDLE_STYLE} />
+      <Handle type="source" position={Position.Bottom} style={HANDLE_STYLE} />
+      <Handle type="source" position={Position.Right}  style={HANDLE_STYLE} />
+      <div style={{
+        background: isPillar ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)` : '#fff',
+        border: isPillar ? `2.5px solid ${clusterColor}` : `1.5px solid ${clusterColor}70`,
+        borderRadius: isPillar ? 12 : 8,
+        padding: isPillar ? '10px 14px' : '8px 12px',
+        width: isPillar ? 195 : 165,
+        boxShadow: isSelected
+          ? `0 0 0 3px ${clusterColor}, 0 4px 20px rgba(0,0,0,0.18)`
+          : isPillar
+            ? `0 2px 12px ${clusterColor}40, 0 1px 4px rgba(0,0,0,0.08)`
+            : '0 1px 5px rgba(0,0,0,0.09)',
+        cursor: 'pointer',
+        userSelect: 'none',
+      }}>
+        {isPillar && (
+          <div style={{ fontSize: 9, fontWeight: 800, color: clusterColor, textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
+            ★ Pillar
+          </div>
+        )}
+        <div style={{ fontSize: isPillar ? 12 : 11, fontWeight: isPillar ? 700 : 600, color: '#111827', lineHeight: 1.35, marginBottom: 6 }}>
+          {post.title}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: dot, flexShrink: 0 }} />
+          <span style={{ fontSize: 10, color: '#6b7280' }}>
+            {clicks > 0 ? `${clicks.toLocaleString()} clicks` : 'No traffic'}
+          </span>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function GapNodeComponent({ data }) {
+  const { gap, clusterColor, isSelected } = data
+  if (!gap) return null
+  return (
+    <>
+      <Handle type="target" position={Position.Top}    style={HANDLE_STYLE} />
+      <Handle type="source" position={Position.Bottom} style={HANDLE_STYLE} />
+      <div style={{
+        background: '#fffbf5',
+        border: `1.5px dashed ${clusterColor}90`,
+        borderRadius: 8,
+        padding: '8px 12px',
+        width: 160,
+        boxShadow: isSelected ? `0 0 0 2.5px #b45309, 0 4px 14px rgba(0,0,0,0.13)` : '0 1px 4px rgba(0,0,0,0.07)',
+        cursor: 'pointer',
+        userSelect: 'none',
+      }}>
+        <div style={{ fontSize: 9, fontWeight: 800, color: '#b45309', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 3 }}>◌ Suggested</div>
+        <div style={{ fontSize: 11, fontWeight: 600, color: '#1f2937', lineHeight: 1.35, marginBottom: 4 }}>{gap.title}</div>
+        {gap.estVolume > 0 && <div style={{ fontSize: 10, color: '#92400e', fontWeight: 600 }}>{gap.estVolume}/mo</div>}
+      </div>
+    </>
+  )
+}
+
+const nodeTypes = {
+  postNode: PostNodeComponent,
+  gapNode:  GapNodeComponent,
+}
+
+// ── Force settings ────────────────────────────────────────────────────────────
+
+function ForceSettings({ forces, setForces, onRerun }) {
+  const [open, setOpen] = useState(false)
+  const sliders = [
+    { key: 'repulsion',    label: 'Repulsion',      min: -1500, max: -80,  step: 20,   hint: 'How far apart nodes push each other' },
+    { key: 'linkDistance', label: 'Link distance',  min: 60,    max: 400,  step: 10,   hint: 'Preferred length of connecting lines' },
+    { key: 'linkStrength', label: 'Link strength',  min: 0,     max: 1,    step: 0.05, hint: 'How strongly linked posts attract' },
+    { key: 'clusterForce', label: 'Cluster pull',   min: 0,     max: 0.6,  step: 0.01, hint: 'How tightly each cluster groups together' },
+    { key: 'centerForce',  label: 'Center gravity', min: 0,     max: 0.2,  step: 0.01, hint: 'Pull everything toward center' },
+  ]
+  return (
+    <div style={{ position: 'relative' }}>
+      <button onClick={() => setOpen(o => !o)} style={{ padding: '6px 12px', borderRadius: 7, fontSize: 12, fontWeight: 600, background: open ? '#1e293b' : '#fff', color: open ? '#fff' : '#374151', border: '1px solid var(--border)', boxShadow: 'var(--shadow)', display: 'flex', alignItems: 'center', gap: 6 }}>
+        ⚙ Forces
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', top: 38, right: 0, zIndex: 9999, background: '#fff', border: '1px solid var(--border)', borderRadius: 12, padding: '16px 18px', width: 272, boxShadow: '0 8px 32px rgba(0,0,0,0.14)' }}>
+          <div style={{ fontSize: 10, fontWeight: 800, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>Physics settings</div>
+          {sliders.map(s => (
+            <div key={s.key} style={{ marginBottom: 14 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#1f2937' }}>{s.label}</span>
+                <span style={{ fontSize: 11, color: '#6b7280', fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}>{forces[s.key]}</span>
+              </div>
+              <div style={{ fontSize: 10, color: '#9ca3af', marginBottom: 4 }}>{s.hint}</div>
+              <input type="range" min={s.min} max={s.max} step={s.step} value={forces[s.key]}
+                onChange={e => setForces(f => ({ ...f, [s.key]: parseFloat(e.target.value) }))}
+                style={{ width: '100%', accentColor: '#2563eb' }} />
+            </div>
+          ))}
+          <button onClick={onRerun} style={{ width: '100%', padding: '8px 0', borderRadius: 7, background: '#2563eb', color: '#fff', fontWeight: 700, fontSize: 12, marginTop: 4 }}>
+            Re-run simulation
+          </button>
+          <button onClick={() => { setForces(DEFAULT_FORCES); setTimeout(onRerun, 50) }} style={{ width: '100%', padding: '6px 0', borderRadius: 7, background: 'transparent', color: '#9ca3af', fontSize: 11, marginTop: 6, border: '1px solid var(--border)' }}>
+            Reset to defaults
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function Legend() {
+  return (
+    <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '9px 14px', display: 'flex', flexWrap: 'wrap', gap: '6px 16px', fontSize: 11, color: '#374151', boxShadow: 'var(--shadow)' }}>
+      {[
+        { color: '#16a34a', label: '100+ clicks',   dot: true },
+        { color: '#2563eb', label: '10–99 clicks',  dot: true },
+        { color: '#ca8a04', label: '1–9 clicks',    dot: true },
+        { color: '#9ca3af', label: 'No traffic',    dot: true },
+        { color: '#475569', label: 'Internal link', line: true },
+        { color: '#b45309', label: 'Suggested gap', dash: true },
+      ].map(l => (
+        <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          {l.dot  && <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color }} />}
+          {l.line && <div style={{ width: 18, height: 0, borderTop: `2px solid ${l.color}` }} />}
+          {l.dash && <div style={{ width: 16, height: 0, borderTop: `1.5px dashed ${l.color}` }} />}
+          {l.label}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────────
+
+export default function GraphView({ clusters, postDetails, selected, onSelect }) {
+  const [forces, setForces] = useState(loadForces)
+  const [simKey, setSimKey] = useState(0)
+  const [clusterBoxes, setClusterBoxes] = useState([])
+  const [nodes, setNodes, onNodesChange] = useNodesState([])
+  const [edges, setEdges, onEdgesChange] = useEdgesState([])
+
+  const rebuild = useCallback((f) => {
+    const { simNodes, links } = runSimulation(clusters, postDetails, f)
+    setClusterBoxes(computeClusterBoxes(simNodes, clusters))
+
+    const rfNodes = simNodes.map(n => ({
+      id: n.id,
+      type: n.isGap ? 'gapNode' : 'postNode',
+      position: { x: n.x ?? 0, y: n.y ?? 0 },
+      data: {
+        slug: n.slug, post: n.post,
+        gap: n.gap, gapId: n.gapId,
+        isGap: !!n.isGap, isPillar: !!n.isPillar,
+        clusterColor: n.clusterColor, cluster: n.cluster,
+        isSelected: false, // selection highlight applied by separate effect
+      },
+    }))
+
+    const seen = new Set()
+    const rfEdges = links.map(l => {
+      const src = typeof l.source === 'object' ? l.source.id : l.source
+      const tgt = typeof l.target === 'object' ? l.target.id : l.target
+      const eid = `e-${src}-${tgt}`
+      if (seen.has(eid)) return null
+      seen.add(eid)
+      return {
+        id: eid, source: src, target: tgt,
+        style: {
+          stroke: l.weak ? 'rgba(148,163,184,0.45)' : 'rgba(148,163,184,0.6)',
+          strokeWidth: l.weak ? 1.2 : 1.5,
+          strokeDasharray: l.weak ? '5,3' : undefined,
+        },
+        markerEnd: { type: 'arrowclosed', color: l.weak ? 'rgba(148,163,184,0.45)' : 'rgba(148,163,184,0.6)', width: 12, height: 12 },
+      }
+    }).filter(Boolean)
+
+    setNodes(rfNodes)
+    setEdges(rfEdges)
+  }, [clusters, postDetails]) // selected intentionally excluded — handled by separate highlight effect
+
+  useEffect(() => { localStorage.setItem(STORAGE_KEY, JSON.stringify(forces)) }, [forces])
+  // Re-run simulation on mount, manual trigger, or whenever cluster/post data changes
+  useEffect(() => { rebuild(forces) }, [rebuild])
+  useEffect(() => { rebuild(forces) }, [simKey])
+
+  useEffect(() => {
+    setNodes(prev => prev.map(n => ({
+      ...n,
+      data: { ...n.data, isSelected: selected === n.data?.slug || selected === n.data?.gapId },
+    })))
+  }, [selected])
 
   const onNodeClick = useCallback((_, node) => {
-    if (node.data?.slug) onSelect(node.data.slug)
-    else if (node.data?.gap?.id) onSelect(node.data.gap.id)
+    if (node.data?.slug)  onSelect(node.data.slug)
+    else if (node.data?.gapId) onSelect(node.data.gapId)
   }, [onSelect])
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
       <ReactFlow
-        nodes={nodes.map(n => ({
-          ...n,
-          label: <CustomNodeContent data={n.data} />,
-          selected: selected === n.data?.slug || selected === n.data?.gap?.id,
-        }))}
+        nodes={nodes}
         edges={edges}
+        nodeTypes={nodeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodeClick={onNodeClick}
         fitView
-        fitViewOptions={{ padding: 0.15 }}
-        minZoom={0.2}
-        maxZoom={2}
+        fitViewOptions={{ padding: 0.1 }}
+        minZoom={0.1}
+        maxZoom={2.5}
+        nodesDraggable
         attributionPosition="bottom-right"
       >
-        <Background variant={BackgroundVariant.Dots} color="#1e2333" gap={24} size={1} />
+        {/* ClusterBgLayer: useStore gives viewport transform so panels
+            stay locked to flow coordinates at all zoom/pan levels */}
+        <ClusterBgLayer boxes={clusterBoxes} />
+
+        <Background variant={BackgroundVariant.Dots} color="#c8cde0" gap={28} size={1.2} />
         <Controls />
         <MiniMap
           nodeColor={n => {
-            if (n.data?.isGap) return '#c9842a'
-            if (n.data?.isPillar) return n.data?.clusterColor || '#4f8ef7'
-            return '#2e3549'
+            if (n.data?.isGap) return '#f59e0b'
+            if (n.data?.isPillar) return n.data?.clusterColor || '#2563eb'
+            const c = n.data?.post?.gsc_clicks || 0
+            return c > 100 ? '#16a34a' : c >= 10 ? '#2563eb' : c >= 1 ? '#ca8a04' : '#d1d5db'
           }}
-          maskColor="rgba(10,13,20,0.7)"
+          maskColor="rgba(240,242,247,0.8)"
         />
+        <Panel position="top-right">
+          <ForceSettings forces={forces} setForces={setForces} onRerun={() => setSimKey(k => k + 1)} />
+        </Panel>
+        <Panel position="bottom-left">
+          <Legend />
+        </Panel>
       </ReactFlow>
-      <div style={{
-        position: 'absolute', bottom: 16, left: 16,
-        display: 'flex', gap: 12,
-        background: 'var(--bg2)', border: '1px solid var(--border)',
-        borderRadius: 8, padding: '8px 12px',
-        fontSize: 11, color: 'var(--text2)',
-        pointerEvents: 'none',
-      }}>
-        {[
-          { color: '#34c77b', label: '100+ clicks' },
-          { color: '#4f8ef7', label: '10–99 clicks' },
-          { color: '#c9c142', label: '1–9 clicks' },
-          { color: '#4e5568', label: 'No traffic' },
-          { color: 'var(--gap-color)', label: 'Gap suggested', dashed: true },
-        ].map(l => (
-          <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <div style={{
-              width: l.dashed ? 14 : 8, height: l.dashed ? 0 : 8,
-              borderRadius: l.dashed ? 0 : '50%',
-              background: l.dashed ? 'none' : l.color,
-              border: l.dashed ? `1.5px dashed ${l.color}` : 'none',
-            }} />
-            {l.label}
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
