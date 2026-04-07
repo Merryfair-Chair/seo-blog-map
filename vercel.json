@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd visual-map && npm install && npm run build",
+  "outputDirectory": "visual-map/dist",
+  "installCommand": "npm install"
+}

@@ -1,0 +1,32 @@
+name: Crawl and sync to Supabase
+
+on:
+  workflow_dispatch:        # manual trigger from GitHub Actions UI
+  repository_dispatch:
+    types: [wordpress-publish]   # triggered by /api/webhook when WP publishes
+  schedule:
+    - cron: '0 2 * * *'   # daily at 2am UTC = 10am Malaysia time
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run crawl
+        run: python crawl_and_summarize.py
+
+      - name: Push to Supabase
+        run: python push_to_supabase.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

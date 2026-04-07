@@ -19,7 +19,7 @@ export default function App() {
 
   const fetchData = useCallback((silent = false) => {
     if (!silent) setLoading(true)
-    fetch('/merryfair_content_map.json?t=' + Date.now())
+    fetch('/api/data?t=' + Date.now())
       .then(r => {
         if (!r.ok) throw new Error('Could not load data file')
         return r.json()
