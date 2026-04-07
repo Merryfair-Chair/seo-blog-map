@@ -1,8 +1,8 @@
 Perform the monthly content intelligence update. Do ALL of the following automatically without asking:
 
-1. Check this folder for new CSV exports. Look for files matching these patterns:
+1. Find the most recent monthly data folder. Look inside "Monthly Data/" for subfolders named "[Month] [Year]" (e.g., "April 2026"). Pick the one with the most recent date. Then look inside that subfolder for CSV exports matching these patterns:
    - Pages.csv or *pages*.csv (GSC pages data)
-   - Queries.csv or *queries*.csv (GSC queries data)  
+   - Queries.csv or *queries*.csv (GSC queries data)
    - *top-pages*.csv (Ahrefs top pages)
    - *organic-keywords*.csv (Ahrefs organic keywords)
    - *Pages_and_screens*.csv (GA4 data)

@@ -10,6 +10,18 @@ function apiPlugin() {
   return {
     name: 'gap-api',
     configureServer(server) {
+      server.middlewares.use('/api/data', (req, res) => {
+        if (req.method !== 'GET') { res.statusCode = 405; return res.end() }
+        try {
+          const src = fs.existsSync(JSON_PUBLIC) ? JSON_PUBLIC : JSON_ROOT
+          const data = fs.readFileSync(src, 'utf8')
+          res.setHeader('Content-Type', 'application/json')
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(data)
+        } catch (e) {
+          res.statusCode = 500; res.end(JSON.stringify({ error: String(e) }))
+        }
+      })
       server.middlewares.use('/api/gap', (req, res) => {
         if (req.method !== 'PATCH') { res.statusCode = 405; return res.end(); }
         let body = ''

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
   ReactFlow, Background, Controls, MiniMap,
-  useNodesState, useEdgesState, useStore,
+  useNodesState, useEdgesState,
   BackgroundVariant, Panel, Handle, Position,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
@@ -13,14 +13,13 @@ import {
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const DEFAULT_FORCES = {
-  repulsion:     -500,
-  linkDistance:  160,
-  linkStrength:  0.35,
-  clusterForce:  0.15,
-  centerForce:   0.03,
+  repulsion:     -900,
+  linkDistance:  180,
+  linkStrength:  0.3,
+  clusterForce:  0.5,
+  centerForce:   0.02,
 }
 const STORAGE_KEY = 'merryfair-graph-forces'
-const PAD = 56
 
 function loadForces() {
   try {
@@ -46,7 +45,7 @@ function runSimulation(clusters, postDetails, forces) {
   const clusterCenters = {}
 
   const active = clusters.filter(c => (c.posts?.length || 0) > 0)
-  const R = active.length <= 3 ? 380 : 560
+  const R = active.length <= 3 ? 600 : 900
   active.forEach((c, i) => {
     const a = (2 * Math.PI * i) / active.length - Math.PI / 2
     clusterCenters[c.id] = { x: Math.cos(a) * R, y: Math.sin(a) * R }
@@ -82,12 +81,17 @@ function runSimulation(clusters, postDetails, forces) {
 
   const nodeIdSet = new Set(simNodes.map(n => n.id))
 
+  // Build a slug→clusterId lookup for cross-cluster link detection
+  const slugToCluster = {}
+  clusters.forEach(c => (c.posts || []).forEach(slug => { slugToCluster[slug] = c.id }))
+
   Object.entries(postDetails).forEach(([slug, post]) => {
     ;(post.internal_links_out || []).forEach(link => {
-      // support both old string format and new {slug, anchor} format
       const targetSlug = typeof link === 'string' ? link : link.slug
       const s = `post-${slug}`, t = `post-${targetSlug}`
-      if (nodeIdSet.has(s) && nodeIdSet.has(t)) links.push({ source: s, target: t })
+      if (!nodeIdSet.has(s) || !nodeIdSet.has(t)) return
+      const crossCluster = slugToCluster[slug] !== slugToCluster[targetSlug]
+      links.push({ source: s, target: t, crossCluster })
     })
   })
   clusters.forEach(cluster => {
@@ -100,9 +104,9 @@ function runSimulation(clusters, postDetails, forces) {
 
   const sim = forceSimulation(simNodes)
     .force('charge',    forceManyBody().strength(forces.repulsion))
-    .force('link',      forceLink(links).id(d => d.id).distance(forces.linkDistance).strength(d => d.weak ? 0.04 : forces.linkStrength))
+    .force('link',      forceLink(links).id(d => d.id).distance(forces.linkDistance).strength(d => d.weak ? 0.02 : d.crossCluster ? 0.02 : forces.linkStrength))
     .force('center',    forceCenter(0, 0).strength(forces.centerForce))
-    .force('collision', forceCollide(d => d.isPillar ? 90 : 70))
+    .force('collision', forceCollide(d => d.isPillar ? 130 : 110))
     .force('cluster', alpha => {
       simNodes.forEach(n => {
         const c = clusterCenters[n.cluster]
@@ -113,73 +117,10 @@ function runSimulation(clusters, postDetails, forces) {
     })
     .stop()
 
-  for (let i = 0; i < 300; i++) sim.tick()
+  for (let i = 0; i < 500; i++) sim.tick()
   return { simNodes, links }
 }
 
-function computeClusterBoxes(simNodes, clusters) {
-  const bounds = {}
-  simNodes.forEach(n => {
-    if (!bounds[n.cluster]) bounds[n.cluster] = { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity }
-    const b = bounds[n.cluster]
-    const hw = n.isPillar ? 98 : 83
-    const hh = n.isPillar ? 50 : 44
-    b.minX = Math.min(b.minX, n.x - hw)
-    b.minY = Math.min(b.minY, n.y - hh)
-    b.maxX = Math.max(b.maxX, n.x + hw)
-    b.maxY = Math.max(b.maxY, n.y + hh)
-  })
-  return clusters.filter(c => bounds[c.id]).map(c => ({
-    id: c.id, color: c.color, name: c.name,
-    needsPillar: c.pillarStatus === 'needs-creation',
-    x: bounds[c.id].minX - PAD,
-    y: bounds[c.id].minY - PAD,
-    w: bounds[c.id].maxX - bounds[c.id].minX + PAD * 2,
-    h: bounds[c.id].maxY - bounds[c.id].minY + PAD * 2,
-  }))
-}
-
-// ── Cluster background layer ──────────────────────────────────────────────────
-// Uses useStore to sync viewport transform — rendered as ReactFlow child
-// so it has access to the store context
-
-function ClusterBgLayer({ boxes }) {
-  const [tx, ty, zoom] = useStore(s => s.transform)
-
-  return (
-    <div style={{
-      position: 'absolute',
-      top: 0, left: 0,
-      transform: `translate(${tx}px,${ty}px) scale(${zoom})`,
-      transformOrigin: '0 0',
-      pointerEvents: 'none',
-      zIndex: 0,
-    }}>
-      {boxes.map(box => (
-        <div key={box.id} style={{
-          position: 'absolute',
-          left: box.x, top: box.y,
-          width: box.w, height: box.h,
-          background: `${box.color}0c`,
-          border: `1.5px solid ${box.color}40`,
-          borderRadius: 22,
-        }}>
-          <div style={{ position: 'absolute', top: 12, left: 16, display: 'flex', alignItems: 'center', gap: 7 }}>
-            <div style={{ width: 8, height: 8, borderRadius: 2, background: box.color }} />
-            <span style={{ fontSize: 11, fontWeight: 800, color: box.color, textTransform: 'uppercase', letterSpacing: '0.07em', whiteSpace: 'nowrap' }}>
-              {box.name}
-            </span>
-            {box.needsPillar && (
-              <span style={{ fontSize: 9, padding: '2px 6px', borderRadius: 4, background: '#fef2f2', color: '#dc2626', fontWeight: 800, border: '1px solid #fecaca' }}>
-                NEEDS PILLAR
-              </span>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 // ── Custom node types ─────────────────────────────────────────────────────────
 // IMPORTANT: Handle components are required for edges to connect correctly.
@@ -199,7 +140,7 @@ function PostNodeComponent({ data }) {
       <Handle type="source" position={Position.Right}  style={HANDLE_STYLE} />
       <div style={{
         background: isPillar ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)` : '#fff',
-        border: isPillar ? `2.5px solid ${clusterColor}` : `1.5px solid ${clusterColor}70`,
+        border: isPillar ? `3px solid ${clusterColor}` : `2px solid ${clusterColor}`,
         borderRadius: isPillar ? 12 : 8,
         padding: isPillar ? '10px 14px' : '8px 12px',
         width: isPillar ? 195 : 165,
@@ -238,8 +179,8 @@ function GapNodeComponent({ data }) {
       <Handle type="target" position={Position.Top}    style={HANDLE_STYLE} />
       <Handle type="source" position={Position.Bottom} style={HANDLE_STYLE} />
       <div style={{
-        background: '#fffbf5',
-        border: `1.5px dashed ${clusterColor}90`,
+        background: `${clusterColor}18`,
+        border: `1.5px dashed ${clusterColor}`,
         borderRadius: 8,
         padding: '8px 12px',
         width: 160,
@@ -303,24 +244,33 @@ function ForceSettings({ forces, setForces, onRerun }) {
   )
 }
 
-function Legend() {
+function Legend({ clusters }) {
   return (
-    <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '9px 14px', display: 'flex', flexWrap: 'wrap', gap: '6px 16px', fontSize: 11, color: '#374151', boxShadow: 'var(--shadow)' }}>
+    <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '9px 14px', display: 'flex', flexWrap: 'wrap', gap: '6px 16px', fontSize: 11, color: '#374151', boxShadow: 'var(--shadow)', maxWidth: 420 }}>
       {[
         { color: '#16a34a', label: '100+ clicks',   dot: true },
         { color: '#2563eb', label: '10–99 clicks',  dot: true },
         { color: '#ca8a04', label: '1–9 clicks',    dot: true },
         { color: '#9ca3af', label: 'No traffic',    dot: true },
         { color: '#475569', label: 'Internal link', line: true },
-        { color: '#b45309', label: 'Suggested gap', dash: true },
       ].map(l => (
         <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
           {l.dot  && <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color }} />}
           {l.line && <div style={{ width: 18, height: 0, borderTop: `2px solid ${l.color}` }} />}
-          {l.dash && <div style={{ width: 16, height: 0, borderTop: `1.5px dashed ${l.color}` }} />}
           {l.label}
         </div>
       ))}
+      <div style={{ width: '100%', height: 0, borderTop: '1px solid var(--border)', margin: '2px 0' }} />
+      {clusters.map(c => (
+        <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          <div style={{ width: 18, height: 12, borderRadius: 3, border: `2px solid ${c.color}`, background: 'transparent', flexShrink: 0 }} />
+          <span>{c.name}</span>
+        </div>
+      ))}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+        <div style={{ width: 18, height: 12, borderRadius: 3, border: `1.5px dashed #888`, background: 'rgba(100,100,100,0.1)', flexShrink: 0 }} />
+        <span>Suggested gap</span>
+      </div>
     </div>
   )
 }
@@ -330,13 +280,11 @@ function Legend() {
 export default function GraphView({ clusters, postDetails, selected, onSelect }) {
   const [forces, setForces] = useState(loadForces)
   const [simKey, setSimKey] = useState(0)
-  const [clusterBoxes, setClusterBoxes] = useState([])
   const [nodes, setNodes, onNodesChange] = useNodesState([])
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
   const rebuild = useCallback((f) => {
     const { simNodes, links } = runSimulation(clusters, postDetails, f)
-    setClusterBoxes(computeClusterBoxes(simNodes, clusters))
 
     const rfNodes = simNodes.map(n => ({
       id: n.id,
@@ -406,10 +354,6 @@ export default function GraphView({ clusters, postDetails, selected, onSelect })
         nodesDraggable
         attributionPosition="bottom-right"
       >
-        {/* ClusterBgLayer: useStore gives viewport transform so panels
-            stay locked to flow coordinates at all zoom/pan levels */}
-        <ClusterBgLayer boxes={clusterBoxes} />
-
         <Background variant={BackgroundVariant.Dots} color="#c8cde0" gap={28} size={1.2} />
         <Controls />
         <MiniMap
@@ -425,7 +369,7 @@ export default function GraphView({ clusters, postDetails, selected, onSelect })
           <ForceSettings forces={forces} setForces={setForces} onRerun={() => setSimKey(k => k + 1)} />
         </Panel>
         <Panel position="bottom-left">
-          <Legend />
+          <Legend clusters={clusters} />
         </Panel>
       </ReactFlow>
     </div>
