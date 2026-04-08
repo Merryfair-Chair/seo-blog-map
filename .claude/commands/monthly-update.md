@@ -42,7 +42,9 @@ Perform the monthly content intelligence update. Do ALL of the following automat
 
 9a. Copy merryfair_content_map.json to visual-map/public/merryfair_content_map.json so the visual map reflects updated data.
 
-9b. Update project-context.md: refresh performance data highlights, update gap statuses, update last monthly update date.
+9b-supabase. Run `python3 push_to_supabase.py` to sync the updated JSON to Supabase so the live visual map reflects the new data. If the command fails due to a missing SUPABASE_SERVICE_KEY, alert the user and tell them to run: `SUPABASE_SERVICE_KEY=your_key python push_to_supabase.py`
+
+9c. Update project-context.md: refresh performance data highlights, update gap statuses, update last monthly update date.
 
 10. Print a full report:
     - Performance changes: posts with significant traffic gains or losses

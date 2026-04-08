@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 31 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 33 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -68,11 +68,11 @@ None of the 6 approved gap posts have been written yet. The owner has a separate
 ### Phase 4 visual map deployment
 The React Flow graph and Vercel hosting have not been built. Owner has not yet decided whether to build this now or defer. At 26 posts, the slash commands provide equivalent functionality as text reports. The visual map becomes more valuable at 50-100+ posts.
 
-### First monthly update cycle
-The monthly cycle has not been run yet (system was just built). The first real cycle will happen when the owner exports fresh data next month and runs `/monthly-update`.
+### ~~First monthly update cycle~~ — DONE 2026-04-07
+March 2026 data (GSC + Ahrefs + GA4) merged into `merryfair_content_map.json`. See performance highlights in Key Data Points section.
 
-### Re-crawl after internal links added
-The owner just added 19 internal links. The crawl script should be re-run to verify the links are live and update the JSON map. Run: `python crawl_and_summarize.py`
+### ~~Re-crawl after internal links added~~ — DONE 2026-04-07
+`crawl_and_summarize.py` re-run. Internal link data refreshed.
 
 ---
 
@@ -96,15 +96,16 @@ The owner just added 19 internal links. The crawl script should be re-run to ver
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
-- **Pillar performance:** 25 GSC clicks, 24,556 impressions, position 5 for "best ergonomic office chairs" (100 vol/mo) — new post, strong early signal
+- **Pillar performance (March 2026):** 51 GSC clicks, 56,728 impressions, position 6.1, CTR 0.09% — CRITICAL: CTR is anomalously low for pos 6 (expected ~3%). Appearing for "best budget office chairs" (34,222 imp, 0 clicks) and "chair ergonomic office" (14,068 imp, 0 clicks). Title/meta optimisation is highest-priority action for this cluster.
 - **Posts (5):**
   - best-ergonomic-office-chairs-every-budget (PILLAR)
-  - 6-affordable-ergonomic-chairs-for-your-home-and-office (393 clicks — top performer site-wide)
-  - upgrade-your-workspace-affordable-working-chairs-under-rm1000 (10 clicks)
-  - best-study-chairs-students-guide (0 clicks, new post)
-  - office-chair-cost-calculator (0 clicks, published March 19 2026 — fills gap-BB-3)
+  - 6-affordable-ergonomic-chairs-for-your-home-and-office (62 GSC clicks — top blog performer in March)
+  - upgrade-your-workspace-affordable-working-chairs-under-rm1000 (6 clicks)
+  - best-study-chairs-students-guide (5 clicks)
+  - office-chair-cost-calculator (4 clicks, published March 19 2026 — fills gap-BB-3)
 - **Head term:** "best ergonomic office chair" — 250/mo
 - **Approved gaps:** None new (mid-range RM2K gap deprioritized — strengthen existing pillar instead). "Best home office chair Malaysia" reframed as optimization of existing "6 Affordable" post.
+- **New gap suggested (gap-BB-4):** "Best Study Chairs for Kids and Teenagers" — GSC shows 1,860 imp for "how to choose a chair for a study room" (pos 9, 0 clicks), 450 imp for "best chairs for teenagers study rooms" (pos 2, 0 clicks). Intent mismatch: existing student post targets adults. Status: suggested.
 
 ### Cluster 3: Health & posture (health-posture)
 - **Pillar:** the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (EXISTS)
@@ -324,11 +325,15 @@ Live MY and global volume data pulled from Ahrefs API for all active gaps. Key f
 
 ## Key data points to remember
 
-- **Total published posts:** 33 (up from 32)
-- **Top performing post:** "6 Affordable Ergonomic Chairs" — 393 GSC clicks, 43K impressions
-- **Strongest competitive position:** "Gaming Chair vs Office Chair" — Ahrefs position #4 for head term, 1 referring domain
-- **Highest potential new post:** ~~"How to sit properly" — 500/mo estimated, no Merryfair page ranks~~ PUBLISHED 2026-04-01 → `correct-sitting-posture-guide`
-- **Biggest architectural gap:** ~~Workspace cluster has no pillar page~~ RESOLVED 2026-03-24. ~~Small space gap (WS-2)~~ RESOLVED 2026-03-25 → `small-home-office-ideas`. ~~Standing desk comparison (gap-HP-2)~~ RESOLVED 2026-03-30 → `standing-desk-vs-ergonomic-chair`. ~~How to sit properly (gap-HP-1 — #1 PRIORITY)~~ RESOLVED 2026-04-01 → `correct-sitting-posture-guide`. Now: all 6 clusters have pillar pages; health-posture cluster now has 6 posts; all approved health-posture gaps published.
+- **Total published posts:** 33
+- **Last monthly update:** April 7, 2026 (data: March 2026)
+- **Top performing post (March 2026 GSC):** "6 Affordable Ergonomic Chairs" — 62 GSC clicks, 24,382 impressions, pos 2.65
+- **Top Ahrefs traffic post:** "Best Ergonomic Office Chairs Every Budget" — 461 estimated organic visits (Ahrefs); but only 51 GSC clicks at 0.09% CTR — CRITICAL CTR issue, likely title/meta mismatch
+- **Strongest competitive position:** "Gaming Chair vs Office Chair" — Ahrefs position #4 for head term, 27 Ahrefs traffic, 1 referring domain
+- **Top GSC performers (March 2026):** how-to-choose-the-best-ergonomic-chair-in-malaysia (87 clicks, pos 4.59), 6-affordable-ergonomic-chairs-for-your-home-and-office (62 clicks, pos 2.65), best-ergonomic-office-chairs-every-budget (51 clicks, pos 6.14)
+- **Posts in striking distance (pos 8–20, Ahrefs):** office-chair-tilt-mechanism-guide (pos 9, "synchro tilt mechanism", vol 80), eco-friendly post (pos 8, "sustainable office chairs", vol 60), why-everyones-switching-to-ergonomics-swivel-chairs-in-2025 (pos 9, "swivel office chair", vol 30), best-study-chairs-students-guide (pos 11, "best study chair for students", vol 30)
+- **CRITICAL optimization priority:** `best-ergonomic-office-chairs-every-budget` — 56,728 impressions at pos 6.1 but only 0.09% CTR. "Best budget office chairs" alone drives 34,222 impressions with 0 clicks. Title/meta rewrite is the single highest-ROI action available.
+- **Biggest architectural gap:** ~~Workspace cluster has no pillar page~~ RESOLVED 2026-03-24. All 6 clusters now have pillar pages. All approved gaps from original audit are published.
 - **Only 2 posts have referring domains** (external backlinks) — gaming comparison (1) and ultimate guide (1). Internal linking is critical since external signals are thin.
-- **Sidebar "Read More" inflation:** 4 posts (material guide, body fit test, study chairs, tilt mechanism) show 25 inbound links each — these are sitewide sidebar links, not contextual. Exclude from linking analysis.
-- **Swivel chairs post** ranks #9 for "swivel chair" (700 vol/mo) — strong signal despite only 9 clicks. Worth monitoring.
+- **Sidebar "Read More" inflation:** 4 posts (material guide, body fit test, study chairs, tilt mechanism) show 25 inbound links each — sitewide sidebar, not contextual. Exclude from linking analysis.
+- **New gap from March data:** gap-BB-4 "Best Study Chairs for Kids and Teenagers" — suggested, awaiting owner decision.

@@ -10,6 +10,16 @@ Usage:
 import json
 import os
 import sys
+from pathlib import Path
+
+# Load .env from project root if present (so SUPABASE_SERVICE_KEY doesn't need to be exported manually)
+env_file = Path(__file__).parent / ".env"
+if env_file.exists():
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
 
 try:
     import requests
@@ -19,7 +29,11 @@ except ImportError:
     import requests
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://kbliildkudzkxcskztvn.supabase.co")
-SERVICE_KEY  = os.environ["SUPABASE_SERVICE_KEY"]
+SERVICE_KEY  = os.environ.get("SUPABASE_SERVICE_KEY")
+
+if not SERVICE_KEY:
+    print("Error: SUPABASE_SERVICE_KEY not found. Add it to .env in the project root.")
+    sys.exit(1)
 
 with open("merryfair_content_map.json", encoding="utf-8") as f:
     data = json.load(f)
