@@ -31,21 +31,40 @@ function Badge({ type, color }) {
   )
 }
 
+const HERO_ROW = {
+  crown: {
+    borderLeft: '4px solid #d97706',
+    background: 'linear-gradient(to right, rgba(217,119,6,0.07), rgba(217,119,6,0.02) 60%, #fff)',
+    symbol: '★', symbolColor: '#d97706', label: 'Crown Hero',
+  },
+  hero: {
+    borderLeft: '3px solid #7c3aed',
+    background: 'linear-gradient(to right, rgba(124,58,237,0.06), rgba(124,58,237,0.01) 60%, #fff)',
+    symbol: '◆', symbolColor: '#7c3aed', label: 'Hero',
+  },
+}
+
 function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSelect }) {
+  const hero = HERO_ROW[post.hero_tier]
   return (
     <div
       onClick={() => onSelect(slug)}
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
         marginTop: 6, padding: '10px 12px',
-        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+        borderLeft: hero ? hero.borderLeft : undefined,
+        background: selected === slug ? '#f0f5ff' : hero ? hero.background : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
         <Badge type={post.page_type} color={color} />
+        {hero && (
+          <span style={{ color: hero.symbolColor, fontSize: 13, fontWeight: 800, flexShrink: 0 }}>{hero.symbol}</span>
+        )}
         <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)' }}>{post.title}</span>
-        {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown</span>}
-        {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
+        {hero && (
+          <span style={{ fontSize: 10, fontWeight: 700, color: hero.symbolColor }}>{hero.label}</span>
+        )}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px 16px' }}>
         <div style={{ fontSize: 11, color: 'var(--text3)' }}>

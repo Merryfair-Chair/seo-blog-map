@@ -358,11 +358,23 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
             <div style={{ fontSize: 10, fontWeight: 700, color: clusterColor, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
               <div style={{ width: 7, height: 7, borderRadius: 2, background: clusterColor }} />
               {post.page_type === 'pillar' ? `Pillar · ${cluster.name}` : cluster.name}
-              {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown Hero</span>}
-              {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
             </div>
           )}
-          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{post.title}</div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
+            {post.hero_tier === 'crown' && (
+              <span style={{ color: '#d97706', fontSize: 16, fontWeight: 800, flexShrink: 0, lineHeight: 1 }}>★</span>
+            )}
+            {post.hero_tier === 'hero' && (
+              <span style={{ color: '#7c3aed', fontSize: 15, fontWeight: 800, flexShrink: 0, lineHeight: 1 }}>◆</span>
+            )}
+            <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{post.title}</div>
+          </div>
+          {post.hero_tier === 'crown' && (
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#d97706', marginBottom: 4 }}>Crown Hero · Priority optimization target</div>
+          )}
+          {post.hero_tier === 'hero' && (
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#7c3aed', marginBottom: 4 }}>Hero page · High strategic value</div>
+          )}
         </div>
         <button onClick={onClose} style={{ color: 'var(--text3)', fontSize: 20, lineHeight: 1, padding: 2, flexShrink: 0 }}>×</button>
       </div>

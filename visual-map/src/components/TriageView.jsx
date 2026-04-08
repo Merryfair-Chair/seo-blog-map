@@ -5,38 +5,64 @@ const TRIAGE_GROUPS = [
   { key: 'none',   label: 'No traffic',      color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb', desc: '0 clicks' },
 ]
 
+const HERO_CARD = {
+  crown: {
+    border: '4px solid #d97706',
+    background: 'linear-gradient(to right, rgba(217,119,6,0.07), rgba(217,119,6,0.02) 60%, #fff)',
+    symbol: '★',
+    symbolColor: '#d97706',
+    label: 'Crown Hero',
+  },
+  hero: {
+    border: '3px solid #7c3aed',
+    background: 'linear-gradient(to right, rgba(124,58,237,0.06), rgba(124,58,237,0.01) 60%, #fff)',
+    symbol: '◆',
+    symbolColor: '#7c3aed',
+    label: 'Hero',
+  },
+}
+
 function PostCard({ slug, post, color, selected, onSelect }) {
   const clicks = post.gsc_clicks || 0
   const impressions = post.gsc_impressions || 0
   const hasOpt = !!post.optimization
   const optDone = hasOpt ? post.optimization.items.filter(i => i.done).length : 0
   const optTotal = hasOpt ? post.optimization.items.length : 0
-
-  const heroBorderColor = post.hero_tier === 'crown'
-    ? 'var(--hero-crown)'
-    : post.hero_tier === 'hero'
-      ? 'var(--hero)'
-      : color
+  const hero = HERO_CARD[post.hero_tier]
 
   return (
     <div
       onClick={() => onSelect(slug)}
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
-        padding: '10px 14px',
-        borderLeft: `3px solid ${heroBorderColor}`,
-        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+        padding: '11px 14px',
+        borderLeft: hero ? hero.border : `3px solid ${color}`,
+        background: selected === slug
+          ? '#f0f5ff'
+          : hero
+            ? hero.background
+            : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginBottom: 4, lineHeight: 1.4 }}>{post.title}</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 8px', fontSize: 11, color: 'var(--text3)', alignItems: 'center' }}>
+          {/* Title row — hero symbol inline */}
+          <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginBottom: 5, lineHeight: 1.4, display: 'flex', alignItems: 'baseline', gap: 5 }}>
+            {hero && (
+              <span style={{ color: hero.symbolColor, fontSize: 13, fontWeight: 800, flexShrink: 0 }}>
+                {hero.symbol}
+              </span>
+            )}
+            {post.title}
+          </div>
+          {/* Meta row */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 10px', fontSize: 11, color: 'var(--text3)', alignItems: 'center' }}>
+            {hero && (
+              <span style={{ fontSize: 10, fontWeight: 700, color: hero.symbolColor }}>{hero.label}</span>
+            )}
             <span style={{ color: clicks > 0 ? 'var(--text2)' : 'var(--text3)' }}>{clicks.toLocaleString()} clicks</span>
             <span>{impressions.toLocaleString()} impressions</span>
             {post.top_keyword && <span>#{post.top_kw_position} · {post.top_keyword}</span>}
-            {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown</span>}
-            {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
