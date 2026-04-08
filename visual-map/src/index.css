@@ -16,6 +16,18 @@
   --radius: 10px;
   --shadow: 0 1px 4px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.06);
   --shadow-lg: 0 4px 16px rgba(0,0,0,0.13), 0 0 0 1px rgba(0,0,0,0.07);
+
+  /* Hero tier tokens */
+  --hero-crown: #ea580c;
+  --hero: #8b5cf6;
+
+  /* Purpose tokens */
+  --purpose-traffic: #2563eb;
+  --purpose-authority: #7c3aed;
+  --purpose-hub: #0891b2;
+
+  /* Status tokens */
+  --status-in-progress: #7c3aed;
 }
 
 body {
@@ -36,12 +48,92 @@ button {
   border: none;
   background: none;
   color: inherit;
+  transition: opacity 0.12s, background 0.12s;
 }
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
+/* ── Scrollbars ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #8892a8; }
 
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: box-shadow 0.15s, transform 0.15s;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+  transform: translateY(-1px);
+}
+
+.card.selected {
+  box-shadow: 0 0 0 2px var(--accent), 0 3px 10px rgba(0,0,0,0.10);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-crown {
+  background: rgba(234,88,12,0.12);
+  color: var(--hero-crown);
+  border: 1px solid rgba(234,88,12,0.25);
+}
+
+.badge-hero {
+  background: rgba(139,92,246,0.12);
+  color: var(--hero);
+  border: 1px solid rgba(139,92,246,0.25);
+}
+
+.badge-traffic {
+  background: rgba(37,99,235,0.10);
+  color: var(--purpose-traffic);
+  border: 1px solid rgba(37,99,235,0.22);
+}
+
+.badge-authority {
+  background: rgba(124,58,237,0.10);
+  color: var(--purpose-authority);
+  border: 1px solid rgba(124,58,237,0.22);
+}
+
+.badge-hub {
+  background: rgba(8,145,178,0.10);
+  color: var(--purpose-hub);
+  border: 1px solid rgba(8,145,178,0.22);
+}
+
+/* ── Status badges ───────────────────────────────────────────────────────── */
+.status-suggested    { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.status-approved     { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.status-rejected     { background: #f9fafb; color: #6b7280; border: 1px solid #e5e7eb; }
+.status-published    { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.status-in-progress  { background: rgba(124,58,237,0.09); color: #7c3aed; border: 1px solid rgba(124,58,237,0.25); }
+.status-deprioritized{ background: #fafafa; color: #9ca3af; border: 1px solid #e5e7eb; }
+
+/* ── In-progress dashed ring ─────────────────────────────────────────────── */
+.ring-in-progress {
+  outline: 2px dashed var(--status-in-progress);
+  outline-offset: 2px;
+}
+
+/* ── React Flow overrides ────────────────────────────────────────────────── */
 .react-flow__background { background: var(--bg); }
 .react-flow__controls {
   box-shadow: var(--shadow);

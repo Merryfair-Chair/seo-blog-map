@@ -5,6 +5,8 @@ import ListView from './components/ListView'
 import GapsView from './components/GapsView'
 import TriageView from './components/TriageView'
 import OptimizeView from './components/OptimizeView'
+import PipelineView from './components/PipelineView'
+import AddIdeaModal from './components/AddIdeaModal'
 import DetailPanel from './components/DetailPanel'
 
 const REFRESH_INTERVAL = 5 * 60 * 1000 // 5 minutes
@@ -17,6 +19,7 @@ export default function App() {
   const [view, setView] = useState('graph')
   const [selected, setSelected] = useState(null)
   const [dataVersion, setDataVersion] = useState(0)
+  const [showAddIdea, setShowAddIdea] = useState(false)
 
   const fetchData = useCallback((silent = false) => {
     if (!silent) setLoading(true)
@@ -70,6 +73,29 @@ export default function App() {
     return null
   })() : null
 
+  const handleAddIdea = async (ideaData) => {
+    const response = await fetch('/api/idea', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ideaData),
+    })
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({ error: 'Request failed' }))
+      throw new Error(err.error || 'Failed to add idea')
+    }
+    const { gap: newGap } = await response.json()
+
+    // Optimistic local state update
+    setData(prev => ({
+      ...prev,
+      clusters: prev.clusters.map(c => {
+        if (c.id !== ideaData.clusterId) return c
+        return { ...c, gaps: [...(c.gaps || []), newGap] }
+      })
+    }))
+    setDataVersion(v => v + 1)
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
       <Header
@@ -80,6 +106,7 @@ export default function App() {
         postDetails={data.post_details}
         lastFetched={lastFetched}
         onRefresh={() => fetchData(true)}
+        onAddIdea={() => setShowAddIdea(true)}
       />
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
         <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
@@ -103,8 +130,19 @@ export default function App() {
           {view === 'gaps' && (
             <GapsView
               clusters={data.clusters}
+              postDetails={data.post_details}
               selected={selected}
               onSelect={setSelected}
+              onAddIdea={() => setShowAddIdea(true)}
+            />
+          )}
+          {view === 'pipeline' && (
+            <PipelineView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              onAddIdea={() => setShowAddIdea(true)}
             />
           )}
           {view === 'triage' && (
@@ -162,6 +200,15 @@ export default function App() {
           />
         )}
       </div>
+
+      {showAddIdea && (
+        <AddIdeaModal
+          clusters={data.clusters}
+          postDetails={data.post_details}
+          onClose={() => setShowAddIdea(false)}
+          onAdd={handleAddIdea}
+        />
+      )}
     </div>
   )
 }

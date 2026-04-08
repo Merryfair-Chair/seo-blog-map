@@ -1,16 +1,6 @@
-# SEO Content Architecture Strategy — Full Context Document
+# Merryfair SEO Content Strategy Context
 
-> This document captures the complete strategy, reasoning, decisions, and refinements developed across an extended SEO planning session. Drop this into any new chat to resume with full context.
-
----
-
-## Who This Is For
-
-A blog owner/content publisher who:
-- Has a growing number of existing indexed blog posts
-- Wants to build a proper topic cluster architecture
-- Needs an AI-assisted system to audit, organize, visualize, and grow content strategically
-- Is working toward automating the ongoing content gap analysis and suggestion process
+> This file is read by the /monthly-update automation to inform gap analysis. It captures the strategic context for Merryfair's blog content: what the blog is for, what makes a good post, hero page context, and the rules for identifying and categorizing gaps.
 
 ---
 
@@ -300,3 +290,104 @@ Every suggested post, before entering the content calendar, gets a manual SERP c
 **Structure serves topical authority, not the other way around.** The goal is comprehensive, coherent topic coverage. Pillar pages and hub-and-spoke are implementation patterns toward that goal, not the goal itself. When the SERP tells you a pattern doesn't fit a particular keyword, adapt.
 
 **The AI is a thinking partner, not an oracle.** Every suggestion it makes should be interrogated against your own knowledge of your audience, your business, and your content. The AI brings data synthesis at scale. You bring context the data can't capture.
+
+---
+
+## Merryfair-Specific Context
+
+### Brand & Blog Purpose
+
+Merryfair is a Malaysian ergonomic chair manufacturer. The blog at merryfair.com/latest_updates/blog/ serves three distinct purposes:
+
+1. **Traffic** — Non-branded organic keywords that support hero pages and drive top-of-funnel discovery. NOT focused on transactional conversion keywords — those SERPs are dominated by ecommerce aggregators where Merryfair cannot compete directly.
+
+2. **Authority** — Topical completeness and EEAT. These posts may have zero or very low search volume in Malaysia but are strategically necessary to establish the site as a complete resource on ergonomic chairs. Being the definitive resource on a subtopic earns trust from both readers and Google.
+
+3. **Hub** — Comprehensive reference resources designed to earn backlinks from journalists, bloggers, and workplace wellness content. Definitive guides that go beyond what competitors cover.
+
+### What Makes a Good Post for Merryfair
+
+- **EEAT-first**: Practical, expert advice grounded in real product knowledge. Merryfair makes chairs, so content should reflect manufacturer knowledge (mechanism design, materials, ergonomic standards).
+- **Malaysian market context where relevant**: Pricing in RM, climate considerations (mesh vs fabric in tropical humidity), local shipping/warranty, Malaysian posture habits.
+- **No conversion focus**: Merryfair's blog does not hard-sell. CTAs link to product pages naturally, but the post's primary value must be informational.
+- **Cluster-aware**: Every post should fit into or extend an existing cluster. Orphan posts dilute topical authority.
+- **Not duplicating existing coverage**: Before writing new, check if an existing post partially covers the topic. If so, optimize the existing post instead of writing new.
+
+### Hero Pages
+
+Hero pages are posts generating meaningful organic impressions. New posts should support heroes via internal linking.
+
+**Crown Heroes (>10,000 impressions/month)**
+- best-ergonomic-office-chairs-every-budget (56,728 imp) — Main budget pillar. Highest internal link value.
+- 6-affordable-ergonomic-chairs-for-your-home-and-office (24,382 imp) — Affordable chairs comparison.
+- how-to-choose-the-best-ergonomic-chair-in-malaysia (19,553 imp) — Malaysia-specific buying guide.
+
+**Heroes (>2,000 impressions/month)**
+- gaming-chair-vs-office-chair-which-one-should-you-really-buy (6,508 imp)
+- office-chair-tilt-mechanism-guide (5,741 imp)
+- the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (5,340 imp)
+- ergonomic-chair-size-guide (5,065 imp)
+- best-study-chairs-students-guide (4,054 imp)
+- eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair (2,998 imp)
+- do-posture-correctors-work (2,502 imp)
+- upgrade-your-workspace-affordable-working-chairs-under-rm1000 (2,320 imp)
+- how-to-choose-the-best-ergonomic-chair-for-solo-movie-nights (2,196 imp)
+
+### Content Gap Rules
+
+Before suggesting any gap:
+
+1. **Check cannibalization**: Does any existing post already target this keyword or a semantically close variant? Add `cannibalizes` field with the slug if so. Flag, don't block.
+
+2. **Check existing gaps**: Is there already a gap in the pipeline covering this topic? Don't create a duplicate.
+
+3. **Every gap must have a purpose field**: `traffic`, `authority`, or `hub`.
+   - **traffic**: Measurable search volume, realistic path to clicks.
+   - **authority**: Topical completeness, even with zero volume. Must explain strategic rationale.
+   - **hub**: Comprehensive reference earning backlinks. Must explain what makes it link-worthy.
+
+4. **For authority and hub gaps**: Zero search volume is acceptable. The rationale must explain WHY this builds authority or earns links, not just "this is a gap."
+
+5. **For traffic gaps**: Focus on keywords where Merryfair has impressions but low CTR (positions 8–20), or thin cluster coverage relative to search demand.
+
+### Publishing Target
+
+**5 posts/week** target. Priority order:
+1. Approved gaps first
+2. Gaps that support a crown hero (high internal link value)
+3. Suggested gaps with >100/mo MY search volume
+4. Authority gaps completing a cluster
+5. Hub gaps with backlink potential
+
+Do not suggest new gaps if there are already 5+ approved gaps — publish existing backlog first.
+
+### Cluster Priorities & Topical Coverage Goals
+
+**buying-guide** — Strong coverage (9 posts). Authority gaps: chair certifications, showroom test-sit guide, chair lifespan/maintenance.
+
+**best-chairs-budget** — Crown hero pillar. Thin sub-segments: budget breakdowns by RM tier, kids/teen chairs, specific use-case comparisons.
+
+**health-posture** — Moderate coverage. Thin on: neck/shoulder pain from chairs, back pain symptom-to-solution format.
+
+**gaming** — Thin (2 posts only). Strong hero. Must cover: best gaming chairs for long sessions, streaming ergonomics, gaming chair setup.
+
+**workspace** — NO PILLAR YET. Priority: create workspace pillar first. Then: dual monitor setup, standing desk + ergonomic chair combination, lighting ergonomics.
+
+**brand** — No pillar needed. Seasonal and brand storytelling only. Do not create topical authority posts here.
+
+### Cannibalization Rules
+
+- Two posts targeting the same primary keyword = cannibalization. Check `top_keyword` against proposed `targetKeyword`.
+- Semantic overlap: "ergonomic chair Malaysia" vs "best ergonomic chair Malaysia" — NOT automatically cannibalization. The modifier "best" shifts intent to commercial investigation.
+- If detected: add `cannibalizes` field with the conflicting slug. Flag, do not block the gap.
+- Resolution options: (1) optimize existing post, (2) differentiate angle to serve different intent stages, (3) merge if existing post is thin.
+- Always check existing post's `content_summary.subtopics_covered` before flagging — partial coverage ≠ full cannibalization.
+
+### Valid Gap Status Values
+
+- `suggested` — AI-generated, not yet reviewed
+- `approved` — Reviewed and greenlit for writing
+- `in_progress` — Currently being written
+- `published` — Live on site
+- `deprioritized` — Valid gap but low priority for now
+- `rejected` — Not a genuine gap or not worth writing
