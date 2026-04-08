@@ -1,14 +1,6 @@
 const HERO_OPT = {
-  crown: {
-    symbol: '★', symbolColor: '#d97706', label: 'Crown Hero',
-    background: 'linear-gradient(to right, rgba(217,119,6,0.07), rgba(217,119,6,0.02) 60%, #fff)',
-    borderLeft: '4px solid #d97706',
-  },
-  hero: {
-    symbol: '◆', symbolColor: '#7c3aed', label: 'Hero',
-    background: 'linear-gradient(to right, rgba(124,58,237,0.06), rgba(124,58,237,0.01) 60%, #fff)',
-    borderLeft: '3px solid #7c3aed',
-  },
+  crown: { symbol: '★', label: 'Crown Hero' },
+  hero:  { symbol: '◆', label: 'Hero' },
 }
 
 function OptCard({ slug, post, clusterColor, selected, onSelect }) {
@@ -29,18 +21,18 @@ function OptCard({ slug, post, clusterColor, selected, onSelect }) {
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
         padding: '12px 14px',
-        borderLeft: hero ? hero.borderLeft : `3px solid ${isComplete ? '#15803d' : clusterColor}`,
-        background: selected === slug ? '#f0f5ff' : hero ? hero.background : 'var(--bg2)',
+        borderLeft: `3px solid ${isComplete ? '#15803d' : clusterColor}`,
+        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flex: 1 }}>
           {hero && (
-            <span style={{ color: hero.symbolColor, fontSize: 13, fontWeight: 800, flexShrink: 0 }}>{hero.symbol}</span>
+            <span style={{ color: 'var(--text3)', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{hero.symbol}</span>
           )}
           <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', lineHeight: 1.4, flex: 1 }}>
             {post.title}
-            {hero && <span style={{ fontSize: 10, fontWeight: 700, color: hero.symbolColor, marginLeft: 6 }}>{hero.label}</span>}
+            {hero && <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text3)', background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 4, padding: '1px 6px', marginLeft: 6 }}>{hero.label}</span>}
           </div>
         </div>
         <span style={{

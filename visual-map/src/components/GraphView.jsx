@@ -135,33 +135,21 @@ function PostNodeComponent({ data }) {
   const isCrown = post.hero_tier === 'crown'
   const isHero  = post.hero_tier === 'hero'
 
-  // Determine visual treatment by tier
-  const nodeWidth = isCrown ? 210 : isHero ? 175 : isPillar ? 195 : 165
-  const nodeBg = isCrown
-    ? 'linear-gradient(135deg, #fff 60%, rgba(217,119,6,0.08))'
-    : isHero
-      ? 'linear-gradient(135deg, #fff 70%, rgba(124,58,237,0.06))'
-      : isPillar
-        ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)`
-        : '#fff'
-  const nodeBorder = isCrown
-    ? '3px solid #d97706'
-    : isHero
-      ? '2px solid #7c3aed'
-      : isPillar
-        ? `3px solid ${clusterColor}`
-        : `2px solid ${clusterColor}`
+  // Determine visual treatment by tier — hero uses cluster color, not a separate hero color
+  const nodeWidth = isCrown ? 205 : isHero ? 175 : isPillar ? 195 : 165
+  const nodeBg = isPillar
+    ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)`
+    : '#fff'
+  const nodeBorder = isPillar || isCrown
+    ? `3px solid ${clusterColor}`
+    : `2px solid ${clusterColor}`
   const nodeBorderRadius = isPillar || isCrown ? 12 : 8
   const nodePadding = isPillar || isCrown ? '10px 14px' : '8px 12px'
   const nodeBoxShadow = isSelected
-    ? `0 0 0 3px ${isCrown ? '#d97706' : isHero ? '#7c3aed' : clusterColor}, 0 4px 20px rgba(0,0,0,0.18)`
-    : isCrown
-      ? '0 2px 12px rgba(217,119,6,0.3), 0 1px 4px rgba(0,0,0,0.08)'
-      : isHero
-        ? '0 2px 12px rgba(124,58,237,0.2), 0 1px 4px rgba(0,0,0,0.08)'
-        : isPillar
-          ? `0 2px 12px ${clusterColor}40, 0 1px 4px rgba(0,0,0,0.08)`
-          : '0 1px 5px rgba(0,0,0,0.09)'
+    ? `0 0 0 3px ${clusterColor}, 0 4px 20px rgba(0,0,0,0.18)`
+    : isPillar
+      ? `0 2px 12px ${clusterColor}40, 0 1px 4px rgba(0,0,0,0.08)`
+      : '0 1px 5px rgba(0,0,0,0.09)'
 
   return (
     <>
@@ -180,7 +168,7 @@ function PostNodeComponent({ data }) {
         userSelect: 'none',
       }}>
         {isCrown && (
-          <div style={{ fontSize: 9, fontWeight: 800, color: '#d97706', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: clusterColor, textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
             ★ Crown Hero
           </div>
         )}
@@ -190,7 +178,7 @@ function PostNodeComponent({ data }) {
           </div>
         )}
         {isHero && !isCrown && (
-          <div style={{ fontSize: 9, fontWeight: 800, color: '#7c3aed', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
+          <div style={{ fontSize: 9, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
             ◆ Hero
           </div>
         )}

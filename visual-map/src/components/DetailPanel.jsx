@@ -361,19 +361,17 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
             </div>
           )}
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
-            {post.hero_tier === 'crown' && (
-              <span style={{ color: '#d97706', fontSize: 16, fontWeight: 800, flexShrink: 0, lineHeight: 1 }}>★</span>
-            )}
-            {post.hero_tier === 'hero' && (
-              <span style={{ color: '#7c3aed', fontSize: 15, fontWeight: 800, flexShrink: 0, lineHeight: 1 }}>◆</span>
+            {post.hero_tier && (
+              <span style={{ color: 'var(--text3)', fontSize: 13, fontWeight: 700, flexShrink: 0, lineHeight: 1 }}>
+                {post.hero_tier === 'crown' ? '★' : '◆'}
+              </span>
             )}
             <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{post.title}</div>
           </div>
-          {post.hero_tier === 'crown' && (
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#d97706', marginBottom: 4 }}>Crown Hero · Priority optimization target</div>
-          )}
-          {post.hero_tier === 'hero' && (
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#7c3aed', marginBottom: 4 }}>Hero page · High strategic value</div>
+          {post.hero_tier && (
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text3)', marginBottom: 4 }}>
+              {post.hero_tier === 'crown' ? 'Crown Hero · Priority optimization target' : 'Hero · High strategic value'}
+            </div>
           )}
         </div>
         <button onClick={onClose} style={{ color: 'var(--text3)', fontSize: 20, lineHeight: 1, padding: 2, flexShrink: 0 }}>×</button>

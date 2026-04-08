@@ -32,16 +32,8 @@ function Badge({ type, color }) {
 }
 
 const HERO_ROW = {
-  crown: {
-    borderLeft: '4px solid #d97706',
-    background: 'linear-gradient(to right, rgba(217,119,6,0.07), rgba(217,119,6,0.02) 60%, #fff)',
-    symbol: '★', symbolColor: '#d97706', label: 'Crown Hero',
-  },
-  hero: {
-    borderLeft: '3px solid #7c3aed',
-    background: 'linear-gradient(to right, rgba(124,58,237,0.06), rgba(124,58,237,0.01) 60%, #fff)',
-    symbol: '◆', symbolColor: '#7c3aed', label: 'Hero',
-  },
+  crown: { symbol: '★', label: 'Crown Hero' },
+  hero:  { symbol: '◆', label: 'Hero' },
 }
 
 function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSelect }) {
@@ -52,18 +44,17 @@ function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSel
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
         marginTop: 6, padding: '10px 12px',
-        borderLeft: hero ? hero.borderLeft : undefined,
-        background: selected === slug ? '#f0f5ff' : hero ? hero.background : 'var(--bg2)',
+        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
         <Badge type={post.page_type} color={color} />
         {hero && (
-          <span style={{ color: hero.symbolColor, fontSize: 13, fontWeight: 800, flexShrink: 0 }}>{hero.symbol}</span>
+          <span style={{ color: 'var(--text3)', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{hero.symbol}</span>
         )}
         <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)' }}>{post.title}</span>
         {hero && (
-          <span style={{ fontSize: 10, fontWeight: 700, color: hero.symbolColor }}>{hero.label}</span>
+          <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text3)', background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 4, padding: '1px 6px' }}>{hero.label}</span>
         )}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px 16px' }}>

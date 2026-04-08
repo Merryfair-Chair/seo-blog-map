@@ -6,20 +6,8 @@ const TRIAGE_GROUPS = [
 ]
 
 const HERO_CARD = {
-  crown: {
-    border: '4px solid #d97706',
-    background: 'linear-gradient(to right, rgba(217,119,6,0.07), rgba(217,119,6,0.02) 60%, #fff)',
-    symbol: '★',
-    symbolColor: '#d97706',
-    label: 'Crown Hero',
-  },
-  hero: {
-    border: '3px solid #7c3aed',
-    background: 'linear-gradient(to right, rgba(124,58,237,0.06), rgba(124,58,237,0.01) 60%, #fff)',
-    symbol: '◆',
-    symbolColor: '#7c3aed',
-    label: 'Hero',
-  },
+  crown: { symbol: '★', label: 'Crown Hero' },
+  hero:  { symbol: '◆', label: 'Hero' },
 }
 
 function PostCard({ slug, post, color, selected, onSelect }) {
@@ -36,12 +24,8 @@ function PostCard({ slug, post, color, selected, onSelect }) {
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
         padding: '11px 14px',
-        borderLeft: hero ? hero.border : `3px solid ${color}`,
-        background: selected === slug
-          ? '#f0f5ff'
-          : hero
-            ? hero.background
-            : 'var(--bg2)',
+        borderLeft: `3px solid ${color}`,
+        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
@@ -49,7 +33,7 @@ function PostCard({ slug, post, color, selected, onSelect }) {
           {/* Title row — hero symbol inline */}
           <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginBottom: 5, lineHeight: 1.4, display: 'flex', alignItems: 'baseline', gap: 5 }}>
             {hero && (
-              <span style={{ color: hero.symbolColor, fontSize: 13, fontWeight: 800, flexShrink: 0 }}>
+              <span style={{ color: 'var(--text3)', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
                 {hero.symbol}
               </span>
             )}
@@ -58,7 +42,7 @@ function PostCard({ slug, post, color, selected, onSelect }) {
           {/* Meta row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 10px', fontSize: 11, color: 'var(--text3)', alignItems: 'center' }}>
             {hero && (
-              <span style={{ fontSize: 10, fontWeight: 700, color: hero.symbolColor }}>{hero.label}</span>
+              <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text3)', background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 4, padding: '1px 6px' }}>{hero.label}</span>
             )}
             <span style={{ color: clicks > 0 ? 'var(--text2)' : 'var(--text3)' }}>{clicks.toLocaleString()} clicks</span>
             <span>{impressions.toLocaleString()} impressions</span>

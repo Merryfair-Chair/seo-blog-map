@@ -136,15 +136,11 @@ a:hover { text-decoration: underline; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-.badge-crown {
-  background: var(--hero-crown-bg);
-  color: var(--hero-crown);
-  border: 1px solid var(--hero-crown-border);
-}
+.badge-crown,
 .badge-hero {
-  background: var(--hero-bg);
-  color: var(--hero);
-  border: 1px solid var(--hero-border);
+  background: var(--bg3);
+  color: var(--text3);
+  border: 1px solid var(--border);
 }
 .badge-traffic {
   background: rgba(37,99,235,0.09);
