@@ -121,9 +121,7 @@ function OptimizationPanel({ opt, slug, onToggle }) {
 function Section({ title, children }) {
   return (
     <div style={{ marginBottom: 16 }}>
-      <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 7 }}>
-        {title}
-      </div>
+      <div className="section-label">{title}</div>
       {children}
     </div>
   )
@@ -131,16 +129,16 @@ function Section({ title, children }) {
 
 function Stat({ label, value, color }) {
   return (
-    <div style={{ background: 'var(--bg3)', borderRadius: 7, padding: '8px 10px' }}>
-      <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 2, fontWeight: 600 }}>{label}</div>
-      <div style={{ fontSize: 17, fontWeight: 700, color: color || 'var(--text)' }}>{value ?? '—'}</div>
+    <div className="stat-block">
+      <div className="stat-label">{label}</div>
+      <div className="stat-value" style={{ color: color || 'var(--text)', fontSize: 17 }}>{value ?? '—'}</div>
     </div>
   )
 }
 
 export default function DetailPanel({ post, gap, slug, postDetails, clusters, onClose, onGapStatusChange, onOptimizationToggle }) {
   const panelStyle = {
-    width: 310, flexShrink: 0,
+    width: 340, flexShrink: 0,
     borderLeft: '1px solid var(--border)',
     background: 'var(--bg2)',
     overflow: 'auto',
@@ -168,21 +166,22 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
     }
 
     const ACTION_BUTTONS = [
-      { status: 'approved',      label: 'Approve',      color: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe' },
-      { status: 'published',     label: 'Published',    color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' },
-      { status: 'deprioritized', label: 'Deprioritize', color: '#9ca3af', bg: '#fafafa', border: '#e5e7eb' },
-      { status: 'rejected',      label: 'Reject',       color: '#6b7280', bg: '#f9fafb', border: '#e5e7eb' },
-      { status: 'suggested',     label: 'Reset',        color: '#b45309', bg: '#fffbeb', border: '#fde68a' },
+      { status: 'approved',      label: 'Approve',      filled: true,  color: '#fff',    bg: '#2563eb',  border: '#2563eb' },
+      { status: 'published',     label: 'Published',    filled: true,  color: '#fff',    bg: '#15803d',  border: '#15803d' },
+      { status: 'deprioritized', label: 'Deprioritize', filled: false, color: '#6b7280', bg: 'transparent', border: '#d1d5db' },
+      { status: 'rejected',      label: 'Reject',       filled: false, color: '#dc2626', bg: 'transparent', border: '#fca5a5' },
+      { status: 'suggested',     label: 'Reset',        filled: false, color: '#b45309', bg: '#fffbeb',  border: '#fde68a' },
     ].filter(b => b.status !== currentStatus)
 
     return (
       <div style={panelStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
-              <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 4, background: s.bg, color: s.color }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, flexWrap: 'wrap' }}>
+              <span className={`status-pill status-${currentStatus}`}>
                 {currentStatus}
               </span>
+              {gap.purpose && <span className={`badge badge-${gap.purpose}`}>{gap.purpose}</span>}
               <span style={{ fontSize: 10, color: 'var(--text3)' }}>content gap</span>
               {gap.ahrefsValidated && (
                 <span style={{ fontSize: 9, fontWeight: 700, padding: '2px 6px', borderRadius: 3, background: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0' }}>
@@ -202,9 +201,10 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
               onClick={() => setStatus(b.status)}
               disabled={saving}
               style={{
-                fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 6,
-                background: b.bg, color: b.color, border: `1px solid ${b.border}`,
+                fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 20,
+                background: b.bg, color: b.color, border: `1.5px solid ${b.border}`,
                 cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? 0.6 : 1,
+                transition: 'all 0.15s',
               }}
             >
               {b.label}
@@ -355,9 +355,11 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
         <div style={{ flex: 1, paddingRight: 8 }}>
           {cluster && (
-            <div style={{ fontSize: 10, fontWeight: 700, color: clusterColor, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: clusterColor, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
               <div style={{ width: 7, height: 7, borderRadius: 2, background: clusterColor }} />
               {post.page_type === 'pillar' ? `Pillar · ${cluster.name}` : cluster.name}
+              {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown Hero</span>}
+              {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
             </div>
           )}
           <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{post.title}</div>
@@ -369,7 +371,13 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
         href={`${BASE_URL}${slug}/`}
         target="_blank"
         rel="noreferrer"
-        style={{ fontSize: 11, color: 'var(--accent)', display: 'inline-block', marginBottom: 16, fontWeight: 500 }}
+        style={{
+          display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11,
+          color: 'var(--accent)', fontWeight: 600, padding: '5px 10px',
+          borderRadius: 6, background: 'rgba(37,99,235,0.07)',
+          border: '1px solid rgba(37,99,235,0.15)', marginBottom: 16,
+          textDecoration: 'none',
+        }}
       >
         View post on site →
       </a>

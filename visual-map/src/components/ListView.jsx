@@ -4,8 +4,8 @@ function PerformanceBar({ value, max, color }) {
   const pct = max > 0 ? Math.min((value / max) * 100, 100) : 0
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <div style={{ flex: 1, height: 4, borderRadius: 2, background: 'var(--bg3)' }}>
-        <div style={{ width: `${pct}%`, height: '100%', borderRadius: 2, background: color, transition: 'width 0.3s' }} />
+      <div className="progress-track">
+        <div className="progress-fill" style={{ width: `${pct}%`, background: color }} />
       </div>
       <span style={{ fontSize: 11, color: 'var(--text3)', minWidth: 32, textAlign: 'right' }}>
         {value.toLocaleString()}
@@ -35,18 +35,17 @@ function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSel
   return (
     <div
       onClick={() => onSelect(slug)}
+      className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
-        marginTop: 6, padding: '10px 12px', borderRadius: 8,
-        border: '1px solid var(--border)',
+        marginTop: 6, padding: '10px 12px',
         background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
-        outline: selected === slug ? `2px solid ${color}` : 'none',
-        cursor: 'pointer',
-        transition: 'background 0.12s',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
         <Badge type={post.page_type} color={color} />
         <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)' }}>{post.title}</span>
+        {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown</span>}
+        {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px 16px' }}>
         <div style={{ fontSize: 11, color: 'var(--text3)' }}>
@@ -91,7 +90,7 @@ export default function ListView({ clusters, postDetails, selected, onSelect }) 
               borderRadius: 'var(--radius)',
               background: 'var(--bg2)',
               overflow: 'hidden',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+              boxShadow: 'var(--shadow-sm)',
             }}>
               <div
                 onClick={() => setExpanded(isOpen ? null : cluster.id)}
@@ -142,9 +141,7 @@ export default function ListView({ clusters, postDetails, selected, onSelect }) 
                   ))}
                   {cluster.gaps?.filter(g => g.status !== 'published' && g.status !== 'rejected').length > 0 && (
                     <div style={{ marginTop: 14 }}>
-                      <div style={{ fontSize: 10, fontWeight: 800, color: '#b45309', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>
-                        Content gaps
-                      </div>
+                      <div className="section-label" style={{ color: '#b45309' }}>Content gaps</div>
                       {cluster.gaps.filter(g => g.status !== 'published' && g.status !== 'rejected').map((gap, gi) => (
                         <div
                           key={gap.id || gi}

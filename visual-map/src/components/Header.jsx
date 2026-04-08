@@ -35,7 +35,7 @@ function CommandsPanel({ onClose }) {
         onClick={e => e.stopPropagation()}
         style={{
           background: 'var(--bg2)', borderRadius: 12, width: 560,
-          boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border)',
+          boxShadow: 'var(--shadow-xl)', border: '1px solid var(--border)',
           overflow: 'hidden',
         }}
       >
@@ -95,7 +95,6 @@ export default function Header({ view, setView, meta, clusters, postDetails, las
         background: 'var(--bg2)',
         borderBottom: '1px solid var(--border)',
         flexShrink: 0,
-        boxShadow: '0 1px 0 var(--border)',
       }}>
         {/* Top row — brand + stats */}
         <div style={{
@@ -105,21 +104,34 @@ export default function Header({ view, setView, meta, clusters, postDetails, las
         }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
             <span style={{ fontWeight: 800, fontSize: 13, color: 'var(--text)', letterSpacing: '-0.01em' }}>Merryfair</span>
+            <span style={{ width: 1, height: 12, background: 'var(--border)', display: 'inline-block', marginBottom: -2 }} />
             <span style={{ fontSize: 11, color: 'var(--text3)', fontWeight: 500 }}>Content Map</span>
           </div>
 
           <div style={{ marginLeft: 'auto', display: 'flex', gap: 20, alignItems: 'center' }}>
-            {[
-              { label: 'posts',           value: totalPosts,    color: 'var(--text)' },
-              { label: 'heroes',          value: heroCount,     color: 'var(--hero)' },
-              { label: 'in pipeline',     value: pipelineGaps,  color: '#b45309' },
-              { label: 'pending fixes',   value: pendingFixes,  color: pendingFixes > 0 ? '#dc2626' : 'var(--text3)' },
-            ].map(s => (
-              <div key={s.label} style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: s.color }}>{s.value}</span>
-                <span style={{ fontSize: 10, color: 'var(--text3)' }}>{s.label}</span>
-              </div>
-            ))}
+            {/* Posts */}
+            <div className="header-stat">
+              <span className="val" style={{ color: 'var(--text)' }}>{totalPosts}</span>
+              <span className="lbl">posts</span>
+            </div>
+
+            {/* Crown + hero */}
+            <div className="header-stat">
+              <span className="val" style={{ color: 'var(--hero-crown)' }}>★ {heroCount}</span>
+              <span className="lbl">crown+hero</span>
+            </div>
+
+            {/* Pipeline */}
+            <div className="header-stat">
+              <span className="val" style={{ color: 'var(--gap-color)' }}>{pipelineGaps}</span>
+              <span className="lbl">in pipeline</span>
+            </div>
+
+            {/* Pending fixes */}
+            <div className="header-stat">
+              <span className="val" style={{ color: pendingFixes > 0 ? '#dc2626' : 'var(--text4)' }}>{pendingFixes}</span>
+              <span className="lbl">pending fixes</span>
+            </div>
 
             <div style={{ fontSize: 10, color: 'var(--text3)', borderLeft: '1px solid var(--border)', paddingLeft: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
               <span>Crawled {meta?.last_crawl?.slice(0, 10) || '—'}</span>
@@ -138,18 +150,12 @@ export default function Header({ view, setView, meta, clusters, postDetails, las
           display: 'flex', alignItems: 'center', gap: 0,
           height: 44, padding: '0 20px',
         }}>
-          <div style={{ display: 'flex', gap: 1, background: 'var(--bg3)', borderRadius: 8, padding: 3 }}>
+          <div className="tab-strip">
             {tabs.map(t => (
               <button
                 key={t.id}
                 onClick={() => setView(t.id)}
-                style={{
-                  padding: '5px 14px', borderRadius: 6, fontSize: 12, fontWeight: 500,
-                  background: view === t.id ? 'var(--bg2)' : 'transparent',
-                  color: view === t.id ? 'var(--text)' : t.warn ? 'var(--gap-color)' : 'var(--text3)',
-                  boxShadow: view === t.id ? 'var(--shadow)' : 'none',
-                  transition: 'all 0.15s',
-                }}
+                className={`tab-btn${view === t.id ? ' active' : ''}${t.warn ? ' warn' : ''}`}
               >
                 {t.label}
               </button>
@@ -159,23 +165,16 @@ export default function Header({ view, setView, meta, clusters, postDetails, las
           <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
             <button
               onClick={() => setShowCommands(true)}
-              style={{
-                fontSize: 11, fontWeight: 700, padding: '5px 10px', borderRadius: 6,
-                background: 'var(--bg3)', color: 'var(--text2)',
-                border: '1px solid var(--border)',
-              }}
+              className="btn btn-ghost"
+              style={{ fontSize: 12 }}
               title="Claude Code commands reference"
             >
               Commands ?
             </button>
             <button
               onClick={onAddIdea}
-              style={{
-                fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 6,
-                background: '#f59e0b', color: '#fff',
-                border: 'none',
-                boxShadow: '0 1px 4px rgba(245,158,11,0.35)',
-              }}
+              className="btn btn-primary"
+              style={{ fontSize: 12 }}
               title="Add a new blog idea to the pipeline"
             >
               ＋ Add Idea

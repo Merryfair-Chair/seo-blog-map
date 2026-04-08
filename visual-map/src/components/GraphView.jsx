@@ -132,6 +132,37 @@ function PostNodeComponent({ data }) {
   const clicks = post.gsc_clicks || 0
   const dot = clicks > 100 ? '#16a34a' : clicks >= 10 ? '#2563eb' : clicks >= 1 ? '#ca8a04' : '#9ca3af'
 
+  const isCrown = post.hero_tier === 'crown'
+  const isHero  = post.hero_tier === 'hero'
+
+  // Determine visual treatment by tier
+  const nodeWidth = isCrown ? 210 : isHero ? 175 : isPillar ? 195 : 165
+  const nodeBg = isCrown
+    ? 'linear-gradient(135deg, #fff 60%, rgba(217,119,6,0.08))'
+    : isHero
+      ? 'linear-gradient(135deg, #fff 70%, rgba(124,58,237,0.06))'
+      : isPillar
+        ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)`
+        : '#fff'
+  const nodeBorder = isCrown
+    ? '3px solid #d97706'
+    : isHero
+      ? '2px solid #7c3aed'
+      : isPillar
+        ? `3px solid ${clusterColor}`
+        : `2px solid ${clusterColor}`
+  const nodeBorderRadius = isPillar || isCrown ? 12 : 8
+  const nodePadding = isPillar || isCrown ? '10px 14px' : '8px 12px'
+  const nodeBoxShadow = isSelected
+    ? `0 0 0 3px ${isCrown ? '#d97706' : isHero ? '#7c3aed' : clusterColor}, 0 4px 20px rgba(0,0,0,0.18)`
+    : isCrown
+      ? '0 2px 12px rgba(217,119,6,0.3), 0 1px 4px rgba(0,0,0,0.08)'
+      : isHero
+        ? '0 2px 12px rgba(124,58,237,0.2), 0 1px 4px rgba(0,0,0,0.08)'
+        : isPillar
+          ? `0 2px 12px ${clusterColor}40, 0 1px 4px rgba(0,0,0,0.08)`
+          : '0 1px 5px rgba(0,0,0,0.09)'
+
   return (
     <>
       <Handle type="target" position={Position.Top}    style={HANDLE_STYLE} />
@@ -139,25 +170,31 @@ function PostNodeComponent({ data }) {
       <Handle type="source" position={Position.Bottom} style={HANDLE_STYLE} />
       <Handle type="source" position={Position.Right}  style={HANDLE_STYLE} />
       <div style={{
-        background: isPillar ? `linear-gradient(135deg,#fff 60%,${clusterColor}18)` : '#fff',
-        border: isPillar ? `3px solid ${clusterColor}` : `2px solid ${clusterColor}`,
-        borderRadius: isPillar ? 12 : 8,
-        padding: isPillar ? '10px 14px' : '8px 12px',
-        width: isPillar ? 195 : 165,
-        boxShadow: isSelected
-          ? `0 0 0 3px ${clusterColor}, 0 4px 20px rgba(0,0,0,0.18)`
-          : isPillar
-            ? `0 2px 12px ${clusterColor}40, 0 1px 4px rgba(0,0,0,0.08)`
-            : '0 1px 5px rgba(0,0,0,0.09)',
+        background: nodeBg,
+        border: nodeBorder,
+        borderRadius: nodeBorderRadius,
+        padding: nodePadding,
+        width: nodeWidth,
+        boxShadow: nodeBoxShadow,
         cursor: 'pointer',
         userSelect: 'none',
       }}>
-        {isPillar && (
+        {isCrown && (
+          <div style={{ fontSize: 9, fontWeight: 800, color: '#d97706', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
+            ★ Crown Hero
+          </div>
+        )}
+        {!isCrown && isPillar && (
           <div style={{ fontSize: 9, fontWeight: 800, color: clusterColor, textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
             ★ Pillar
           </div>
         )}
-        <div style={{ fontSize: isPillar ? 12 : 11, fontWeight: isPillar ? 700 : 600, color: '#111827', lineHeight: 1.35, marginBottom: 6 }}>
+        {isHero && !isCrown && (
+          <div style={{ fontSize: 9, fontWeight: 800, color: '#7c3aed', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 4 }}>
+            ◆ Hero
+          </div>
+        )}
+        <div style={{ fontSize: (isPillar || isCrown) ? 12 : 11, fontWeight: (isPillar || isCrown) ? 700 : 600, color: '#111827', lineHeight: 1.35, marginBottom: 6 }}>
           {post.title}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>

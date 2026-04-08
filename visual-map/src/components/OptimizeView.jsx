@@ -1,5 +1,3 @@
-const PRIORITY_COLOR = { high: '#dc2626', medium: '#d97706', low: '#6b7280' }
-
 function OptCard({ slug, post, clusterColor, selected, onSelect }) {
   const opt = post.optimization
   const items = opt.items || []
@@ -14,17 +12,19 @@ function OptCard({ slug, post, clusterColor, selected, onSelect }) {
   return (
     <div
       onClick={() => onSelect(slug)}
+      className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
-        padding: '12px 14px', borderRadius: 8, cursor: 'pointer',
-        border: `1px solid ${selected === slug ? clusterColor : 'var(--border)'}`,
-        borderLeft: `4px solid ${isComplete ? '#15803d' : clusterColor}`,
+        padding: '12px 14px',
+        borderLeft: `3px solid ${isComplete ? '#15803d' : clusterColor}`,
         background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
-        outline: selected === slug ? `2px solid ${clusterColor}` : 'none',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
-        <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', lineHeight: 1.4, flex: 1 }}>{post.title}</div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 7, flex: 1 }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', lineHeight: 1.4, flex: 1 }}>{post.title}</div>
+          {post.hero_tier === 'crown' && <span className="badge badge-crown" style={{ marginTop: 2 }}>★ Crown</span>}
+          {post.hero_tier === 'hero' && <span className="badge badge-hero" style={{ marginTop: 2 }}>◆ Hero</span>}
+        </div>
         <span style={{
           fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 4, flexShrink: 0,
           background: isComplete ? '#f0fdf4' : '#fff',
@@ -37,14 +37,13 @@ function OptCard({ slug, post, clusterColor, selected, onSelect }) {
 
       {/* Progress bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 7 }}>
-        <div style={{ flex: 1, height: 4, borderRadius: 2, background: 'var(--bg3)' }}>
-          <div style={{ width: `${pct}%`, height: '100%', borderRadius: 2, background: isComplete ? '#15803d' : clusterColor, transition: 'width 0.3s' }} />
+        <div className="progress-track">
+          <div className="progress-fill" style={{ width: `${pct}%`, background: isComplete ? '#15803d' : clusterColor }} />
         </div>
         <span style={{ fontSize: 10, color: 'var(--text3)', minWidth: 30 }}>{pct}%</span>
       </div>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-        {/* Remaining priority badges */}
         {highCount > 0 && (
           <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 6px', borderRadius: 4, background: '#fef2f2', color: '#dc2626' }}>
             {highCount} high
@@ -55,7 +54,6 @@ function OptCard({ slug, post, clusterColor, selected, onSelect }) {
             {medCount} medium
           </span>
         )}
-        {/* Diagnosis preview */}
         {opt.diagnosis && (
           <span style={{ fontSize: 10, color: 'var(--text3)', fontStyle: 'italic', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {opt.diagnosis}
@@ -76,6 +74,10 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
     const items = p.optimization.items
     return items.some(i => !i.done)
   }).sort((a, b) => {
+    // Crown posts first, then by high priority count
+    const aCrown = a[1].hero_tier === 'crown' ? 1 : 0
+    const bCrown = b[1].hero_tier === 'crown' ? 1 : 0
+    if (bCrown !== aCrown) return bCrown - aCrown
     const aHigh = a[1].optimization.items.filter(i => i.priority === 'high' && !i.done).length
     const bHigh = b[1].optimization.items.filter(i => i.priority === 'high' && !i.done).length
     return bHigh - aHigh
@@ -100,9 +102,9 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
             { label: 'Posts audited', value: withOpt.length, color: 'var(--text)' },
             { label: 'Not yet audited', value: noAudit.length, color: 'var(--text3)' },
           ].map(s => (
-            <div key={s.label} style={{ background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '12px 14px' }}>
-              <div style={{ fontSize: 10, color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 3 }}>{s.label}</div>
-              <div style={{ fontSize: 22, fontWeight: 700, color: s.color }}>{s.value}</div>
+            <div key={s.label} className="stat-block">
+              <div className="stat-label">{s.label}</div>
+              <div className="stat-value" style={{ color: s.color }}>{s.value}</div>
             </div>
           ))}
         </div>
@@ -110,9 +112,9 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
         {/* Needs work */}
         {pending.length > 0 && (
           <div style={{ marginBottom: 28 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#dc2626', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Needs work</span>
-              <span style={{ fontSize: 11, color: 'var(--text3)' }}>({pending.length})</span>
+            <div className="group-header">
+              <span className="title" style={{ color: '#dc2626' }}>Needs work</span>
+              <span className="count">({pending.length})</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {pending.map(([slug, post]) => (
@@ -129,9 +131,9 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
         {/* Complete */}
         {complete.length > 0 && (
           <div style={{ marginBottom: 28 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 11, fontWeight: 800, color: '#15803d', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Complete</span>
-              <span style={{ fontSize: 11, color: 'var(--text3)' }}>({complete.length})</span>
+            <div className="group-header">
+              <span className="title" style={{ color: '#15803d' }}>Complete</span>
+              <span className="count">({complete.length})</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
               {complete.map(([slug, post]) => (
@@ -148,9 +150,9 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
         {/* Not yet audited */}
         {noAudit.length > 0 && (
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--text3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Not yet audited</span>
-              <span style={{ fontSize: 11, color: 'var(--text3)' }}>({noAudit.length})</span>
+            <div className="group-header">
+              <span className="title" style={{ color: 'var(--text3)' }}>Not yet audited</span>
+              <span className="count">({noAudit.length})</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               {noAudit.map(([slug, post]) => (
@@ -160,9 +162,10 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
                   style={{
                     padding: '9px 14px', borderRadius: 8, cursor: 'pointer',
                     border: `1px solid ${selected === slug ? '#6b7280' : 'var(--border)'}`,
-                    borderLeft: `4px solid ${clusterById[post.cluster]?.color || 'var(--border)'}`,
+                    borderLeft: `3px solid ${clusterById[post.cluster]?.color || 'var(--border)'}`,
                     background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    opacity: 0.7,
                   }}
                 >
                   <div>

@@ -64,19 +64,13 @@ function GapCard({ gap, selected, onSelect, postDetails }) {
   return (
     <div
       onClick={() => onSelect(gap.id)}
+      className={`card card-clickable${isSelected ? ' selected' : ''}`}
       style={{
-        background: isSelected ? '#f0f5ff' : 'var(--bg2)',
-        border: `1px solid ${isSelected ? '#2563eb' : 'var(--border)'}`,
         borderLeft: `3px solid ${gap.clusterColor}`,
-        borderRadius: 8,
         padding: '10px 12px',
-        cursor: 'pointer',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-        transition: 'box-shadow 0.15s, transform 0.15s',
+        background: isSelected ? '#f0f5ff' : 'var(--bg2)',
         userSelect: 'none',
       }}
-      onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 3px 10px rgba(0,0,0,0.10)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-      onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)'; e.currentTarget.style.transform = 'none' }}
     >
       {/* Title */}
       <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', lineHeight: 1.4, marginBottom: 7 }}>
@@ -121,11 +115,7 @@ function GapCard({ gap, selected, onSelect, postDetails }) {
 
 function EmptyState({ label }) {
   return (
-    <div style={{
-      padding: '24px 12px', textAlign: 'center',
-      color: 'var(--text3)', fontSize: 11, fontStyle: 'italic',
-      border: '1.5px dashed var(--border)', borderRadius: 8,
-    }}>
+    <div className="empty-state">
       No {label.toLowerCase()} items
     </div>
   )
@@ -175,16 +165,18 @@ export default function PipelineView({ clusters, selected, onSelect, onAddIdea, 
               <div style={{
                 background: t.bg,
                 border: `1px solid ${t.border}`,
+                borderLeft: `3px solid ${t.header}`,
                 borderRadius: 10,
-                padding: '10px 14px',
+                padding: '12px 14px',
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: t.header, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: t.header, letterSpacing: '0.02em' }}>
                     {col.label}
                   </span>
                   <span style={{
-                    fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: 10,
-                    background: 'rgba(0,0,0,0.06)', color: t.header,
+                    fontSize: 11, fontWeight: 700, padding: '2px 9px', borderRadius: 20,
+                    background: `${t.header}18`, color: t.header,
+                    border: `1px solid ${t.border}`,
                   }}>
                     {items.length}
                   </span>
@@ -192,18 +184,18 @@ export default function PipelineView({ clusters, selected, onSelect, onAddIdea, 
 
                 {/* Weekly target indicator — only in Published column */}
                 {col.id === 'published' && (
-                  <div style={{ marginTop: 8 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                      <span style={{ fontSize: 10, color: '#15803d', fontWeight: 600 }}>
+                  <div style={{ marginTop: 10 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
+                      <span style={{ fontSize: 11, color: '#15803d', fontWeight: 700 }}>
                         {thisWeekPublished} / 5 this week
                       </span>
-                      <span style={{ fontSize: 9, color: '#6b7280' }}>target</span>
+                      <span style={{ fontSize: 9, color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>target</span>
                     </div>
-                    <div style={{ height: 4, borderRadius: 2, background: '#d1fae5' }}>
+                    <div style={{ height: 5, borderRadius: 3, background: '#d1fae5' }}>
                       <div style={{
                         width: `${Math.min((thisWeekPublished / 5) * 100, 100)}%`,
-                        height: '100%', borderRadius: 2, background: '#15803d',
-                        transition: 'width 0.3s',
+                        height: '100%', borderRadius: 3, background: '#15803d',
+                        transition: 'width 0.4s cubic-bezier(0.4,0,0.2,1)',
                       }} />
                     </div>
                   </div>
@@ -236,10 +228,19 @@ export default function PipelineView({ clusters, selected, onSelect, onAddIdea, 
                     padding: '8px 0', borderRadius: 8, fontSize: 12, fontWeight: 600,
                     background: 'transparent', color: 'var(--text3)',
                     border: '1.5px dashed var(--border)',
-                    transition: 'border-color 0.15s, color 0.15s',
+                    transition: 'border-color 0.15s, color 0.15s, background 0.15s',
+                    width: '100%',
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#f59e0b'; e.currentTarget.style.color = '#b45309' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text3)' }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = '#f59e0b'
+                    e.currentTarget.style.color = '#b45309'
+                    e.currentTarget.style.background = 'rgba(245,158,11,0.04)'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'var(--border)'
+                    e.currentTarget.style.color = 'var(--text3)'
+                    e.currentTarget.style.background = 'transparent'
+                  }}
                 >
                   ＋ Add idea
                 </button>

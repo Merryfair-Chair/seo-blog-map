@@ -79,24 +79,16 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
               { label: 'In progress',     value: byStatus.in_progress.length,color: '#7c3aed' },
               { label: 'MY vol (active)', value: `${approvedMyVol}/mo`,      color: '#b45309' },
             ].map(s => (
-              <div key={s.label} style={{
-                background: 'var(--bg2)', border: '1px solid var(--border)',
-                borderRadius: 'var(--radius)', padding: '12px 14px',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-              }}>
-                <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 3, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{s.label}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: s.color }}>{s.value}</div>
+              <div key={s.label} className="stat-block">
+                <div className="stat-label">{s.label}</div>
+                <div className="stat-value" style={{ color: s.color }}>{s.value}</div>
               </div>
             ))}
           </div>
           <button
             onClick={onAddIdea}
-            style={{
-              padding: '10px 16px', borderRadius: 8, fontSize: 12, fontWeight: 700,
-              background: '#f59e0b', color: '#fff', border: 'none',
-              boxShadow: '0 1px 4px rgba(245,158,11,0.35)',
-              flexShrink: 0, whiteSpace: 'nowrap',
-            }}
+            className="btn btn-primary"
+            style={{ flexShrink: 0, whiteSpace: 'nowrap', paddingTop: 10, paddingBottom: 10 }}
           >
             ＋ Add Idea
           </button>
@@ -122,12 +114,12 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
           const isInProgress = status === 'in_progress'
           return (
             <div key={status} style={{ marginBottom: 28 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 11, fontWeight: 800, color: s.text, textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+              <div className="group-header">
+                <span className="title" style={{ color: s.text }}>
                   {isInProgress && <span style={{ marginRight: 4 }}>◌</span>}
                   {s.label}
                 </span>
-                <span style={{ fontSize: 11, color: 'var(--text3)' }}>({gaps.length})</span>
+                <span className="count">({gaps.length})</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -135,13 +127,11 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
                   <div
                     key={gap.id || i}
                     onClick={() => onSelect(gap.id)}
+                    className="card card-clickable"
                     style={{
-                      padding: '14px 16px', borderRadius: 'var(--radius)',
-                      border: `1px solid ${selected === gap.id ? gap.clusterColor : 'var(--border)'}`,
+                      padding: '14px 16px',
                       borderLeft: `4px solid ${gap.clusterColor}`,
                       background: selected === gap.id ? '#f0f5ff' : status === 'deprioritized' ? '#fafafa' : 'var(--bg2)',
-                      cursor: 'pointer',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
                       outline: isInProgress ? '2px dashed #7c3aed' : selected === gap.id ? `2px solid ${gap.clusterColor}` : 'none',
                       outlineOffset: isInProgress ? '2px' : '0',
                       opacity: status === 'deprioritized' ? 0.75 : 1,
@@ -189,8 +179,9 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
                           {/* Cannibalization warning */}
                           {gap.cannibalizes && (
                             <span style={{
-                              fontSize: 9, fontWeight: 700, padding: '1px 5px', borderRadius: 3,
-                              background: '#fffbeb', color: '#b45309', border: '1px solid #fde68a',
+                              fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 5,
+                              background: '#fff3cd', color: '#92400e', border: '1.5px solid #f59e0b',
+                              display: 'inline-flex', alignItems: 'center', gap: 3,
                             }}>⚠ overlap: {gap.cannibalizes}</span>
                           )}
                         </div>
@@ -273,11 +264,8 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
           <div style={{ marginBottom: 28 }}>
             <button
               onClick={() => setShowRejected(v => !v)}
-              style={{
-                display: 'flex', alignItems: 'center', gap: 8,
-                fontSize: 11, fontWeight: 700, color: 'var(--text3)',
-                padding: '6px 0', background: 'none', border: 'none', cursor: 'pointer',
-              }}
+              className="btn btn-ghost"
+              style={{ fontSize: 11, gap: 6 }}
             >
               <span style={{ transform: showRejected ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s', display: 'inline-block' }}>▾</span>
               Rejected ({rejectedGaps.length})

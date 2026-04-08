@@ -12,25 +12,31 @@ function PostCard({ slug, post, color, selected, onSelect }) {
   const optDone = hasOpt ? post.optimization.items.filter(i => i.done).length : 0
   const optTotal = hasOpt ? post.optimization.items.length : 0
 
+  const heroBorderColor = post.hero_tier === 'crown'
+    ? 'var(--hero-crown)'
+    : post.hero_tier === 'hero'
+      ? 'var(--hero)'
+      : color
+
   return (
     <div
       onClick={() => onSelect(slug)}
+      className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
-        padding: '10px 14px', borderRadius: 8, cursor: 'pointer',
-        border: `1px solid ${selected === slug ? color : 'var(--border)'}`,
-        borderLeft: `4px solid ${color}`,
+        padding: '10px 14px',
+        borderLeft: `3px solid ${heroBorderColor}`,
         background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
-        outline: selected === slug ? `2px solid ${color}` : 'none',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginBottom: 4, lineHeight: 1.4 }}>{post.title}</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 12px', fontSize: 11, color: 'var(--text3)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 8px', fontSize: 11, color: 'var(--text3)', alignItems: 'center' }}>
             <span style={{ color: clicks > 0 ? 'var(--text2)' : 'var(--text3)' }}>{clicks.toLocaleString()} clicks</span>
             <span>{impressions.toLocaleString()} impressions</span>
             {post.top_keyword && <span>#{post.top_kw_position} · {post.top_keyword}</span>}
+            {post.hero_tier === 'crown' && <span className="badge badge-crown">★ Crown</span>}
+            {post.hero_tier === 'hero' && <span className="badge badge-hero">◆ Hero</span>}
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4, flexShrink: 0 }}>
@@ -60,13 +66,10 @@ export default function TriageView({ clusters, postDetails, selected, onSelect }
           {TRIAGE_GROUPS.map(g => {
             const count = Object.values(postDetails).filter(p => (p.triage_status || 'none') === g.key).length
             return (
-              <div key={g.key} style={{
-                background: g.bg, border: `1px solid ${g.border}`,
-                borderRadius: 'var(--radius)', padding: '12px 14px',
-              }}>
-                <div style={{ fontSize: 10, color: g.color, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 2 }}>{g.label}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: g.color }}>{count}</div>
-                <div style={{ fontSize: 10, color: g.color, opacity: 0.7 }}>{g.desc}</div>
+              <div key={g.key} className="stat-block" style={{ background: g.bg, borderColor: g.border }}>
+                <div className="stat-label" style={{ color: g.color }}>{g.label}</div>
+                <div className="stat-value" style={{ color: g.color }}>{count}</div>
+                <div style={{ fontSize: 10, color: g.color, opacity: 0.7, marginTop: 3 }}>{g.desc}</div>
               </div>
             )
           })}
@@ -83,12 +86,10 @@ export default function TriageView({ clusters, postDetails, selected, onSelect }
 
           return (
             <div key={g.key} style={{ marginBottom: 28 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 11, fontWeight: 800, color: g.color, textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-                  {g.label}
-                </span>
-                <span style={{ fontSize: 11, color: 'var(--text3)' }}>({posts.length})</span>
-                <span style={{ fontSize: 10, color: 'var(--text3)' }}>· {g.desc}</span>
+              <div className="group-header">
+                <span className="title" style={{ color: g.color }}>{g.label}</span>
+                <span className="count">({posts.length})</span>
+                <span className="desc">· {g.desc}</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 {posts.map(([slug, post]) => (
