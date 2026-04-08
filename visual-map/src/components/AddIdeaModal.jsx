@@ -14,7 +14,7 @@ const CLUSTER_KEYWORDS = {
   'health-posture':     ['posture', 'back pain', 'spine', 'ergonomics', 'health', 'sitting', 'posture corrector', 'neck', 'shoulder', 'wrist', 'pain'],
   'gaming-specialized': ['gaming', 'gamer', 'gaming chair', 'streaming', 'esports', 'pc gaming', 'console'],
   'workspace-lifestyle':['workspace', 'home office', 'setup', 'productivity', 'desk', 'monitor', 'lighting', 'decor', 'small space', 'apartment'],
-  'brand':              ['merryfair', 'brand', 'raya', 'christmas', 'gifting', 'seasonal', 'sale'],
+  'brand-seasonal':     ['merryfair', 'brand', 'raya', 'christmas', 'gifting', 'seasonal', 'sale'],
 }
 
 function autoDetectCluster(keyword) {

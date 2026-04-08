@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
 Pull Supabase-owned fields back into the local merryfair_content_map.json.
-Merges: gap statuses + optimization checklist item states.
+Merges:
+  - Gap statuses (approve/reject/publish changes made in the visual map)
+  - New gaps added via the "Add Idea" UI (exist in Supabase but not local)
+  - Optimization checklist item states
 
 Run this before any local work (monthly-update, new-post) to avoid
 overwriting UI decisions made on the Vercel visual map.
@@ -61,9 +64,13 @@ if not rows:
 
 remote_data = rows[0]["data"]
 
-# Build lookup of remote gap statuses {gap_id: status}
-remote_gap_statuses = {}
+# Build lookup of remote gaps — keyed by gap_id, grouped by cluster_id
+# This handles both status updates AND new gaps added via the UI
+remote_gaps_by_cluster = {}   # {cluster_id: [gap, ...]}
+remote_gap_statuses = {}       # {gap_id: status}
 for cluster in remote_data.get("clusters", []):
+    cid = cluster.get("id")
+    remote_gaps_by_cluster[cid] = cluster.get("gaps", [])
     for gap in cluster.get("gaps", []):
         if "id" in gap and "status" in gap:
             remote_gap_statuses[gap["id"]] = gap["status"]
@@ -83,9 +90,20 @@ local_path = Path("merryfair_content_map.json")
 with open(local_path, encoding="utf-8") as f:
     local_data = json.load(f)
 
-# Merge gap statuses into local
-gaps_merged = 0
+# Build set of all local gap IDs for new-gap detection
+local_gap_ids = set()
 for cluster in local_data.get("clusters", []):
+    for gap in cluster.get("gaps", []):
+        if gap.get("id"):
+            local_gap_ids.add(gap["id"])
+
+# Merge gap statuses + add new UI-created gaps into local
+gaps_merged = 0
+gaps_added = 0
+for cluster in local_data.get("clusters", []):
+    cid = cluster.get("id")
+
+    # 1. Update statuses for existing gaps
     for gap in cluster.get("gaps", []):
         if gap.get("id") in remote_gap_statuses:
             old = gap.get("status", "suggested")
@@ -93,6 +111,15 @@ for cluster in local_data.get("clusters", []):
             if old != new:
                 gap["status"] = new
                 gaps_merged += 1
+
+    # 2. Add new gaps that exist in Supabase but not locally
+    for remote_gap in remote_gaps_by_cluster.get(cid, []):
+        if remote_gap.get("id") and remote_gap["id"] not in local_gap_ids:
+            if not cluster.get("gaps"):
+                cluster["gaps"] = []
+            cluster["gaps"].append(remote_gap)
+            local_gap_ids.add(remote_gap["id"])
+            gaps_added += 1
 
 # Merge optimization item states into local
 items_merged = 0
@@ -117,4 +144,8 @@ if vm_path.exists():
     with open(vm_path, "w", encoding="utf-8") as f:
         json.dump(local_data, f, indent=2, ensure_ascii=False)
 
-print(f"Pull complete — {gaps_merged} gap status(es) and {items_merged} checklist item(s) synced from Supabase.")
+parts = []
+if gaps_added:   parts.append(f"{gaps_added} new gap(s) pulled from Vercel UI")
+if gaps_merged:  parts.append(f"{gaps_merged} gap status(es) updated")
+if items_merged: parts.append(f"{items_merged} checklist item(s) synced")
+print("Pull complete — " + (", ".join(parts) if parts else "nothing to sync") + ".")
