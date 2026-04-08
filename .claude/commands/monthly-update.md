@@ -1,5 +1,7 @@
 Perform the monthly content intelligence update. Do ALL of the following automatically without asking:
 
+0. Run `python pull_from_supabase.py` first to sync any gap status changes and optimization checklist states made via the Vercel visual map back into the local JSON. This prevents overwriting UI decisions when we push to Supabase at the end.
+
 1. Find the most recent monthly data folder. Look inside "Monthly Data/" for subfolders named "[Month] [Year]" (e.g., "April 2026"). Pick the one with the most recent date. Then look inside that subfolder for CSV exports matching these patterns:
    - Pages.csv or *pages*.csv (GSC pages data)
    - Queries.csv or *queries*.csv (GSC queries data)

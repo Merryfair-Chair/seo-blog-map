@@ -16,6 +16,7 @@ export default function App() {
   const [lastFetched, setLastFetched] = useState(null)
   const [view, setView] = useState('graph')
   const [selected, setSelected] = useState(null)
+  const [dataVersion, setDataVersion] = useState(0)
 
   const fetchData = useCallback((silent = false) => {
     if (!silent) setLoading(true)
@@ -88,6 +89,7 @@ export default function App() {
               postDetails={data.post_details}
               selected={selected}
               onSelect={setSelected}
+              dataVersion={dataVersion}
             />
           )}
           {view === 'list' && (
@@ -138,6 +140,7 @@ export default function App() {
                   gaps: (c.gaps || []).map(g => g.id === gapId ? { ...g, status } : g)
                 }))
               }))
+              setDataVersion(v => v + 1)
             }}
             onOptimizationToggle={(slug, itemId, done) => {
               setData(prev => ({

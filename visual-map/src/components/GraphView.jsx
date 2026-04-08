@@ -171,9 +171,16 @@ function PostNodeComponent({ data }) {
   )
 }
 
+const GAP_STATUS_STYLE = {
+  suggested:    { color: '#b45309', label: '◌ Suggested' },
+  approved:     { color: '#1d4ed8', label: '✓ Approved' },
+  deprioritized:{ color: '#9ca3af', label: '— Deprioritized' },
+}
+
 function GapNodeComponent({ data }) {
   const { gap, clusterColor, isSelected } = data
   if (!gap) return null
+  const s = GAP_STATUS_STYLE[gap.status] || GAP_STATUS_STYLE.suggested
   return (
     <>
       <Handle type="target" position={Position.Top}    style={HANDLE_STYLE} />
@@ -184,11 +191,11 @@ function GapNodeComponent({ data }) {
         borderRadius: 8,
         padding: '8px 12px',
         width: 160,
-        boxShadow: isSelected ? `0 0 0 2.5px #b45309, 0 4px 14px rgba(0,0,0,0.13)` : '0 1px 4px rgba(0,0,0,0.07)',
+        boxShadow: isSelected ? `0 0 0 2.5px ${s.color}, 0 4px 14px rgba(0,0,0,0.13)` : '0 1px 4px rgba(0,0,0,0.07)',
         cursor: 'pointer',
         userSelect: 'none',
       }}>
-        <div style={{ fontSize: 9, fontWeight: 800, color: '#b45309', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 3 }}>◌ Suggested</div>
+        <div style={{ fontSize: 9, fontWeight: 800, color: s.color, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 3 }}>{s.label}</div>
         <div style={{ fontSize: 11, fontWeight: 600, color: '#1f2937', lineHeight: 1.35, marginBottom: 4 }}>{gap.title}</div>
         {gap.estVolume > 0 && <div style={{ fontSize: 10, color: '#92400e', fontWeight: 600 }}>{gap.estVolume}/mo</div>}
       </div>
@@ -277,7 +284,7 @@ function Legend({ clusters }) {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-export default function GraphView({ clusters, postDetails, selected, onSelect }) {
+export default function GraphView({ clusters, postDetails, selected, onSelect, dataVersion }) {
   const [forces, setForces] = useState(loadForces)
   const [simKey, setSimKey] = useState(0)
   const [nodes, setNodes, onNodesChange] = useNodesState([])
@@ -319,7 +326,7 @@ export default function GraphView({ clusters, postDetails, selected, onSelect })
 
     setNodes(rfNodes)
     setEdges(rfEdges)
-  }, [clusters, postDetails]) // selected intentionally excluded — handled by separate highlight effect
+  }, [clusters, postDetails, dataVersion]) // selected intentionally excluded — handled by separate highlight effect
 
   useEffect(() => { localStorage.setItem(STORAGE_KEY, JSON.stringify(forces)) }, [forces])
   // Re-run simulation on mount, manual trigger, or whenever cluster/post data changes
