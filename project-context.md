@@ -56,6 +56,14 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 - 3 Claude Code slash commands built: `/new-post`, `/monthly-update`, `/linking-audit`
 - `/optimize-post` command built — full audit against master content standard
 - `/suggest-posts` command built (2026-04-09) — enforces content-level methodology
+- All 5 slash commands comprehensively audited and rewritten for SEO accuracy (2026-04-09): AI Overview checks, semantic coverage vs keyword density, FAQPage schema, URL normalisation, cross-gap cannibalization, proportional link density
+
+### Bidirectional sync — DONE (2026-04-09)
+- PostToolUse hook in `.claude/settings.json`: auto-copies JSON to `visual-map/public/` on every Claude edit
+- GitHub Actions `sync-on-push.yml`: pushes to Supabase when `merryfair_content_map.json` changes on main
+- GitHub Actions `sync-from-supabase.yml`: cron every 10 min — pulls Supabase, commits back if changed
+- Local crontab: `git pull` every 15 min so local files stay current with UI changes
+- Visual map gap detail panel: Blog Brief (copy button) + Links In/Out now populated from JSON data (2026-04-09)
 
 ### Monthly update cycle
 - **Last run:** April 7, 2026 (data: March 2026)
@@ -66,14 +74,7 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 ## What has NOT been done yet
 
 ### Content writing
-The following approved gaps have not been written yet. No gaps currently have `status: "approved"` — all approved gaps from the original content calendar have been published. New suggestions from the 2026-04-09 session require SERP validation before approval.
-
-### Bidirectional sync
-- PostToolUse hook (local JSON → Supabase on every Claude edit): **not yet configured**
-- GitHub Actions on-push workflow (push to Supabase when main branch updated): **not yet configured**
-- GitHub Actions cron (Supabase → GitHub for UI changes): **not yet configured**
-- Local launchd job (auto `git pull`): **not yet configured**
-Currently sync requires manual `push_to_supabase.py` calls. Being set up 2026-04-09.
+No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 with `status: "suggested"` — require owner approval in the visual map before writing begins.
 
 ### Linking audit action items
 27 internal links identified in April 7 audit have not all been confirmed as added. Run `/linking-audit` to verify current state.
@@ -98,7 +99,7 @@ Currently sync requires manual `push_to_supabase.py` calls. Being set up 2026-04
   - how-to-know-when-its-time-for-an-ergonomic-chair-upgrade
   - ergonomic-chair-size-guide (published 2026-03-23, fills gap-BG-1)
   - how-to-adjust-office-chair (published 2026-04-06, fills gap-BG-2)
-- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized
+- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 suggested (2026-04-09)
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
@@ -120,7 +121,7 @@ Currently sync requires manual `push_to_supabase.py` calls. Being set up 2026-04
   - do-posture-correctors-work
   - standing-desk-vs-ergonomic-chair (published 2026-03-30, fills gap-HP-2)
   - correct-sitting-posture-guide (published 2026-04-01, fills gap-HP-1)
-- **Gap status:** gap-HP-1 published, gap-HP-2 published
+- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-3/4/5 suggested (2026-04-09)
 
 ### Cluster 4: Gaming & specialized (gaming)
 - **Pillar:** gaming-chair-vs-office-chair-which-one-should-you-really-buy (EXISTS)
@@ -130,7 +131,7 @@ Currently sync requires manual `push_to_supabase.py` calls. Being set up 2026-04
   - be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia
   - how-merryfair-redefines-ergonomics-for-gamers-in-malaysia
   - how-to-choose-the-best-ergonomic-chair-for-solo-movie-nights
-- **Gap status:** gap-GM-1 rejected
+- **Gap status:** gap-GM-1 rejected, gap-GM-2 suggested (2026-04-09)
 
 ### Cluster 5: Workspace design & productivity (workspace)
 - **Pillar:** ergonomic-home-office-setup-guide (published 2026-03-24, fills gap-WS-1)
@@ -172,20 +173,19 @@ Currently sync requires manual `push_to_supabase.py` calls. Being set up 2026-04
 | gap-WS-1 | Complete guide to ergonomic home office setup | published | → ergonomic-home-office-setup-guide |
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 
-**Approved gaps awaiting writing: 0.** All original approved gaps have been published.
+**Approved gaps awaiting writing: 0.** 5 new gaps suggested 2026-04-09, awaiting owner approval.
 
----
+### New gaps — suggested 2026-04-09 (status: suggested, awaiting approval)
 
-## New gap candidates (2026-04-09 session — pending SERP validation)
+| Gap ID | Title | Cluster | Purpose |
+|--------|-------|---------|---------|
+| gap-HP-3 | Ergonomic chair features for back pain: what to look for and why order matters | health-posture | authority |
+| gap-HP-4 | Built-in lumbar support vs lumbar cushion: which actually fixes your back | health-posture | authority |
+| gap-HP-5 | Malaysia workplace ergonomics guide: DOSH regulations, OSH requirements, and what employers must provide | health-posture | hub |
+| gap-GM-2 | Gaming ergonomics beyond the chair: monitor distance, desk height, and arm setup for long sessions | gaming-specialized | authority |
+| gap-BG-6 | How to clean and maintain your ergonomic office chair to make it last | buying-guide | authority |
 
-These were identified via Ahrefs but not yet written to the JSON as gaps. Require SERP validation and owner approval before adding.
-
-| Candidate | Cluster | MY vol | Global vol | Purpose | Notes |
-|-----------|---------|--------|------------|---------|-------|
-| Best ergonomic chair for back pain | health-posture | ~230/mo cluster | 11,200+ | traffic | Genuine gap from informational back pain post. Run /suggest-posts to formalise. |
-| Best gaming chair Malaysia | gaming | 100/mo | — | traffic | Strong candidate, KD 39. Feature Ronin. |
-| Lumbar support: built-in vs add-on | buying-guide | ~60/mo | 8,300+ | traffic | Gap from conceptual what-is-lumbar-support post. |
-| Ergonomic chair accessories guide | buying-guide | low MY | 5,000+ | authority | Post-purchase EEAT play. |
+Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt), `suggestedLinksOut`, and `suggestedLinksIn`. Visible in the visual map Pipeline tab.
 
 ---
 
@@ -243,34 +243,29 @@ These were identified via Ahrefs but not yet written to the JSON as gaps. Requir
 | `merryfair_master_inventory.xlsx` | Raw merged data from GSC + Ahrefs + GA4 | DONE |
 | `merryfair_linking_audit.xlsx` | Internal linking action items | DONE |
 | `blog-creation-prompt/master-blog-prompt-v4.3.md` | Master content standard for all writing and optimization | DONE |
-| `.claude/settings.json` | Claude Code hooks for auto-sync | IN PROGRESS (2026-04-09) |
+| `.claude/settings.json` | Claude Code hooks for auto-sync on every file edit | DONE (2026-04-09) |
+| `.github/workflows/sync-on-push.yml` | Push JSON to Supabase on every push to main | DONE (2026-04-09) |
+| `.github/workflows/sync-from-supabase.yml` | Pull Supabase changes back to GitHub every 10 min | DONE (2026-04-09) |
 
 ---
 
 ## Immediate next actions
 
 ### Highest ROI — do first
-1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project.
-
-### Sync infrastructure (in progress 2026-04-09)
-2. Complete PostToolUse hook setup (`.claude/settings.json`)
-3. Add GitHub Actions on-push workflow → Supabase sync
-4. Add GitHub Actions cron workflow → Supabase→GitHub bidirectional sync
-5. Set up local launchd job for auto `git pull`
+1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-6. Run SERP validation on the 4 new gap candidates from 2026-04-09 session
-7. Run `/suggest-posts` to formally add validated candidates to the JSON
-8. After approval, begin writing — use master prompt in `blog-creation-prompt/`
+2. **Approve/reject the 5 new suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2, BG-6)
+3. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
 
 ### Maintenance
-9. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
-10. Run `/monthly-update` when May 2026 data is available
+4. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
+5. Run `/monthly-update` when May 2026 data is available
 
 ---
 
 ## Decisions yet to be made
 
-- **New gap candidates:** Approve/reject the 4 candidates from 2026-04-09 (back pain, gaming chair Malaysia, lumbar support, accessories) — pending SERP validation
-- **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks) could seed a new cluster. Worth considering once content pipeline is clear.
+- **5 new gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2, BG-6 in the visual map
+- **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
