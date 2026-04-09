@@ -607,9 +607,9 @@
           "estVolume": 450,
           "intent": "commercial",
           "rationale": "GSC data for March 2026 shows Merryfair appearing for 'best chairs for teenagers study rooms' (450 imp, pos 2, 0 clicks), 'how to choose a chair for a study room' (1,860 imp, pos 9, 0 clicks), and 'what are the best study chairs for kids?' (419 imp, pos 7.2, 0 clicks) \u2014 all with near-zero CTR. The 0-click anomaly at positions 2\u20139 indicates title/intent mismatch: the existing best-study-chairs-students-guide targets adult/university students, so searchers looking for children's or teenagers' study chairs don't click. Kids and teenagers have distinct ergonomic needs (adjustable seat height for growth, smaller seat depth, lighter gas cylinders) that the student post doesn't address. A dedicated post targeting this audience would capture existing impression volume that is currently wasted.",
-          "status": "suggested",
+          "status": "rejected",
           "closestExistingPost": "best-study-chairs-students-guide",
-          "whyExistingDoesntCover": "Targets adult students at university level. Doesn't address growth adjustability, smaller body proportions, or the parent-as-buyer intent present in study-room chair searches.",
+          "whyExistingDoesntCover": "REJECTION REASON (2026-04-09): The existing post already fully covers this gap. Content summary confirms: target_audience is 'Parents of school-age children aged 4-14, teachers and school administrators'; angle is 'Parent-focused health decision framing'; it covers Rookee for ages 4-14, the 3-Point Growth Fit Test, growth adjustability across 7 positions, sizing by child height, and BIFMA/GREENGUARD certifications. The original rationale that the post 'targets adult students at university level' was incorrect — it was inferred from the slug name without reading the actual content.",
           "purpose": "traffic"
         }
       ]
