@@ -88,6 +88,9 @@ Perform the monthly content intelligence update. Do ALL of the following automat
    - `heroTarget` — slug of crown/hero page this post would support via internal linking (optional)
    - `cannibalizes` — only if keyword overlap detected (optional)
    - `serpValidated`: `false` — all suggestions from monthly-update require SERP validation before approval
+   - `suggestedLinksOut` — array of `{slug, anchor, note}`: 2–4 existing posts this new post should link TO. Always include the heroTarget post. Use specific anchor text.
+   - `suggestedLinksIn` — array of `{slug, anchor, note}`: 2–3 existing posts that should add a link TO this new post. Identify posts whose `explicitly_not_covered` or `subtopics_covered` creates a natural handoff. Specify which section of the source post should carry the link.
+   - `blogBrief` — pre-filled string for the master blog prompt (Section A + Section B). Use `\n` for newlines. Fill Topic from the gap title, Audience from the gap rationale's target reader, Goal from purpose (traffic → "rank on Google", authority → "build topical authority", hub → "earn backlinks and establish reference authority"), Target keyword from `targetKeyword`, Related posts as full URLs of closestExistingPost plus cluster posts that share concepts with this post.
 
 10. Update the `meta` section with today's date and data sources used.
 
@@ -115,7 +118,10 @@ Perform the monthly content intelligence update. Do ALL of the following automat
 13. **Print a full report:**
     - **Performance changes:** Posts with significant traffic gains or losses, with diagnosis (ranking issue vs CTR issue vs AI Overview)
     - **Competitor gaps:** Top keywords competitors rank for that Merryfair doesn't
-    - **New gaps suggested:** Full rationale for each, classified by purpose, flagged as requiring SERP validation
+    - **New gaps suggested:** Full rationale for each, classified by purpose, flagged as requiring SERP validation. For each gap also print:
+      - **Links out:** which existing posts this new post should link to (anchor text + destination slug + reason)
+      - **Links in:** which existing posts should add a link to this new post (anchor text + source slug + which section)
+      - Note: Blog Brief is stored in the gap JSON and visible in the visual map detail panel (Pipeline tab → gap card → Copy button). No need to print it in the report.
     - **Posts in striking distance** (positions 8–20, >50/mo volume): specific optimisation recommendation for each
     - **CTR problems** (>1,000 impressions, <1% CTR): diagnosis and recommended fix
     - **Internal linking issues** found during crawl

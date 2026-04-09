@@ -135,9 +135,22 @@ Write to the appropriate cluster's `gaps` array in `merryfair_content_map.json`:
   "closestExistingPost": "slug",
   "whyExistingDoesntCover": "Content-level explanation citing actual content_summary fields.",
   "heroTarget": "slug-of-hero-this-post-would-link-to",
-  "cannibalizes": "slug-or-gap-id (only if keyword overlap detected)"
+  "cannibalizes": "slug-or-gap-id (only if keyword overlap detected)",
+  "suggestedLinksOut": [
+    { "slug": "slug-of-existing-post", "anchor": "exact anchor text to use in the new post", "note": "which section / why this link belongs here" }
+  ],
+  "suggestedLinksIn": [
+    { "slug": "slug-of-existing-post", "anchor": "exact anchor text that already exists or should be added in that post", "note": "which section of the source post to add the link in" }
+  ],
+  "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          [proposed post title]\nAUDIENCE:       [one sentence: who is searching this, what do they need]\nGOAL:           [rank on Google / build topical authority / earn backlinks]\n\n— OPTIONAL —\nTarget keyword: [targetKeyword]\nFunnel stage:   [Top / Middle / Bottom]\nRelated posts:  [full URLs of closestExistingPost + key cluster posts to cross-check for consistency]"
 }
 ```
+
+**For `suggestedLinksOut`:** Identify 2–4 existing posts this new post should link TO. Use the cluster's existing posts and their `content_summary` to determine natural linking points. Always include the `heroTarget` post. Use specific anchor text — not generic phrases.
+
+**For `suggestedLinksIn`:** Identify 2–3 existing posts that should add a link TO this new post. These are posts whose `content_summary.explicitly_not_covered` or `subtopics_covered` creates a natural handoff point. Specify which section of the source post should carry the link.
+
+**For `blogBrief`:** Pre-fill all Section A/B fields from the master blog prompt. The Website Context block is always identical. Fill Topic from the gap title, Audience from the gap rationale's target reader, Goal from the purpose (traffic → "rank on Google", authority → "build topical authority", hub → "earn backlinks and establish reference authority"). Fill Related posts with full URLs of the closestExistingPost plus other cluster posts that share concepts or data with the proposed post.
 
 **Gap ID prefix reference** (must match actual cluster IDs in the JSON):
 - `BG` = `buying-guide`
@@ -185,6 +198,14 @@ For each suggestion:
 **Hero linkage:** Links to `[hero-slug]` ([N,NNN] impressions/mo)  
 
 **Strategic rationale:** [For authority/hub: why this matters beyond search volume. For traffic: what makes this a real opportunity right now.]
+
+**Links out (this post → existing posts):**
+- "[anchor text]" → `slug` — [which section / reason]
+
+**Links in (existing posts → this post):**
+- "[anchor text]" ← `slug` — [which section of that post to add the link]
+
+> Blog Brief is stored in the gap JSON and visible in the visual map detail panel. Open the Pipeline tab, click the gap card, and use the **Copy** button.
 
 ---
 

@@ -30,6 +30,44 @@ const CATEGORY_LABEL = {
   'linking':    '🔗 Linking',
 }
 
+function BlogBriefSection({ brief }) {
+  const [copied, setCopied] = useState(false)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(brief).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+        <div className="section-label">📋 Blog Brief</div>
+        <button
+          onClick={handleCopy}
+          style={{
+            fontSize: 10, fontWeight: 700, padding: '3px 10px', borderRadius: 12,
+            background: copied ? '#f0fdf4' : '#eff6ff',
+            color: copied ? '#15803d' : '#1d4ed8',
+            border: `1px solid ${copied ? '#bbf7d0' : '#bfdbfe'}`,
+            cursor: 'pointer', transition: 'all 0.15s',
+          }}
+        >
+          {copied ? '✓ Copied' : 'Copy'}
+        </button>
+      </div>
+      <pre style={{
+        fontSize: 10, color: 'var(--text2)', background: 'var(--bg3)',
+        border: '1px solid var(--border)', borderRadius: 6,
+        padding: '10px 12px', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+        lineHeight: 1.6, margin: 0, fontFamily: 'monospace',
+        maxHeight: 260, overflowY: 'auto',
+      }}>
+        {brief}
+      </pre>
+    </div>
+  )
+}
+
 function OptimizationPanel({ opt, slug, onToggle }) {
   const items = opt.items || []
   const done  = items.filter(i => i.done).length
@@ -284,6 +322,8 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
             </div>
           </Section>
         )}
+
+        {gap.blogBrief && <BlogBriefSection brief={gap.blogBrief} />}
 
         {gap.suggestedLinksOut?.length > 0 && (
           <Section title={`↗ Links out from this post (${gap.suggestedLinksOut.length})`}>
