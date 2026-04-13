@@ -18,6 +18,25 @@ const JSON_ROOT   = path.join(__dirname, '..', 'merryfair_content_map.json')
 const SEO_ROOT    = path.join(__dirname, '..')
 const PORT        = 3737
 
+// After any local write: push to Supabase + commit + push to GitHub
+// so the Vercel app and other machines see the change immediately.
+function syncChanges(label) {
+  const py = spawn('python3', ['push_to_supabase.py'], { cwd: SEO_ROOT })
+  py.on('close', code => {
+    if (code !== 0) { console.log(`[sync] Supabase push failed (${label})`); return }
+    console.log(`[sync] Supabase updated (${label})`)
+    const add = spawn('git', ['add', 'merryfair_content_map.json', 'visual-map/public/merryfair_content_map.json'], { cwd: SEO_ROOT })
+    add.on('close', () => {
+      const commit = spawn('git', ['commit', '-m', `chore: auto-sync content map — ${label}`], { cwd: SEO_ROOT })
+      commit.on('close', code => {
+        if (code !== 0) return // nothing staged, skip push
+        const push = spawn('git', ['push', 'origin', 'main'], { cwd: SEO_ROOT })
+        push.on('close', () => console.log(`[sync] Pushed to GitHub (${label})`))
+      })
+    })
+  })
+}
+
 let crawlRunning = false
 function runCrawl(label) {
   if (crawlRunning) { console.log(`[webhook] crawl already running, skipping ${label}`); return }
@@ -88,8 +107,54 @@ http.createServer((req, res) => {
         const out = JSON.stringify(data, null, 2)
         fs.writeFileSync(JSON_PUBLIC, out, 'utf8')
         if (fs.existsSync(JSON_ROOT)) fs.writeFileSync(JSON_ROOT, out, 'utf8')
+        syncChanges(`gap ${gapId} → ${status}`)
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ ok: true }))
+      } catch (e) {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ error: String(e) }))
+      }
+    })
+    return
+  }
+
+  // ── POST /api/idea  ──────────────────────────────────────────────────────
+  if (req.method === 'POST' && req.url === '/api/idea') {
+    let body = ''
+    req.on('data', c => body += c)
+    req.on('end', () => {
+      try {
+        const { title, targetKeyword, clusterId, purpose, estVolume, source, heroTarget, notes } = JSON.parse(body)
+        if (!title || !targetKeyword || !clusterId) {
+          res.writeHead(400, { 'Content-Type': 'application/json' })
+          return res.end(JSON.stringify({ error: 'title, targetKeyword, and clusterId are required' }))
+        }
+        const data = JSON.parse(fs.readFileSync(JSON_PUBLIC, 'utf8'))
+        const cluster = data.clusters.find(c => c.id === clusterId)
+        if (!cluster) { res.writeHead(404); return res.end(JSON.stringify({ error: 'cluster not found' })) }
+        const prefix = clusterId.toUpperCase().replace(/-/g, '').slice(0, 4)
+        const gapId = `gap-${prefix}-${Date.now()}`
+        const newGap = {
+          id: gapId, title, targetKeyword,
+          estVolume: parseInt(estVolume) || 0,
+          intent: 'informational',
+          purpose: purpose || 'authority',
+          status: 'suggested',
+          source: source || 'spontaneous',
+          rationale: notes || '',
+          closestExistingPost: '',
+          whyExistingDoesntCover: '',
+        }
+        if (heroTarget) newGap.heroTarget = heroTarget
+        if (notes) newGap.notes = notes
+        if (!cluster.gaps) cluster.gaps = []
+        cluster.gaps.push(newGap)
+        const out = JSON.stringify(data, null, 2)
+        fs.writeFileSync(JSON_PUBLIC, out, 'utf8')
+        if (fs.existsSync(JSON_ROOT)) fs.writeFileSync(JSON_ROOT, out, 'utf8')
+        syncChanges(`new idea: ${title}`)
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ ok: true, gap: newGap }))
       } catch (e) {
         res.writeHead(500, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ error: String(e) }))
@@ -114,6 +179,7 @@ http.createServer((req, res) => {
         const out = JSON.stringify(data, null, 2)
         fs.writeFileSync(JSON_PUBLIC, out, 'utf8')
         if (fs.existsSync(JSON_ROOT)) fs.writeFileSync(JSON_ROOT, out, 'utf8')
+        syncChanges(`optimization ${slug}/${itemId}`)
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ ok: true }))
       } catch (e) {
