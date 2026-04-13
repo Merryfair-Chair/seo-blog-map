@@ -238,7 +238,7 @@ function GapNodeComponent({ data }) {
         borderRadius: 8,
         padding: '8px 12px',
         width: 160,
-        boxShadow: isSelected ? `0 0 0 2.5px ${s.color}, 0 4px 14px rgba(0,0,0,0.13)` : '0 1px 4px rgba(0,0,0,0.07)',
+        boxShadow: isSelected ? `0 0 0 2.5px ${clusterColor}, 0 4px 14px rgba(0,0,0,0.13)` : '0 1px 4px rgba(0,0,0,0.07)',
         cursor: 'pointer',
         userSelect: 'none',
       }}>
