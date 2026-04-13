@@ -1457,7 +1457,7 @@
           "intent": "informational",
           "purpose": "traffic",
           "rationale": "'office furniture supplier malaysia' has 70 vol MY and high CPC (~RM80) confirming commercial intent. Live SERP is entirely B2B-identity domain homepages — no single page directly answers the procurement question 'how do I source office furniture for a corporate fit-out'. This informational gap is unaddressed by any current Merryfair post. The post targets the B2B buyer's practical decision-making process: what certifications to require, what questions to ask suppliers, lead time expectations, bulk pricing structures, and why manufacturer-direct is preferable to resellers for large projects. Merryfair is positioned as the case example throughout. Cluster post linking back to the pillar (gap-B2B-1) and cross-linking to the BIFMA post (gap-B2B-3).",
-          "status": "suggested",
+          "status": "approved",
           "serpValidated": true,
           "serpIntent": "All homepages from B2B-identity domains (officepro.my, amoffice.com.my, ksoffice.com.my, sif.my). No informational guide currently ranks — the query is served by homepages positioning themselves as suppliers. An informational guide targeting the procurement process has a clear lane.",
           "aiOverviewDetected": false,

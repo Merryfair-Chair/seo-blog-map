@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /Users/merryfair/seo-blog-map && python3 -c \"import sys, json; d=json.load(sys.stdin); fp=d.get('file_path',''); exit(0 if 'merryfair_content_map.json' in fp and 'visual-map' not in fp else 1)\" <<< \"$CLAUDE_TOOL_INPUT\" 2>/dev/null && cp merryfair_content_map.json visual-map/public/merryfair_content_map.json && git add merryfair_content_map.json visual-map/public/merryfair_content_map.json && git diff --cached --quiet || (git commit -m 'chore: auto-sync content map' && git push origin main && echo '[hook] JSON committed and pushed to GitHub') || true"
+            "command": "cd /Users/merryfair/seo-blog-map && python3 -c \"import sys, json; d=json.load(sys.stdin); fp=d.get('file_path',''); exit(0 if 'merryfair_content_map.json' in fp and 'visual-map' not in fp else 1)\" <<< \"$CLAUDE_TOOL_INPUT\" 2>/dev/null && python3 pull_from_supabase.py 2>/dev/null && cp merryfair_content_map.json visual-map/public/merryfair_content_map.json && git add merryfair_content_map.json visual-map/public/merryfair_content_map.json && git diff --cached --quiet || (git commit -m 'chore: auto-sync content map' && git push origin main && echo '[hook] JSON committed and pushed to GitHub') || true"
           }
         ]
       }

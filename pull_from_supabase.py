@@ -78,7 +78,9 @@ for cluster in remote_data.get("clusters", []):
 # Build lookup of remote optimization item states {slug: {item_id: done}}
 remote_opt_states = {}
 for slug, post in remote_data.get("post_details", {}).items():
-    items = post.get("optimization", {}).get("items", [])
+    if not post:
+        continue
+    items = (post.get("optimization") or {}).get("items", [])
     if items:
         remote_opt_states[slug] = {
             item["id"]: item.get("done", False)
@@ -124,7 +126,9 @@ for cluster in local_data.get("clusters", []):
 # Merge optimization item states into local
 items_merged = 0
 for slug, post in local_data.get("post_details", {}).items():
-    items = post.get("optimization", {}).get("items", [])
+    if not post:
+        continue
+    items = (post.get("optimization") or {}).get("items", [])
     slug_states = remote_opt_states.get(slug, {})
     for item in items:
         if item.get("id") in slug_states:
