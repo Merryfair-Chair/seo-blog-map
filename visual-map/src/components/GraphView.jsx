@@ -44,7 +44,10 @@ function runSimulation(clusters, postDetails, forces) {
   const links    = []
   const clusterCenters = {}
 
-  const active = clusters.filter(c => (c.posts?.length || 0) > 0)
+  const active = clusters.filter(c =>
+    (c.posts?.length || 0) > 0 ||
+    (c.gaps || []).some(g => g.status !== 'published' && g.status !== 'rejected')
+  )
   const R = active.length <= 3 ? 600 : 900
   active.forEach((c, i) => {
     const a = (2 * Math.PI * i) / active.length - Math.PI / 2
@@ -199,6 +202,7 @@ function PostNodeComponent({ data }) {
 const GAP_STATUS_STYLE = {
   suggested:    { color: '#b45309', label: '◌ Suggested' },
   approved:     { color: '#1d4ed8', label: '✓ Approved' },
+  in_progress:  { color: '#7c3aed', label: '▶ In Progress' },
   deprioritized:{ color: '#9ca3af', label: '— Deprioritized' },
 }
 

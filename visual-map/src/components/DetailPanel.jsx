@@ -188,6 +188,7 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
     const STATUS = {
       suggested:     { color: '#b45309', bg: '#fffbeb' },
       approved:      { color: '#1d4ed8', bg: '#eff6ff' },
+      in_progress:   { color: '#7c3aed', bg: 'rgba(124,58,237,0.06)' },
       published:     { color: '#15803d', bg: '#f0fdf4' },
       rejected:      { color: '#6b7280', bg: '#f9fafb' },
       deprioritized: { color: '#9ca3af', bg: '#fafafa' },
@@ -204,11 +205,12 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
     }
 
     const ACTION_BUTTONS = [
-      { status: 'approved',      label: 'Approve',      filled: true,  color: '#fff',    bg: '#2563eb',  border: '#2563eb' },
-      { status: 'published',     label: 'Published',    filled: true,  color: '#fff',    bg: '#15803d',  border: '#15803d' },
-      { status: 'deprioritized', label: 'Deprioritize', filled: false, color: '#6b7280', bg: 'transparent', border: '#d1d5db' },
-      { status: 'rejected',      label: 'Reject',       filled: false, color: '#dc2626', bg: 'transparent', border: '#fca5a5' },
-      { status: 'suggested',     label: 'Reset',        filled: false, color: '#b45309', bg: '#fffbeb',  border: '#fde68a' },
+      { status: 'approved',      label: 'Approve',      filled: true,  color: '#fff',    bg: '#2563eb',             border: '#2563eb' },
+      { status: 'in_progress',   label: 'In Progress',  filled: true,  color: '#fff',    bg: '#7c3aed',             border: '#7c3aed' },
+      { status: 'published',     label: 'Published',    filled: true,  color: '#fff',    bg: '#15803d',             border: '#15803d' },
+      { status: 'deprioritized', label: 'Deprioritize', filled: false, color: '#6b7280', bg: 'transparent',         border: '#d1d5db' },
+      { status: 'rejected',      label: 'Reject',       filled: false, color: '#dc2626', bg: 'transparent',         border: '#fca5a5' },
+      { status: 'suggested',     label: 'Reset',        filled: false, color: '#b45309', bg: '#fffbeb',             border: '#fde68a' },
     ].filter(b => b.status !== currentStatus)
 
     return (
