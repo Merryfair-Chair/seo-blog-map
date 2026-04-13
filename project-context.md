@@ -84,12 +84,12 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 
 ---
 
-## The 6 topic clusters
+## The 7 topic clusters
 
 ### Cluster 1: How to choose an ergonomic chair (buying-guide)
 - **Pillar:** the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (EXISTS)
 - **Pillar performance:** 137 GSC clicks, 36,901 impressions, position 17 for "ergonomic chair" (1,100 vol/mo), 1 referring domain
-- **Posts (9):**
+- **Posts (10):**
   - the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (PILLAR)
   - how-to-choose-the-best-ergonomic-chair-in-malaysia (351 clicks — outperforms pillar)
   - how-to-choose-office-chair-body-fit-test
@@ -99,7 +99,8 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - how-to-know-when-its-time-for-an-ergonomic-chair-upgrade
   - ergonomic-chair-size-guide (published 2026-03-23, fills gap-BG-1)
   - how-to-adjust-office-chair (published 2026-04-06, fills gap-BG-2)
-- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 suggested (2026-04-09)
+  - how-to-clean-office-chair-malaysia (published 2026-04-09, fills gap-BG-6)
+- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09)
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
@@ -144,6 +145,22 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - small-home-office-ideas (published 2026-03-25, fills gap-WS-2)
 - **Gap status:** gap-WS-1 published, gap-WS-2 published
 
+### Cluster 7: B2B office furniture & manufacturing (b2b-office-furniture)
+- **Head term:** office furniture manufacturer malaysia / furniture manufacturer malaysia (100 vol, KD 16)
+- **Pillar status:** not-created (gap-B2B-1 is the pillar candidate — listicle format)
+- **Posts (0):** None published yet
+- **Gap status:** 3 gaps suggested 2026-04-12, awaiting owner approval
+
+| Gap ID | Title | Purpose | Status |
+|--------|-------|---------|--------|
+| gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | traffic (PILLAR) | suggested |
+| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | traffic | suggested |
+| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | authority | suggested |
+
+- **Strategic purpose:** Entity-level topical authority shift — signal to Google that merryfair.com is not just a B2C ergonomic chair seller but a legitimate office furniture manufacturer. All current 34 posts are B2C; Merryfair ranks for zero B2B keywords. Research documented in Obsidian Vault → Office Furniture Keywords.md.
+
+---
+
 ### Cluster 6: Brand & seasonal (brand)
 - **Pillar:** None needed (campaign content)
 - **Posts (3):**
@@ -172,8 +189,17 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-GM-1 | Best ergonomic chair for long gaming hours | rejected | Reframed; ultimately rejected |
 | gap-WS-1 | Complete guide to ergonomic home office setup | published | → ergonomic-home-office-setup-guide |
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
+| gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 0.** 5 new gaps suggested 2026-04-09, awaiting owner approval.
+**Approved gaps awaiting writing: 0.** 4 gaps suggested 2026-04-09 + 3 B2B gaps added 2026-04-12, all awaiting owner approval.
+
+### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
+
+| Gap ID | Title | Cluster | Purpose |
+|--------|-------|---------|---------|
+| gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | b2b-office-furniture | traffic (pillar) |
+| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic |
+| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority |
 
 ### New gaps — suggested 2026-04-09 (status: suggested, awaiting approval)
 
@@ -183,7 +209,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-HP-4 | Built-in lumbar support vs lumbar cushion: which actually fixes your back | health-posture | authority |
 | gap-HP-5 | Malaysia workplace ergonomics guide: DOSH regulations, OSH requirements, and what employers must provide | health-posture | hub |
 | gap-GM-2 | Gaming ergonomics beyond the chair: monitor distance, desk height, and arm setup for long sessions | gaming-specialized | authority |
-| gap-BG-6 | How to clean and maintain your ergonomic office chair to make it last | buying-guide | authority |
+| gap-BG-6 | How to clean and maintain your ergonomic office chair to make it last | buying-guide | authority | PUBLISHED → how-to-clean-office-chair-malaysia |
 
 Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt), `suggestedLinksOut`, and `suggestedLinksIn`. Visible in the visual map Pipeline tab.
 
@@ -191,7 +217,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 33
+- **Total published posts:** 34
 - **Last monthly update:** April 7, 2026 (data: March 2026)
 - **Top performing post (March 2026 GSC):** 6-affordable-ergonomic-chairs — 62 clicks, 24,382 impressions, pos 2.65
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 461 estimated organic visits but only 51 GSC clicks at 0.09% CTR — CRITICAL
@@ -255,17 +281,18 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-2. **Approve/reject the 5 new suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2, BG-6)
-3. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
+2. **Approve/reject the 4 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2)
+3. **Approve/reject the 3 new B2B gaps** in the visual map Pipeline tab (B2B-1, B2B-2, B2B-3) — added 2026-04-12
+4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
 
 ### Maintenance
-4. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
-5. Run `/monthly-update` when May 2026 data is available
+5. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
+6. Run `/monthly-update` when May 2026 data is available
 
 ---
 
 ## Decisions yet to be made
 
-- **5 new gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2, BG-6 in the visual map
+- **7 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1, B2B-2, B2B-3 (new, added 2026-04-12) in the visual map
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?

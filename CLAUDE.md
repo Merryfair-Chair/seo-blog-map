@@ -26,7 +26,7 @@ After completing any of the following, update `project-context.md` automatically
 Update only the relevant sections. Keep the file accurate at all times.
 
 ## What this project is
-SEO content management system for merryfair.com's blog. Tracks 33 blog posts in 6 topic clusters, monitors performance data, identifies content gaps, and manages internal linking. Merryfair is a Malaysian ergonomic chair manufacturer established 1974.
+SEO content management system for merryfair.com's blog. Tracks 34 blog posts in 7 topic clusters, monitors performance data, identifies content gaps, and manages internal linking. Merryfair is a Malaysian ergonomic chair manufacturer established 1974.
 
 ## Key files
 - `merryfair_content_map.json` — THE source of truth. All clusters, posts, gaps, summaries, internal links, performance data. Every command reads from and writes to this file.
@@ -40,13 +40,14 @@ SEO content management system for merryfair.com's blog. Tracks 33 blog posts in 
 ## Blog URL pattern
 All blog posts live at: `https://www.merryfair.com/latest_updates/blog/[slug]/`
 
-## The 6 topic clusters
+## The 7 topic clusters
 1. **buying-guide** — "How to choose an ergonomic chair" (pillar: the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace)
 2. **best-budget** — "Best chairs by budget" (pillar: best-ergonomic-office-chairs-every-budget)
 3. **health-posture** — "Health & posture" (pillar: the-physical-benefits-of-ergonomics-why-it-matters-for-your-health)
 4. **gaming** — "Gaming & specialized" (pillar: gaming-chair-vs-office-chair-which-one-should-you-really-buy)
 5. **workspace** — "Workspace design & productivity" (pillar: ergonomic-home-office-setup-guide — published 2026-03-24)
 6. **brand** — "Brand & seasonal" (no pillar needed)
+7. **b2b-office-furniture** — "B2B office furniture & manufacturing" (pillar: not yet created — gap-B2B-1 is the pillar candidate)
 
 ## Critical rules for gap analysis
 - A post with zero organic traffic can still be valuable for topical authority, EEAT, conversion contribution, or internal link centrality. Never recommend noindexing or deleting without checking ALL value dimensions.

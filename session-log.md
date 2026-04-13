@@ -4,6 +4,85 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-12 — New cluster: b2b-office-furniture
+
+**What was done:**
+- Added 7th cluster `b2b-office-furniture` to `merryfair_content_map.json` with 3 gap entries
+- Copied JSON to `visual-map/public/`, pushed to Supabase
+- Cluster and gaps are now visible in the visual map Pipeline tab
+
+**New cluster:**
+- ID: `b2b-office-furniture` — "B2B office furniture & manufacturing"
+- Head term: "office furniture manufacturer malaysia" / "furniture manufacturer malaysia" (100 vol, KD 16)
+- Pillar status: not-created (gap-B2B-1 is the pillar candidate)
+- Color: #C07D1A (amber)
+
+**Gaps added:**
+
+| Gap ID | Title | Keyword | Volume | Purpose |
+|--------|-------|---------|--------|---------|
+| gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | office furniture manufacturer malaysia | 100 (via "furniture manufacturer malaysia") | traffic — PILLAR |
+| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | office furniture supplier malaysia | 70 | traffic |
+| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | BIFMA certified office furniture malaysia | ~0 | authority |
+
+**Strategic context:**
+- These gaps are driven by B2B entity-level strategy discussed in Obsidian Vault → Office Furniture Keywords.md
+- Merryfair currently ranks for zero B2B keywords; all 34 posts are B2C
+- Root cause: merryfair.com entity is classified by Google as a B2C ergonomic chair seller
+- These 3 posts begin the topical authority shift toward office furniture manufacturer/supplier
+- gap-B2B-1 (pillar listicle) uses the proven format: vaseat.com and blossomfurnishings.com listicles both rank page 1 for these queries
+- gap-B2B-3 differentiates from deprioritized gap-BG-4: B2B procurement audience vs B2C consumer audience
+
+**Decisions made:**
+- No specific write-order required — all 3 are status: "suggested", awaiting approval in visual map
+- All 3 gaps include full blogBrief, suggestedLinksOut, suggestedLinksIn fields per standard schema
+
+**Pending / next actions:**
+- Owner to approve/reject the 3 B2B gaps in the visual map Pipeline tab
+- Once gap-B2B-1 is approved and written: update cluster `pillarSlug` and `pillarStatus` to "exists"
+- B2B directory citations research complete (see Obsidian Vault) — implement listings in parallel with content
+
+---
+
+## 2026-04-09 — /new-post: how-to-clean-office-chair-malaysia
+
+**Post processed:** "How to Clean and Maintain Your Office Chair in Malaysia"
+**URL:** https://www.merryfair.com/latest_updates/blog/how-to-clean-office-chair-malaysia/
+
+**What was done:**
+- Re-crawled all 34 blog posts (new post detected, 4 outbound links found, 0 inbound)
+- Generated full `content_summary` for the new post
+- Assigned to cluster: `buying-guide` (10 posts now)
+- Updated gap-BG-6 status: `suggested` → `published`
+- Set `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Saved to `merryfair_content_map.json`, copied to `visual-map/public/`, pushed to Supabase
+- Updated `project-context.md`: cluster count, gap pipeline, total post count (33 → 34)
+
+**Gap filled:** gap-BG-6 — "How to clean and maintain your ergonomic office chair to make it last"
+
+**Internal linking issues flagged:**
+1. **Pillar does NOT link to new post** — `the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace` should add a link to the cleaning guide (e.g., in the ownership/care section)
+2. **`how-to-adjust-office-chair` does not link to new post** — both are post-purchase care guides; should cross-link
+3. **New post is an orphan** — 0 inbound contextual links. Minimum needed: pillar + `how-to-adjust-office-chair`
+
+**Outbound links from new post (all valid, no broken links):**
+- `office-chair-material-guide-malaysia` — already exists ✓
+- `how-to-choose-the-best-ergonomic-chair-in-malaysia` — already exists ✓
+- `how-to-know-when-its-time-for-an-ergonomic-chair-upgrade` — already exists ✓
+- `the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace` — already exists ✓
+
+**Broken links:** None
+
+**New gaps revealed by explicitly_not_covered:**
+- Chair component repair/part replacement (gas lift, mechanism) — not covered in any existing post; low priority unless demand confirmed
+- Professional chair cleaning services Malaysia — very niche, low priority
+
+**Pending / next actions:**
+- Owner to add inbound links: pillar → cleaning guide; `how-to-adjust-office-chair` → cleaning guide
+- Approve/reject remaining 4 gaps (HP-3, HP-4, HP-5, GM-2) in visual map
+
+---
+
 ## 2026-04-09 (continued — Blog Brief + links in/out added to visual map)
 
 **What was done:**
