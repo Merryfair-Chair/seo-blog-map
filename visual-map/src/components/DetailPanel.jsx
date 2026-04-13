@@ -217,7 +217,14 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
       <div style={panelStyle}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, flexWrap: 'wrap' }}>
+            {/* Cluster badge */}
+          {gap.clusterName && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+              <div style={{ width: 7, height: 7, borderRadius: 2, background: gap.clusterColor, flexShrink: 0 }} />
+              <span style={{ fontSize: 10, fontWeight: 700, color: gap.clusterColor }}>{gap.clusterName}</span>
+            </div>
+          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, flexWrap: 'wrap' }}>
               <span className={`status-pill status-${currentStatus}`}>
                 {currentStatus}
               </span>
@@ -372,9 +379,6 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
           </Section>
         )}
 
-        <div style={{ fontSize: 11, color: 'var(--text3)', paddingTop: 10, borderTop: '1px solid var(--border)' }}>
-          Cluster: <span style={{ color: gap.clusterColor, fontWeight: 600 }}>{gap.clusterName}</span>
-        </div>
       </div>
     )
   }

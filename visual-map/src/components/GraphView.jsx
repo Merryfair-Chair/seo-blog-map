@@ -121,6 +121,24 @@ function runSimulation(clusters, postDetails, forces) {
     .stop()
 
   for (let i = 0; i < 500; i++) sim.tick()
+
+  // Post-process: gap-only clusters have no inter-node links so the physics
+  // can't hold them together. Manually place their nodes in a neat arc after
+  // the simulation so they always appear grouped near their cluster center.
+  clusters.forEach(cluster => {
+    if ((cluster.posts?.length || 0) > 0) return
+    const center = clusterCenters[cluster.id]
+    if (!center) return
+    const gapNodes = simNodes.filter(n => n.isGap && n.cluster === cluster.id)
+    if (!gapNodes.length) return
+    gapNodes.forEach((n, i) => {
+      const angle = (2 * Math.PI * i) / gapNodes.length - Math.PI / 2
+      const r = gapNodes.length <= 1 ? 0 : 90
+      n.x = center.x + Math.cos(angle) * r
+      n.y = center.y + Math.sin(angle) * r
+    })
+  })
+
   return { simNodes, links }
 }
 
