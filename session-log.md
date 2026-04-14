@@ -4,6 +4,48 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-14 — /new-post: office-furniture-supplier-malaysia-corporate-guide
+
+**Post processed:** "How to Source Office Furniture for Corporate Fit-Outs in Malaysia"
+**URL:** https://www.merryfair.com/latest_updates/blog/office-furniture-supplier-malaysia-corporate-guide/
+
+**What was done:**
+- Re-crawled all 35 blog posts — new post detected (4 outbound links, 0 inbound)
+- Generated full `content_summary` for the new post
+- Assigned to cluster: `b2b-office-furniture` — **first post in this cluster**
+- Updated gap-B2B-2 status: `approved` → `published`; added `publishedSlug` field
+- Set `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Saved to `merryfair_content_map.json`, copied to `visual-map/public/`, pushed to Supabase
+- Updated `project-context.md`: cluster 7 now has 1 post, total post count 34 → 35, gap pipeline updated
+
+**Gap filled:** gap-B2B-2 — "How to Source Office Furniture for Corporate Fit-Outs in Malaysia"
+(Note: gap-B2B-2 was already `approved` before this post went live — no approval step needed)
+
+**Internal linking issues flagged:**
+1. **New post is an orphan** — 0 inbound contextual links. Being the cluster's first post, no other b2b-office-furniture posts exist yet to cross-link
+2. **No pillar exists yet** — gap-B2B-1 (pillar listicle) not yet written; once published, it must link to this post
+3. **Potential cross-cluster inbound links to add:** The `eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair` post (mentions sustainability/corporate buyers) could link to this post; `why-executive-comfort-is-the-new-productivity` (workspace cluster, corporate audience) is another candidate
+
+**Outbound links from new post (all valid, no broken links):**
+- `correct-sitting-posture-guide` ✓ (health-posture cluster)
+- `best-ergonomic-office-chairs-every-budget` ✓ (best-budget cluster pillar)
+- `eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair` ✓ (brand cluster)
+- `office-chair-tilt-mechanism-guide` ✓ (buying-guide cluster)
+
+**Broken links:** None
+
+**New gaps revealed by explicitly_not_covered:**
+- Corporate furniture leasing/rental in Malaysia — no existing post; low-medium priority
+- Government tender/procurement process for office furniture — niche B2B angle; low priority unless keyword demand confirmed
+- Specific corporate furniture categories (conference room, reception, breakout) — potential future cluster expansion posts
+
+**Pending / next actions:**
+- Owner to approve gap-B2B-1 (pillar listicle) and gap-B2B-3 (BIFMA authority) in visual map
+- Once gap-B2B-1 pillar is published: update cluster `pillarSlug` and `pillarStatus`; add inbound link to this post from the pillar
+- Add contextual inbound link from `eco-friendly-ergonomic-chairs-for-sustainable-offices-with-merryfair` or `why-executive-comfort-is-the-new-productivity` to this post
+
+---
+
 ## 2026-04-12 — New cluster: b2b-office-furniture
 
 **What was done:**

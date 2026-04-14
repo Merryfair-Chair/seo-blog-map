@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 33 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 35 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -148,16 +148,17 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 ### Cluster 7: B2B office furniture & manufacturing (b2b-office-furniture)
 - **Head term:** office furniture manufacturer malaysia / furniture manufacturer malaysia (100 vol, KD 16)
 - **Pillar status:** not-created (gap-B2B-1 is the pillar candidate — listicle format)
-- **Posts (0):** None published yet
-- **Gap status:** 3 gaps suggested 2026-04-12, awaiting owner approval
+- **Posts (1):**
+  - office-furniture-supplier-malaysia-corporate-guide (published 2026-04-14, fills gap-B2B-2)
+- **Gap status:** gap-B2B-2 published (2026-04-14), gap-B2B-1 and gap-B2B-3 still suggested
 
 | Gap ID | Title | Purpose | Status |
 |--------|-------|---------|--------|
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | traffic (PILLAR) | suggested |
-| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | traffic | suggested |
+| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
 | gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | authority | suggested |
 
-- **Strategic purpose:** Entity-level topical authority shift — signal to Google that merryfair.com is not just a B2C ergonomic chair seller but a legitimate office furniture manufacturer. All current 34 posts are B2C; Merryfair ranks for zero B2B keywords. Research documented in Obsidian Vault → Office Furniture Keywords.md.
+- **Strategic purpose:** Entity-level topical authority shift — signal to Google that merryfair.com is not just a B2C ergonomic chair seller but a legitimate office furniture manufacturer. All current B2C posts target consumers; Merryfair ranks for zero B2B keywords. Research documented in Obsidian Vault → Office Furniture Keywords.md.
 
 ---
 
@@ -191,14 +192,14 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 0.** 4 gaps suggested 2026-04-09 + 3 B2B gaps added 2026-04-12, all awaiting owner approval.
+**Approved gaps awaiting writing: 0.** 4 gaps suggested 2026-04-09 + 2 remaining B2B gaps (B2B-1, B2B-3) added 2026-04-12, all awaiting owner approval. gap-B2B-2 published 2026-04-14.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
 | Gap ID | Title | Cluster | Purpose |
 |--------|-------|---------|---------|
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | b2b-office-furniture | traffic (pillar) |
-| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic |
+| gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
 | gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority |
 
 ### New gaps — suggested 2026-04-09 (status: suggested, awaiting approval)
@@ -217,7 +218,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 34
+- **Total published posts:** 35
 - **Last monthly update:** April 7, 2026 (data: March 2026)
 - **Top performing post (March 2026 GSC):** 6-affordable-ergonomic-chairs — 62 clicks, 24,382 impressions, pos 2.65
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 461 estimated organic visits but only 51 GSC clicks at 0.09% CTR — CRITICAL
@@ -282,7 +283,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ### Content pipeline
 2. **Approve/reject the 4 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2)
-3. **Approve/reject the 3 new B2B gaps** in the visual map Pipeline tab (B2B-1, B2B-2, B2B-3) — added 2026-04-12
+3. **Approve/reject the 2 remaining B2B gaps** in the visual map Pipeline tab (B2B-1, B2B-3) — gap-B2B-2 published 2026-04-14
 4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
 
 ### Maintenance
@@ -293,6 +294,6 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Decisions yet to be made
 
-- **7 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1, B2B-2, B2B-3 (new, added 2026-04-12) in the visual map
+- **6 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1, B2B-3 (new) in the visual map — B2B-2 now published
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
