@@ -4,6 +4,28 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-14 — Sync architecture overhaul (continued)
+
+**What was done:**
+- Updated `crawl_and_summarize.py`: now pushes to Supabase immediately after saving JSON (final missing piece)
+- Committed and pushed all three pending sync architecture files: `pull_from_supabase.py`, `.claude/sync-after-edit.sh`, `crawl_and_summarize.py` (commit b5429ec)
+
+**Architecture now complete — every local write path syncs to Supabase instantly:**
+- Claude Edit/Write → PostToolUse hook → `sync-after-edit.sh` → push to Supabase + git push
+- Slash commands → pull at start, `full_sync.sh` at end
+- `crawl_and_summarize.py` → push to Supabase after JSON save
+- App gap approvals → Supabase → picked up on next workflow pull
+- Local crontab (every 2 min) → `pull_from_supabase.py` → local file mirrors Supabase
+
+**Decisions:**
+- Supabase is the single source of truth; `pull_from_supabase.py` does full state replacement (no partial merge)
+- `sync-after-edit.sh` is push-only (no pull — workflow already pulled at start, pulling would overwrite Claude's changes)
+- `sync-from-supabase.yml` GitHub Action deleted (was routing Supabase→GitHub→local with 25 min latency, wrong approach)
+
+**Pending:** Nothing — architecture is complete.
+
+---
+
 ## 2026-04-14 — /new-post: office-furniture-supplier-malaysia-corporate-guide
 
 **Post processed:** "How to Source Office Furniture for Corporate Fit-Outs in Malaysia"
