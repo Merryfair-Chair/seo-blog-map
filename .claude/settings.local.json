@@ -6,7 +6,9 @@
       "Bash(python3:*)",
       "Bash(python crawl_and_summarize.py)",
       "Bash(node:*)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(cp merryfair_content_map.json visual-map/public/merryfair_content_map.json)",
+      "Bash(git add:*)"
     ]
   }
 }
