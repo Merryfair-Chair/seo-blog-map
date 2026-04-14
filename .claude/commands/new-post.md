@@ -1,6 +1,10 @@
 When a new blog post is published, do ALL of the following automatically without asking:
 
-1. Run `python crawl_and_summarize.py` to re-crawl all posts and update internal link data.
+0. Run `python3 pull_from_supabase.py` FIRST — before touching anything — to merge any gap status
+   changes or new ideas added via the Vercel visual map into the local JSON. This prevents
+   overwriting UI decisions.
+
+1. Run `python3 crawl_and_summarize.py` to re-crawl all posts and update internal link data.
    **Note:** This re-crawls all posts to capture new internal link relationships. This is necessary but slow as the blog grows. Flag if crawl fails for any URL (rate limit, 404, etc.) and proceed with cached data for that URL.
 
 2. Read `merryfair_content_map.json`. Find the new post in post_details (it will be the one just added by the crawl). Extract its `extracted_text`, `cluster`, `internal_links_out`, and `internal_links_in`.
@@ -32,9 +36,9 @@ When a new blog post is published, do ALL of the following automatically without
 
 8. Save all changes back to `merryfair_content_map.json`.
 
-8a. Copy `merryfair_content_map.json` to `visual-map/public/merryfair_content_map.json`.
-
-8b. Run `python push_to_supabase.py` to sync to Supabase.
+8b. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` — this copies the JSON to
+    visual-map/public/, pushes to Supabase (Vercel app updates immediately), and commits+pushes
+    to GitHub. All three destinations sync in one step.
 
 9. Update `project-context.md`:
    - Add the new post to the correct cluster section

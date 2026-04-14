@@ -1,6 +1,10 @@
 Audit an existing Merryfair blog post against the master content standard and produce a prioritized optimization checklist.
 
-## Setup — do this before anything else
+## Before anything else
+
+Run `python3 pull_from_supabase.py` to merge any gap status changes or optimization checklist states made via the Vercel visual map into the local JSON.
+
+## Setup
 
 1. Find the latest master prompt file in `blog-creation-prompt/` inside this repo — read the most recently modified `.md` file. This is the content standard every recommendation must be measured against.
 
@@ -169,8 +173,8 @@ After completing the audit, write the optimization data into `merryfair_content_
 - `category`: `"quick-win"` / `"content"` / `"structural"` / `"linking"` / `"geo"`
 - `id`: use first 3 meaningful words of the slug, not the full slug
 - `ai_overview_detected`: true/false — required field
-- After writing, copy `merryfair_content_map.json` to `visual-map/public/merryfair_content_map.json`
-- Run `python push_to_supabase.py`
+- After writing, run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON
+  to visual-map/public/, push to Supabase, and commit+push to GitHub in one step.
 
 ### Part 2: Append to session-log.md
 

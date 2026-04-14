@@ -1,5 +1,8 @@
 Suggest new blog post ideas for Merryfair. Do ALL of the following automatically without asking.
 
+Run `python3 pull_from_supabase.py` FIRST — before reading the JSON — to merge any gap status
+changes or new ideas added via the Vercel visual map into the local JSON.
+
 The argument `$ARGUMENTS` may optionally specify:
 - A number (e.g. `5`) — how many suggestions to produce. Default: 5.
 - A cluster name (e.g. `gaming`, `health-posture`) — restrict to that cluster only.
@@ -162,7 +165,8 @@ Write to the appropriate cluster's `gaps` array in `merryfair_content_map.json`:
 
 Use the next available number within that cluster's gaps array.
 
-After writing all suggestions, copy `merryfair_content_map.json` to `visual-map/public/merryfair_content_map.json` and run `python push_to_supabase.py`.
+After writing all suggestions, run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh`
+to copy the JSON to visual-map/public/, push to Supabase, and commit+push to GitHub in one step.
 
 ---
 

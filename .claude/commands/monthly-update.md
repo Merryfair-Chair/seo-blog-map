@@ -1,6 +1,6 @@
 Perform the monthly content intelligence update. Do ALL of the following automatically without asking:
 
-0. Run `python pull_from_supabase.py` first to sync any gap status changes and optimization checklist states made via the Vercel visual map back into the local JSON. This prevents overwriting UI decisions when we push to Supabase at the end.
+0. Run `python3 pull_from_supabase.py` FIRST — before touching anything — to merge any gap status changes, new ideas, and optimization checklist states made via the Vercel visual map into the local JSON. This prevents overwriting UI decisions.
 
 0b. Read `seo-strategy-context.md` in full. This file contains:
    - The three blog purposes (traffic / authority / hub) and what qualifies as each
@@ -37,7 +37,7 @@ Perform the monthly content intelligence update. Do ALL of the following automat
    - Ahrefs: `ahrefs_traffic`, `ahrefs_keywords`, `ahrefs_referring_domains`, `top_keyword`, `top_kw_volume`, `top_kw_position`
    - GA4: `ga4_organic_views`, `ga4_direct_views`, `ga4_referral_views`, `ga4_social_views`
 
-4. Run `python crawl_and_summarize.py` to refresh internal link data and catch any new posts published since last crawl.
+4. Run `python3 crawl_and_summarize.py` to refresh internal link data and catch any new posts published since last crawl.
 
 5. Generate content summaries for any post where `content_summary` is null.
 
@@ -96,14 +96,14 @@ Perform the monthly content intelligence update. Do ALL of the following automat
 
 11. Save everything back to `merryfair_content_map.json`.
 
-11a. Copy `merryfair_content_map.json` to `visual-map/public/merryfair_content_map.json`.
-
-11b. Run hero detection. For each post in `post_details`, set `hero_tier` based on current `gsc_impressions`:
+11a. Run hero detection. For each post in `post_details`, set `hero_tier` based on current `gsc_impressions`:
    - `gsc_impressions > 10000` → `hero_tier: "crown"`
    - `gsc_impressions > 2000` → `hero_tier: "hero"`
    - otherwise → `hero_tier: null`
 
-11c. Run `python push_to_supabase.py` to sync to Supabase. If it fails due to a missing key, alert the user: `SUPABASE_SERVICE_KEY=your_key python push_to_supabase.py`
+11b. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to
+     visual-map/public/, push to Supabase immediately, and commit+push to GitHub.
+     All three destinations update in one step.
 
 11d. Update `project-context.md`: refresh performance highlights, update gap statuses, update last monthly update date, update hero page list if any posts crossed a threshold.
 

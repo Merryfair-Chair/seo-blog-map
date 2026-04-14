@@ -1,6 +1,9 @@
 Run a full internal linking audit. Do ALL of the following automatically without asking:
 
-1. Run `python crawl_and_summarize.py` to get fresh internal link data.
+0. Run `python3 pull_from_supabase.py` FIRST — before touching anything — to merge any gap status
+   changes or new ideas added via the Vercel visual map into the local JSON.
+
+1. Run `python3 crawl_and_summarize.py` to get fresh internal link data.
 
 2. Read `merryfair_content_map.json`.
 
@@ -39,7 +42,8 @@ Run a full internal linking audit. Do ALL of the following automatically without
 
 10. Save updated link data to `merryfair_content_map.json` if any corrections were made during the audit.
 
-11. Copy `merryfair_content_map.json` to `visual-map/public/merryfair_content_map.json`.
+11. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to
+    visual-map/public/, push to Supabase immediately, and commit+push to GitHub.
 
 12. Append an entry to the TOP of `session-log.md`:
     - Date
