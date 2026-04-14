@@ -1,17 +1,12 @@
 #!/bin/bash
-# Called by Claude Code PostToolUse hook whenever merryfair_content_map.json is edited.
+# Fires via PostToolUse hook whenever Claude edits merryfair_content_map.json.
 #
-# Order matters:
-#   1. Pull from Supabase first — preserves any gap status/idea changes made in the Vercel UI
-#   2. Copy merged JSON to visual-map/public/
-#   3. Push to Supabase immediately — Vercel app sees the change right away (no GitHub Actions delay)
-#   4. Commit and push to GitHub — keeps the repo in sync
+# No pull here — the workflow already pulled from Supabase at its start,
+# so the local file is already based on the latest state. Just push the
+# change to Supabase immediately and commit to GitHub.
 
 set -e
 cd /Users/merryfair/seo-blog-map
-
-echo "[sync] Pulling latest app data from Supabase..."
-python3 pull_from_supabase.py
 
 cp merryfair_content_map.json visual-map/public/merryfair_content_map.json
 

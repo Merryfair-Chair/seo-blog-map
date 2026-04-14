@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
-Pull Supabase-owned fields back into the local merryfair_content_map.json.
-Merges:
-  - Gap statuses (approve/reject/publish changes made in the visual map)
-  - New gaps added via the "Add Idea" UI (exist in Supabase but not local)
-  - Optimization checklist item states
+Pull the full content map from Supabase and write it to local files.
 
-Run this before any local work (monthly-update, new-post) to avoid
-overwriting UI decisions made on the Vercel visual map.
+Supabase is the single source of truth. This script makes the local file
+match Supabase exactly — no partial merging, no conflict risk.
+
+Run this at the START of every slash command workflow before making any changes.
 
 Usage:
-  python pull_from_supabase.py
+  python3 pull_from_supabase.py
 """
 
 import json
@@ -47,7 +45,6 @@ headers = {
     "Content-Type": "application/json",
 }
 
-# Fetch from Supabase
 resp = requests.get(
     f"{SUPABASE_URL}/rest/v1/content_map?id=eq.1&select=data",
     headers=headers,
@@ -64,92 +61,15 @@ if not rows:
 
 remote_data = rows[0]["data"]
 
-# Build lookup of remote gaps — keyed by gap_id, grouped by cluster_id
-# This handles both status updates AND new gaps added via the UI
-remote_gaps_by_cluster = {}   # {cluster_id: [gap, ...]}
-remote_gap_statuses = {}       # {gap_id: status}
-for cluster in remote_data.get("clusters", []):
-    cid = cluster.get("id")
-    remote_gaps_by_cluster[cid] = cluster.get("gaps", [])
-    for gap in cluster.get("gaps", []):
-        if "id" in gap and "status" in gap:
-            remote_gap_statuses[gap["id"]] = gap["status"]
+# Write to both local copies — Supabase is the source of truth
+local_path  = Path("merryfair_content_map.json")
+public_path = Path("visual-map/public/merryfair_content_map.json")
 
-# Build lookup of remote optimization item states {slug: {item_id: done}}
-remote_opt_states = {}
-for slug, post in remote_data.get("post_details", {}).items():
-    if not post:
-        continue
-    items = (post.get("optimization") or {}).get("items", [])
-    if items:
-        remote_opt_states[slug] = {
-            item["id"]: item.get("done", False)
-            for item in items if "id" in item
-        }
-
-# Load local JSON
-local_path = Path("merryfair_content_map.json")
-with open(local_path, encoding="utf-8") as f:
-    local_data = json.load(f)
-
-# Build set of all local gap IDs for new-gap detection
-local_gap_ids = set()
-for cluster in local_data.get("clusters", []):
-    for gap in cluster.get("gaps", []):
-        if gap.get("id"):
-            local_gap_ids.add(gap["id"])
-
-# Merge gap statuses + add new UI-created gaps into local
-gaps_merged = 0
-gaps_added = 0
-for cluster in local_data.get("clusters", []):
-    cid = cluster.get("id")
-
-    # 1. Update statuses for existing gaps
-    for gap in cluster.get("gaps", []):
-        if gap.get("id") in remote_gap_statuses:
-            old = gap.get("status", "suggested")
-            new = remote_gap_statuses[gap["id"]]
-            if old != new:
-                gap["status"] = new
-                gaps_merged += 1
-
-    # 2. Add new gaps that exist in Supabase but not locally
-    for remote_gap in remote_gaps_by_cluster.get(cid, []):
-        if remote_gap.get("id") and remote_gap["id"] not in local_gap_ids:
-            if not cluster.get("gaps"):
-                cluster["gaps"] = []
-            cluster["gaps"].append(remote_gap)
-            local_gap_ids.add(remote_gap["id"])
-            gaps_added += 1
-
-# Merge optimization item states into local
-items_merged = 0
-for slug, post in local_data.get("post_details", {}).items():
-    if not post:
-        continue
-    items = (post.get("optimization") or {}).get("items", [])
-    slug_states = remote_opt_states.get(slug, {})
-    for item in items:
-        if item.get("id") in slug_states:
-            old = item.get("done", False)
-            new = slug_states[item["id"]]
-            if old != new:
-                item["done"] = new
-                items_merged += 1
-
-# Save local copy
 with open(local_path, "w", encoding="utf-8") as f:
-    json.dump(local_data, f, indent=2, ensure_ascii=False)
+    json.dump(remote_data, f, indent=2, ensure_ascii=False)
 
-# Also update visual-map/public copy
-vm_path = Path("visual-map/public/merryfair_content_map.json")
-if vm_path.exists():
-    with open(vm_path, "w", encoding="utf-8") as f:
-        json.dump(local_data, f, indent=2, ensure_ascii=False)
+if public_path.exists():
+    with open(public_path, "w", encoding="utf-8") as f:
+        json.dump(remote_data, f, indent=2, ensure_ascii=False)
 
-parts = []
-if gaps_added:   parts.append(f"{gaps_added} new gap(s) pulled from Vercel UI")
-if gaps_merged:  parts.append(f"{gaps_merged} gap status(es) updated")
-if items_merged: parts.append(f"{items_merged} checklist item(s) synced")
-print("Pull complete — " + (", ".join(parts) if parts else "nothing to sync") + ".")
+print("Pull complete — local file is now in sync with Supabase.")
