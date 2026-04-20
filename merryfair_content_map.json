@@ -1528,15 +1528,51 @@
         {
           "id": "gap-B2BO-1776223061321",
           "title": "How to Find The Best Office Furniture Supplier in Malaysia (2026 Guide)",
-          "intent": "informational",
+          "targetKeyword": "office furniture supplier malaysia",
+          "intent": "commercial",
           "source": "spontaneous",
           "status": "approved",
           "purpose": "authority",
-          "estVolume": 0,
-          "rationale": "",
-          "targetKeyword": "best office furniture supplier",
-          "closestExistingPost": "",
-          "whyExistingDoesntCover": ""
+          "estVolume": 70,
+          "serpValidated": true,
+          "serpIntent": "Commercial investigation -- SERPs mix local directory listings, supplier comparison guides, and branded manufacturer pages targeting B2B procurement researchers.",
+          "aiOverviewDetected": false,
+          "rationale": "Malaysian businesses searching for office furniture suppliers exhibit clear commercial investigation intent -- they are evaluating providers, not just learning about procurement. Existing Merryfair content (office-furniture-supplier-malaysia-corporate-guide) covers large corporate fit-outs at 50-300+ workstations, and explicitly excludes SME and small-office procurement. This gap fills the underserved mid-market: SMEs, startups, and small offices (5-50 workstations) who need a curated supplier comparison to make a confident purchase decision. The keyword 'office furniture supplier malaysia' carries 70/mo MY volume with dual commercial+local intent -- highly qualified B2B traffic. The post also builds topical authority in the b2b-office-furniture cluster and supports the planned B2B pillar (gap-B2B-1) once published.",
+          "closestExistingPost": "office-furniture-supplier-malaysia-corporate-guide",
+          "whyExistingDoesntCover": "The existing post covers the full procurement lifecycle for large corporate fit-outs (50-300+ workstations): the 5-Point Supplier Fit Test, sourcing models (manufacturer-direct vs dealer vs online), 12-16 week procurement timeline, BIFMA/ISO compliance verification, and a TNB/Kedah case study. It explicitly states its scope excludes SME and small-office procurement, and does not compare named competing suppliers. The user's gap can own a distinct angle: a curated comparison of top Malaysian office furniture suppliers aimed at SMEs and small offices -- covering price tiers (RM range), minimum order flexibility, lead times, and service radius -- which the existing post deliberately omits.",
+          "cannibalizes": "office-furniture-supplier-malaysia-corporate-guide",
+          "heroTarget": "best-ergonomic-office-chairs-every-budget",
+          "userNote": "User specified keyword 'best office furniture supplier' (0 MY volume, global 80). Research shows the better keyword is 'office furniture supplier malaysia' at 70/mo MY with commercial+local intent. Implication: pivot to the Malaysia-specific variant for local SEO benefit; 'best' modifier in the title is preserved as it captures comparison intent, but the primary SEO target should be the geomodified term. Also: once gap-B2B-1 (Top Office Furniture Manufacturers in Malaysia) is published, update heroTarget to that pillar slug.",
+          "suggestedLinksOut": [
+            {
+              "slug": "office-furniture-supplier-malaysia-corporate-guide",
+              "anchor": "corporate office furniture procurement guide",
+              "note": "Link from the section advising large-scale buyers -- send enterprise readers to the fit-out guide"
+            },
+            {
+              "slug": "bifma-certified-office-furniture-malaysia",
+              "anchor": "BIFMA-certified office furniture",
+              "note": "Link from supplier evaluation checklist section -- buyers should verify BIFMA compliance"
+            },
+            {
+              "slug": "best-ergonomic-office-chairs-every-budget",
+              "anchor": "best ergonomic chairs for your office",
+              "note": "Link from product recommendation section for chair-specific buyers"
+            }
+          ],
+          "suggestedLinksIn": [
+            {
+              "slug": "office-furniture-supplier-malaysia-corporate-guide",
+              "anchor": "office furniture supplier guide for SMEs",
+              "note": "Add in the intro or FAQ where the post states it does not cover small-office procurement -- send those readers here"
+            },
+            {
+              "slug": "bifma-certified-office-furniture-malaysia",
+              "anchor": "how to find a certified office furniture supplier in Malaysia",
+              "note": "Add in the procurement checklist section near supplier selection steps"
+            }
+          ],
+          "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          How to Find The Best Office Furniture Supplier in Malaysia (2026 Guide)\nAUDIENCE:       SME owners, office managers, and procurement executives at small-to-mid-sized Malaysian businesses (5-50 workstations) evaluating office furniture suppliers -- comparing quality, price, lead time, and service reliability before committing to a purchase\nGOAL:           Rank on Google for 'office furniture supplier malaysia' and build topical authority in the B2B procurement cluster\n\n-- OPTIONAL --\nTarget keyword: office furniture supplier malaysia (70/mo MY, KD ~29)\nFunnel stage:   Middle (commercial investigation -- evaluating options before purchase)\nRelated posts:  https://www.merryfair.com/latest_updates/blog/office-furniture-supplier-malaysia-corporate-guide/\n                https://www.merryfair.com/latest_updates/blog/bifma-certified-office-furniture-malaysia/\n\nDIFFERENTIATION ANGLE:\nThis post targets SMEs and small offices -- explicitly NOT the large corporate fit-out segment (50-300+ workstations) already covered by the corporate guide. Angle: a practical buyer's comparison covering the top Malaysian office furniture suppliers, what makes each strong, and a decision framework for businesses with limited procurement experience. Include: price tier guidance (RM ranges), minimum order flexibility, lead time expectations, after-sales warranty, and BIFMA/ISO verification steps. Merryfair's 50-year manufacturing track record and vertical integration (Klang facility) are competitive differentiators to weave in authentically."
         }
       ],
       "name": "B2B office furniture & manufacturing",
