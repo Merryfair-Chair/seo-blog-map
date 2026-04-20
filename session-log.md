@@ -4,23 +4,35 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
-## 2026-04-20 — Vercel sync audit & production deployment fix
+## 2026-04-20 — Full sync audit, root cause found and fixed permanently
+
+**Root cause identified:** The `master` branch (stale, months behind `main`) was the repo's default branch. GitHub scheduled workflows always run on the default branch. So `crawl.yml` ran daily on `master` (6 clusters, 13 gaps — old data), pushed that to Supabase, wiping all new data. This is why data disappeared every week.
 
 **What was done:**
-- Full audit of entire data sync pipeline — identified root cause of recurring "data gone" issue
-- Root cause: Vercel project was never configured for auto-production deploys. Every push to main created a PREVIEW deployment only. `seo-blog-map.vercel.app` was frozen on the April 7 build (predating working Supabase API functions). Each session "fixed" data visible at the preview URL, not production.
-- Fixed `crawl.yml`: now commits updated JSON back to GitHub after daily crawl (was updating Supabase only, leaving GitHub/Vercel builds stale)
-- Deployed latest code to production via `vercel --prod` (production URL is now live with current Supabase-connected API functions)
-- Created `.vercel/project.json` to link CLI to the project
-- Created `.github/workflows/deploy-production.yml`: auto-deploys to Vercel production on every push to main — requires `VERCEL_TOKEN` GitHub secret (user needs to add once)
+- Full audit of every sync path: PostToolUse hook, crontab, GitHub Actions, Vercel API functions
+- Discovered `master` branch was default — deleted `master`, set `main` as default branch
+- Discovered crontab was running from wrong directory (`/Users/merryfair/` instead of project root) — had been silently failing for weeks — removed entirely (was also a data corruption risk)
+- Discovered PostToolUse hook used fragile `$CLAUDE_TOOL_INPUT` parser that silently failed — replaced with simple `git status` check in `sync-after-edit.sh`
+- Restored correct JSON data (7 clusters, 36 posts, 23 gaps) from git and pushed to Supabase
+- Deployed latest code to Vercel production via `vercel --prod` (`.vercel/project.json` created to link CLI)
+- Created `.github/workflows/deploy-production.yml`: auto-deploys to Vercel production on every `main` push
+- Fixed `crawl.yml`: now commits updated JSON back to GitHub after daily crawl
+- Added all 3 GitHub secrets: `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` (were already present), `VERCEL_TOKEN` (added this session)
+- Confirmed `deploy-production.yml` workflow now succeeds (first successful run: `chore: trigger production deploy with VERCEL_TOKEN`)
 
 **Decisions made:**
-- The correct architecture (Supabase as source of truth, `api/*.js` serverless functions on Vercel reading from Supabase) was already in place — the only problem was production never getting the latest code
-- GitHub Actions `deploy-production.yml` replaces manual promotion — once `VERCEL_TOKEN` secret is added, every main push auto-promotes
+- Crontab removed permanently — slash commands pull from Supabase at start (sufficient); auto-pull was a data corruption risk
+- `master` branch deleted permanently — all work is on `main`
+- PostToolUse hook simplified to just call the script; script checks `git status` to detect real changes
+
+**Current sync state — fully automatic, no manual steps:**
+- App UI change → Supabase instantly → local on next command start
+- Claude command → pulls Supabase at start → pushes at end → Vercel auto-deploys
+- Claude edits JSON → hook detects via git status → pushes to Supabase → commits to GitHub → Vercel auto-deploys
+- Daily crawl → runs on `main` (correct) → pushes to Supabase → commits back to GitHub → Vercel auto-deploys
 
 **Pending / next actions:**
-- User must add `VERCEL_TOKEN` GitHub secret: vercel.com → Account Settings → Tokens → create token → github.com/Merryfair-Chair/seo-blog-map → Settings → Secrets → add `VERCEL_TOKEN`
-- After that, the full sync loop is completely automatic
+- None — sync is fully operational
 
 ---
 
