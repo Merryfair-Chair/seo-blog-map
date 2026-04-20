@@ -30,3 +30,11 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - name: Commit updated JSON back to GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add merryfair_content_map.json visual-map/public/merryfair_content_map.json
+          git diff --cached --quiet || git commit -m "chore: auto-sync content map from daily crawl"
+          git push origin main
