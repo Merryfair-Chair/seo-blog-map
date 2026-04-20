@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import sys, json; d=json.load(sys.stdin); fp=d.get('file_path',''); exit(0 if 'merryfair_content_map.json' in fp and 'visual-map' not in fp else 1)\" <<< \"$CLAUDE_TOOL_INPUT\" 2>/dev/null && bash /Users/merryfair/seo-blog-map/.claude/sync-after-edit.sh; true"
+            "command": "bash /Users/merryfair/seo-blog-map/.claude/sync-after-edit.sh"
           }
         ]
       }
