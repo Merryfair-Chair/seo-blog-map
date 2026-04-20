@@ -4,6 +4,57 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-20 — Vercel sync audit & production deployment fix
+
+**What was done:**
+- Full audit of entire data sync pipeline — identified root cause of recurring "data gone" issue
+- Root cause: Vercel project was never configured for auto-production deploys. Every push to main created a PREVIEW deployment only. `seo-blog-map.vercel.app` was frozen on the April 7 build (predating working Supabase API functions). Each session "fixed" data visible at the preview URL, not production.
+- Fixed `crawl.yml`: now commits updated JSON back to GitHub after daily crawl (was updating Supabase only, leaving GitHub/Vercel builds stale)
+- Deployed latest code to production via `vercel --prod` (production URL is now live with current Supabase-connected API functions)
+- Created `.vercel/project.json` to link CLI to the project
+- Created `.github/workflows/deploy-production.yml`: auto-deploys to Vercel production on every push to main — requires `VERCEL_TOKEN` GitHub secret (user needs to add once)
+
+**Decisions made:**
+- The correct architecture (Supabase as source of truth, `api/*.js` serverless functions on Vercel reading from Supabase) was already in place — the only problem was production never getting the latest code
+- GitHub Actions `deploy-production.yml` replaces manual promotion — once `VERCEL_TOKEN` secret is added, every main push auto-promotes
+
+**Pending / next actions:**
+- User must add `VERCEL_TOKEN` GitHub secret: vercel.com → Account Settings → Tokens → create token → github.com/Merryfair-Chair/seo-blog-map → Settings → Secrets → add `VERCEL_TOKEN`
+- After that, the full sync loop is completely automatic
+
+---
+
+## 2026-04-15 — /new-post: bifma-certified-office-furniture-malaysia
+
+**What was done:**
+- Ran `pull_from_supabase.py` — merged remote gap status changes before touching local JSON
+- Ran `crawl_and_summarize.py` — re-crawled all 36 posts (sitemap now shows 36 URLs); internal link matrix refreshed
+- New post `bifma-certified-office-furniture-malaysia` found: 5 outbound internal links, 0 inbound (orphan)
+- Generated full `content_summary` (main_topic, subtopics_covered, angle, explicitly_not_covered, target_audience, content_type, merryfair_products_mentioned)
+- Assigned to cluster: `b2b-office-furniture`
+- Initialized performance fields: `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Updated gap-B2B-3 status: `in_progress` → `published` (publishedSlug set)
+- Ran `full_sync.sh` — JSON copied to visual-map/public/, pushed to Supabase, committed and pushed to GitHub
+
+**Decisions made:**
+- Post content is B2B procurement-angle BIFMA explainer — correctly fills gap-B2B-3 (authority purpose)
+- Content angle is distinct from deprioritized gap-BG-4 (B2C "what is BIFMA") — no cannibalization
+
+**Internal linking issues flagged:**
+- Post is an ORPHAN — no other posts link to it yet
+- Pillar (gap-B2B-1) not yet published — no pillar link possible yet
+- `office-furniture-supplier-malaysia-corporate-guide` does not link back to this post — should add a contextual link in its certifications section to `bifma-certified-office-furniture-malaysia`
+- No links from `best-ergonomic-office-chairs-every-budget` or buying-guide posts despite BIFMA being a relevant criteria mention
+
+**Broken links:** None — all 5 outbound slugs confirmed valid
+
+**Pending / next actions:**
+- Add inbound link from `office-furniture-supplier-malaysia-corporate-guide` certifications section → this post
+- Once gap-B2B-1 (pillar listicle) is published, ensure it links to this post with anchor "BIFMA certified office furniture"
+- Total published posts: 36
+
+---
+
 ## 2026-04-14 — Sync architecture overhaul (continued)
 
 **What was done:**
