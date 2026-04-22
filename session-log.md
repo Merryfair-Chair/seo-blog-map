@@ -4,6 +4,116 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-22 — Obsidian Vault Sync infrastructure
+
+**Actions:**
+- Added "Obsidian Vault Sync (mandatory)" section to `CLAUDE.md` in this project
+- Added "Cross-Project Sync from seo-blog-map" section to `Obsidian Vault/CLAUDE.md`
+- Updated `project-context.md` to record the new sync infrastructure
+
+**Decisions:**
+- Sync trigger is Claude instruction-based (CLAUDE.md), not a script or hook — Claude writes to the vault as part of every major command execution
+- Weekly SEO Log is the primary bridge; Research Status.md handles cascade to research notes
+- Vault CLAUDE.md reads `seo-blog-map/session-log.md` as fallback when user types "update" in vault context
+- Cascade is adaptive: reads Research Status.md to determine which notes are in scope — no hardcoded list
+
+**Pending / next actions:**
+- None from this session — sync will activate automatically from next command onwards
+
+---
+
+## 2026-04-22 — /new-post: lumbar-cushion-vs-built-in-support
+
+**Post processed:** "Lumbar Cushion vs Built-In Lumbar Support: What Really Works"
+**URL:** https://www.merryfair.com/latest_updates/blog/lumbar-cushion-vs-built-in-support/
+**Date published:** 2026-04-22
+
+**Actions:**
+- Pulled from Supabase (pre-merge)
+- Re-crawled all 38 blog posts via `crawl_and_summarize.py`
+- Generated `content_summary` for new post
+- Assigned to cluster: `health-posture` (7th post in cluster)
+- Initialised `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Marked gap `gap-HP-4` (Built-in lumbar support vs lumbar cushion) → `published`
+- Full sync: Supabase + GitHub (commit c92eab9)
+
+**Content summary:** Diagnostic comparison guide structured around the "Cushion-Ready Test" (three conditions: Chair Contour, Curve Match, Contact Consistency). Covers the biomechanics of lumbar support (filling lordosis gap, not cushioning), how each solution tracks posture over time, lordosis variation research (PLOS One, -69° to -13.6° range), when cushion is rational vs when built-in is the only fix, and why combining both is usually wrong. Explicitly NOT covered: specific product/brand recommendations, sciatica-specific advice, car seats, standing desks, active seating.
+
+**Internal linking:**
+- **Links OUT (6):** what-is-lumbar-support, the-role-of-ergonomic-office-chairs-in-preventing-back-pain, the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace, how-to-know-when-its-time-for-an-ergonomic-chair-upgrade, how-to-choose-office-chair-body-fit-test, best-ergonomic-office-chairs-every-budget ✓ all valid, no broken links
+- **Links IN (0):** ORPHAN — no posts link to it yet
+- **Pillar link:** New post does NOT link to the health-posture pillar (the-physical-benefits-of-ergonomics-why-it-matters-for-your-health) — should be added
+- **Pillar → new post:** Pillar does not link here yet — should be added
+
+**Missing links to add (WordPress edits needed):**
+1. `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` (pillar) → add link here
+2. `the-role-of-ergonomic-office-chairs-in-preventing-back-pain` → add inbound link here
+3. `do-posture-correctors-work` → add inbound link here (related: both address alternative-to-proper-support)
+4. `correct-sitting-posture-guide` → add inbound link here (mentions lumbar as part of correct posture)
+
+**Gap filled:** gap-HP-4 (in_progress → published)
+
+**New gaps revealed by explicitly_not_covered:** None requiring immediate action. Sciatica-specific seating advice could be a future authority gap (niche medical intent, low volume expected).
+
+---
+
+## 2026-04-21 — /new-post: best-office-furniture-supplier-malaysia
+
+**Post processed:** "How to Find The Best Office Furniture Supplier Malaysia for Your Business"
+**URL:** https://www.merryfair.com/latest_updates/blog/best-office-furniture-supplier-malaysia/
+**Date published:** 2026-04-21
+
+**Actions:**
+- Pulled from Supabase (pre-merge)
+- Re-crawled all 37 blog posts via `crawl_and_summarize.py`
+- Generated `content_summary` for new post
+- Assigned to cluster: `b2b-office-furniture` (3rd post in cluster)
+- Initialised `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Marked gap `gap-B2BO-1776223061321` → `published` (linked to this slug)
+- Full sync: Supabase + GitHub (commit 3d6a5ee)
+
+**Content summary:** B2B procurement guide; covers entity-fit supplier matrix (SME/MNC/healthcare/education/GLC), five supplier profiles, certification stack (BIFMA/ISO9001/Greenguard Gold), eight first-call questions, warranty gap pitfalls, lead time benchmarks. Explicitly NOT covered: specific competitor pricing, online channels, fit-out design, product SKU comparisons.
+
+**Internal linking:**
+- **Links OUT (5):** office-furniture-supplier-malaysia-corporate-guide, best-ergonomic-office-chairs-every-budget, correct-sitting-posture-guide, bifma-certified-office-furniture-malaysia, office-chair-tilt-mechanism-guide ✓ all valid slugs, no broken links
+- **Links IN (0):** ORPHAN — neither cluster peer (corporate-guide nor bifma post) links to this new post
+- **Pillar missing:** B2B cluster pillar (gap-B2B-1) not yet published — cannot link to pillar
+
+**Gaps revealed by explicitly_not_covered:**
+- Office furniture rental/leasing options (niche, low priority)
+- SME online purchasing channels (Lazada/Shopee) — low B2B intent, probably not worth pursuing
+
+**Missing links to add (manual WordPress edits):**
+1. `office-furniture-supplier-malaysia-corporate-guide` → add link to this post (direct SME readers from its intro)
+2. `bifma-certified-office-furniture-malaysia` → add link to this post (in procurement section)
+
+**Gap filled:** gap-B2BO-1776223061321 (approved → published)
+
+---
+
+## 2026-04-20 — Enriched manual gap: How to Find The Best Office Furniture Supplier in Malaysia
+
+**Action:** Ran `/enrich-idea gap-B2BO-1776223061321` — enriched the manually-added gap with full research.
+
+**Gap enriched:** `gap-B2BO-1776223061321` — "How to Find The Best Office Furniture Supplier in Malaysia (2026 Guide)"
+
+**Key research findings:**
+- User's keyword "best office furniture supplier" = 0 MY volume (global 80). Better target: "office furniture supplier malaysia" = 70/mo MY, KD ~29, commercial+local intent.
+- Cannibalization risk: MEDIUM — overlaps with published post `office-furniture-supplier-malaysia-corporate-guide`, which covers large corporate fit-outs (50–300+ workstations). Differentiator: user's gap should target SMEs/small offices (5–50 workstations) with a supplier comparison format — a segment the existing post explicitly excludes.
+- SERP intent: Commercial investigation. Mix of local directories and supplier comparison guides.
+- AI Overview: Not detected.
+- Hero target set: `best-ergonomic-office-chairs-every-budget` (update to gap-B2B-1 pillar slug once published).
+
+**Conflicts with user input:**
+- Keyword pivoted from "best office furniture supplier" (0 vol) to "office furniture supplier malaysia" (70/mo). `userNote` field records both sides.
+
+**Links out:** corporate guide, BIFMA post, best-budget hero
+**Links in:** from corporate guide intro (directing SME readers here), from BIFMA post procurement section
+
+**Sync:** Supabase and GitHub updated — commit 13be76f.
+
+---
+
 ## 2026-04-20 — Full sync audit, root cause found and fixed permanently
 
 **Root cause identified:** The `master` branch (stale, months behind `main`) was the repo's default branch. GitHub scheduled workflows always run on the default branch. So `crawl.yml` ran daily on `master` (6 clusters, 13 gaps — old data), pushed that to Supabase, wiping all new data. This is why data disappeared every week.

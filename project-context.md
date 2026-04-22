@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 35 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 38 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -57,6 +57,12 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 - `/optimize-post` command built — full audit against master content standard
 - `/suggest-posts` command built (2026-04-09) — enforces content-level methodology
 - All 5 slash commands comprehensively audited and rewritten for SEO accuracy (2026-04-09): AI Overview checks, semantic coverage vs keyword density, FAQPage schema, URL normalisation, cross-gap cannibalization, proportional link density
+
+### Obsidian Vault Sync — DONE (2026-04-22)
+- `seo-blog-map/CLAUDE.md` updated: "Obsidian Vault Sync (mandatory)" section added
+- `Obsidian Vault/CLAUDE.md` updated: "Cross-Project Sync from seo-blog-map" section added
+- After every `/new-post`, `/optimize-post`, `/monthly-update`, `/linking-audit` (if actioned): Claude automatically writes to `Weekly SEO Log.md` and cascades to relevant vault research notes
+- Vault fallback: typing "update" in vault context causes Claude to read `seo-blog-map/session-log.md` and apply vault updates from it
 
 ### Bidirectional sync — DONE (2026-04-09)
 - PostToolUse hook in `.claude/settings.json`: auto-copies JSON to `visual-map/public/` on every Claude edit
@@ -122,7 +128,9 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - do-posture-correctors-work
   - standing-desk-vs-ergonomic-chair (published 2026-03-30, fills gap-HP-2)
   - correct-sitting-posture-guide (published 2026-04-01, fills gap-HP-1)
-- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-3/4/5 suggested (2026-04-09)
+  - lumbar-cushion-vs-built-in-support (published 2026-04-22, fills gap-HP-4)
+- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-4 published (2026-04-22), gap-HP-3 suggested, gap-HP-5 suggested
+- **Linking note:** lumbar-cushion-vs-built-in-support is ORPHAN — no cluster posts link to it yet. Add inbound links from: the-role-of-ergonomic-office-chairs-in-preventing-back-pain, do-posture-correctors-work, correct-sitting-posture-guide. The pillar (the-physical-benefits-of-ergonomics) should also link here.
 
 ### Cluster 4: Gaming & specialized (gaming)
 - **Pillar:** gaming-chair-vs-office-chair-which-one-should-you-really-buy (EXISTS)
@@ -148,15 +156,19 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 ### Cluster 7: B2B office furniture & manufacturing (b2b-office-furniture)
 - **Head term:** office furniture manufacturer malaysia / furniture manufacturer malaysia (100 vol, KD 16)
 - **Pillar status:** not-created (gap-B2B-1 is the pillar candidate — listicle format)
-- **Posts (1):**
+- **Posts (3):**
   - office-furniture-supplier-malaysia-corporate-guide (published 2026-04-14, fills gap-B2B-2)
-- **Gap status:** gap-B2B-2 published (2026-04-14), gap-B2B-1 and gap-B2B-3 still suggested
+  - bifma-certified-office-furniture-malaysia (published 2026-04-15, fills gap-B2B-3)
+  - best-office-furniture-supplier-malaysia (published 2026-04-21, fills gap-B2BO-1776223061321)
+- **Gap status:** gap-B2B-2 published (2026-04-14), gap-B2B-3 published (2026-04-15), gap-B2BO-1776223061321 published (2026-04-21), gap-B2B-1 still suggested
+- **Linking note:** best-office-furniture-supplier-malaysia is an ORPHAN — no posts link to it yet. Add inbound links from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 
 | Gap ID | Title | Purpose | Status |
 |--------|-------|---------|--------|
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | traffic (PILLAR) | suggested |
 | gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
-| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | authority | suggested |
+| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | authority | **published** → bifma-certified-office-furniture-malaysia |
+| gap-B2BO-1776223061321 | How to Find The Best Office Furniture Supplier in Malaysia | traffic | **published** → best-office-furniture-supplier-malaysia |
 
 - **Strategic purpose:** Entity-level topical authority shift — signal to Google that merryfair.com is not just a B2C ergonomic chair seller but a legitimate office furniture manufacturer. All current B2C posts target consumers; Merryfair ranks for zero B2B keywords. Research documented in Obsidian Vault → Office Furniture Keywords.md.
 
@@ -187,12 +199,13 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-BB-4 | Best study chairs for kids and teenagers | rejected | Existing post already covers this fully (confirmed 2026-04-09) |
 | gap-HP-1 | How to sit properly in an office chair | published | → correct-sitting-posture-guide |
 | gap-HP-2 | Ergonomic chair vs standing desk | published | → standing-desk-vs-ergonomic-chair |
+| gap-HP-4 | Built-in lumbar support vs lumbar cushion: which actually fixes your back | published | → lumbar-cushion-vs-built-in-support |
 | gap-GM-1 | Best ergonomic chair for long gaming hours | rejected | Reframed; ultimately rejected |
 | gap-WS-1 | Complete guide to ergonomic home office setup | published | → ergonomic-home-office-setup-guide |
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 0.** 4 gaps suggested 2026-04-09 + 2 remaining B2B gaps (B2B-1, B2B-3) added 2026-04-12, all awaiting owner approval. gap-B2B-2 published 2026-04-14.
+**Approved gaps awaiting writing: 0.** gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22. Remaining suggested: HP-3, HP-5, GM-2, B2B-1 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -200,7 +213,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 |--------|-------|---------|---------|
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | b2b-office-furniture | traffic (pillar) |
 | gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
-| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority |
+| gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority | **published** → bifma-certified-office-furniture-malaysia |
 
 ### New gaps — suggested 2026-04-09 (status: suggested, awaiting approval)
 
@@ -218,7 +231,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 35
+- **Total published posts:** 38
 - **Last monthly update:** April 7, 2026 (data: March 2026)
 - **Top performing post (March 2026 GSC):** 6-affordable-ergonomic-chairs — 62 clicks, 24,382 impressions, pos 2.65
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 461 estimated organic visits but only 51 GSC clicks at 0.09% CTR — CRITICAL
@@ -283,17 +296,19 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ### Content pipeline
 2. **Approve/reject the 4 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2)
-3. **Approve/reject the 2 remaining B2B gaps** in the visual map Pipeline tab (B2B-1, B2B-3) — gap-B2B-2 published 2026-04-14
+3. **Approve/reject the remaining B2B gap** in the visual map Pipeline tab (B2B-1) — gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21
+4. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
 
 ### Maintenance
 5. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
 6. Run `/monthly-update` when May 2026 data is available
+7. **`best-office-furniture-supplier-malaysia` is ORPHANED** — no existing posts link to it. The cluster pillar (gap-B2B-1) doesn't exist yet, so it has no pillar to receive links from either. Add manual links from the two existing B2B posts.
 
 ---
 
 ## Decisions yet to be made
 
-- **6 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1, B2B-3 (new) in the visual map — B2B-2 now published
+- **5 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1 in the visual map — B2B-2 and B2B-3 now published
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
