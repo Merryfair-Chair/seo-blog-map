@@ -416,6 +416,112 @@
           "aiOverviewDetected": false,
           "closestExistingPost": "office-chair-material-guide-malaysia",
           "whyExistingDoesntCover": "The material guide covers how mesh, fabric, and leather behave in Malaysia's humidity — including leather degradation and adhesive failure — but its explicitly_not_covered field lists 'detailed cleaning routines'. It explains why materials degrade, not how to prevent or reverse degradation through proper cleaning. No other post addresses wheel maintenance, gas lift care, upholstery spot cleaning, or mesh flushing — the practical maintenance tasks that extend chair lifespan."
+        },
+        {
+          "id": "gap-BG-7",
+          "title": "Best Ergonomic Chairs for Short and Petite People (Malaysia 2026)",
+          "targetKeyword": "best ergonomic chair for short people",
+          "intent": "commercial",
+          "source": "spontaneous",
+          "status": "suggested",
+          "purpose": "traffic",
+          "estVolume": 0,
+          "serpValidated": true,
+          "serpIntent": "Product recommendation round-ups and tested review articles; BTOD 'I Tested 5 Highly Rated Office Chairs For Short People' (#3), Boulies 'Best Office Chair for Petite Person' (#4), Sihoo product page (#6). AI Overview present. Low-authority sites (DR 11–55) dominate editorial slots — KD 0. US parent topic 'best office chair for short person' = 400/mo, traffic potential 800, KD 0. PAA includes 'What is the best chair depth for short people?' and 'How to sit comfortably as a short person?'",
+          "aiOverviewDetected": true,
+          "rationale": "Zero MY volume — Ahrefs has no data. US parent topic = 400/mo with KD 0 — zero competitive difficulty, low-authority sites (DR 11–55) dominate the SERP. High strategic value for Malaysia: average Malaysian woman is ~155cm, which places a large proportion of the target market in the 'petite' range for standard office chair dimensions. No existing Merryfair post recommends specific models for petite users — the ergonomic-chair-size-guide teaches how to measure and fit, but never recommends specific models by body type. Natural internal link hub from the size guide. Merryfair's EEAT angle: as the manufacturer, can specify exact seat height ranges, seat depth options, and weight capacities for petite frames — specs a third-party reviewer cannot access as directly.",
+          "closestExistingPost": "ergonomic-chair-size-guide",
+          "whyExistingDoesntCover": "The size guide is a sizing methodology post — it teaches readers how to measure their body (seat height, seat depth, backrest height) and what numbers to look for. It does not recommend specific Merryfair models for petite users, does not address which chairs have a low enough minimum seat height for users under 155cm, and does not cover footrest options or seat depth adjustment ranges for short legs. The gap is the product recommendation layer: given this body type, here are the specific chairs (with specs) that fit.",
+          "cannibalizes": null,
+          "heroTarget": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+          "suggestedLinksOut": [
+            {
+              "slug": "ergonomic-chair-size-guide",
+              "anchor": "how to size an ergonomic chair for a petite frame",
+              "note": "Feature criteria section — reference the size guide when explaining what specs petite users should look for"
+            },
+            {
+              "slug": "how-to-adjust-office-chair",
+              "anchor": "how to adjust your chair if you're short",
+              "note": "Setup section — link to the adjustment guide for petite-specific setup tips (footrest, armrest height, seat tilt)"
+            },
+            {
+              "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+              "anchor": "what makes an ergonomic chair truly ergonomic",
+              "note": "Closing — link to the pillar for readers who want the full feature overview beyond size"
+            }
+          ],
+          "suggestedLinksIn": [
+            {
+              "slug": "ergonomic-chair-size-guide",
+              "anchor": "best ergonomic chairs for petite and short users",
+              "note": "Add in the 'under 160cm' or low seat height section — natural handoff from sizing guide to product recommendations"
+            },
+            {
+              "slug": "how-to-choose-office-chair-body-fit-test",
+              "anchor": "best chairs for short people that pass the fit test",
+              "note": "Add in the section covering seat height or seat depth fit for shorter users"
+            },
+            {
+              "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+              "anchor": "ergonomic chairs for petite and short users",
+              "note": "Add in the pillar's body type or sizing section"
+            }
+          ],
+          "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          Best Ergonomic Chairs for Short and Petite People (Malaysia 2026)\nAUDIENCE:       Short and petite Malaysian office workers — primarily women under 160cm (average Malaysian woman is ~155cm) — who struggle to find chairs where their feet reach the floor, the seat depth isn't too deep, and the lumbar hits the right spot. They want specific product recommendations with specs, not a generic buying guide.\nGOAL:           Rank on Google for 'best ergonomic chair for short people' and 'best ergonomic chair for petite person'; capture a highly specific underserved Malaysian audience segment with zero competitive difficulty in the SERP\n\n— OPTIONAL —\nTarget keyword: best ergonomic chair for short people\nFunnel stage:   Middle / Bottom\nRelated posts:  https://www.merryfair.com/latest_updates/blog/ergonomic-chair-size-guide/\n                https://www.merryfair.com/latest_updates/blog/how-to-adjust-office-chair/\n                https://www.merryfair.com/latest_updates/blog/the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace/"
+        },
+        {
+          "id": "gap-BG-8",
+          "title": "Best Ergonomic Chairs for Tall and Big People (Malaysia 2026)",
+          "targetKeyword": "best ergonomic chair for tall people",
+          "intent": "commercial",
+          "source": "spontaneous",
+          "status": "suggested",
+          "purpose": "traffic",
+          "estVolume": 0,
+          "serpValidated": true,
+          "serpIntent": "Mix of Reddit mega threads (#1), editorial guides (Hinomi 'A Guide on Ergonomic Office Chairs for Tall People' #5, LogicFox DR11 #3), and product round-ups (Forbes 'Best Big And Tall Office Chairs' #8, Sihoo product page #6). AI Overview present. KD 0 — LogicFox at DR 11 ranks #3, confirming very low barriers. US parent topic 'office chair for tall person' = 400/mo, traffic potential 900. Forbes coverage of 'big AND tall' confirms bundling height + weight is SERP-validated.",
+          "aiOverviewDetected": true,
+          "rationale": "Zero MY volume — Ahrefs has no data. US parent topic = 400/mo, KD 0, traffic potential 900. LogicFox at DR 11 ranking #3 confirms this SERP is wide open. Strategic pairing with gap-BG-7 (short people): both extend the ergonomic-chair-size-guide cluster in the same direction, and can be written together with a shared structural template. User confirmed: include 'big AND tall' angle (height + weight), matching the Forbes/Sihoo approach in the SERP. Merryfair's EEAT angle as manufacturer: can specify exact maximum seat height, backrest height, and weight capacity specs for each model — data that distinguishes a manufacturer post from generic reviewer content. Malaysia context: taller users above 180cm face a real gap in the local market where most retail chairs are sized for average builds.",
+          "closestExistingPost": "ergonomic-chair-size-guide",
+          "whyExistingDoesntCover": "Same as gap-BG-7 from the opposite end: the size guide teaches the sizing methodology (how to measure, what specs to look for) but does not recommend specific models for tall users (above ~180cm) or larger-framed users who need higher weight capacity or wider seat pans. No Merryfair post currently addresses what chair specs tall users need — minimum seat height range, backrest height, lumbar placement for a taller spine, or weight capacity thresholds.",
+          "cannibalizes": null,
+          "heroTarget": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+          "suggestedLinksOut": [
+            {
+              "slug": "ergonomic-chair-size-guide",
+              "anchor": "how to size an ergonomic chair for a tall frame",
+              "note": "Feature criteria section — reference the size guide when explaining what specs tall users should look for"
+            },
+            {
+              "slug": "how-to-adjust-office-chair",
+              "anchor": "how to set up your chair correctly if you're tall",
+              "note": "Setup section — tall-specific adjustment tips (seat height, lumbar height, headrest position)"
+            },
+            {
+              "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+              "anchor": "what makes an ergonomic chair truly ergonomic",
+              "note": "Closing — link to the pillar for readers who want the full feature overview"
+            }
+          ],
+          "suggestedLinksIn": [
+            {
+              "slug": "ergonomic-chair-size-guide",
+              "anchor": "best ergonomic chairs for tall and big users",
+              "note": "Add in the 'above 180cm' or high seat height section — natural handoff from sizing guide to product recommendations"
+            },
+            {
+              "slug": "how-to-choose-office-chair-body-fit-test",
+              "anchor": "best chairs for tall people that pass the fit test",
+              "note": "Add in the seat height or backrest height section for taller users"
+            },
+            {
+              "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+              "anchor": "ergonomic chairs for tall and big users",
+              "note": "Add in the pillar's body type or sizing section"
+            }
+          ],
+          "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          Best Ergonomic Chairs for Tall and Big People (Malaysia 2026)\nAUDIENCE:       Tall Malaysian office workers (above ~180cm) and larger-framed users who find standard office chairs don't fit — seat too low, backrest too short, lumbar in the wrong position. Include users who are both tall AND heavier-built (big and tall angle validated by SERP). They want specific model recommendations with exact specs — seat height range, backrest height, weight capacity.\nGOAL:           Rank on Google for 'best ergonomic chair for tall people' and 'big and tall office chair Malaysia'; companion post to the petite chairs guide that completes body-type coverage in the buying-guide cluster\n\n— OPTIONAL —\nTarget keyword: best ergonomic chair for tall people\nFunnel stage:   Middle / Bottom\nRelated posts:  https://www.merryfair.com/latest_updates/blog/ergonomic-chair-size-guide/\n                https://www.merryfair.com/latest_updates/blog/how-to-adjust-office-chair/\n                https://www.merryfair.com/latest_updates/blog/the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace/"
         }
       ],
       "name": "How to choose an ergonomic chair",
@@ -653,6 +759,64 @@
           "targetKeyword": "best study chair for kids",
           "closestExistingPost": "best-study-chairs-students-guide",
           "whyExistingDoesntCover": "REJECTION REASON (2026-04-09): The existing post already fully covers this gap. Content summary confirms: target_audience is 'Parents of school-age children aged 4-14, teachers and school administrators'; angle is 'Parent-focused health decision framing'; it covers Rookee for ages 4-14, the 3-Point Growth Fit Test, growth adjustability across 7 positions, sizing by child height, and BIFMA/GREENGUARD certifications. The original rationale that the post 'targets adult students at university level' was incorrect — it was inferred from the slug name without reading the actual content."
+        },
+        {
+          "id": "gap-BB-5",
+          "title": "Best Ergonomic Chairs for Long Hours of Sitting (Malaysia 2026)",
+          "targetKeyword": "best ergonomic chair for long hours",
+          "intent": "commercial",
+          "source": "spontaneous",
+          "status": "suggested",
+          "purpose": "traffic",
+          "estVolume": 0,
+          "serpValidated": true,
+          "serpIntent": "Product recommendation listicles and brand category landing pages; Herman Miller has a dedicated 'Best Office Chair for Long Hours' LP at position 3; editorial blogs (Boulies DR39, BTOD DR55) rank with review-style articles. No MY data — US parent topic 'best office chair for long hours' is 4,000 vol with 5,700 traffic potential.",
+          "aiOverviewDetected": true,
+          "rationale": "Zero MY volume — Ahrefs has no data for Malaysian searches. US parent topic 'best office chair for long hours' = 4,000/mo, traffic potential 5,700, KD 5. This is the most achievable high-value keyword in the use-case post category. No existing Merryfair post targets this intent: the closest post (6-affordable-ergonomic-chairs) mentions the Saga Collection 'for long working hours' in passing, but its primary angle is budget price points, not endurance-specific feature criteria. A dedicated post can cover: seat foam density for extended sitting, dynamic lumbar support that adapts over hours, mesh breathability for Malaysia's heat, armrest range for all-day positioning, and tilt tension for active sitting. Natural Merryfair EEAT angle: as the manufacturer, Merryfair can explain why the Saga and Kaden are engineered for long-session use — a claim generic round-up sites cannot make.",
+          "closestExistingPost": "6-affordable-ergonomic-chairs-for-your-home-and-office",
+          "whyExistingDoesntCover": "The affordable chairs post recommends six models by price (under RM1,000) and mentions the Saga Collection as suited 'for long working hours' — but this is one line in a budget listicle. The post's angle and audience are price-conscious first-time buyers, not people specifically seeking chairs that perform across 8–10 hour sessions. It does not cover: what chair specs differentiate short vs long session seating, how seat foam compresses over hours, why lumbar dynamism matters specifically for long-haul use, or how breathability affects comfort in a tropical climate over extended sitting. Explicitly not covered in that post: 'chairs above RM1,000, premium ergonomic features like 4D armrests'.",
+          "cannibalizes": null,
+          "heroTarget": "best-ergonomic-office-chairs-every-budget",
+          "suggestedLinksOut": [
+            {
+              "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
+              "anchor": "affordable ergonomic chairs for all-day use",
+              "note": "Budget section — reference the affordable post for readers on tighter budgets who still need long-hour performance"
+            },
+            {
+              "slug": "best-ergonomic-office-chairs-every-budget",
+              "anchor": "best ergonomic office chairs for every budget",
+              "note": "Closing CTA — link to the budget pillar for readers who want to compare across price tiers"
+            },
+            {
+              "slug": "what-is-lumbar-support",
+              "anchor": "how lumbar support works during long sitting sessions",
+              "note": "Feature explanation section — when explaining why dynamic lumbar matters for long hours"
+            },
+            {
+              "slug": "office-chair-tilt-mechanism-guide",
+              "anchor": "how tilt mechanisms help during long hours",
+              "note": "Tilt section — reference the tilt guide when explaining synchro-tilt for endurance sitting"
+            }
+          ],
+          "suggestedLinksIn": [
+            {
+              "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
+              "anchor": "best ergonomic chairs for long hours of sitting",
+              "note": "Add in the Saga section — natural handoff for readers who want a dedicated long-hours guide"
+            },
+            {
+              "slug": "best-ergonomic-office-chairs-every-budget",
+              "anchor": "best ergonomic chairs for long hours",
+              "note": "Add in the intro or RM1K–2K tier section as a cluster cross-link"
+            },
+            {
+              "slug": "office-chair-tilt-mechanism-guide",
+              "anchor": "choosing a chair for long hours of sitting",
+              "note": "Add in the closing — readers understanding tilt mechanisms are likely long-hour sitters"
+            }
+          ],
+          "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          Best Ergonomic Chairs for Long Hours of Sitting (Malaysia 2026)\nAUDIENCE:       Malaysian office workers, remote workers, and professionals who sit 8–10+ hours daily and are searching for a chair that maintains comfort and support across extended sessions — not just a comfortable chair, but one engineered for endurance sitting\nGOAL:           Rank on Google for 'best ergonomic chair for long hours' and parent topic variants; capture commercial investigation intent from buyers who know they sit long hours and want product recommendations with clear feature rationale\n\n— OPTIONAL —\nTarget keyword: best ergonomic chair for long hours\nFunnel stage:   Top / Middle\nRelated posts:  https://www.merryfair.com/latest_updates/blog/6-affordable-ergonomic-chairs-for-your-home-and-office/\n                https://www.merryfair.com/latest_updates/blog/best-ergonomic-office-chairs-every-budget/\n                https://www.merryfair.com/latest_updates/blog/what-is-lumbar-support/\n                https://www.merryfair.com/latest_updates/blog/office-chair-tilt-mechanism-guide/"
         }
       ],
       "name": "Best ergonomic chairs by budget",
@@ -1039,6 +1203,65 @@
           "aiOverviewDetected": false,
           "closestExistingPost": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
           "whyExistingDoesntCover": "The closest post mentions 'DOSH Malaysia workplace seating regulations' in subtopics_covered but its main topic is preventing back pain through ergonomic chair mechanics — not regulatory compliance. Its explicitly_not_covered includes 'exercise or physiotherapy as complements' and 'standing desk alternatives', but the post was never designed as a compliance reference. An HR manager cannot extract OSH Act section numbers, penalty provisions, or an audit checklist from this post."
+        },
+        {
+          "id": "gap-HP-6",
+          "title": "Best Ergonomic Chairs for Back Pain (Malaysia 2026)",
+          "targetKeyword": "best ergonomic chair for back pain",
+          "intent": "commercial",
+          "source": "spontaneous",
+          "status": "suggested",
+          "purpose": "traffic",
+          "estVolume": 0,
+          "serpValidated": true,
+          "serpIntent": "Editorial product review listicles (CreativeBloq DR86, Haworth DR73) and medical authority pages (SpineMD DR51 with only 8 RDs) dominate positions 3–5; Herman Miller product category page at #4. AI Overview present. SERP rewards EEAT — a spine clinic at #5 with minimal backlinks signals Google values expert/manufacturer authority. US parent topic 'best office chair for back pain' = 5,700/mo, traffic potential 8,000, KD 19.",
+          "aiOverviewDetected": true,
+          "rationale": "Zero MY volume — Ahrefs has no data for Malaysian searches. US parent topic 'best office chair for back pain' = 5,700/mo, traffic potential 8,000, KD 19 — the highest-volume use-case keyword in this group. No existing Merryfair post answers 'I have back pain — which chair should I buy?' All existing health-posture content addresses prevention (WHY ergonomic chairs help) or symptoms (WHAT poor posture does) — none makes product recommendations for people already experiencing back pain. The SERP rewards EEAT: SpineMD ranks #5 with only 8 referring domains purely on medical authority. Merryfair's manufacturer EEAT angle is genuine and differentiated — they can explain how lumbar mechanism design directly addresses specific back pain conditions, a claim generic round-up sites cannot credibly make. PAA box includes 'Do ergonomic chairs really help back pain?' — the answer lives in the existing prevention post, making natural internal linking clean and non-cannibalistic.",
+          "closestExistingPost": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
+          "whyExistingDoesntCover": "The prevention post answers WHY ergonomic chairs prevent back pain: it covers the science of lumbar support, disc pressure, muscle fatigue, and the ergonomic features that reduce pain risk. Its angle is educational and preventive — it targets people who don't yet have back pain or who want to understand the mechanism. It explicitly does not cover: which specific chair models to buy for different back pain conditions, how to prioritise features based on the type of back pain (lower back, disc herniation, sciatica, general fatigue), or product recommendations at different price points. The new post targets people who already have back pain and want to know which chair to buy — a distinct commercial investigation intent.",
+          "cannibalizes": "gap-HP-3",
+          "heroTarget": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
+          "userNote": "gap-HP-3 (suggested, not yet written) covers 'ergonomic chair features for back pain: what to look for and why order matters' — an informational features guide. This new post is commercial: which chair to buy. The two can coexist as an informational+commercial pair in the health-posture cluster, similar to how the prevention post (informational) and this post (commercial) serve different intent stages. Decision required: write both as separate posts, or merge HP-3's feature criteria into this post's buying guide structure.",
+          "suggestedLinksOut": [
+            {
+              "slug": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
+              "anchor": "how ergonomic chairs prevent back pain",
+              "note": "Feature explanation section — link to the prevention post when explaining the science behind lumbar support"
+            },
+            {
+              "slug": "lumbar-cushion-vs-built-in-support",
+              "anchor": "built-in lumbar support vs lumbar cushion for back pain",
+              "note": "Lumbar section — natural handoff for readers considering whether to buy an ergonomic chair or add a cushion"
+            },
+            {
+              "slug": "what-is-lumbar-support",
+              "anchor": "what lumbar support actually does",
+              "note": "Opening feature criteria section — reference when defining what to look for in lumbar design"
+            },
+            {
+              "slug": "correct-sitting-posture-guide",
+              "anchor": "how to sit correctly to reduce back pain",
+              "note": "Closing section — complement the product recommendations with correct sitting technique"
+            }
+          ],
+          "suggestedLinksIn": [
+            {
+              "slug": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
+              "anchor": "best ergonomic chairs for back pain relief",
+              "note": "Add in closing — that post covers prevention; this post is the natural next step for readers who already have pain"
+            },
+            {
+              "slug": "lumbar-cushion-vs-built-in-support",
+              "anchor": "best chairs with built-in lumbar support for back pain",
+              "note": "Add in the built-in support conclusion section"
+            },
+            {
+              "slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
+              "anchor": "best ergonomic chairs for back pain",
+              "note": "Add in the back pain section of the cluster pillar"
+            }
+          ],
+          "blogBrief": "BRAND NAME:         Merryfair\nWEBSITE URL:        https://www.merryfair.com\nPRODUCTS/SERVICES:  Ergonomic office chairs and workspace furniture manufactured in Malaysia since 1974. Products range from task chairs and mesh chairs to executive, gaming, and children's study chairs. Sold direct and through dealers across Malaysia.\n\nMODE: Full Tool Access (Ahrefs)\n\nTOPIC:          Best Ergonomic Chairs for Back Pain (Malaysia 2026)\nAUDIENCE:       Malaysian office workers and WFH professionals who already have back pain — lower back pain, general fatigue, or chronic discomfort from long hours sitting — and are actively searching for a chair that will help. Not prevention-focused; these readers know they have a problem and want a product solution with clear reasoning.\nGOAL:           Rank on Google for 'best ergonomic chair for back pain' and parent topic variants; establish Merryfair's EEAT as a manufacturer who understands how chair mechanics address back pain, not just a generic product round-up site\n\n— OPTIONAL —\nTarget keyword: best ergonomic chair for back pain\nFunnel stage:   Middle / Bottom\nRelated posts:  https://www.merryfair.com/latest_updates/blog/the-role-of-ergonomic-office-chairs-in-preventing-back-pain/\n                https://www.merryfair.com/latest_updates/blog/lumbar-cushion-vs-built-in-support/\n                https://www.merryfair.com/latest_updates/blog/what-is-lumbar-support/\n                https://www.merryfair.com/latest_updates/blog/correct-sitting-posture-guide/"
         }
       ],
       "name": "Ergonomics, health & posture",
