@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 38 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 39 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -111,13 +111,15 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
 - **Pillar performance (March 2026):** 51 GSC clicks, 56,728 impressions, position 6.1, CTR 0.09% — CRITICAL CTR issue. "Best budget office chairs" alone drives 38,400 impressions with 0 clicks. Title/meta rewrite is highest-priority action.
-- **Posts (5):**
+- **Posts (6):**
   - best-ergonomic-office-chairs-every-budget (PILLAR)
   - 6-affordable-ergonomic-chairs-for-your-home-and-office (62 GSC clicks — top blog performer March 2026)
   - upgrade-your-workspace-affordable-working-chairs-under-rm1000
   - best-study-chairs-students-guide (Parent's guide for school-age children 4–14, features Rookee)
   - office-chair-cost-calculator (published March 2026, fills gap-BB-3)
-- **Gap status:** gap-BB-1 deprioritized, gap-BB-2 rejected, gap-BB-3 published, gap-BB-4 rejected (existing post already covers parents/kids — confirmed 2026-04-09)
+  - best-ergonomic-chair-long-hours (published 2026-04-23, fills gap-BB-5)
+- **Gap status:** gap-BB-1 deprioritized, gap-BB-2 rejected, gap-BB-3 published, gap-BB-4 rejected (existing post already covers parents/kids — confirmed 2026-04-09), gap-BB-5 published (2026-04-23)
+- **Linking note:** best-ergonomic-chair-long-hours is ORPHAN — no posts link to it yet. Pillar (best-ergonomic-office-chairs-every-budget) should link here. Also: the-role-of-ergonomic-office-chairs-in-preventing-back-pain has thematic overlap (health research on prolonged sitting) and should link here.
 
 ### Cluster 3: Health & posture (health-posture)
 - **Pillar:** the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (EXISTS)
@@ -196,6 +198,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-BB-1 | Best ergonomic chairs under RM2,000 | deprioritized | Zero volume confirmed |
 | gap-BB-2 | Best ergonomic chairs for home office Malaysia | rejected | Cannibalization risk with pillar |
 | gap-BB-3 | Office chair cost calculator | published | → office-chair-cost-calculator |
+| gap-BB-5 | Best Ergonomic Chairs for Long Hours of Sitting | published | → best-ergonomic-chair-long-hours |
 | gap-BB-4 | Best study chairs for kids and teenagers | rejected | Existing post already covers this fully (confirmed 2026-04-09) |
 | gap-HP-1 | How to sit properly in an office chair | published | → correct-sitting-posture-guide |
 | gap-HP-2 | Ergonomic chair vs standing desk | published | → standing-desk-vs-ergonomic-chair |
@@ -205,7 +208,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 0.** gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22. Remaining suggested: HP-3, HP-5, GM-2, B2B-1 — awaiting owner approval.
+**Approved gaps awaiting writing: 0.** gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, GM-2, B2B-1, HP-6, BG-7, BG-8 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -214,6 +217,21 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | b2b-office-furniture | traffic (pillar) |
 | gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
 | gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority | **published** → bifma-certified-office-furniture-malaysia |
+
+### New gaps — suggested 2026-04-23 (status: suggested, awaiting approval)
+
+| Gap ID | Title | Cluster | KD | Parent Topic Vol (US) | Traffic Potential | Purpose |
+|--------|-------|---------|----|-----------------------|-------------------|---------|
+| gap-BB-5 | Best Ergonomic Chairs for Long Hours of Sitting (Malaysia 2026) | best-chairs-budget | 5 | 4,000 | 5,700 | traffic | **published** → best-ergonomic-chair-long-hours |
+| gap-HP-6 | Best Ergonomic Chairs for Back Pain (Malaysia 2026) | health-posture | 19 | 5,700 | 8,000 | traffic |
+| gap-BG-7 | Best Ergonomic Chairs for Short and Petite People (Malaysia 2026) | buying-guide | 0 | 400 | 800 | traffic |
+| gap-BG-8 | Best Ergonomic Chairs for Tall and Big People (Malaysia 2026) | buying-guide | 0 | 400 | 900 | traffic |
+
+Notes:
+- Zero MY search volume for all 4 — US data only from Ahrefs CSVs; strategic value is global/regional traffic + topical authority
+- gap-HP-6 (back pain) conflicts with gap-HP-3 (suggested): HP-3 is informational (feature criteria), HP-6 is commercial (product picks). Decision required: write as two posts or merge.
+- gap-BG-7 and gap-BG-8 are companion posts; both link naturally from ergonomic-chair-size-guide
+- gap-BG-8 uses "big AND tall" angle (height + weight) — SERP validated (Forbes, Sihoo both use this framing)
 
 ### New gaps — suggested 2026-04-09 (status: suggested, awaiting approval)
 
@@ -231,7 +249,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 38
+- **Total published posts:** 39
 - **Last monthly update:** April 7, 2026 (data: March 2026)
 - **Top performing post (March 2026 GSC):** 6-affordable-ergonomic-chairs — 62 clicks, 24,382 impressions, pos 2.65
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 461 estimated organic visits but only 51 GSC clicks at 0.09% CTR — CRITICAL
@@ -295,7 +313,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-2. **Approve/reject the 4 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-4, HP-5, GM-2)
+2. **Approve/reject the 3 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-5, GM-2) — HP-4 and BB-5 now published
 3. **Approve/reject the remaining B2B gap** in the visual map Pipeline tab (B2B-1) — gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21
 4. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
@@ -309,6 +327,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Decisions yet to be made
 
-- **5 total gap candidates:** Approve/reject HP-3, HP-4, HP-5, GM-2 (existing) + B2B-1 in the visual map — B2B-2 and B2B-3 now published
+- **8 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + HP-6, BG-7, BG-8 (new 2026-04-23). BB-5 published 2026-04-23.
+- **HP-3 vs HP-6 decision:** HP-3 (informational feature guide for back pain) + HP-6 (commercial product picks for back pain) — write as two complementary posts or merge into one? Decide before writing either.
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?

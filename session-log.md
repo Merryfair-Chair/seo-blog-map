@@ -4,6 +4,79 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-04-23 — /new-post: best-ergonomic-chair-long-hours
+
+**Post processed:** "5 Best Ergonomic Chairs for Long Hours of Sitting (2026)"
+**URL:** https://www.merryfair.com/latest_updates/blog/best-ergonomic-chair-long-hours/
+**Date published:** 2026-04-23
+
+**Actions:**
+- Pulled from Supabase (pre-merge)
+- Re-crawled all 39 blog posts via `crawl_and_summarize.py` (39th post discovered)
+- Generated `content_summary` for new post
+- Assigned to cluster: `best-chairs-budget` (6th post in cluster)
+- Initialised `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Marked gap `gap-BB-5` (Best Ergonomic Chairs for Long Hours of Sitting) → `published`
+- Full sync: Supabase + GitHub (commit be7b33c)
+
+**Content summary:** Engineering-first product round-up introducing Merryfair's "8-Hour Test" — five criteria (Mechanism, Lumbar, Thermal, Depth, Fatigue) — and positioning five chairs against it: Zenit (premium full-day), Tune (mid-tier adjustability), Spinelly (dynamic active sitting), Ovo (tropical climate/heat), Aire (compact home office). Backs framework with UC Riverside PLOS One 2024 + JAMA Network Open research on prolonged sitting health risk. Also addresses gaming chairs vs office chairs for long hours and mesh vs foam thermal comparison.
+
+**Internal linking:**
+- **Links OUT (4):** office-chair-tilt-mechanism-guide, what-is-lumbar-support, 6-affordable-ergonomic-chairs-for-your-home-and-office, best-ergonomic-office-chairs-every-budget — all valid, no broken links
+- **Post links to its pillar** (best-ergonomic-office-chairs-every-budget) ✓
+- **Post is ORPHAN** — 0 inbound links
+
+**Missing links to add:**
+- Pillar → new post: `best-ergonomic-office-chairs-every-budget` should link to `best-ergonomic-chair-long-hours`
+- `the-role-of-ergonomic-office-chairs-in-preventing-back-pain` → new post (prolonged sitting health research overlap)
+- New post → `lumbar-cushion-vs-built-in-support` (both cover lumbar mechanics extensively — natural cross-link)
+- New post → `correct-sitting-posture-guide` (posture for long-hour sitters)
+
+**Gap filled:** gap-BB-5 (Best Ergonomic Chairs for Long Hours of Sitting) → published
+
+**Pending / next actions:**
+- Add inbound links to resolve orphan status (4 links above)
+- Approve/reject remaining 8 suggested gaps: HP-3, HP-5, GM-2, B2B-1, HP-6, BG-7, BG-8
+
+---
+
+## 2026-04-23 — 4 new use-case gaps added (manual enrichment)
+
+**Actions:**
+- Assessed use-case based "best ergonomic chair for [X]" post ideas against existing content for cannibalization risk
+- Reviewed Ahrefs SERP CSVs (manually uploaded by owner — US data, no MY volume available for these keywords)
+- Added 4 fully enriched gaps to `merryfair_content_map.json` with SERP-validated data, blogBriefs, and link suggestions
+- Synced to GitHub and Supabase via `full_sync.sh`
+
+**Gaps added:**
+| ID | Title | Cluster | KD | Parent Topic Vol (US) | Traffic Potential |
+|----|-------|---------|----|-----------------------|-------------------|
+| gap-BB-5 | Best Ergonomic Chairs for Long Hours of Sitting | best-chairs-budget | 5 | 4,000 | 5,700 |
+| gap-HP-6 | Best Ergonomic Chairs for Back Pain | health-posture | 19 | 5,700 | 8,000 |
+| gap-BG-7 | Best Ergonomic Chairs for Short and Petite People | buying-guide | 0 | 400 | 800 |
+| gap-BG-8 | Best Ergonomic Chairs for Tall and Big People | buying-guide | 0 | 400 | 900 |
+
+**Key findings:**
+- All 4 keyword intents match SERP (commercial investigation / product round-ups) — no intent mismatch
+- Zero MY volume for all keywords — US data only; strategic value is authority + traffic from global/regional queries
+- gap-HP-6 (back pain) flags overlap with gap-HP-3 (suggested, not written) — owner must decide: write as two posts (informational features guide + commercial product list) or merge into one
+- gap-BB-5 (long hours) is the highest-value/lowest-risk: KD 5, parent topic 4,000, existing Saga positioning matches perfectly
+- gap-BG-7 and gap-BG-8 form a natural companion pair with ergonomic-chair-size-guide as the inbound link source for both
+- User confirmed tall people post should include "big and tall" angle (height + weight), matching Forbes/Sihoo SERP approach
+- Ahrefs API at 393/25,000 units — enrichment done manually from CSV data; units reset 2026-04-25
+
+**Decisions:**
+- Gaps added with status: "suggested" — require owner approval in visual map before writing begins
+- "Big AND tall" framing confirmed for gap-BG-8 (not height-only)
+- neck pain not added as standalone post — parent topic only 200 vol; can be a section inside gap-HP-6
+
+**Pending / next actions:**
+- Approve/reject the 4 new gaps in visual map Pipeline tab
+- Resolve gap-HP-3 vs gap-HP-6 relationship before writing either (merge or two posts?)
+- Previously pending: approve/reject HP-3, HP-5, GM-2, B2B-1
+
+---
+
 ## 2026-04-22 — Obsidian Vault Sync infrastructure
 
 **Actions:**
