@@ -327,18 +327,6 @@ def main():
     print("DONE — saved to merryfair_content_map.json")
     print(f"{'=' * 60}")
 
-    # Push to Supabase immediately so crawl results are visible everywhere
-    import subprocess
-    print("\n[sync] Pushing to Supabase...")
-    result = subprocess.run(
-        ["python3", "push_to_supabase.py"],
-        capture_output=True, text=True
-    )
-    if result.returncode == 0:
-        print("[sync] Supabase push complete.")
-    else:
-        print(f"[sync] WARNING: Supabase push failed:\n{result.stderr}")
-    print()
     print("NEXT: Ask Claude Code to generate content summaries:")
     print()
     print('  "Read merryfair_content_map.json. For each post in')
