@@ -4,6 +4,46 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-04 — /monthly-update (April 2026 data) + sync architecture fix
+
+**Data sources used:** GSC Pages + Queries (April 2026), Ahrefs Top Pages + Organic Keywords (April 2026), GA4 Pages & Screens (April 2026), Ahrefs MCP competitor analysis
+
+**Actions:**
+- Pulled from Supabase before starting
+- Parsed all April 2026 CSVs → updated gsc_clicks, gsc_impressions, gsc_ctr, gsc_avg_position, ahrefs_traffic, ahrefs_keywords, ahrefs_referring_domains, top_keyword, top_kw_volume, top_kw_position, ga4_organic_views for all 39 posts
+- Re-ran `crawl_and_summarize.py` — internal link data refreshed
+- Hero tier recalculation run — several tier changes (see below)
+- Competitor analysis via Ahrefs MCP: officepro.my, ergoworks.com.my, alterseat.com
+- 3 new gaps written to JSON; full sync to Supabase + GitHub
+- **Infrastructure fix:** `crawl.yml` updated — added Supabase pull step before crawl runs. Closes data-loss window where daily crawl could overwrite web-app gap status changes. Committed as 0b7cdb7.
+
+**Performance changes:**
+- GAINS: best-ergonomic-office-chairs-every-budget 51→133 clicks (+161%), ergonomic-chair-size-guide 17→48 (+182%), office-chair-tilt-mechanism-guide 32→53 (+66%), best-study-chairs-students-guide 5→21 (+320%)
+- DROPS: how-to-choose-the-best-ergonomic-chair-in-malaysia 87→41 (-53%, CTR issue — pos held at 5.8), 6-affordable-ergonomic-chairs-for-your-home-and-office 62→28 (-55%, CTR 0.27% — AI Overview likely)
+
+**Hero tier changes:**
+- DROPPED to hero: how-to-choose-the-best-ergonomic-chair-in-malaysia (crown→hero, imp fell to 9,904)
+- DROPPED out: do-posture-correctors-work (hero→null, imp=347), how-to-choose-the-best-ergonomic-chair-for-solo-movie-nights (hero→null, imp=1,569)
+- NEW heroes: correct-sitting-posture-guide (6,270 imp), best-ergonomic-chair-long-hours (3,864 imp), standing-desk-vs-ergonomic-chair (2,270 imp), how-to-know-when-its-time-for-an-ergonomic-chair-upgrade (2,093 imp), effects-of-poor-sitting-posture-and-how-ergonomics-can-help (3,733 imp)
+
+**New gaps suggested (3):**
+- gap-GM-3: Best Gaming Chairs Malaysia 2026 (gaming cluster, traffic) — "gaming chair" 4,900 MY vol
+- gap-HP-7: Neck and Shoulder Pain from Sitting (health-posture cluster, authority) — 4 posts explicitly exclude this topic
+- gap-BG-9: Do You Need a Footrest with Your Office Chair? (buying-guide cluster, traffic) — "footrest" 800 MY vol, ergoworks ranks pos 6
+
+**Decisions:**
+- Supabase confirmed as source of truth; GitHub Actions crawl now pulls from Supabase first to prevent overwrite
+- gap-GM-3 is distinct from rejected gap-GM-1: GM-1 was "best ergonomic chair for gaming" (ergonomic angle), GM-3 is "best gaming chairs Malaysia" (commercial buying guide for gaming chairs specifically)
+
+**Pending / next actions:**
+- Owner to approve/reject new gaps in visual map: gap-GM-3, gap-HP-7, gap-BG-9 (plus existing suggested: HP-3, HP-5, HP-6, GM-2, B2B-1, BG-7, BG-8)
+- CRITICAL: best-ergonomic-office-chairs-every-budget title/meta rewrite — 65,887 impressions, 0.20% CTR. Biggest ROI action available.
+- 6-affordable-ergonomic-chairs-for-your-home-and-office: 10,494 imp, 0.27% CTR, pos 3.2 — CTR issue despite strong position. Likely AI Overview. Test title/meta.
+- correct-sitting-posture-guide: 6,270 imp, 0% CTR, pos 11.8 — investigate AI Overview
+- Vault sync pending (Weekly SEO Log + Research Status)
+
+---
+
 ## 2026-04-23 — /new-post: best-ergonomic-chair-long-hours
 
 **Post processed:** "5 Best Ergonomic Chairs for Long Hours of Sitting (2026)"

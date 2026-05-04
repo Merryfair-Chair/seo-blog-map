@@ -72,8 +72,9 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 - Visual map gap detail panel: Blog Brief (copy button) + Links In/Out now populated from JSON data (2026-04-09)
 
 ### Monthly update cycle
-- **Last run:** April 7, 2026 (data: March 2026)
-- Re-crawl completed April 7, 2026 — internal link data refreshed
+- **Last run:** May 4, 2026 (data: April 2026)
+- Re-crawl completed May 4, 2026 — internal link data refreshed
+- Previous run: April 7, 2026 (data: March 2026)
 
 ---
 
@@ -106,7 +107,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - ergonomic-chair-size-guide (published 2026-03-23, fills gap-BG-1)
   - how-to-adjust-office-chair (published 2026-04-06, fills gap-BG-2)
   - how-to-clean-office-chair-malaysia (published 2026-04-09, fills gap-BG-6)
-- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09)
+- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09), gap-BG-7/8 suggested, gap-BG-9 suggested (2026-05-04)
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
@@ -131,7 +132,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - standing-desk-vs-ergonomic-chair (published 2026-03-30, fills gap-HP-2)
   - correct-sitting-posture-guide (published 2026-04-01, fills gap-HP-1)
   - lumbar-cushion-vs-built-in-support (published 2026-04-22, fills gap-HP-4)
-- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-4 published (2026-04-22), gap-HP-3 suggested, gap-HP-5 suggested
+- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-4 published (2026-04-22), gap-HP-3 suggested, gap-HP-5 suggested, gap-HP-6 approved, gap-HP-7 suggested (2026-05-04)
 - **Linking note:** lumbar-cushion-vs-built-in-support is ORPHAN — no cluster posts link to it yet. Add inbound links from: the-role-of-ergonomic-office-chairs-in-preventing-back-pain, do-posture-correctors-work, correct-sitting-posture-guide. The pillar (the-physical-benefits-of-ergonomics) should also link here.
 
 ### Cluster 4: Gaming & specialized (gaming)
@@ -142,7 +143,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia
   - how-merryfair-redefines-ergonomics-for-gamers-in-malaysia
   - how-to-choose-the-best-ergonomic-chair-for-solo-movie-nights
-- **Gap status:** gap-GM-1 rejected, gap-GM-2 suggested (2026-04-09)
+- **Gap status:** gap-GM-1 rejected, gap-GM-2 suggested (2026-04-09), gap-GM-3 suggested (2026-05-04)
 
 ### Cluster 5: Workspace design & productivity (workspace)
 - **Pillar:** ergonomic-home-office-setup-guide (published 2026-03-24, fills gap-WS-1)
@@ -208,7 +209,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 0.** gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, GM-2, B2B-1, HP-6, BG-7, BG-8 — awaiting owner approval.
+**Approved gaps awaiting writing: 1** (gap-HP-6). gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-7, BG-8, BG-9 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -217,6 +218,21 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-B2B-1 | Top Office Furniture Manufacturers in Malaysia [2026] | b2b-office-furniture | traffic (pillar) |
 | gap-B2B-2 | How to Source Office Furniture for Corporate Fit-Outs in Malaysia | b2b-office-furniture | traffic | **published** → office-furniture-supplier-malaysia-corporate-guide |
 | gap-B2B-3 | BIFMA Certified Office Furniture: Why It Matters for Malaysian Businesses | b2b-office-furniture | authority | **published** → bifma-certified-office-furniture-malaysia |
+
+### New gaps — suggested 2026-05-04 (status: suggested, awaiting approval)
+
+| Gap ID | Title | Cluster | Purpose | Vol (MY) |
+|--------|-------|---------|---------|----------|
+| gap-GM-3 | Best Gaming Chairs Malaysia 2026: Budget, Mid-Range and High-Performance Picks | gaming | traffic | 4,900 ("gaming chair") |
+| gap-HP-7 | Neck and Shoulder Pain from Sitting: What's Causing It and How Your Chair Setup Can Fix It | health-posture | authority | ~0 MY / authority gap |
+| gap-BG-9 | Do You Need a Footrest with Your Office Chair? (And How to Choose the Right Type) | buying-guide | traffic | 800 ("footrest") |
+
+Notes:
+- gap-GM-3 distinct from rejected gap-GM-1: GM-1 was ergonomic chair for gaming (overlapped BB-5); GM-3 is a gaming chairs buying guide (commercial intent, competitor product comparison)
+- gap-HP-7 triggered by 4 existing posts that explicitly exclude neck/cervical pain from coverage
+- gap-BG-9 triggered by ergoworks.com.my ranking pos 6 for "footrest" (800 MY vol) with no Merryfair content covering this
+
+---
 
 ### New gaps — suggested 2026-04-23 (status: suggested, awaiting approval)
 
@@ -250,12 +266,14 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 ## Key data points
 
 - **Total published posts:** 39
-- **Last monthly update:** April 7, 2026 (data: March 2026)
-- **Top performing post (March 2026 GSC):** 6-affordable-ergonomic-chairs — 62 clicks, 24,382 impressions, pos 2.65
-- **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 461 estimated organic visits but only 51 GSC clicks at 0.09% CTR — CRITICAL
-- **Strongest competitive position:** gaming-chair-vs-office-chair — Ahrefs #4, 27 Ahrefs traffic, 1 referring domain
-- **Top GSC performers (March 2026):** how-to-choose-the-best-ergonomic-chair-in-malaysia (87 clicks), 6-affordable-ergonomic-chairs (62 clicks), best-ergonomic-office-chairs-every-budget (51 clicks)
-- **Posts in striking distance (pos 8–20):** office-chair-tilt-mechanism-guide (pos 9, "synchro tilt mechanism"), eco-friendly post (pos 8), why-everyones-switching-to-ergonomics-swivel-chairs (pos 9, "swivel office chair" 700/mo)
+- **Last monthly update:** May 4, 2026 (data: April 2026)
+- **Top performing post (April 2026 GSC):** best-ergonomic-office-chairs-every-budget — 133 clicks, 65,887 impressions, pos 5.6 (+161% MoM clicks). Still severe CTR problem (0.20%).
+- **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 1,093 estimated organic visits
+- **Strongest competitive position:** gaming-chair-vs-office-chair — hero tier, 3,169 impressions
+- **Top GSC performers (April 2026):** best-ergonomic-office-chairs-every-budget (133 clicks), how-to-choose-the-best-ergonomic-chair-in-malaysia (41 clicks), office-chair-tilt-mechanism-guide (53 clicks)
+- **Significant drops:** how-to-choose-the-best-ergonomic-chair-in-malaysia 87→41 (-53%), 6-affordable-ergonomic-chairs 62→28 (-55%) — both CTR issues (positions held), likely AI Overview
+- **Hero tiers (April 2026):** Crown: best-ergonomic-office-chairs-every-budget (65,887 imp), 6-affordable-ergonomic-chairs (10,494 imp). Heroes: ergonomic-chair-size-guide (9,603), how-to-choose-the-best-ergonomic-chair-in-malaysia (9,904 — dropped from crown), the-ultimate-guide (9,334), best-study-chairs-students-guide (6,413), correct-sitting-posture-guide (6,270 — NEW), office-chair-tilt-mechanism-guide (8,273), effects-of-poor-sitting-posture (3,733 — NEW), best-ergonomic-chair-long-hours (3,864 — NEW), gaming-chair-vs-office-chair (3,169), eco-friendly (3,141), upgrade-your-workspace (3,474), how-to-know-when-its-time (2,093 — NEW), standing-desk-vs-ergonomic-chair (2,270 — NEW)
+- **Posts in striking distance (pos 8–20, vol >50 MY):** best-ergonomic-office-chairs-every-budget has 5 keywords all pos 8–12 ("ergonomic chair" 3,900, "best ergonomic office chairs" 50,000, etc.) — title/meta is the lever
 - **Only 2 posts have referring domains** — gaming comparison (1) and ultimate guide (1)
 - **Sidebar "Read More" inflation:** 4 posts show 25 inbound links each — sitewide sidebar, exclude from contextual link analysis
 
@@ -274,7 +292,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 | GitHub | **Active** | github.com/Merryfair-Chair/seo-blog-map |
 | Vercel | **Active** | Visual map deployed and live |
 | Supabase | **Active** | JSON synced via push/pull scripts |
-| GitHub Actions | **Active** | `crawl.yml` — daily crawl at 10am MYT + Supabase push; WordPress webhook trigger |
+| GitHub Actions | **Active** | `crawl.yml` — daily crawl at 10am MYT + Supabase push; WordPress webhook trigger. **Fixed 2026-05-04:** now pulls from Supabase before crawl to prevent overwriting web-app changes. |
 
 ---
 
