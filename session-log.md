@@ -4,6 +4,50 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-05 — /new-post: footrest-office-chair-guide
+
+**Post processed:** "Footrest for Office Chair: Who Needs One and Which Type"
+**URL:** https://www.merryfair.com/latest_updates/blog/footrest-office-chair-guide/
+**Date published:** 2026-05-05
+
+**Actions:**
+- Pulled from Supabase (pre-merge)
+- Re-crawled all 41 blog posts via `crawl_and_summarize.py` (41st post discovered)
+- Resolved git merge conflict (local b20d0c9 vs remote daily crawl bbf2fd0) — took our version (more recent crawl 14:54 MYT vs 04:56), committed merge
+- Generated `content_summary` for new post
+- Assigned to cluster: `buying-guide` (11th post in cluster)
+- Initialised `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Marked gap `gap-BG-9` (Do You Need a Footrest with Your Office Chair?) → `published`
+- Full sync: Supabase updated + pushed to GitHub (commit 2dbdab0)
+
+**Content summary:** Diagnostic-first educational guide that frames footrests as a geometric correction for a specific chair-desk mismatch — not a comfort accessory. Core structure: 4-question diagnostic check (dangling feet, thigh-edge pressure, fixed desk, lower-leg fatigue), three footrest types (flat/tilted/rocker) matched to user need, feature criteria (adjustable height, grippy surface, 30cm width), setup via popliteal gap measurement, 3 common mistakes, built-in vs. separate comparison, FAQ section. No Merryfair products mentioned. No brand recommendations.
+
+**Internal linking:**
+- **Links OUT (6):** ergonomic-chair-size-guide, small-home-office-ideas, how-to-choose-office-chair-body-fit-test, the-ultimate-guide-to-ergonomic-chairs (PILLAR — good), ergonomic-home-office-setup-guide, best-ergonomic-office-chairs-every-budget — all valid, no broken links
+- **Post DOES link to cluster pillar** ✓
+- **Post is ORPHAN** — 0 inbound links
+
+**Missing links to add:**
+- Pillar (the-ultimate-guide-to-ergonomic-chairs) → new post: add link (pillar does not currently link to footrest guide)
+- `ergonomic-chair-size-guide` → new post (foot-dangling section directly leads here)
+- `how-to-adjust-office-chair` → new post (chair adjustment flow → footrest as secondary fix)
+- `ergonomic-home-office-setup-guide` → new post (accessories section)
+
+**Gap filled:** gap-BG-9 (Do You Need a Footrest with Your Office Chair?) → published
+
+**New gap-BG-9 status in JSON:** Now also confirmed gap-BG-7 was already approved in the visual map ("Best Ergonomic Chairs for Short and Petite People") — this is next in the writing queue.
+
+**Decisions:**
+- Cluster: buying-guide (diagnostic/buying guide for ergonomic accessories; links out to buying-guide pillar)
+- No new gaps revealed: post covers footrests comprehensively; what's explicitly not covered (brand comparisons, standing desk footrests, DOSH regulations) doesn't create immediate gap demand
+
+**Pending / next actions:**
+- Write gap-BG-7 ("Best Ergonomic Chairs for Short and Petite People") — approved, next in queue
+- Add inbound links to footrest-office-chair-guide (4 links above)
+- Approve/reject remaining suggested gaps: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8
+
+---
+
 ## 2026-05-04 — /new-post: best-ergonomic-chair-back-pain
 
 **Post processed:** "Best Ergonomic Chair for Back Pain by Pain Pattern (2026)"

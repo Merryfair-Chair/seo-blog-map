@@ -96,7 +96,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 ### Cluster 1: How to choose an ergonomic chair (buying-guide)
 - **Pillar:** the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (EXISTS)
 - **Pillar performance:** 137 GSC clicks, 36,901 impressions, position 17 for "ergonomic chair" (1,100 vol/mo), 1 referring domain
-- **Posts (10):**
+- **Posts (11):**
   - the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace (PILLAR)
   - how-to-choose-the-best-ergonomic-chair-in-malaysia (351 clicks — outperforms pillar)
   - how-to-choose-office-chair-body-fit-test
@@ -107,7 +107,9 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - ergonomic-chair-size-guide (published 2026-03-23, fills gap-BG-1)
   - how-to-adjust-office-chair (published 2026-04-06, fills gap-BG-2)
   - how-to-clean-office-chair-malaysia (published 2026-04-09, fills gap-BG-6)
-- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09), gap-BG-7/8 suggested, gap-BG-9 suggested (2026-05-04)
+  - footrest-office-chair-guide (published 2026-05-05, fills gap-BG-9)
+- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09), gap-BG-7 approved, gap-BG-8 suggested, gap-BG-9 published (2026-05-05)
+- **Linking note:** footrest-office-chair-guide is ORPHAN — no posts link to it. Links TO cluster pillar (good). Add inbound links from: ergonomic-chair-size-guide (foot-dangling angle), how-to-adjust-office-chair (chair adjustment flow leads to footrest), ergonomic-home-office-setup-guide (accessories section). Pillar does NOT link to new post — add.
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
@@ -211,8 +213,9 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-WS-1 | Complete guide to ergonomic home office setup | published | → ergonomic-home-office-setup-guide |
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
+| gap-BG-9 | Do You Need a Footrest with Your Office Chair? | published | → footrest-office-chair-guide |
 
-**Approved gaps awaiting writing: 0**. gap-HP-6 published 2026-05-04. gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-7, BG-8, BG-9 — awaiting owner approval.
+**Approved gaps awaiting writing: 1** (gap-BG-7 approved). gap-HP-6 published 2026-05-04. gap-BG-9 published 2026-05-05 → footrest-office-chair-guide. gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -228,12 +231,12 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 |--------|-------|---------|---------|----------|
 | gap-GM-3 | Best Gaming Chairs Malaysia 2026: Budget, Mid-Range and High-Performance Picks | gaming | traffic | 4,900 ("gaming chair") |
 | gap-HP-7 | Neck and Shoulder Pain from Sitting: What's Causing It and How Your Chair Setup Can Fix It | health-posture | authority | ~0 MY / authority gap |
-| gap-BG-9 | Do You Need a Footrest with Your Office Chair? (And How to Choose the Right Type) | buying-guide | traffic | 800 ("footrest") |
+| gap-BG-9 | Do You Need a Footrest with Your Office Chair? (And How to Choose the Right Type) | buying-guide | traffic | 800 ("footrest") | **published** → footrest-office-chair-guide |
 
 Notes:
 - gap-GM-3 distinct from rejected gap-GM-1: GM-1 was ergonomic chair for gaming (overlapped BB-5); GM-3 is a gaming chairs buying guide (commercial intent, competitor product comparison)
 - gap-HP-7 triggered by 4 existing posts that explicitly exclude neck/cervical pain from coverage
-- gap-BG-9 triggered by ergoworks.com.my ranking pos 6 for "footrest" (800 MY vol) with no Merryfair content covering this
+- gap-BG-9 published 2026-05-05 → footrest-office-chair-guide
 
 ---
 
@@ -268,7 +271,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 40
+- **Total published posts:** 41
 - **Last monthly update:** May 4, 2026 (data: April 2026)
 - **Top performing post (April 2026 GSC):** best-ergonomic-office-chairs-every-budget — 133 clicks, 65,887 impressions, pos 5.6 (+161% MoM clicks). Still severe CTR problem (0.20%).
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 1,093 estimated organic visits
@@ -334,8 +337,9 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-2. **Approve/reject the 3 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-5, GM-2) — HP-4, BB-5, and HP-6 now published
-3. **Approve/reject the remaining B2B gap** in the visual map Pipeline tab (B2B-1) — gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21
+2. **gap-BG-7 is approved** — "Best Ergonomic Chairs for Short and Petite People (2026 Guide)" is next in the writing queue. Open gap card → copy Blog Brief → write.
+3. **Approve/reject the remaining suggested gaps** in the visual map Pipeline tab: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8
+4. **Add inbound links to footrest-office-chair-guide** (ORPHAN): ergonomic-chair-size-guide, how-to-adjust-office-chair, ergonomic-home-office-setup-guide. Also add pillar → new post link.
 4. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
 
@@ -348,7 +352,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Decisions yet to be made
 
-- **8 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + BG-7, BG-8 (new 2026-04-23) + GM-3, HP-7, BG-9 (new 2026-05-04). BB-5 published 2026-04-23, HP-6 published 2026-05-04.
+- **7 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + BG-7 (approved), BG-8 (new 2026-04-23) + GM-3, HP-7 (new 2026-05-04). BB-5 published 2026-04-23, HP-6 published 2026-05-04. BG-9 published 2026-05-05 → footrest-office-chair-guide.
 - **HP-3 decision:** HP-6 (commercial product picks for back pain) is now published. HP-3 (informational features guide: what to look for and why order matters) remains suggested — it can stand alone as an informational complement to the published HP-6. Decide before writing.
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
