@@ -62,4 +62,10 @@ When a new blog post is published, do ALL of the following automatically without
    - Whether it filled an existing gap
    - Any new gaps revealed by the content summary (based on `explicitly_not_covered`)
 
+12. Update the Obsidian Vault — write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
+   - Find the current week's `### Week of [date]` heading (or create it at the top of the Log section)
+   - Add/append a `#### YYYY-MM-DD` subheading for today
+   - Write a bullet entry with: post title, URL slug, cluster, gap filled (if any), content angle (1 sentence), orphan status and any missing inbound links flagged
+   - Then read `Research Status.md` in the vault and update any Active entry related to this post or cluster
+
 The new post URL will be provided as: $ARGUMENTS

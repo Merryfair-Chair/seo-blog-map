@@ -72,6 +72,27 @@ Always read this file before any content or optimization task. When a newer vers
 ## Sidebar links to exclude from linking analysis
 The site has a "Read More" sidebar section that creates sitewide links to recent posts. These are NOT contextual editorial links. Any slug appearing as an outbound link from 20+ posts is a sidebar link — exclude from linking analysis.
 
+## Obsidian Vault Sync (mandatory)
+
+After every `/new-post`, `/optimize-post`, `/monthly-update`, and `/linking-audit` (if links actioned), Claude must write to the Obsidian vault as part of the command workflow — not as a separate step.
+
+### Cascade chain
+1. Write an entry to `Weekly SEO Log.md` at `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`
+   - Find the current week's `### Week of [date]` heading (or create one if missing)
+   - Add a `#### YYYY-MM-DD` subheading (or append to today's if it exists)
+   - Write a concise bullet entry describing what was done (post published, gap filled, optimization run, etc.)
+2. Read `Research Status.md` — find any Active entry that relates to the action
+3. If a related note exists, update it and its Research Status entry
+
+### What to write per event type
+- **`/new-post`:** Post title, URL slug, cluster, gap filled (if any), key content angle (1 sentence), internal linking status (orphan? missing links?)
+- **`/monthly-update`:** Key performance changes (gains/drops), new gaps suggested, any hero tier changes
+- **`/optimize-post`:** Post slug, what was changed, before/after for any key metrics if known
+- **`/linking-audit`:** Number of links added, any orphans resolved
+
+### Fallback (working in the vault)
+If the user says "update" or "sync" in the vault context, read `seo-blog-map/session-log.md` (top entry = most recent) and cascade vault updates from that.
+
 ## Infrastructure
 - GitHub: `github.com/Merryfair-Chair/seo-blog-map` (active)
 - Vercel: Visual map deployed and live (connected to GitHub repo)

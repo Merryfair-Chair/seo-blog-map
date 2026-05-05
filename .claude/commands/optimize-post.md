@@ -186,6 +186,14 @@ Append an entry to the TOP of `session-log.md`:
 - Whether AI Overview was detected
 - Quick wins ready to implement
 
+### Part 2b: Update the Obsidian Vault
+
+Write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
+- Find the current week's `### Week of [date]` heading (or create one at the top of the Log section)
+- Add/append a `#### YYYY-MM-DD` subheading for today
+- Write a bullet entry with: post slug, primary diagnosis (one sentence), count of high/medium/low items, AI Overview present or not, key quick wins identified (title tag, meta, specific sections)
+- Then read `Research Status.md` in the vault — if there is an Active entry related to this post or its cluster (e.g. Blog Optimization, How-to-choose Article Optimization), update it with what was found and what the next steps are
+
 ### Part 3: Print the full audit report in chat
 
 Print the complete audit as readable text — diagnosis, all items grouped by priority, quick wins with exact copy-paste text, rewrite suggestions, internal link opportunities, originality gaps, and estimated impact.

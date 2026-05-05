@@ -115,6 +115,12 @@ Perform the monthly content intelligence update. Do ALL of the following automat
     - Competitor gaps identified
     - Posts entering or leaving hero/crown status
 
+12b. **Update the Obsidian Vault** — write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
+    - Find the current week's `### Week of [date]` heading (or create one at the top of the Log section)
+    - Add/append a `#### YYYY-MM-DD` subheading for today
+    - Write a bullet entry with: data period covered, top performance changes (gains and drops with numbers), new gaps suggested (titles and clusters), any hero/crown tier changes
+    - Then read `Research Status.md` in the vault and update any Active entry that relates to the performance changes or new gaps (e.g. Blog Optimization, Office Furniture Keywords, Weekly SEO Log)
+
 13. **Print a full report:**
     - **Performance changes:** Posts with significant traffic gains or losses, with diagnosis (ranking issue vs CTR issue vs AI Overview)
     - **Competitor gaps:** Top keywords competitors rank for that Merryfair doesn't

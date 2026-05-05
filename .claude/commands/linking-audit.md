@@ -52,4 +52,10 @@ Run a full internal linking audit. Do ALL of the following automatically without
     - Orphan posts (list)
     - Actions completed vs flagged for owner
 
+12b. **Update the Obsidian Vault — only if links were actually added or fixed** (not for a read-only audit). Write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
+    - Find the current week's `### Week of [date]` heading (or create one at the top of the Log section)
+    - Add/append a `#### YYYY-MM-DD` subheading for today
+    - Write a bullet entry with: linking audit run, number of links added/fixed, any orphans resolved, remaining orphans still outstanding
+    - Then update the `Weekly SEO Log` entry in `Research Status.md` to reflect the audit
+
 13. Print the full report with all action items grouped by priority.
