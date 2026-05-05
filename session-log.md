@@ -4,6 +4,49 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-04 — /new-post: best-ergonomic-chair-back-pain
+
+**Post processed:** "Best Ergonomic Chair for Back Pain by Pain Pattern (2026)"
+**URL:** https://www.merryfair.com/latest_updates/blog/best-ergonomic-chair-back-pain/
+**Date published:** 2026-05-04
+
+**Actions:**
+- Pulled from Supabase (pre-merge)
+- Re-crawled all 40 blog posts via `crawl_and_summarize.py` (40th post discovered)
+- Resolved git rebase conflict (auto-sync commit c7a4cba vs HEAD 1106319) — took incoming commit's post data, then applied updates on top
+- Generated `content_summary` for new post
+- Assigned to cluster: `health-posture` (8th post in cluster)
+- Initialised `hero_tier: null`, `triage_status: "none"`, `optimization: null`
+- Marked gap `gap-HP-6` (Best Ergonomic Chairs for Back Pain) → `published`
+- Full sync: Supabase updated + pushed to GitHub (commit 78b6fa3)
+
+**Content summary:** Manufacturer-authority buying guide using the "Pain-First Fit Method" — a four-step diagnostic framework (Pinpoint, Pressure-Test, Pair, Prove) that maps specific pain patterns to chair feature failures and engineering fixes. Five Merryfair chairs matched to pain patterns: Wau (chronic lower back), Reya (disc/sciatic), Zenit (mid-back/shoulder), Ronin (tall sitters), Anggun (budget). Backed by PLOS One 2015 lordosis study and UC Berkeley HFEP micromotion research. Includes chair setup protocol, FAQ section, and explicit disclaimer to seek medical advice for disc/sciatic conditions.
+
+**Internal linking:**
+- **Links OUT (6):** the-role-of-ergonomic-office-chairs-in-preventing-back-pain, what-is-lumbar-support, lumbar-cushion-vs-built-in-support, office-chair-tilt-mechanism-guide, best-ergonomic-chair-long-hours, correct-sitting-posture-guide — all valid, no broken links
+- **Post does NOT link to its cluster pillar** (the-physical-benefits-of-ergonomics-why-it-matters-for-your-health) — FLAG
+- **Post is ORPHAN** — 0 inbound links
+
+**Missing links to add:**
+- New post → pillar: `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` should be added as outbound from new post
+- Pillar → new post: `the-physical-benefits-of-ergonomics-why-it-matters-for-your-health` should link to `best-ergonomic-chair-back-pain` (back pain section)
+- `the-role-of-ergonomic-office-chairs-in-preventing-back-pain` → new post (natural next step: prevention to product picks)
+- `lumbar-cushion-vs-built-in-support` → new post (built-in support conclusion section)
+
+**Gap filled:** gap-HP-6 (Best Ergonomic Chairs for Back Pain) → published
+
+**Decisions:**
+- Cluster assignment: health-posture (content is a health/back-pain product guide, fills HP-6 which is in that cluster)
+- gap-HP-3 (informational: feature criteria for back pain) remains suggested — can stand as a separate informational complement now that HP-6 is published as the commercial counterpart
+
+**Pending / next actions:**
+- Add inbound links to resolve orphan status (3 links above)
+- Add outbound link from new post to cluster pillar
+- Approve/reject remaining suggested gaps: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-7, BG-8, BG-9
+- No approved gaps in the pipeline — owner needs to approve at least one to continue content production
+
+---
+
 ## 2026-05-04 — /monthly-update (April 2026 data) + sync architecture fix
 
 **Data sources used:** GSC Pages + Queries (April 2026), Ahrefs Top Pages + Organic Keywords (April 2026), GA4 Pages & Screens (April 2026), Ahrefs MCP competitor analysis

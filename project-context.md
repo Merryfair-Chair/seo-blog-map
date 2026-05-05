@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 39 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 40 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -124,7 +124,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 
 ### Cluster 3: Health & posture (health-posture)
 - **Pillar:** the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (EXISTS)
-- **Posts (6):**
+- **Posts (8):**
   - the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (PILLAR)
   - the-role-of-ergonomic-office-chairs-in-preventing-back-pain
   - effects-of-poor-sitting-posture-and-how-ergonomics-can-help
@@ -132,8 +132,10 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - standing-desk-vs-ergonomic-chair (published 2026-03-30, fills gap-HP-2)
   - correct-sitting-posture-guide (published 2026-04-01, fills gap-HP-1)
   - lumbar-cushion-vs-built-in-support (published 2026-04-22, fills gap-HP-4)
-- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-4 published (2026-04-22), gap-HP-3 suggested, gap-HP-5 suggested, gap-HP-6 approved, gap-HP-7 suggested (2026-05-04)
+  - best-ergonomic-chair-back-pain (published 2026-05-04, fills gap-HP-6)
+- **Gap status:** gap-HP-1 published, gap-HP-2 published, gap-HP-4 published (2026-04-22), gap-HP-6 published (2026-05-04), gap-HP-3 suggested, gap-HP-5 suggested, gap-HP-7 suggested (2026-05-04)
 - **Linking note:** lumbar-cushion-vs-built-in-support is ORPHAN — no cluster posts link to it yet. Add inbound links from: the-role-of-ergonomic-office-chairs-in-preventing-back-pain, do-posture-correctors-work, correct-sitting-posture-guide. The pillar (the-physical-benefits-of-ergonomics) should also link here.
+- **Linking note:** best-ergonomic-chair-back-pain is ORPHAN — no posts link to it yet. Add inbound links from: the-role-of-ergonomic-office-chairs-in-preventing-back-pain (natural handoff from prevention to product picks), lumbar-cushion-vs-built-in-support (built-in support conclusion section), the-physical-benefits-of-ergonomics-why-it-matters-for-your-health (pillar — back pain section). Also does NOT link to its cluster pillar — add link to the-physical-benefits-of-ergonomics-why-it-matters-for-your-health.
 
 ### Cluster 4: Gaming & specialized (gaming)
 - **Pillar:** gaming-chair-vs-office-chair-which-one-should-you-really-buy (EXISTS)
@@ -204,12 +206,13 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-HP-1 | How to sit properly in an office chair | published | → correct-sitting-posture-guide |
 | gap-HP-2 | Ergonomic chair vs standing desk | published | → standing-desk-vs-ergonomic-chair |
 | gap-HP-4 | Built-in lumbar support vs lumbar cushion: which actually fixes your back | published | → lumbar-cushion-vs-built-in-support |
+| gap-HP-6 | Best Ergonomic Chairs for Back Pain (2026 Guide) | published | → best-ergonomic-chair-back-pain |
 | gap-GM-1 | Best ergonomic chair for long gaming hours | rejected | Reframed; ultimately rejected |
 | gap-WS-1 | Complete guide to ergonomic home office setup | published | → ergonomic-home-office-setup-guide |
 | gap-WS-2 | Ergonomic office setup for small spaces | published | → small-home-office-ideas |
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 
-**Approved gaps awaiting writing: 1** (gap-HP-6). gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-7, BG-8, BG-9 — awaiting owner approval.
+**Approved gaps awaiting writing: 0**. gap-HP-6 published 2026-05-04. gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-7, BG-8, BG-9 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -239,13 +242,13 @@ Notes:
 | Gap ID | Title | Cluster | KD | Parent Topic Vol (US) | Traffic Potential | Purpose |
 |--------|-------|---------|----|-----------------------|-------------------|---------|
 | gap-BB-5 | Best Ergonomic Chairs for Long Hours of Sitting (Malaysia 2026) | best-chairs-budget | 5 | 4,000 | 5,700 | traffic | **published** → best-ergonomic-chair-long-hours |
-| gap-HP-6 | Best Ergonomic Chairs for Back Pain (Malaysia 2026) | health-posture | 19 | 5,700 | 8,000 | traffic |
+| gap-HP-6 | Best Ergonomic Chairs for Back Pain (Malaysia 2026) | health-posture | 19 | 5,700 | 8,000 | traffic | **published** → best-ergonomic-chair-back-pain |
 | gap-BG-7 | Best Ergonomic Chairs for Short and Petite People (Malaysia 2026) | buying-guide | 0 | 400 | 800 | traffic |
 | gap-BG-8 | Best Ergonomic Chairs for Tall and Big People (Malaysia 2026) | buying-guide | 0 | 400 | 900 | traffic |
 
 Notes:
 - Zero MY search volume for all 4 — US data only from Ahrefs CSVs; strategic value is global/regional traffic + topical authority
-- gap-HP-6 (back pain) conflicts with gap-HP-3 (suggested): HP-3 is informational (feature criteria), HP-6 is commercial (product picks). Decision required: write as two posts or merge.
+- gap-HP-6 now published (2026-05-04) as best-ergonomic-chair-back-pain. gap-HP-3 (informational: feature criteria for back pain) remains suggested — can stand alone as complement to the published HP-6.
 - gap-BG-7 and gap-BG-8 are companion posts; both link naturally from ergonomic-chair-size-guide
 - gap-BG-8 uses "big AND tall" angle (height + weight) — SERP validated (Forbes, Sihoo both use this framing)
 
@@ -265,7 +268,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 39
+- **Total published posts:** 40
 - **Last monthly update:** May 4, 2026 (data: April 2026)
 - **Top performing post (April 2026 GSC):** best-ergonomic-office-chairs-every-budget — 133 clicks, 65,887 impressions, pos 5.6 (+161% MoM clicks). Still severe CTR problem (0.20%).
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 1,093 estimated organic visits
@@ -331,7 +334,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-2. **Approve/reject the 3 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-5, GM-2) — HP-4 and BB-5 now published
+2. **Approve/reject the 3 existing suggested gaps** in the visual map Pipeline tab (HP-3, HP-5, GM-2) — HP-4, BB-5, and HP-6 now published
 3. **Approve/reject the remaining B2B gap** in the visual map Pipeline tab (B2B-1) — gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21
 4. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
@@ -345,7 +348,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Decisions yet to be made
 
-- **8 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + HP-6, BG-7, BG-8 (new 2026-04-23). BB-5 published 2026-04-23.
-- **HP-3 vs HP-6 decision:** HP-3 (informational feature guide for back pain) + HP-6 (commercial product picks for back pain) — write as two complementary posts or merge into one? Decide before writing either.
+- **8 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + BG-7, BG-8 (new 2026-04-23) + GM-3, HP-7, BG-9 (new 2026-05-04). BB-5 published 2026-04-23, HP-6 published 2026-05-04.
+- **HP-3 decision:** HP-6 (commercial product picks for back pain) is now published. HP-3 (informational features guide: what to look for and why order matters) remains suggested — it can stand alone as an informational complement to the published HP-6. Decide before writing.
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
