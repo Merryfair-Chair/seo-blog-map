@@ -65,7 +65,8 @@ Always read this file before any content or optimization task. When a newer vers
 ## Available slash commands
 - `/new-post [url]` — Process a newly published blog post (crawl, summarize, assign cluster, check links)
 - `/monthly-update` — Monthly data refresh with fresh CSV exports (merge data, find gaps, report)
-- `/linking-audit` — Full internal linking health check
+- `/linking-audit` — Full internal linking health check; populates the link queue in the visual map
+- `/sync-links` — Lightweight post-WordPress-session sync: re-crawls link data only, verifies done items, resets any not found. No AI calls. Run after manually adding internal links in WordPress.
 - `/optimize-post [slug]` — Full audit of an existing post against the master content standard
 - `/suggest-posts [n] [cluster] [purpose]` — Suggest new blog posts using content-level gap methodology
 

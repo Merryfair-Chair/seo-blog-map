@@ -6,6 +6,7 @@ import GapsView from './components/GapsView'
 import TriageView from './components/TriageView'
 import OptimizeView from './components/OptimizeView'
 import PipelineView from './components/PipelineView'
+import LinkQueueView from './components/LinkQueueView'
 import AddIdeaModal from './components/AddIdeaModal'
 import DetailPanel from './components/DetailPanel'
 
@@ -104,6 +105,7 @@ export default function App() {
         meta={data.meta}
         clusters={data.clusters}
         postDetails={data.post_details}
+        linkQueue={data.link_queue || []}
         lastFetched={lastFetched}
         onRefresh={() => fetchData(true)}
         onAddIdea={() => setShowAddIdea(true)}
@@ -159,6 +161,22 @@ export default function App() {
               postDetails={data.post_details}
               selected={selected}
               onSelect={setSelected}
+            />
+          )}
+          {view === 'links' && (
+            <LinkQueueView
+              linkQueue={data.link_queue || []}
+              postDetails={data.post_details}
+              clusters={data.clusters}
+              onQueueUpdate={(updatedItem) => {
+                setData(prev => ({
+                  ...prev,
+                  link_queue: (prev.link_queue || []).map(i =>
+                    i.id === updatedItem.id ? updatedItem : i
+                  ),
+                }))
+                setDataVersion(v => v + 1)
+              }}
             />
           )}
         </div>

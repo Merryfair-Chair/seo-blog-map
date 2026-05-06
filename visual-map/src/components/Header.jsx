@@ -18,8 +18,13 @@ const COMMANDS = [
   },
   {
     cmd: '/linking-audit',
-    desc: 'Full internal link health check. Finds missing contextual links between cluster posts and pillars, flags orphans and islands.',
+    desc: 'Full internal link health check. Finds missing contextual links between cluster posts and pillars, flags orphans and islands. Populates the Links queue.',
     example: '/linking-audit',
+  },
+  {
+    cmd: '/sync-links',
+    desc: 'Lightweight post-session sync. Run this after a WordPress linking session. Re-crawls live pages (link data only, no AI), verifies items you marked done, resets any that weren\'t actually saved.',
+    example: '/sync-links',
   },
 ]
 
@@ -64,14 +69,15 @@ function CommandsPanel({ onClose }) {
   )
 }
 
-export default function Header({ view, setView, meta, clusters, postDetails, lastFetched, onRefresh, onAddIdea }) {
+export default function Header({ view, setView, meta, clusters, postDetails, linkQueue, lastFetched, onRefresh, onAddIdea }) {
   const [showCommands, setShowCommands] = useState(false)
 
-  const totalPosts   = Object.keys(postDetails).length
-  const heroCount    = Object.values(postDetails).filter(p => p.hero_tier === 'crown' || p.hero_tier === 'hero').length
-  const allGaps      = clusters.flatMap(c => c.gaps || [])
-  const pipelineGaps = allGaps.filter(g => g.status === 'approved' || g.status === 'suggested' || g.status === 'in_progress').length
-  const pendingFixes = Object.values(postDetails).filter(p => p.optimization?.items?.some(i => !i.done)).length
+  const totalPosts      = Object.keys(postDetails).length
+  const heroCount       = Object.values(postDetails).filter(p => p.hero_tier === 'crown' || p.hero_tier === 'hero').length
+  const allGaps         = clusters.flatMap(c => c.gaps || [])
+  const pipelineGaps    = allGaps.filter(g => g.status === 'approved' || g.status === 'suggested' || g.status === 'in_progress').length
+  const pendingFixes    = Object.values(postDetails).filter(p => p.optimization?.items?.some(i => !i.done)).length
+  const pendingLinks    = (linkQueue || []).filter(i => i.status === 'pending').length
 
   const tabs = [
     { id: 'graph',    label: 'Graph' },
@@ -80,6 +86,7 @@ export default function Header({ view, setView, meta, clusters, postDetails, las
     { id: 'gaps',     label: 'Gaps' },
     { id: 'pipeline', label: 'Pipeline' },
     { id: 'optimize', label: pendingFixes > 0 ? `Optimize (${pendingFixes})` : 'Optimize', warn: pendingFixes > 0 },
+    { id: 'links',    label: pendingLinks > 0 ? `Links (${pendingLinks})` : 'Links', warn: pendingLinks > 0 },
   ]
 
   const ago = lastFetched ? (() => {

@@ -40,7 +40,27 @@ Run a full internal linking audit. Do ALL of the following automatically without
 
    For each action: "Add a link FROM [post A] TO [post B] with anchor text [suggestion] because [reason]."
 
-10. Save updated link data to `merryfair_content_map.json` if any corrections were made during the audit.
+9b. **Populate the link queue.** For every action identified in step 9 (broken links, missing pillar connections, orphan fixes, cross-cluster links — everything except "over-linked" warnings which require no new link):
+
+   - Generate a deterministic ID: `link-{from_slug}-to-{to_slug}` (truncate each slug to 40 chars if needed to keep IDs readable)
+   - Check `link_queue` in the current JSON — if an item with that ID already exists (any status), skip it entirely. Never duplicate.
+   - For new items only, add to `link_queue`:
+     ```json
+     {
+       "id": "link-{from_slug}-to-{to_slug}",
+       "from_slug": "...",
+       "to_slug": "...",
+       "anchor_text": "suggested anchor text",
+       "priority": "high" | "medium" | "low",
+       "reason": "one-sentence explanation",
+       "status": "pending",
+       "added_date": "YYYY-MM-DD",
+       "done_date": null
+     }
+     ```
+   - Initialise `link_queue` as an empty array if the key doesn't exist yet.
+
+10. Save updated link data and the updated `link_queue` to `merryfair_content_map.json`.
 
 11. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to
     visual-map/public/, push to Supabase immediately, and commit+push to GitHub.

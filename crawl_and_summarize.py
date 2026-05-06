@@ -21,6 +21,7 @@ Usage:
 
 import json
 import re
+import sys
 import time
 import os
 
@@ -189,7 +190,7 @@ def build_link_matrix(all_posts):
     return matrix
 
 
-def update_content_map(all_posts, link_matrix):
+def update_content_map(all_posts, link_matrix, links_only=False):
     if os.path.exists(MAP_FILE):
         with open(MAP_FILE, "r", encoding="utf-8") as f:
             content_map = json.load(f)
@@ -199,37 +200,35 @@ def update_content_map(all_posts, link_matrix):
 
     existing_details = content_map.get("post_details", {})
 
-    # MERGE crawl data into existing post_details — preserve enriched fields
-    # (cluster, page_type, triage_status, gsc_*, ahrefs_*, top_keyword, etc.)
-    CRAWL_FIELDS = {
-        "title", "url", "word_count", "extracted_text", "models_mentioned",
-        "internal_links_out", "internal_links_in",
-        "internal_links_out_count", "internal_links_in_count",
-        "product_links_count",
-    }
-
     for post in all_posts:
         slug = post["slug"]
         links = link_matrix.get(slug, {"links_out_to": [], "linked_from": []})
 
-        crawl_data = {
-            "title":                    post["title"],
-            "url":                      post["url"],
-            "word_count":               post["word_count"],
-            "extracted_text":           post["extracted_text"],
-            "models_mentioned":         post["models_mentioned"],
-            "internal_links_out":       links["links_out_to"],   # [{slug, anchor}]
-            "internal_links_in":        links["linked_from"],    # [{slug, anchor}]
-            "internal_links_out_count": len(links["links_out_to"]),
-            "internal_links_in_count":  len(links["linked_from"]),
-            "product_links_count":      post["product_links_count"],
-        }
+        if links_only:
+            # Only update link fields — preserve everything else untouched
+            crawl_data = {
+                "internal_links_out":       links["links_out_to"],
+                "internal_links_in":        links["linked_from"],
+                "internal_links_out_count": len(links["links_out_to"]),
+                "internal_links_in_count":  len(links["linked_from"]),
+            }
+        else:
+            crawl_data = {
+                "title":                    post["title"],
+                "url":                      post["url"],
+                "word_count":               post["word_count"],
+                "extracted_text":           post["extracted_text"],
+                "models_mentioned":         post["models_mentioned"],
+                "internal_links_out":       links["links_out_to"],
+                "internal_links_in":        links["linked_from"],
+                "internal_links_out_count": len(links["links_out_to"]),
+                "internal_links_in_count":  len(links["linked_from"]),
+                "product_links_count":      post["product_links_count"],
+            }
 
         existing = existing_details.get(slug, {})
-        # Start from existing (preserves enriched fields), then overwrite crawl fields
         merged = {**existing, **crawl_data}
-        # Keep content_summary if it already exists
-        if "content_summary" not in merged:
+        if not links_only and "content_summary" not in merged:
             merged["content_summary"] = None
 
         existing_details[slug] = merged
@@ -262,8 +261,10 @@ def update_content_map(all_posts, link_matrix):
 
 
 def main():
+    links_only = "--links-only" in sys.argv
+
     print("=" * 60)
-    print("MERRYFAIR BLOG CONTENT CRAWL")
+    print("MERRYFAIR BLOG CONTENT CRAWL" + (" (links only)" if links_only else ""))
     print("No API key needed")
     print("=" * 60)
 
@@ -302,7 +303,7 @@ def main():
         print(f"  {slug[:55]:<55s} {out_c:>4d} {in_c:>4d}{marker}")
 
     print("\n[3/3] Updating content map...")
-    content_map = update_content_map(all_posts, link_matrix)
+    content_map = update_content_map(all_posts, link_matrix, links_only=links_only)
 
     health = content_map["linking_health"]
     print("\n" + "=" * 60)

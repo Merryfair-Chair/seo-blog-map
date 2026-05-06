@@ -64,6 +64,14 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 - After every `/new-post`, `/optimize-post`, `/monthly-update`, `/linking-audit` (if actioned): Claude automatically writes to `Weekly SEO Log.md` and cascades to relevant vault research notes
 - Vault fallback: typing "update" in vault context causes Claude to read `seo-blog-map/session-log.md` and apply vault updates from it
 
+### Link Queue system — DONE (2026-05-05)
+- `link_queue` array added to JSON schema (top-level, initialised on first `/linking-audit` run)
+- Deterministic item IDs (`link-{from_slug}-to-{to_slug}`) prevent duplicates across audit runs
+- Status flow: `pending` → `done` (user marks in visual map) → `verified` (confirmed by `/sync-links` crawl)
+- All writes go through Supabase API (same read-modify-write pattern as existing routes)
+- Visual map "Links" tab: items grouped by source post with live pending count badge in header
+- `/sync-links` command: re-crawls live pages (links only, no AI), reconciles queue, pushes to Supabase
+
 ### Bidirectional sync — DONE (2026-04-09)
 - PostToolUse hook in `.claude/settings.json`: auto-copies JSON to `visual-map/public/` on every Claude edit
 - GitHub Actions `sync-on-push.yml`: pushes to Supabase when `merryfair_content_map.json` changes on main
@@ -312,11 +320,14 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 | `seo-strategy-context.md` | SEO strategy, three-purpose framework, hero pages, gap rules | DONE |
 | `.claude/commands/new-post.md` | Slash command: process a newly published post | DONE |
 | `.claude/commands/monthly-update.md` | Slash command: monthly data refresh + gap analysis | DONE |
-| `.claude/commands/linking-audit.md` | Slash command: internal link health check | DONE |
+| `.claude/commands/linking-audit.md` | Slash command: internal link health check; populates link_queue | DONE |
+| `.claude/commands/sync-links.md` | Slash command: lightweight post-WordPress-session link sync (no AI) | DONE (2026-05-05) |
 | `.claude/commands/optimize-post.md` | Slash command: full audit of existing post vs master standard | DONE |
 | `.claude/commands/suggest-posts.md` | Slash command: suggest new posts with content-level methodology | DONE (2026-04-09) |
 | `merryfair_content_map.json` | Source of truth — clusters, posts, gaps, summaries, links, performance | DONE |
 | `visual-map/public/merryfair_content_map.json` | Copy of above for the Vercel visual map | DONE |
+| `visual-map/src/components/LinkQueueView.jsx` | Link Queue tab in visual map — queue grouped by source post, mark done via API | DONE (2026-05-05) |
+| `api/link-queue-item.js` | PATCH endpoint to toggle link queue item status (pending/done/verified) | DONE (2026-05-05) |
 | `crawl_and_summarize.py` | Crawls all blog posts, extracts internal links and body text | DONE |
 | `push_to_supabase.py` | Pushes JSON to Supabase. Loads auth from `.env` | DONE |
 | `pull_from_supabase.py` | Pulls JSON from Supabase (run at start of monthly-update) | DONE |

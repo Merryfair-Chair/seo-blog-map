@@ -4,6 +4,29 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-05 — Infrastructure: Link Queue system built
+
+**What was built:**
+- `api/link-queue-item.js` — PATCH endpoint to toggle queue item status (pending → done → verified). Same read-from-Supabase / mutate / write-back pattern as all existing API routes.
+- `crawl_and_summarize.py --links-only` flag — re-crawls all pages but only updates link fields in JSON; skips `extracted_text` and `content_summary`. Used by `/sync-links`.
+- `.claude/commands/sync-links.md` — new lightweight slash command for post-WordPress-session reconciliation. Pulls from Supabase, runs `--links-only` crawl, verifies/resets queue items, pushes back. No AI analysis, no token waste.
+- `/linking-audit` updated (step 9b) — now populates `link_queue` array in JSON with deterministic IDs and deduplication when it runs.
+- `visual-map/src/components/LinkQueueView.jsx` — new "Links" tab in the visual map. Items grouped by source post so edits are batched per WordPress visit. Filter by pending/done/verified. Checkbox marks done via API immediately.
+- `App.jsx` / `Header.jsx` updated — Links tab added with live pending count badge; `/sync-links` added to Commands panel.
+- `CLAUDE.md` updated — `/sync-links` added to available slash commands.
+
+**Decisions:**
+- Supabase remains source of truth — all queue writes go through the same read-modify-write API pattern.
+- `link_queue` lives at top level of the JSON blob. Item ID is deterministic: `link-{from_slug}-to-{to_slug}`. Dedup prevents duplicates on repeated `/linking-audit` runs.
+- Status flow: `pending` → `done` (user marks in UI) → `verified` (confirmed by `/sync-links` crawl). Reset to `pending` if marked done but not found in crawl.
+- `/sync-links` is the post-session command; `/linking-audit` is the periodic deep analysis. Neither replaces the other.
+
+**Pending:**
+- Run `/linking-audit` to populate the queue with current outstanding link actions.
+- The `link_queue` key does not yet exist in the JSON — it will be initialised the first time `/linking-audit` runs.
+
+---
+
 ## 2026-05-05 — /new-post: footrest-office-chair-guide
 
 **Post processed:** "Footrest for Office Chair: Who Needs One and Which Type"

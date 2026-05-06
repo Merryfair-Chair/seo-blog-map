@@ -1,0 +1,38 @@
+Sync internal link data after a manual linking session in WordPress. Run this after you've finished making internal link changes — NOT as a replacement for `/linking-audit`.
+
+Do ALL of the following automatically without asking:
+
+1. Run `python3 pull_from_supabase.py` to get the current state from Supabase (source of truth).
+
+2. Run `python3 crawl_and_summarize.py --links-only` to re-crawl all live pages and update `internal_links_out` / `internal_links_in` for every post. This does NOT touch `extracted_text` or `content_summary` — link data only.
+
+3. Read the updated `merryfair_content_map.json`.
+
+4. **Reconcile the link queue.** For every item in `link_queue`:
+
+   - **Status `done` or `pending`:** Check whether `post_details[from_slug].internal_links_out` now contains an entry with `slug === to_slug`.
+     - If YES → set status to `"verified"`, set `done_date` to today's date. Log as confirmed.
+     - If NO and status was `done` → reset status to `"pending"`, clear `done_date`. Log as a warning: "Marked done but not found in crawl — reset to pending."
+     - If NO and status was `pending` → leave as-is (still outstanding).
+
+   - **Status `verified`:** Skip — already confirmed, no action needed.
+
+5. Update `link_queue` in the JSON with all status changes from step 4.
+
+6. Update `linking_health` in the JSON (orphans, islands, most-linked) based on the fresh crawl data.
+
+7. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to `visual-map/public/`, push to Supabase, and commit+push to GitHub.
+
+8. Print a concise report:
+   - **Verified:** List of queue items now confirmed in live pages (from_slug → to_slug)
+   - **Reset to pending:** List of items marked done but not found in crawl (with a note to re-check WordPress)
+   - **Still pending:** Count of remaining outstanding link actions
+   - **New orphans:** Any posts that are now orphans that weren't before
+   - **Resolved orphans:** Any posts that were orphans and now have inbound links
+
+9. Append an entry to the TOP of `session-log.md`:
+   - Date
+   - Links verified (count + slugs)
+   - Links reset to pending (count + reason)
+   - Remaining pending count
+   - Orphan status changes
