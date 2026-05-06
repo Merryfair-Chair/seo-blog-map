@@ -4,6 +4,57 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-06 — Added duplicate link/anchor health checks to linking audit and app
+
+**What was done:**
+- Updated `/linking-audit` skill: new step 7b checks for two issue types within each post: (1) duplicate links — same destination slug linked more than once, (2) duplicate anchors — same anchor text used for different destinations. Issues stored as `link_health_issues[]` in the JSON.
+- Updated `/sync-links` skill: step 5b auto-resolves health issues after each re-crawl if the problem no longer exists in live link data.
+- Created `api/link-health-item.js`: PATCH endpoint to dismiss/re-open health issues from the app.
+- Updated `LinkQueueView.jsx`: added "Health Issues" mode (button toggle at top of Links view) showing issues grouped by post, with dismiss checkbox, type badge (Duplicate Link / Duplicate Anchor), and fix instructions.
+- Updated `Header.jsx` + `App.jsx`: Links tab badge now counts open health issues + pending queue items combined; data wired through from JSON.
+- Built and pushed to GitHub (Vercel will redeploy automatically).
+
+**Decisions made:**
+- Health issues stored separately from `link_queue` (they are edit/remove actions, not add-link actions).
+- `/sync-links` auto-resolves issues based on live crawl — user can also manually dismiss from the app.
+- Links tab badge sums pending queue + open health issues so the user sees the full "attention needed" count.
+
+**Pending / next actions:**
+- Next `/linking-audit` run will populate `link_health_issues` for the first time if any issues exist.
+
+---
+
+## 2026-05-06 — Linking audit run, link_queue populated for the first time
+
+**What was done:**
+- Ran `pull_from_supabase.py` — synced latest JSON
+- Ran `crawl_and_summarize.py` — fresh crawl of all 41 posts
+- Ran full `/linking-audit` analysis
+
+**Audit findings:**
+- Broken links: **1** — `be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia` has a broken outbound link to `on-to-the-year-of-the-dragon-5-tips-to-sit-like-a-leader` (post deleted/unpublished). Must be removed manually.
+- Sidebar slugs: **0** (none exceed 60% threshold)
+- Over-linked posts: **0** (all within 8-link limit)
+- Missing pillar→cluster links: 19
+- Missing cluster→pillar links: 9
+- Missing cross-cluster links: 24
+- Orphan posts (no inbound links): **9**
+  - `how-to-adjust-office-chair`, `footrest-office-chair-guide`, `how-to-clean-office-chair-malaysia`, `best-study-chairs-students-guide`, `standing-desk-vs-ergonomic-chair`, `best-ergonomic-chair-back-pain`, `best-office-furniture-supplier-malaysia`, `redefine-holiday-gifting-with-merryfair-ergonomic-chairs`, `office-chairs-to-sit-with-power-focus-and-intention`
+- Note: brand-seasonal and b2b-office-furniture posts (`redefine-holiday-gifting-*`, `office-chairs-to-sit-*`) are low-priority orphans as brand posts don't require pillar connection.
+
+**Link queue populated:**
+- 54 new items written to `link_queue` in JSON (all status: pending)
+- 30 HIGH priority (pillar↔cluster connections + orphan fixes)
+- 24 MEDIUM priority (cross-cluster links)
+- Synced to Supabase and GitHub (commit 9aefb48)
+
+**Pending / next actions:**
+- Fix broken link: remove/replace link in `be-a-true-gamer-with-ronin-*` pointing to deleted post
+- Work through the Links tab in visual map (grouped by source post) to batch WordPress edits
+- Run `/sync-links` after each WordPress editing session
+
+---
+
 ## 2026-05-05 — Infrastructure: Link Queue system built
 
 **What was built:**
