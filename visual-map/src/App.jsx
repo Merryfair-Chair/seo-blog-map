@@ -106,6 +106,7 @@ export default function App() {
         clusters={data.clusters}
         postDetails={data.post_details}
         linkQueue={data.link_queue || []}
+        linkHealthIssues={data.link_health_issues || []}
         lastFetched={lastFetched}
         onRefresh={() => fetchData(true)}
         onAddIdea={() => setShowAddIdea(true)}
@@ -166,12 +167,22 @@ export default function App() {
           {view === 'links' && (
             <LinkQueueView
               linkQueue={data.link_queue || []}
+              linkHealthIssues={data.link_health_issues || []}
               postDetails={data.post_details}
               clusters={data.clusters}
               onQueueUpdate={(updatedItem) => {
                 setData(prev => ({
                   ...prev,
                   link_queue: (prev.link_queue || []).map(i =>
+                    i.id === updatedItem.id ? updatedItem : i
+                  ),
+                }))
+                setDataVersion(v => v + 1)
+              }}
+              onHealthUpdate={(updatedItem) => {
+                setData(prev => ({
+                  ...prev,
+                  link_health_issues: (prev.link_health_issues || []).map(i =>
                     i.id === updatedItem.id ? updatedItem : i
                   ),
                 }))

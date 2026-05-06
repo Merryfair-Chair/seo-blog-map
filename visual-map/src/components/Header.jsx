@@ -69,7 +69,7 @@ function CommandsPanel({ onClose }) {
   )
 }
 
-export default function Header({ view, setView, meta, clusters, postDetails, linkQueue, lastFetched, onRefresh, onAddIdea }) {
+export default function Header({ view, setView, meta, clusters, postDetails, linkQueue, linkHealthIssues, lastFetched, onRefresh, onAddIdea }) {
   const [showCommands, setShowCommands] = useState(false)
 
   const totalPosts      = Object.keys(postDetails).length
@@ -78,6 +78,8 @@ export default function Header({ view, setView, meta, clusters, postDetails, lin
   const pipelineGaps    = allGaps.filter(g => g.status === 'approved' || g.status === 'suggested' || g.status === 'in_progress').length
   const pendingFixes    = Object.values(postDetails).filter(p => p.optimization?.items?.some(i => !i.done)).length
   const pendingLinks    = (linkQueue || []).filter(i => i.status === 'pending').length
+  const openHealthIssues = (linkHealthIssues || []).filter(i => i.status === 'open').length
+  const linksTotal      = pendingLinks + openHealthIssues
 
   const tabs = [
     { id: 'graph',    label: 'Graph' },
@@ -86,7 +88,7 @@ export default function Header({ view, setView, meta, clusters, postDetails, lin
     { id: 'gaps',     label: 'Gaps' },
     { id: 'pipeline', label: 'Pipeline' },
     { id: 'optimize', label: pendingFixes > 0 ? `Optimize (${pendingFixes})` : 'Optimize', warn: pendingFixes > 0 },
-    { id: 'links',    label: pendingLinks > 0 ? `Links (${pendingLinks})` : 'Links', warn: pendingLinks > 0 },
+    { id: 'links',    label: linksTotal > 0 ? `Links (${linksTotal})` : 'Links', warn: linksTotal > 0 },
   ]
 
   const ago = lastFetched ? (() => {

@@ -29,6 +29,50 @@ Run a full internal linking audit. Do ALL of the following automatically without
 7. **Check for over-linked posts.**
    Flag any post with more than 8 contextual outbound internal links. Too many outbound links dilute PageRank flow and reduce the value passed to each destination.
 
+7b. **Check for duplicate links and duplicate anchor texts within each post.**
+
+   Scan every post's `internal_links_out` array for two types of issues:
+
+   - **Duplicate link:** The same destination slug appears more than once in a single post's outbound links (even with different anchor texts). Linking to the same page twice from the same post dilutes link equity and confuses readers — only one link to any destination should exist per post.
+
+   - **Duplicate anchor:** The same anchor text (case-insensitive, trimmed) is used to link to two or more *different* destination slugs within the same post. This sends contradictory topical signals to search engines.
+
+   For each issue found, add to `link_health_issues` in the JSON using this structure:
+
+   For duplicate links:
+   ```json
+   {
+     "id": "dup-link-{from_slug_40chars}-to-{to_slug_40chars}",
+     "type": "duplicate_link",
+     "from_slug": "...",
+     "destination": "destination_slug",
+     "anchors": ["first anchor text", "second anchor text"],
+     "status": "open",
+     "added_date": "YYYY-MM-DD",
+     "dismissed_date": null
+   }
+   ```
+
+   For duplicate anchors:
+   ```json
+   {
+     "id": "dup-anchor-{from_slug_40chars}-{first-5-words-of-anchor-slugified}",
+     "type": "duplicate_anchor",
+     "from_slug": "...",
+     "anchor": "the exact anchor text",
+     "destinations": ["slug1", "slug2"],
+     "status": "open",
+     "added_date": "YYYY-MM-DD",
+     "dismissed_date": null
+   }
+   ```
+
+   Rules:
+   - Initialise `link_health_issues` as `[]` if the key doesn't exist in the JSON.
+   - Check by ID — if an issue with the same ID already exists (any status), skip it to avoid duplicates.
+   - Do NOT add these to `link_queue` — they are edit/removal actions, not add-link actions.
+   - Include a count in the final report under "Link Health Issues" and list each issue with the post title, issue type, and what to fix.
+
 8. **Check pillar pages for external inbound links.**
    For each pillar page, report the `ahrefs_referring_domains` count. Pillars with zero referring domains are relying entirely on internal link equity — flag these as backlink opportunities.
 
@@ -60,7 +104,7 @@ Run a full internal linking audit. Do ALL of the following automatically without
      ```
    - Initialise `link_queue` as an empty array if the key doesn't exist yet.
 
-10. Save updated link data and the updated `link_queue` to `merryfair_content_map.json`.
+10. Save updated link data, the updated `link_queue`, and the updated `link_health_issues` to `merryfair_content_map.json`.
 
 11. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to
     visual-map/public/, push to Supabase immediately, and commit+push to GitHub.
@@ -78,4 +122,4 @@ Run a full internal linking audit. Do ALL of the following automatically without
     - Write a bullet entry with: linking audit run, number of links added/fixed, any orphans resolved, remaining orphans still outstanding
     - Then update the `Weekly SEO Log` entry in `Research Status.md` to reflect the audit
 
-13. Print the full report with all action items grouped by priority.
+13. Print the full report with all action items grouped by priority, plus a "Link Health Issues" section listing any new duplicate link or duplicate anchor issues found (with the post, issue type, and what to fix — e.g. "Remove the second link to [slug] in [post]" or "Change anchor '[text]' in [post] — currently used for both [slug1] and [slug2]").

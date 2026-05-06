@@ -19,6 +19,12 @@ Do ALL of the following automatically without asking:
 
 5. Update `link_queue` in the JSON with all status changes from step 4.
 
+5b. **Re-check link health issues.** For every item in `link_health_issues` with status `"open"`:
+   - **`duplicate_link`:** Check `post_details[from_slug].internal_links_out` — count how many entries have `slug === issue.destination`. If the count is now ≤ 1, the duplicate is gone — set status to `"dismissed"` and `dismissed_date` to today. Log as "auto-resolved".
+   - **`duplicate_anchor`:** Check `post_details[from_slug].internal_links_out` — collect all unique destination slugs that use the same anchor text (case-insensitive). If they all resolve to one destination (or the anchor no longer exists), set status to `"dismissed"` and `dismissed_date` to today. Log as "auto-resolved".
+   - Update `link_health_issues` in the JSON with any auto-resolutions.
+   - Include auto-resolved health issues in the sync report.
+
 6. Update `linking_health` in the JSON (orphans, islands, most-linked) based on the fresh crawl data.
 
 7. Run `bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh` to copy the JSON to `visual-map/public/`, push to Supabase, and commit+push to GitHub.
