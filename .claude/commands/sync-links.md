@@ -42,3 +42,13 @@ Do ALL of the following automatically without asking:
    - Links reset to pending (count + reason)
    - Remaining pending count
    - Orphan status changes
+
+10. **Update the Obsidian Vault** — write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
+   - Find the current week's `### Week of [date]` heading (or create one if missing)
+   - Add/append a `#### YYYY-MM-DD` subheading for today
+   - Write a bullet entry with:
+     - Number of links verified (with specific `from_slug → to_slug` pairs — these are the confirmed live changes)
+     - Number reset to pending (slugs + reason — these are discrepancies to fix in WordPress)
+     - Remaining pending count
+     - Any orphan resolutions or new orphans
+   - Then read `Research Status.md` in the vault and update the `Weekly SEO Log` entry's **This Session**, **Key Findings**, and **Next Steps** fields to reflect the sync results.

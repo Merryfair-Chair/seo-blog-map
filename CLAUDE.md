@@ -75,7 +75,7 @@ The site has a "Read More" sidebar section that creates sitewide links to recent
 
 ## Obsidian Vault Sync (mandatory)
 
-After every `/new-post`, `/optimize-post`, `/monthly-update`, and `/linking-audit` (if links actioned), Claude must write to the Obsidian vault as part of the command workflow — not as a separate step.
+After every `/new-post`, `/optimize-post`, `/monthly-update`, `/linking-audit` (if links actioned), and `/sync-links`, Claude must write to the Obsidian vault as part of the command workflow — not as a separate step.
 
 ### Cascade chain
 1. Write an entry to `Weekly SEO Log.md` at `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`
@@ -90,6 +90,7 @@ After every `/new-post`, `/optimize-post`, `/monthly-update`, and `/linking-audi
 - **`/monthly-update`:** Key performance changes (gains/drops), new gaps suggested, any hero tier changes
 - **`/optimize-post`:** Post slug, what was changed, before/after for any key metrics if known
 - **`/linking-audit`:** Number of links added, any orphans resolved
+- **`/sync-links`:** Links verified (count + from→to pairs confirmed live), links reset to pending (count + reason), remaining pending count, any orphan changes
 
 ### Fallback (working in the vault)
 If the user says "update" or "sync" in the vault context, read `seo-blog-map/session-log.md` (top entry = most recent) and cascade vault updates from that.
