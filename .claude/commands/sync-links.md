@@ -17,6 +17,8 @@ Do ALL of the following automatically without asking:
 
    - **Status `verified`:** Skip — already confirmed, no action needed.
 
+   When writing status changes, preserve all other fields on the item (`action_type`, `existing_anchor`, `existing_anchor_context`, `insertion_suggestion`, `insertion_location`) — only update `status` and `done_date`.
+
 5. Update `link_queue` in the JSON with all status changes from step 4.
 
 5b. **Re-check link health issues.** For every item in `link_health_issues` with status `"open"`:

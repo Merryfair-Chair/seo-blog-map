@@ -12,10 +12,62 @@ const STATUS_STYLE = {
   verified: { bg: '#f0fdf4',  color: '#15803d', border: '#bbf7d0', label: 'Verified' },
 }
 
+const ACTION_STYLE = {
+  hyperlink_existing: { label: 'Hyperlink existing', bg: '#f0fdf4', color: '#15803d', border: '#bbf7d0', dot: '#16a34a' },
+  insert_new:         { label: 'Insert new text',    bg: '#fff7ed', color: '#c2410c', border: '#fed7aa', dot: '#ea580c' },
+}
+
+function ActionGuidance({ item }) {
+  if (!item.action_type) return null
+  const s = ACTION_STYLE[item.action_type]
+  if (!s) return null
+
+  return (
+    <div style={{
+      marginTop: 7, padding: '7px 9px', borderRadius: 6,
+      background: s.bg, border: `1px solid ${s.border}`,
+    }}>
+      <span style={{
+        fontSize: 9, fontWeight: 700, padding: '1px 6px', borderRadius: 3,
+        background: s.border, color: s.color, display: 'inline-block', marginBottom: 5,
+      }}>
+        {s.label.toUpperCase()}
+      </span>
+
+      {item.action_type === 'hyperlink_existing' && item.existing_anchor && (
+        <>
+          <div style={{ fontSize: 11, fontWeight: 600, color: s.color, marginBottom: 3 }}>
+            "{item.existing_anchor}"
+          </div>
+          {item.existing_anchor_context && (
+            <div style={{ fontSize: 10, color: '#166534', fontStyle: 'italic', lineHeight: 1.5 }}>
+              {item.existing_anchor_context}
+            </div>
+          )}
+        </>
+      )}
+
+      {item.action_type === 'insert_new' && (
+        <>
+          {item.insertion_location && (
+            <div style={{ fontSize: 10, color: '#9a3412', marginBottom: 3, lineHeight: 1.4 }}>
+              📍 {item.insertion_location}
+            </div>
+          )}
+          {item.insertion_suggestion && (
+            <div style={{ fontSize: 11, color: s.color, fontStyle: 'italic', lineHeight: 1.5 }}>
+              "{item.insertion_suggestion}"
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
+}
+
 function QueueItem({ item, postDetails, onToggle, toggling }) {
   const toPost = postDetails[item.to_slug]
   const pri = PRIORITY_STYLE[item.priority] || PRIORITY_STYLE.medium
-  const isPending = item.status === 'pending'
   const isDone = item.status === 'done'
   const isVerified = item.status === 'verified'
 
@@ -53,6 +105,7 @@ function QueueItem({ item, postDetails, onToggle, toggling }) {
         <div style={{ fontSize: 11, color: 'var(--text3)', lineHeight: 1.5 }}>
           {item.reason}
         </div>
+        <ActionGuidance item={item} />
       </div>
 
       <span style={{
