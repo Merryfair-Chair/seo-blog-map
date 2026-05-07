@@ -4,6 +4,83 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-07 — Linking audit and sync-links skills redesigned
+
+**What was done:**
+- Rewrote `/linking-audit` skill with relevance-gated logic and anchor-first workflow:
+  - Links are now only flagged if content_summary shows genuine topical overlap — cluster membership alone no longer justifies a link
+  - Per-post link density thresholds added by type (supporting: 3–8, pillar: 6–15, brand: 1–4)
+  - Anchor-first workflow: for each flagged link, searches extracted_text for an existing phrase to hyperlink before suggesting new text
+  - Link queue schema updated with: `action_type`, `existing_anchor`, `existing_anchor_context`, `insertion_suggestion`, `insertion_location`
+  - Switched from full crawl to `--links-only` (content already in JSON)
+- Updated `LinkQueueView.jsx`: new `ActionGuidance` component renders per-item in the visual map — green "Hyperlink existing" block (exact phrase + context sentence) or orange "Insert new text" block (location + suggested sentence)
+- Updated `sync-links.md`: preserves new schema fields when writing status changes
+- Added `/sync-links` to Obsidian Vault mandatory commands in CLAUDE.md and sync-links.md
+- Backfilled the missing sync-links vault entry from earlier today
+
+**Decisions made:**
+- Relevance gate is content_summary-level (reads subtopics_covered / explicitly_not_covered) — never infers from slugs or titles
+- Anchor-first: if no natural anchor exists in extracted_text AND relevance is marginal, link is dropped entirely — no forced insertions
+- Old queue items (45 pending) don't have new fields yet — will be enriched on next `/linking-audit` run
+
+**Pending / next actions:**
+- Run `/linking-audit` to regenerate queue with new relevance-gated, anchor-first logic — some of the 45 pending items may be pruned
+
+---
+
+## 2026-05-07 — /new-post: best-office-chair-short-people (buying-guide, fills gap-BG-7)
+
+**What was done:**
+- Ran `pull_from_supabase.py` — synced latest JSON from Supabase
+- Ran `crawl_and_summarize.py` — full crawl (42 posts), new post discovered with 2 outbound links, 0 inbound (orphan)
+- Generated `content_summary` for `best-office-chair-short-people`:
+  - Main topic: 5-chair product recommendation guide for users under 5'6", evaluated against proprietary 5th-Percentile Fit Standard (3 thresholds: seat height, seat depth, lumbar range)
+  - Products mentioned: Tune, Spinelly, Zenit, Aire, Ovo
+  - Angle: manufacturer-grade dimensional spec evaluation cutting through "petite-friendly" marketing claims
+  - Explicitly not covered: non-Merryfair brands, tall people, budget tiers, children's chairs
+- Assigned to `buying-guide` cluster (post 12)
+- Initialized `hero_tier: null`, `triage_status: none`, `optimization: null`
+- Marked **gap-BG-7** as `published` (2026-05-07)
+- Updated JSON, pushed to Supabase, committed and pushed to GitHub
+
+**Decisions made:**
+- Cluster assignment: buying-guide (not best-chairs-budget) — content is body-type selection methodology, not budget comparison
+- gap-BG-7 confirmed as filled — content matches the gap spec exactly (5th-Percentile Fit Standard, manufacturer-grade specs, Merryfair model recommendations for petite users)
+
+**Internal linking issues flagged:**
+- ORPHAN: `best-office-chair-short-people` has 0 inbound links
+- Missing outbound: post does NOT link to cluster pillar (`the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace`)
+- Missing inbound (per gap-BG-7 spec): `ergonomic-chair-size-guide`, `how-to-choose-office-chair-body-fit-test`, and the cluster pillar should all link here
+
+**Pending / next actions:**
+- Add outbound link from `best-office-chair-short-people` → cluster pillar in WordPress
+- Add inbound links from: ergonomic-chair-size-guide, how-to-choose-office-chair-body-fit-test, the-ultimate-guide
+- No approved gaps remain — approve next from suggested pipeline (BG-8, GM-3, HP-7, etc.)
+
+---
+
+## 2026-05-07 — /sync-links run: 8 links verified, 1 reset to pending
+
+**What was done:**
+- Ran `pull_from_supabase.py` — synced latest JSON from Supabase
+- Ran `crawl_and_summarize.py --links-only` — re-crawled all 41 live pages, refreshed `internal_links_out` / `internal_links_in`
+- Reconciled link queue (54 items total):
+  - **8 verified:** all 7 outbound links from `the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace` confirmed, plus `bifma-certified-office-furniture-malaysia → best-office-furniture-supplier-malaysia`
+  - **1 reset to pending:** `ergonomic-home-office-setup-guide → why-executive-comfort-is-the-new-productivity` (was marked done, not found in crawl — needs re-check in WordPress)
+  - **45 still pending**
+- No link_health_issues to process (none exist yet — requires `/linking-audit` to run first)
+- Updated `linking_health`: 3 orphans, 2 islands (unchanged from prior state)
+- Pushed updated JSON to Supabase and GitHub (resolved rebase conflict — remote had an ahead commit)
+
+**Decisions made:**
+- None — routine sync.
+
+**Pending / next actions:**
+- Re-add the link from `ergonomic-home-office-setup-guide` to `why-executive-comfort-is-the-new-productivity` in WordPress (was marked done but not found in crawl)
+- 45 pending queue items remain — next manual linking session should target these
+
+---
+
 ## 2026-05-06 — Added duplicate link/anchor health checks to linking audit and app
 
 **What was done:**

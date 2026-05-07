@@ -6,7 +6,7 @@
 
 ## Project owner
 
-Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 40 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
+Merryfair (merryfair.com) — Malaysian ergonomic office chair manufacturer, established 1974. Blog lives at `https://www.merryfair.com/latest_updates/blog/[slug]/`. 42 blog posts currently published. The blog serves both SEO acquisition and brand/EEAT authority purposes.
 
 ## Strategic foundation
 
@@ -64,6 +64,14 @@ All decisions follow the principles in `seo-strategy-context.md`. Key principles
 - After every `/new-post`, `/optimize-post`, `/monthly-update`, `/linking-audit` (if actioned): Claude automatically writes to `Weekly SEO Log.md` and cascades to relevant vault research notes
 - Vault fallback: typing "update" in vault context causes Claude to read `seo-blog-map/session-log.md` and apply vault updates from it
 
+### Linking audit upgrade — DONE (2026-05-07)
+- `/linking-audit` rewritten with relevance-gated logic: content_summary drives all link decisions, cluster membership alone no longer justifies a link
+- Anchor-first workflow: searches extracted_text for existing anchor phrase before suggesting new text; if marginal relevance + no natural anchor, link is dropped
+- Link density thresholds by post type added (supporting: 3–8, pillar: 6–15, brand: 1–4)
+- Link queue schema updated: `action_type`, `existing_anchor`, `existing_anchor_context`, `insertion_suggestion`, `insertion_location`
+- Visual map `LinkQueueView` updated: per-item action guidance block shows exact phrase to hyperlink or exact sentence to insert with location
+- `/sync-links` added to mandatory Obsidian Vault commands
+
 ### Link Queue system — DONE (2026-05-05)
 - `link_queue` array added to JSON schema (top-level, initialised on first `/linking-audit` run)
 - Deterministic item IDs (`link-{from_slug}-to-{to_slug}`) prevent duplicates across audit runs
@@ -116,8 +124,10 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
   - how-to-adjust-office-chair (published 2026-04-06, fills gap-BG-2)
   - how-to-clean-office-chair-malaysia (published 2026-04-09, fills gap-BG-6)
   - footrest-office-chair-guide (published 2026-05-05, fills gap-BG-9)
-- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09), gap-BG-7 approved, gap-BG-8 suggested, gap-BG-9 published (2026-05-05)
+  - best-office-chair-short-people (published 2026-05-07, fills gap-BG-7)
+- **Gap status:** gap-BG-1 published, gap-BG-2 published, gap-BG-3/4/5 deprioritized, gap-BG-6 published (2026-04-09), gap-BG-7 published (2026-05-07), gap-BG-8 suggested, gap-BG-9 published (2026-05-05)
 - **Linking note:** footrest-office-chair-guide is ORPHAN — no posts link to it. Links TO cluster pillar (good). Add inbound links from: ergonomic-chair-size-guide (foot-dangling angle), how-to-adjust-office-chair (chair adjustment flow leads to footrest), ergonomic-home-office-setup-guide (accessories section). Pillar does NOT link to new post — add.
+- **Linking note:** best-office-chair-short-people is ORPHAN — no posts link to it. Links to ergonomic-chair-size-guide and how-to-adjust-office-chair, but NOT to the cluster pillar. Add: (1) link out to the-ultimate-guide (from pillar-CTA section); (2) inbound from ergonomic-chair-size-guide (petite users handoff), how-to-choose-office-chair-body-fit-test (short users section), the-ultimate-guide (body type section).
 
 ### Cluster 2: Best chairs by budget (best-budget)
 - **Pillar:** best-ergonomic-office-chairs-every-budget (EXISTS)
@@ -223,7 +233,7 @@ No gaps currently have `status: "approved"`. 5 new gaps were added 2026-04-09 wi
 | gap-BG-6 | How to clean and maintain your ergonomic office chair | published | → how-to-clean-office-chair-malaysia |
 | gap-BG-9 | Do You Need a Footrest with Your Office Chair? | published | → footrest-office-chair-guide |
 
-**Approved gaps awaiting writing: 1** (gap-BG-7 approved). gap-HP-6 published 2026-05-04. gap-BG-9 published 2026-05-05 → footrest-office-chair-guide. gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8 — awaiting owner approval.
+**Approved gaps awaiting writing: 0.** gap-BG-7 published 2026-05-07 → best-office-chair-short-people. gap-HP-6 published 2026-05-04. gap-BG-9 published 2026-05-05 → footrest-office-chair-guide. gap-B2B-2 published 2026-04-14, gap-B2B-3 published 2026-04-15, gap-B2BO-1776223061321 published 2026-04-21, gap-HP-4 published 2026-04-22, gap-BB-5 published 2026-04-23. Remaining suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8 — awaiting owner approval.
 
 ### New gaps — suggested 2026-04-12 (status: suggested, awaiting approval)
 
@@ -254,7 +264,7 @@ Notes:
 |--------|-------|---------|----|-----------------------|-------------------|---------|
 | gap-BB-5 | Best Ergonomic Chairs for Long Hours of Sitting (Malaysia 2026) | best-chairs-budget | 5 | 4,000 | 5,700 | traffic | **published** → best-ergonomic-chair-long-hours |
 | gap-HP-6 | Best Ergonomic Chairs for Back Pain (Malaysia 2026) | health-posture | 19 | 5,700 | 8,000 | traffic | **published** → best-ergonomic-chair-back-pain |
-| gap-BG-7 | Best Ergonomic Chairs for Short and Petite People (Malaysia 2026) | buying-guide | 0 | 400 | 800 | traffic |
+| gap-BG-7 | Best Ergonomic Chairs for Short and Petite People (Malaysia 2026) | buying-guide | 0 | 400 | 800 | traffic | **published** → best-office-chair-short-people |
 | gap-BG-8 | Best Ergonomic Chairs for Tall and Big People (Malaysia 2026) | buying-guide | 0 | 400 | 900 | traffic |
 
 Notes:
@@ -279,7 +289,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Key data points
 
-- **Total published posts:** 41
+- **Total published posts:** 42
 - **Last monthly update:** May 4, 2026 (data: April 2026)
 - **Top performing post (April 2026 GSC):** best-ergonomic-office-chairs-every-budget — 133 clicks, 65,887 impressions, pos 5.6 (+161% MoM clicks). Still severe CTR problem (0.20%).
 - **Top Ahrefs traffic:** best-ergonomic-office-chairs-every-budget — 1,093 estimated organic visits
@@ -348,11 +358,10 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 1. **Rewrite title + meta for `best-ergonomic-office-chairs-every-budget`** — 38,400 impressions at pos 4.6 with 0 clicks. Single highest-ROI action in the entire project. Run `/optimize-post best-ergonomic-office-chairs-every-budget`.
 
 ### Content pipeline
-2. **gap-BG-7 is approved** — "Best Ergonomic Chairs for Short and Petite People (2026 Guide)" is next in the writing queue. Open gap card → copy Blog Brief → write.
-3. **Approve/reject the remaining suggested gaps** in the visual map Pipeline tab: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8
+2. **No approved gaps remaining.** Approve next from suggested: HP-3, HP-5, HP-7, GM-2, GM-3, B2B-1, BG-8 — in visual map Pipeline tab.
+3. **Add inbound links to best-office-chair-short-people** (ORPHAN): ergonomic-chair-size-guide, how-to-choose-office-chair-body-fit-test, the-ultimate-guide (cluster pillar). Also add outbound from this post to the-ultimate-guide (missing).
 4. **Add inbound links to footrest-office-chair-guide** (ORPHAN): ergonomic-chair-size-guide, how-to-adjust-office-chair, ergonomic-home-office-setup-guide. Also add pillar → new post link.
-4. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
-4. Once approved: open gap card → copy Blog Brief → paste into Claude Chat master prompt → write
+5. **Add inbound links to best-office-furniture-supplier-malaysia** — currently an orphan. Add from office-furniture-supplier-malaysia-corporate-guide and bifma-certified-office-furniture-malaysia.
 
 ### Maintenance
 5. Run `/linking-audit` to verify the 27 links from the April 7 audit have been added
@@ -363,7 +372,7 @@ Each gap entry in the JSON contains `blogBrief` (copy-paste ready master prompt)
 
 ## Decisions yet to be made
 
-- **7 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + BG-7 (approved), BG-8 (new 2026-04-23) + GM-3, HP-7 (new 2026-05-04). BB-5 published 2026-04-23, HP-6 published 2026-05-04. BG-9 published 2026-05-05 → footrest-office-chair-guide.
+- **7 total gap candidates awaiting approval:** HP-3, HP-5, GM-2, B2B-1 (existing) + BG-8 (new 2026-04-23) + GM-3, HP-7 (new 2026-05-04). BB-5 published 2026-04-23, HP-6 published 2026-05-04. BG-9 published 2026-05-05 → footrest-office-chair-guide. BG-7 published 2026-05-07 → best-office-chair-short-people.
 - **HP-3 decision:** HP-6 (commercial product picks for back pain) is now published. HP-3 (informational features guide: what to look for and why order matters) remains suggested — it can stand alone as an informational complement to the published HP-6. Decide before writing.
 - **Eco-friendly/Sustainability cluster:** The eco-friendly post (115 clicks, 20,956 impressions) could seed a new cluster. Worth considering once content pipeline is clear.
 - **"Best home office chair Malaysia" gap:** Optimize existing "6 Affordable" post, or write a new dedicated WFH post?
