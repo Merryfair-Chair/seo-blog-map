@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_crawl": "2026-05-07 05:25:39",
+    "last_crawl": "2026-05-07 15:35:52",
     "posts_crawled": 41,
     "summaries_date": "2026-03-17",
     "last_monthly_update": "2026-05-04",
@@ -1961,10 +1961,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-how-to-choose-office-chair-body-fit-test",
       "reason": "Buying-guide pillar missing link to body fit test cluster post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "how-to-choose-office-chair-body-fit-test",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "how to choose an office chair that fits your body"
@@ -1972,10 +1972,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-office-chair-material-guide-malaysia",
       "reason": "Buying-guide pillar missing link to material guide cluster post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "office-chair-material-guide-malaysia",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "best office chair material for Malaysia"
@@ -1983,10 +1983,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-office-chair-tilt-mechanism-guide",
       "reason": "Buying-guide pillar missing link to tilt mechanism cluster post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "office-chair-tilt-mechanism-guide",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "how tilt mechanisms work in ergonomic chairs"
@@ -1994,10 +1994,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-ergonomic-chair-size-guide",
       "reason": "Buying-guide pillar missing link to size guide cluster post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "ergonomic-chair-size-guide",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "ergonomic chair size guide by height and weight"
@@ -2005,10 +2005,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-how-to-adjust-office-chair",
       "reason": "Buying-guide pillar missing link to chair adjustment guide",
-      "status": "done",
+      "status": "verified",
       "to_slug": "how-to-adjust-office-chair",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "how to adjust your office chair for all-day comfort"
@@ -2016,10 +2016,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-how-to-clean-office-chair-malaysia",
       "reason": "Buying-guide pillar missing link to chair maintenance guide — orphan post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "how-to-clean-office-chair-malaysia",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "how to clean and maintain your office chair"
@@ -2027,10 +2027,10 @@
     {
       "id": "link-the-ultimate-guide-to-ergonomic-chairs-m-to-footrest-office-chair-guide",
       "reason": "Buying-guide pillar missing link to footrest guide — orphan post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "footrest-office-chair-guide",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "added_date": "2026-05-06",
       "anchor_text": "who needs a footrest and which type to choose"
@@ -2170,10 +2170,10 @@
     {
       "id": "link-ergonomic-home-office-setup-guide-to-why-executive-comfort-is-the-new-product",
       "reason": "Workspace pillar missing link to executive comfort post — orphan post",
-      "status": "done",
+      "status": "pending",
       "to_slug": "why-executive-comfort-is-the-new-productivity",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": null,
       "from_slug": "ergonomic-home-office-setup-guide",
       "added_date": "2026-05-06",
       "anchor_text": "why executive comfort drives productivity"
@@ -2280,10 +2280,10 @@
     {
       "id": "link-bifma-certified-office-furniture-malaysi-to-best-office-furniture-supplier-malaysia",
       "reason": "B2B cluster: best-office-furniture-supplier-malaysia is an orphan — link from BIFMA post",
-      "status": "done",
+      "status": "verified",
       "to_slug": "best-office-furniture-supplier-malaysia",
       "priority": "high",
-      "done_date": "2026-05-06",
+      "done_date": "2026-05-07",
       "from_slug": "bifma-certified-office-furniture-malaysia",
       "added_date": "2026-05-06",
       "anchor_text": "how to choose the best office furniture supplier in Malaysia"
@@ -6329,18 +6329,16 @@
     }
   },
   "linking_health": {
-    "orphan_posts_no_inbound_links": [
+    "orphans": [
       "best-ergonomic-chair-back-pain",
       "best-study-chairs-students-guide",
-      "standing-desk-vs-ergonomic-chair",
+      "standing-desk-vs-ergonomic-chair"
+    ],
+    "islands": [
       "office-chairs-to-sit-with-power-focus-and-intention",
       "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
     ],
-    "island_posts_no_links_at_all": [
-      "office-chairs-to-sit-with-power-focus-and-intention",
-      "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
-    ],
-    "most_linked_to": [
+    "most_linked": [
       {
         "slug": "best-ergonomic-office-chairs-every-budget",
         "inbound_count": 21
@@ -6362,6 +6360,6 @@
         "inbound_count": 10
       }
     ],
-    "average_outbound_links": 4.1
+    "last_updated": "2026-05-07"
   }
 }
