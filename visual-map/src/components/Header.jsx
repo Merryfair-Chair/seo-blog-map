@@ -111,7 +111,7 @@ export default function Header({ view, setView, meta, linkQueue, linkHealthIssue
 
   return (
     <>
-      <div style={{
+      <div className="app-header" style={{
         background: 'var(--bg2)',
         borderBottom: '1px solid var(--border)',
         flexShrink: 0,
