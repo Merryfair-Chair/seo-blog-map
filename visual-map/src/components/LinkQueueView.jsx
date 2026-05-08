@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 
 const PRIORITY_STYLE = {
   high:   { bg: '#fef2f2', color: '#dc2626', border: '#fecaca' },
@@ -65,10 +65,10 @@ function ActionGuidance({ item }) {
   )
 }
 
-function QueueItem({ item, postDetails, onToggle, toggling }) {
+function QueueItem({ item, postDetails, onToggle, toggling, isLocallyDone }) {
   const toPost = postDetails[item.to_slug]
   const pri = PRIORITY_STYLE[item.priority] || PRIORITY_STYLE.medium
-  const isDone = item.status === 'done'
+  const isDone = item.status === 'done' || isLocallyDone
   const isVerified = item.status === 'verified'
 
   return (
@@ -119,11 +119,11 @@ function QueueItem({ item, postDetails, onToggle, toggling }) {
   )
 }
 
-function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingId }) {
+function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingId, localDoneIds }) {
   const fromPost = postDetails[fromSlug]
   const cluster = clusters.find(c => c.id === fromPost?.cluster)
-  const pendingCount = items.filter(i => i.status === 'pending').length
-  const doneCount = items.filter(i => i.status === 'done').length
+  const pendingCount = items.filter(i => i.status === 'pending' && !localDoneIds.has(i.id)).length
+  const doneCount = items.filter(i => i.status === 'done' || (i.status === 'pending' && localDoneIds.has(i.id))).length
   const verifiedCount = items.filter(i => i.status === 'verified').length
   const allDone = pendingCount === 0
 
@@ -175,6 +175,7 @@ function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingI
             postDetails={postDetails}
             onToggle={onToggle}
             toggling={togglingId === item.id}
+            isLocallyDone={localDoneIds.has(item.id)}
           />
         ))}
       </div>
@@ -437,6 +438,12 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
   const [togglingId, setTogglingId] = useState(null)
   const [error, setError] = useState(null)
 
+  // localDoneIds: items the user has checked off this session.
+  // These stay visible in the pending view (styled as done) so the list doesn't jump.
+  // Cleared whenever the user changes filter tabs.
+  const [localDoneIds, setLocalDoneIds] = useState(new Set())
+  useEffect(() => { setLocalDoneIds(new Set()) }, [filter])
+
   const queue = linkQueue || []
   const health = linkHealthIssues || []
 
@@ -445,23 +452,64 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
   const verifiedCount = queue.filter(i => i.status === 'verified').length
   const openHealthCount = health.filter(i => i.status === 'open').length
 
-  const filtered = filter === 'all'
-    ? queue
-    : queue.filter(i => i.status === filter)
+  // Compute a stable group order keyed on (filter + item IDs).
+  // Status changes within a session never re-sort the list — only adding/removing
+  // items or switching filter tabs will recompute the order.
+  const queueSignature = queue.map(i => i.id).join(',')
+  const stableGroupOrder = useMemo(() => {
+    const base = filter === 'pending'
+      ? queue.filter(i => i.status === 'pending')
+      : filter === 'all'
+        ? queue
+        : queue.filter(i => i.status === filter)
 
-  const groups = {}
-  for (const item of filtered) {
-    if (!groups[item.from_slug]) groups[item.from_slug] = []
-    groups[item.from_slug].push(item)
-  }
-  const sortedGroups = Object.entries(groups).sort(([aSlug, aItems], [bSlug, bItems]) => {
-    const aPending = aItems.filter(i => i.status === 'pending').length
-    const bPending = bItems.filter(i => i.status === 'pending').length
-    if (bPending !== aPending) return bPending - aPending
-    return aSlug.localeCompare(bSlug)
-  })
+    const groups = {}
+    for (const item of base) {
+      if (!groups[item.from_slug]) groups[item.from_slug] = []
+      groups[item.from_slug].push(item)
+    }
+    return Object.entries(groups)
+      .sort(([aSlug, aItems], [bSlug, bItems]) => {
+        const aPending = aItems.filter(i => i.status === 'pending').length
+        const bPending = bItems.filter(i => i.status === 'pending').length
+        if (bPending !== aPending) return bPending - aPending
+        return aSlug.localeCompare(bSlug)
+      })
+      .map(([slug]) => slug)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, queueSignature])
+
+  // Build the display groups using the stable order.
+  // In pending view: also include items the user locally checked off (so they stay put).
+  const sortedGroups = useMemo(() => {
+    const visibleItems = filter === 'pending'
+      ? queue.filter(i => i.status === 'pending' || localDoneIds.has(i.id))
+      : filter === 'all'
+        ? queue
+        : queue.filter(i => i.status === filter)
+
+    const bySlug = {}
+    for (const item of visibleItems) {
+      if (!bySlug[item.from_slug]) bySlug[item.from_slug] = []
+      bySlug[item.from_slug].push(item)
+    }
+
+    // Render in stable order; slugs not in stableGroupOrder go at the end
+    const ordered = stableGroupOrder
+      .filter(slug => bySlug[slug])
+      .map(slug => [slug, bySlug[slug]])
+    const extra = Object.entries(bySlug).filter(([slug]) => !stableGroupOrder.includes(slug))
+    return [...ordered, ...extra]
+  }, [queue, filter, localDoneIds, stableGroupOrder])
 
   const handleToggle = async (item, newStatus) => {
+    // Optimistic: immediately reflect the check in the UI without waiting for API
+    if (newStatus === 'done') {
+      setLocalDoneIds(prev => new Set([...prev, item.id]))
+    } else {
+      setLocalDoneIds(prev => { const s = new Set(prev); s.delete(item.id); return s })
+    }
+
     setTogglingId(item.id)
     setError(null)
     try {
@@ -477,6 +525,12 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
       const { item: updated } = await res.json()
       onQueueUpdate(updated)
     } catch (e) {
+      // Revert optimistic update on failure
+      if (newStatus === 'done') {
+        setLocalDoneIds(prev => { const s = new Set(prev); s.delete(item.id); return s })
+      } else {
+        setLocalDoneIds(prev => new Set([...prev, item.id]))
+      }
       setError(e.message)
     } finally {
       setTogglingId(null)
@@ -601,6 +655,7 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
                   clusters={clusters}
                   onToggle={handleToggle}
                   togglingId={togglingId}
+                  localDoneIds={localDoneIds}
                 />
               ))
             )}
