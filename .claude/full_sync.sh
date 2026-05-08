@@ -8,10 +8,7 @@
 set -e
 cd /Users/merryfair/seo-blog-map
 
-echo "[sync] Copying JSON to visual-map/public/..."
-cp merryfair_content_map.json visual-map/public/merryfair_content_map.json
-
-echo "[sync] Pushing to Supabase..."
+echo "[sync] Pushing to Supabase (with status merge)..."
 python3 push_to_supabase.py
 
 echo "[sync] Committing and pushing to GitHub..."

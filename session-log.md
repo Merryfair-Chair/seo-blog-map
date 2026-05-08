@@ -4,6 +4,75 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-08 — /sync-links run #2 (after crawl script heading fix)
+
+**Links verified (1 newly confirmed):**
+- effects-of-poor-sitting-posture-and-how-ergonomics-can-help → standing-desk-vs-ergonomic-chair ✓ (previously missed — link is in an H3; fixed by adding h2/h3/h4 to crawl script)
+
+**Reset to pending: 0**
+
+**Remaining pending: 12** | Queue: 19 verified / 12 pending / 31 total
+
+**Orphan status: unchanged** — best-ergonomic-chair-back-pain still the only non-brand orphan
+
+**Crawl script fix:** `crawl_and_summarize.py` now includes h2/h3/h4 in link extraction. Previously any link inside a heading tag was invisible to the crawler — this caused the false "reset to pending" for the ergonomic-home-office → standing-desk link in the prior run.
+
+---
+
+## 2026-05-08 — /sync-links run (post WordPress linking session)
+
+**Links verified (9 newly confirmed live):**
+- correct-sitting-posture-guide → the-physical-benefits-of-ergonomics-why-it-matters-for-your-health
+- 6-affordable-ergonomic-chairs-for-your-home-and-office → best-study-chairs-students-guide
+- correct-sitting-posture-guide → standing-desk-vs-ergonomic-chair
+- ergonomic-home-office-setup-guide → how-to-adjust-office-chair
+- ergonomic-chair-size-guide → best-office-chair-short-people
+- ergonomic-chair-size-guide → how-to-adjust-office-chair
+- office-furniture-supplier-malaysia-corporate-guide → bifma-certified-office-furniture-malaysia
+- office-furniture-supplier-malaysia-corporate-guide → best-office-furniture-supplier-malaysia
+- effects-of-poor-sitting-posture-and-how-ergonomics-can-help → correct-sitting-posture-guide
+
+**Reset to pending (2 — marked done but not found in crawl):**
+- effects-of-poor-sitting-posture-and-how-ergonomics-can-help → standing-desk-vs-ergonomic-chair
+- ergonomic-home-office-setup-guide → standing-desk-vs-ergonomic-chair
+
+**Remaining pending: 12**
+
+**Orphan changes:**
+- Resolved: best-office-chair-short-people, best-study-chairs-students-guide, standing-desk-vs-ergonomic-chair (all now have inbound links)
+- Still orphan: best-ergonomic-chair-back-pain (priority — add links from the-role-of-ergonomic and health pillar)
+- Islands: office-chairs-to-sit-with-power-focus-and-intention, redefine-holiday-gifting (brand posts, no action)
+
+**Queue total: 31 items (17 verified, 12 pending)**
+
+---
+
+## 2026-05-08 — /linking-audit completed (Option A: clean slate rebuild)
+
+**What was done:**
+- Completed the `/linking-audit` with the new relevance-gated, anchor-first workflow (Option A — clear all 46 pending items, rebuild from scratch)
+- Broken link found: `be-a-true-gamer-with-ronin-the-best-gaming-chair-in-malaysia` → `on-to-the-year-of-the-dragon-5-tips-to-sit-like-a-leader` (slug doesn't exist — fix in WordPress)
+- No duplicate link/anchor health issues found in current link data
+- Identified 6 orphaned posts: best-ergonomic-chair-back-pain, best-office-chair-short-people, best-study-chairs-students-guide, standing-desk-vs-ergonomic-chair, office-chairs-to-sit-with-power-focus-and-intention, redefine-holiday-gifting-with-merryfair-ergonomic-chairs
+- 2 island posts (0 in, 0 out): office-chairs-to-sit-with-power-focus-and-intention, redefine-holiday-gifting-with-merryfair-ergonomic-chairs (both brand/seasonal)
+- Populated link_queue with 23 new items: 11 HIGH, 10 MEDIUM, 2 LOW
+- 14 of 23 items use hyperlink_existing (existing phrase found in extracted_text); 9 use insert_new
+- Ran `full_sync.sh` — JSON pushed to Supabase and GitHub
+
+**Decisions made:**
+- Pillar → cluster links flagged only if pillar's subtopics_covered match cluster post's main_topic
+- Cluster → pillar links always flagged (once per post, readers benefit from the full guide)
+- Cross-cluster links only where explicit content overlap in content_summary
+- Posts with >60% of site linking to them (best-ergonomic-office-chairs-every-budget — 20+ posts) treated as sidebar links and excluded from editorial analysis
+- Island posts (office-chairs-to-sit-with-power-focus-and-intention, redefine-holiday-gifting) are brand/seasonal — no queue items added, flagged informational only
+
+**Pending / next actions:**
+- Fix broken link in `be-a-true-gamer-with-ronin` post in WordPress (destination slug doesn't exist)
+- Work through 11 HIGH priority queue items in WordPress
+- After WordPress session, run `/sync-links` to verify
+
+---
+
 ## 2026-05-07 — Linking audit and sync-links skills redesigned
 
 **What was done:**

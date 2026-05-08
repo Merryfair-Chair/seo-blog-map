@@ -12,12 +12,14 @@ Do ALL of the following automatically without asking:
 
    - **Status `done` or `pending`:** Check whether `post_details[from_slug].internal_links_out` now contains an entry with `slug === to_slug`.
      - If YES → set status to `"verified"`, set `done_date` to today's date. Log as confirmed.
-     - If NO and status was `done` → reset status to `"pending"`, clear `done_date`. Log as a warning: "Marked done but not found in crawl — reset to pending."
+     - If NO and status was `done` → reset status to `"pending"`, clear `done_date`, set `_sync_reset: true`. Log as a warning: "Marked done but not found in crawl — reset to pending."
      - If NO and status was `pending` → leave as-is (still outstanding).
 
    - **Status `verified`:** Skip — already confirmed, no action needed.
 
-   When writing status changes, preserve all other fields on the item (`action_type`, `existing_anchor`, `existing_anchor_context`, `insertion_suggestion`, `insertion_location`) — only update `status` and `done_date`.
+   When writing status changes, preserve all other fields on the item (`action_type`, `existing_anchor`, `existing_anchor_context`, `insertion_suggestion`, `insertion_location`) — only update `status`, `done_date`, and `_sync_reset`.
+
+   **Note on `_sync_reset`:** This temporary flag tells the push script that this reset was intentional — so the merge step will not let a stale `done` status in Supabase override it. The flag is stripped automatically during the push.
 
 5. Update `link_queue` in the JSON with all status changes from step 4.
 
