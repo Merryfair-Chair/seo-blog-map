@@ -25,7 +25,7 @@ function PostCard({ slug, post, color, selected, onSelect }) {
       style={{
         padding: '11px 14px',
         borderLeft: `3px solid ${color}`,
-        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+        background: selected === slug ? 'var(--bg4)' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>

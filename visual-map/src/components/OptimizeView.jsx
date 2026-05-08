@@ -22,7 +22,7 @@ function OptCard({ slug, post, clusterColor, selected, onSelect }) {
       style={{
         padding: '12px 14px',
         borderLeft: `3px solid ${isComplete ? '#15803d' : clusterColor}`,
-        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+        background: selected === slug ? 'var(--bg4)' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
@@ -173,7 +173,7 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
                     padding: '9px 14px', borderRadius: 8, cursor: 'pointer',
                     border: `1px solid ${selected === slug ? '#6b7280' : 'var(--border)'}`,
                     borderLeft: `3px solid ${clusterById[post.cluster]?.color || 'var(--border)'}`,
-                    background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+                    background: selected === slug ? 'var(--bg4)' : 'var(--bg2)',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     opacity: 0.7,
                   }}

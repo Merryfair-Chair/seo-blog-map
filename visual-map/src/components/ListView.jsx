@@ -44,7 +44,7 @@ function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSel
       className={`card card-clickable${selected === slug ? ' selected' : ''}`}
       style={{
         marginTop: 6, padding: '10px 12px',
-        background: selected === slug ? '#f0f5ff' : 'var(--bg2)',
+        background: selected === slug ? 'var(--bg4)' : 'var(--bg2)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
@@ -134,7 +134,7 @@ export default function ListView({ clusters, postDetails, selected, onSelect, se
                 style={{
                   padding: '12px 16px', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', gap: 12,
-                  background: isOpen ? '#f8f9ff' : 'transparent',
+                  background: isOpen ? 'var(--bg4)' : 'transparent',
                   borderBottom: isOpen ? '1px solid var(--border)' : 'none',
                 }}
               >

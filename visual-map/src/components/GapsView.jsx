@@ -138,7 +138,7 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
                     style={{
                       padding: '14px 16px',
                       borderLeft: `4px solid ${gap.clusterColor}`,
-                      background: selected === gap.id ? '#f0f5ff' : status === 'deprioritized' ? '#fafafa' : 'var(--bg2)',
+                      background: selected === gap.id ? 'var(--bg4)' : status === 'deprioritized' ? '#fafafa' : 'var(--bg2)',
                       outline: isInProgress ? '2px dashed #7c3aed' : selected === gap.id ? `2px solid ${gap.clusterColor}` : 'none',
                       outlineOffset: isInProgress ? '2px' : '0',
                       opacity: status === 'deprioritized' ? 0.75 : 1,

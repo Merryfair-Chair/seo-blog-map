@@ -9,7 +9,7 @@ const COLUMNS = [
   {
     id: 'approved',
     label: 'Approved',
-    theme: { header: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe', light: '#f0f5ff' },
+    theme: { header: '#1d4ed8', bg: '#eff6ff', border: '#bfdbfe', light: 'var(--bg4)' },
   },
   {
     id: 'in_progress',
@@ -56,7 +56,7 @@ function GapCard({ gap, selected, onSelect, postDetails }) {
       style={{
         borderLeft: `3px solid ${gap.clusterColor}`,
         padding: '10px 12px',
-        background: isSelected ? '#f0f5ff' : 'var(--bg2)',
+        background: isSelected ? 'var(--bg4)' : 'var(--bg2)',
         userSelect: 'none',
       }}
     >
