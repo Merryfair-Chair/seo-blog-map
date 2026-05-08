@@ -2052,10 +2052,10 @@
     {
       "id": "link-how-to-know-when-its-time-for-an-ergonom-to-the-ultimate-guide-to-ergonomic-chairs-m",
       "reason": "Readers deciding whether to upgrade need a feature checklist — the ultimate guide covers every adjustment category they should evaluate in a new chair.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2068,10 +2068,10 @@
     {
       "id": "link-how-to-adjust-office-chair-to-the-ultimate-guide-to-ergonomic-chairs-m",
       "reason": "Readers who've just set up their chair need next-level feature knowledge — the ultimate guide covers every adjustment category in detail.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "how-to-adjust-office-chair",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2084,10 +2084,10 @@
     {
       "id": "link-best-office-chair-short-people-to-the-ultimate-guide-to-ergonomic-chairs-m",
       "reason": "Short-frame buyers need to understand general ergonomic features to evaluate chairs beyond just seat height — the guide covers all adjustment categories.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "best-office-chair-short-people",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2116,10 +2116,10 @@
     {
       "id": "link-best-ergonomic-chair-back-pain-to-the-physical-benefits-of-ergonomics-why-",
       "reason": "Readers choosing a chair for back pain benefit from knowing the full-body health case for ergonomic seating — the pillar covers effects beyond pain relief.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "best-ergonomic-chair-back-pain",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2132,10 +2132,10 @@
     {
       "id": "link-the-role-of-ergonomic-office-chairs-in-p-to-best-ergonomic-chair-back-pain",
       "reason": "Readers who understand why ergonomic chairs prevent back pain will naturally want specific chair recommendations — the destination covers which chairs to get by pain pattern.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "best-ergonomic-chair-back-pain",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2228,10 +2228,10 @@
     {
       "id": "link-office-chair-tilt-mechanism-guide-to-how-to-adjust-office-chair",
       "reason": "Readers learning about tilt mechanics need the full chair adjustment picture — the destination covers height, armrests, and lumbar alongside tilt.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "how-to-adjust-office-chair",
       "priority": "medium",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "office-chair-tilt-mechanism-guide",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2276,10 +2276,10 @@
     {
       "id": "link-the-physical-benefits-of-ergonomics-why--to-best-ergonomic-chair-back-pain",
       "reason": "Readers of the health benefits pillar who see back pain relief mentioned will want specific chair recommendations — the destination covers options by pain pattern.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "best-ergonomic-chair-back-pain",
       "priority": "medium",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "added_date": "2026-05-08",
       "action_type": "hyperlink_existing",
@@ -2292,10 +2292,10 @@
     {
       "id": "link-the-physical-benefits-of-ergonomics-why--to-correct-sitting-posture-guide",
       "reason": "The health pillar explains WHY posture matters; readers need the companion guide on HOW to actually sit correctly — a natural next step from the theory.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "correct-sitting-posture-guide",
       "priority": "medium",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -2308,10 +2308,10 @@
     {
       "id": "link-what-is-lumbar-support-to-lumbar-cushion-vs-built-in-support",
       "reason": "Readers learning what lumbar support is will want to know which form — external cushion vs built-in — is better for their specific chair and body.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "lumbar-cushion-vs-built-in-support",
       "priority": "medium",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "what-is-lumbar-support",
       "added_date": "2026-05-08",
       "action_type": "hyperlink_existing",
@@ -2324,10 +2324,10 @@
     {
       "id": "link-lumbar-cushion-vs-built-in-support-to-best-ergonomic-chair-back-pain",
       "reason": "Readers asking whether a cushion can worsen back pain are ready for chair-specific recommendations — the destination guides them to the right chair by pain pattern.",
-      "status": "pending",
+      "status": "done",
       "to_slug": "best-ergonomic-chair-back-pain",
       "priority": "medium",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "lumbar-cushion-vs-built-in-support",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
@@ -6358,12 +6358,12 @@
     }
   },
   "linking_health": {
-    "orphan_posts": [
-      "best-ergonomic-chair-back-pain",
+    "island_posts": [
       "office-chairs-to-sit-with-power-focus-and-intention",
       "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
     ],
-    "island_posts": [
+    "orphan_posts": [
+      "best-ergonomic-chair-back-pain",
       "office-chairs-to-sit-with-power-focus-and-intention",
       "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
     ],
