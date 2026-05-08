@@ -114,7 +114,9 @@ def fetch_blog_post(slug):
         if NOISE_PATTERNS.search(classes) or NOISE_PATTERNS.search(tag_id):
             tag.decompose()
 
-    # ── Extract only in-content links (inside <p> or <li> in prose body) ────
+    # ── Extract in-content links (inside <p>, <li>, or heading tags) ────────
+    # Heading tags included: links placed in H2/H3/H4 FAQ questions are valid
+    # contextual links and must not be missed.
     # Anchor text must be meaningful: skip "Read more", bare URLs, icon-only etc.
     SKIP_ANCHORS = re.compile(
         r"^(read more|learn more|click here|here|this|more|→|»|view|see|back)$",
@@ -124,7 +126,7 @@ def fetch_blog_post(slug):
     blog_links_out = []   # [{slug, anchor}]
     seen_slugs = set()
 
-    for container in main_content.find_all(["p", "li"]):
+    for container in main_content.find_all(["p", "li", "h2", "h3", "h4"]):
         for a_tag in container.find_all("a", href=True):
             href = a_tag["href"]
             if href.startswith("/"):
