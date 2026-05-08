@@ -182,7 +182,7 @@ export default function OptimizeView({ clusters, postDetails, selected, onSelect
                     <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginBottom: 2 }}>{post.title}</div>
                     <div style={{ fontSize: 11, color: 'var(--text3)' }}>{post.gsc_clicks || 0} clicks · {post.triage_status} traffic</div>
                   </div>
-                  <span style={{ fontSize: 10, color: 'var(--text3)', fontStyle: 'italic' }}>Run /optimize-post {slug}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text3)', fontStyle: 'italic' }}>Not yet audited — click for details</span>
                 </div>
               ))}
             </div>

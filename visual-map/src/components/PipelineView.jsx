@@ -29,18 +29,6 @@ const PURPOSE_STYLE = {
   hub:       { label: 'Hub',       bg: 'rgba(8,145,178,0.10)',   color: '#0891b2',   border: 'rgba(8,145,178,0.22)' },
 }
 
-// Week boundaries: Monday-based ISO week
-function getThisWeekBounds() {
-  const now = new Date()
-  const day = now.getDay() // 0=Sun, 1=Mon...
-  const diff = (day === 0 ? -6 : 1) - day
-  const mon = new Date(now)
-  mon.setDate(now.getDate() + diff)
-  mon.setHours(0, 0, 0, 0)
-  const sun = new Date(mon)
-  sun.setDate(mon.getDate() + 7)
-  return { start: mon, end: sun }
-}
 
 function PurposeBadge({ purpose }) {
   if (!purpose) return null
@@ -137,15 +125,6 @@ export default function PipelineView({ clusters, selected, onSelect, onAddIdea, 
     return map
   }, [allGaps])
 
-  // Published-this-week count
-  const thisWeekPublished = useMemo(() => {
-    const { start, end } = getThisWeekBounds()
-    return (byStatus.published || []).filter(g => {
-      if (!g.published_date) return false
-      const d = new Date(g.published_date)
-      return d >= start && d < end
-    }).length
-  }, [byStatus])
 
   return (
     <div style={{ height: '100%', overflow: 'auto', padding: 20 }}>
@@ -182,24 +161,6 @@ export default function PipelineView({ clusters, selected, onSelect, onAddIdea, 
                   </span>
                 </div>
 
-                {/* Weekly target indicator — only in Published column */}
-                {col.id === 'published' && (
-                  <div style={{ marginTop: 10 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
-                      <span style={{ fontSize: 11, color: '#15803d', fontWeight: 700 }}>
-                        {thisWeekPublished} / 5 this week
-                      </span>
-                      <span style={{ fontSize: 9, color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>target</span>
-                    </div>
-                    <div style={{ height: 5, borderRadius: 3, background: '#d1fae5' }}>
-                      <div style={{
-                        width: `${Math.min((thisWeekPublished / 5) * 100, 100)}%`,
-                        height: '100%', borderRadius: 3, background: '#15803d',
-                        transition: 'width 0.4s cubic-bezier(0.4,0,0.2,1)',
-                      }} />
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Cards */}

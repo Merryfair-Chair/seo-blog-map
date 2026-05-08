@@ -64,7 +64,7 @@ function PostCard({ slug, post, color, selected, onSelect }) {
   )
 }
 
-export default function TriageView({ clusters, postDetails, selected, onSelect }) {
+export default function TriageView({ clusters, postDetails, selected, onSelect, searchQuery = '' }) {
   const clusterById = Object.fromEntries(clusters.map(c => [c.id, c]))
 
   return (
@@ -85,10 +85,18 @@ export default function TriageView({ clusters, postDetails, selected, onSelect }
           })}
         </div>
 
+        {searchQuery && (
+          <div style={{ fontSize: 12, color: 'var(--text3)', padding: '0 2px', marginBottom: 8 }}>
+            Filtering: <strong style={{ color: 'var(--text2)' }}>"{searchQuery}"</strong>
+          </div>
+        )}
+
         {/* Groups */}
         {TRIAGE_GROUPS.map(g => {
+          const q = searchQuery.toLowerCase()
           const posts = Object.entries(postDetails)
             .filter(([, p]) => (p.triage_status || 'none') === g.key)
+            .filter(([, p]) => !searchQuery || p.title?.toLowerCase().includes(q))
             .sort((a, b) => (b[1].gsc_clicks || 0) - (a[1].gsc_clicks || 0))
 
           if (!posts.length) return null

@@ -109,6 +109,13 @@ export default function GapsView({ clusters, selected, onSelect, onAddIdea, post
         )}
 
         {/* Gaps by status (active only) */}
+        {activeGaps.length === 0 && (
+          <div className="empty-state" style={{ marginBottom: 24 }}>
+            <div className="empty-icon">✓</div>
+            <div style={{ fontWeight: 600, marginBottom: 4 }}>No active gaps</div>
+            <div>All gaps are published or rejected. Add a new idea above, or run <code>/suggest-posts</code> to find more.</div>
+          </div>
+        )}
         {Object.entries(byStatus).filter(([, gaps]) => gaps.length > 0).map(([status, gaps]) => {
           const s = STATUS_STYLE[status] || STATUS_STYLE.suggested
           const isInProgress = status === 'in_progress'

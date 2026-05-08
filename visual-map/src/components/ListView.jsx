@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 
 function PerformanceBar({ value, max, color }) {
   const pct = max > 0 ? Math.min((value / max) * 100, 100) : 0
@@ -75,8 +75,20 @@ function PostRow({ post, slug, color, maxClicks, maxImpressions, selected, onSel
   )
 }
 
-export default function ListView({ clusters, postDetails, selected, onSelect }) {
-  const [expanded, setExpanded] = useState(clusters[0]?.id)
+export default function ListView({ clusters, postDetails, selected, onSelect, searchQuery = '' }) {
+  const [expanded, setExpanded] = useState(() => new Set(clusters.slice(0, 1).map(c => c.id)))
+
+  // Auto-expand clusters that have search matches
+  useEffect(() => {
+    if (!searchQuery) return
+    const q = searchQuery.toLowerCase()
+    const matching = new Set(
+      clusters
+        .filter(c => (c.posts || []).some(slug => postDetails[slug]?.title?.toLowerCase().includes(q)))
+        .map(c => c.id)
+    )
+    setExpanded(matching)
+  }, [searchQuery, clusters, postDetails])
 
   const maxClicks = useMemo(() =>
     Math.max(...Object.values(postDetails).map(p => p.gsc_clicks || 0), 1), [postDetails])
@@ -86,9 +98,19 @@ export default function ListView({ clusters, postDetails, selected, onSelect }) 
   return (
     <div style={{ height: '100%', overflow: 'auto', padding: 20 }}>
       <div style={{ maxWidth: 780, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {searchQuery && (
+          <div style={{ fontSize: 12, color: 'var(--text3)', padding: '4px 2px', marginBottom: 4 }}>
+            Filtering: <strong style={{ color: 'var(--text2)' }}>"{searchQuery}"</strong>
+          </div>
+        )}
         {clusters.map(cluster => {
-          const isOpen = expanded === cluster.id
-          const posts = (cluster.posts || []).map(slug => ({ slug, post: postDetails[slug] })).filter(p => p.post)
+          const isOpen = expanded.has(cluster.id)
+          const q = searchQuery.toLowerCase()
+          const allPosts = (cluster.posts || []).map(slug => ({ slug, post: postDetails[slug] })).filter(p => p.post)
+          const posts = searchQuery
+            ? allPosts.filter(({ post }) => post.title?.toLowerCase().includes(q))
+            : allPosts
+          if (searchQuery && posts.length === 0) return null
           const pillar = posts.find(p => p.post.page_type === 'pillar')
           const clusterPosts = posts.filter(p => p.post.page_type !== 'pillar')
           const totalClicks = posts.reduce((s, p) => s + (p.post.gsc_clicks || 0), 0)
@@ -103,7 +125,12 @@ export default function ListView({ clusters, postDetails, selected, onSelect }) 
               boxShadow: 'var(--shadow-sm)',
             }}>
               <div
-                onClick={() => setExpanded(isOpen ? null : cluster.id)}
+                onClick={() => setExpanded(prev => {
+                  const next = new Set(prev)
+                  if (next.has(cluster.id)) next.delete(cluster.id)
+                  else next.add(cluster.id)
+                  return next
+                })}
                 style={{
                   padding: '12px 16px', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', gap: 12,

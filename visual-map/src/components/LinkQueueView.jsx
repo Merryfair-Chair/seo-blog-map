@@ -17,7 +17,8 @@ const ACTION_STYLE = {
   insert_new:         { label: 'Insert new text',    bg: '#fff7ed', color: '#c2410c', border: '#fed7aa', dot: '#ea580c' },
 }
 
-function ActionGuidance({ item }) {
+function ActionGuidance({ item, visible }) {
+  if (!visible) return null
   if (!item.action_type) return null
   const s = ACTION_STYLE[item.action_type]
   if (!s) return null
@@ -65,7 +66,7 @@ function ActionGuidance({ item }) {
   )
 }
 
-function QueueItem({ item, postDetails, onToggle, toggling, isLocallyDone }) {
+function QueueItem({ item, postDetails, onToggle, toggling, isLocallyDone, showGuidance }) {
   const toPost = postDetails[item.to_slug]
   const pri = PRIORITY_STYLE[item.priority] || PRIORITY_STYLE.medium
   const isDone = item.status === 'done' || isLocallyDone
@@ -105,7 +106,7 @@ function QueueItem({ item, postDetails, onToggle, toggling, isLocallyDone }) {
         <div style={{ fontSize: 11, color: 'var(--text3)', lineHeight: 1.5 }}>
           {item.reason}
         </div>
-        <ActionGuidance item={item} />
+        <ActionGuidance item={item} visible={showGuidance} />
       </div>
 
       <span style={{
@@ -119,7 +120,7 @@ function QueueItem({ item, postDetails, onToggle, toggling, isLocallyDone }) {
   )
 }
 
-function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingId, localDoneIds }) {
+function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingId, localDoneIds, showGuidance }) {
   const fromPost = postDetails[fromSlug]
   const cluster = clusters.find(c => c.id === fromPost?.cluster)
   const pendingCount = items.filter(i => i.status === 'pending' && !localDoneIds.has(i.id)).length
@@ -176,6 +177,7 @@ function PostGroup({ fromSlug, items, postDetails, clusters, onToggle, togglingI
             onToggle={onToggle}
             toggling={togglingId === item.id}
             isLocallyDone={localDoneIds.has(item.id)}
+            showGuidance={showGuidance}
           />
         ))}
       </div>
@@ -437,6 +439,7 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
   const [filter, setFilter] = useState('pending')
   const [togglingId, setTogglingId] = useState(null)
   const [error, setError] = useState(null)
+  const [showGuidance, setShowGuidance] = useState(true)
 
   // localDoneIds: items the user has checked off this session.
   // These stay visible in the pending view (styled as done) so the list doesn't jump.
@@ -619,16 +622,25 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
               </div>
             )}
 
-            <div className="tab-strip" style={{ marginBottom: 16 }}>
-              {QUEUE_FILTERS.map(f => (
-                <button
-                  key={f.id}
-                  onClick={() => setFilter(f.id)}
-                  className={`tab-btn${filter === f.id ? ' active' : ''}`}
-                >
-                  {f.label}
-                </button>
-              ))}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+              <div className="tab-strip">
+                {QUEUE_FILTERS.map(f => (
+                  <button
+                    key={f.id}
+                    onClick={() => setFilter(f.id)}
+                    className={`tab-btn${filter === f.id ? ' active' : ''}`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+              <button
+                className="guidance-toggle"
+                onClick={() => setShowGuidance(v => !v)}
+                title="Toggle insertion guidance"
+              >
+                {showGuidance ? '▴ Hide guidance' : '▾ Show guidance'}
+              </button>
             </div>
 
             {error && (
@@ -656,6 +668,7 @@ export default function LinkQueueView({ linkQueue, linkHealthIssues, postDetails
                   onToggle={handleToggle}
                   togglingId={togglingId}
                   localDoneIds={localDoneIds}
+                  showGuidance={showGuidance}
                 />
               ))
             )}

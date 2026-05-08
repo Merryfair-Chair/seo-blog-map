@@ -174,15 +174,33 @@ function Stat({ label, value, color }) {
   )
 }
 
-export default function DetailPanel({ post, gap, slug, postDetails, clusters, onClose, onGapStatusChange, onOptimizationToggle }) {
+export default function DetailPanel({ post, gap, slug, postDetails, clusters, onClose, onGapStatusChange, onOptimizationToggle, onToast }) {
+  // All hooks must be unconditional — hooks violation fix
+  const [saving, setSaving] = useState(false)
+
   const panelStyle = {
-    width: 340, flexShrink: 0,
+    position: 'absolute', right: 0, top: 0, bottom: 0,
+    width: 360, zIndex: 100,
     borderLeft: '1px solid var(--border)',
     background: 'var(--bg2)',
-    overflow: 'auto',
+    overflowY: 'auto',
     padding: 20,
-    boxShadow: '-2px 0 8px rgba(0,0,0,0.05)',
+    boxShadow: '-4px 0 24px rgba(0,0,0,0.10)',
   }
+
+  const CloseBtn = () => (
+    <button
+      onClick={onClose}
+      title="Close (Esc)"
+      style={{
+        width: 32, height: 32, borderRadius: 8,
+        border: '1px solid var(--border)', background: 'var(--bg3)',
+        color: 'var(--text3)', fontSize: 16, flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        cursor: 'pointer',
+      }}
+    >×</button>
+  )
 
   if (gap) {
     const STATUS = {
@@ -196,12 +214,17 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
     const currentStatus = gap.status || 'suggested'
     const s = STATUS[currentStatus] || STATUS.suggested
 
-    const [saving, setSaving] = useState(false)
     const setStatus = async (newStatus) => {
       setSaving(true)
-      await updateGapStatus(gap.id, newStatus)
-      onGapStatusChange?.(gap.id, newStatus)
-      setSaving(false)
+      try {
+        await updateGapStatus(gap.id, newStatus)
+        onGapStatusChange?.(gap.id, newStatus)
+        onToast?.(`Gap marked as ${newStatus}`)
+      } catch {
+        onToast?.('Update failed — try again', 'error')
+      } finally {
+        setSaving(false)
+      }
     }
 
     const ACTION_BUTTONS = [
@@ -214,31 +237,28 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
     ].filter(b => b.status !== currentStatus)
 
     return (
-      <div style={panelStyle}>
+      <div style={panelStyle} className="detail-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
           <div>
-            {/* Cluster badge */}
-          {gap.clusterName && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
-              <div style={{ width: 7, height: 7, borderRadius: 2, background: gap.clusterColor, flexShrink: 0 }} />
-              <span style={{ fontSize: 10, fontWeight: 700, color: gap.clusterColor }}>{gap.clusterName}</span>
-            </div>
-          )}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, flexWrap: 'wrap' }}>
-              <span className={`status-pill status-${currentStatus}`}>
-                {currentStatus}
-              </span>
+            {gap.clusterName && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+                <div style={{ width: 7, height: 7, borderRadius: 2, background: gap.clusterColor, flexShrink: 0 }} />
+                <span style={{ fontSize: 11, fontWeight: 700, color: gap.clusterColor }}>{gap.clusterName}</span>
+              </div>
+            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, flexWrap: 'wrap' }}>
+              <span className={`status-pill status-${currentStatus}`}>{currentStatus}</span>
               {gap.purpose && <span className={`badge badge-${gap.purpose}`}>{gap.purpose}</span>}
-              <span style={{ fontSize: 10, color: 'var(--text3)' }}>content gap</span>
+              <span style={{ fontSize: 11, color: 'var(--text3)' }}>content gap</span>
               {gap.ahrefsValidated && (
-                <span style={{ fontSize: 9, fontWeight: 700, padding: '2px 6px', borderRadius: 3, background: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0' }}>
-                  ✓ Ahrefs validated
+                <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 6px', borderRadius: 3, background: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0' }}>
+                  ✓ Ahrefs
                 </span>
               )}
             </div>
             <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{gap.title}</div>
           </div>
-          <button onClick={onClose} style={{ color: 'var(--text3)', fontSize: 20, lineHeight: 1, padding: 2, marginLeft: 8 }}>×</button>
+          <CloseBtn />
         </div>
 
         <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
@@ -386,6 +406,7 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
   if (!post) return null
 
   const cluster = clusters.find(c => c.id === post.cluster)
+
   const clusterColor = cluster?.color || '#2563eb'
   // support both old string format and new {slug, anchor} format
   const normalise = arr => (arr || []).map(x => typeof x === 'string' ? { slug: x, anchor: null } : x)
@@ -397,11 +418,11 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
   const triageColor = TRIAGE_COLOR[post.triage_status] || 'var(--text3)'
 
   return (
-    <div style={panelStyle}>
+    <div style={panelStyle} className="detail-panel">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
         <div style={{ flex: 1, paddingRight: 8 }}>
           {cluster && (
-            <div style={{ fontSize: 10, fontWeight: 700, color: clusterColor, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: clusterColor, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
               <div style={{ width: 7, height: 7, borderRadius: 2, background: clusterColor }} />
               {post.page_type === 'pillar' ? `Pillar · ${cluster.name}` : cluster.name}
             </div>
@@ -415,12 +436,12 @@ export default function DetailPanel({ post, gap, slug, postDetails, clusters, on
             <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>{post.title}</div>
           </div>
           {post.hero_tier && (
-            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text3)', marginBottom: 4 }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text3)', marginBottom: 4 }}>
               {post.hero_tier === 'crown' ? 'Crown Hero · Priority optimization target' : 'Hero · High strategic value'}
             </div>
           )}
         </div>
-        <button onClick={onClose} style={{ color: 'var(--text3)', fontSize: 20, lineHeight: 1, padding: 2, flexShrink: 0 }}>×</button>
+        <CloseBtn />
       </div>
 
       <a

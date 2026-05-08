@@ -8,7 +8,7 @@ const COMMANDS = [
   },
   {
     cmd: '/optimize-post [slug]',
-    desc: 'Full content audit against the master blog prompt standard. Writes a prioritized checklist into the visual map — you\'ll see it in the detail panel when you click the post.',
+    desc: 'Full content audit against the master blog prompt standard. Writes a prioritized checklist into the visual map — visible in the detail panel when you click a post.',
     example: '/optimize-post how-to-choose-the-best-ergonomic-chair-in-malaysia',
   },
   {
@@ -23,7 +23,7 @@ const COMMANDS = [
   },
   {
     cmd: '/sync-links',
-    desc: 'Lightweight post-session sync. Run this after a WordPress linking session. Re-crawls live pages (link data only, no AI), verifies items you marked done, resets any that weren\'t actually saved.',
+    desc: 'Lightweight post-session sync. Run after a WordPress linking session. Re-crawls live pages, verifies items you marked done, resets any not actually saved.',
     example: '/sync-links',
   },
 ]
@@ -51,7 +51,14 @@ function CommandsPanel({ onClose }) {
               Open Claude Code in the merryfair-seo folder, then type any command below.
             </div>
           </div>
-          <button onClick={onClose} style={{ color: 'var(--text3)', fontSize: 20, lineHeight: 1, padding: 4 }}>×</button>
+          <button
+            onClick={onClose}
+            style={{
+              width: 32, height: 32, borderRadius: 8, border: '1px solid var(--border)',
+              background: 'var(--bg3)', color: 'var(--text3)', fontSize: 16,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >×</button>
         </div>
         <div style={{ padding: '12px 20px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
           {COMMANDS.map(c => (
@@ -69,27 +76,29 @@ function CommandsPanel({ onClose }) {
   )
 }
 
-export default function Header({ view, setView, meta, clusters, postDetails, linkQueue, linkHealthIssues, lastFetched, onRefresh, onAddIdea }) {
-  const [showCommands, setShowCommands] = useState(false)
-
-  const totalPosts      = Object.keys(postDetails).length
-  const heroCount       = Object.values(postDetails).filter(p => p.hero_tier === 'crown' || p.hero_tier === 'hero').length
-  const allGaps         = clusters.flatMap(c => c.gaps || [])
-  const pipelineGaps    = allGaps.filter(g => g.status === 'approved' || g.status === 'suggested' || g.status === 'in_progress').length
-  const pendingFixes    = Object.values(postDetails).filter(p => p.optimization?.items?.some(i => !i.done)).length
-  const pendingLinks    = (linkQueue || []).filter(i => i.status === 'pending').length
-  const openHealthIssues = (linkHealthIssues || []).filter(i => i.status === 'open').length
-  const linksTotal      = pendingLinks + openHealthIssues
-
-  const tabs = [
+const TAB_GROUPS = (pendingFixes, linksTotal) => [
+  [
     { id: 'graph',    label: 'Graph' },
     { id: 'list',     label: 'List' },
+  ],
+  [
     { id: 'triage',   label: 'Triage' },
     { id: 'gaps',     label: 'Gaps' },
     { id: 'pipeline', label: 'Pipeline' },
+  ],
+  [
     { id: 'optimize', label: pendingFixes > 0 ? `Optimize (${pendingFixes})` : 'Optimize', warn: pendingFixes > 0 },
-    { id: 'links',    label: linksTotal > 0 ? `Links (${linksTotal})` : 'Links', warn: linksTotal > 0 },
-  ]
+    { id: 'links',    label: linksTotal > 0    ? `Links (${linksTotal})`       : 'Links',    warn: linksTotal > 0 },
+  ],
+]
+
+export default function Header({ view, setView, meta, linkQueue, linkHealthIssues, lastFetched, onRefresh, onAddIdea, searchQuery, onSearchChange, postDetails }) {
+  const [showCommands, setShowCommands] = useState(false)
+
+  const pendingFixes   = Object.values(postDetails || {}).filter(p => p.optimization?.items?.some(i => !i.done)).length
+  const pendingLinks   = (linkQueue || []).filter(i => i.status === 'pending').length
+  const openHealth     = (linkHealthIssues || []).filter(i => i.status === 'open').length
+  const linksTotal     = pendingLinks + openHealth
 
   const ago = lastFetched ? (() => {
     const s = Math.floor((Date.now() - lastFetched) / 1000)
@@ -98,99 +107,95 @@ export default function Header({ view, setView, meta, clusters, postDetails, lin
     return `${Math.floor(s / 3600)}h ago`
   })() : null
 
+  const groups = TAB_GROUPS(pendingFixes, linksTotal)
+
   return (
     <>
       <div style={{
         background: 'var(--bg2)',
         borderBottom: '1px solid var(--border)',
         flexShrink: 0,
+        height: 52,
+        display: 'flex', alignItems: 'center',
+        gap: 12, padding: '0 16px',
       }}>
-        {/* Top row — brand + stats */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 20,
-          height: 40, padding: '0 20px',
-          borderBottom: '1px solid var(--border)',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-            <span style={{ fontWeight: 800, fontSize: 13, color: 'var(--text)', letterSpacing: '-0.01em' }}>Merryfair</span>
-            <span style={{ width: 1, height: 12, background: 'var(--border)', display: 'inline-block', marginBottom: -2 }} />
-            <span style={{ fontSize: 11, color: 'var(--text3)', fontWeight: 500 }}>Content Map</span>
-          </div>
-
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 20, alignItems: 'center' }}>
-            {/* Posts */}
-            <div className="header-stat">
-              <span className="val" style={{ color: 'var(--text)' }}>{totalPosts}</span>
-              <span className="lbl">posts</span>
-            </div>
-
-            {/* Crown + hero */}
-            <div className="header-stat">
-              <span className="val" style={{ color: 'var(--hero-crown)' }}>★ {heroCount}</span>
-              <span className="lbl">crown+hero</span>
-            </div>
-
-            {/* Pipeline */}
-            <div className="header-stat">
-              <span className="val" style={{ color: 'var(--gap-color)' }}>{pipelineGaps}</span>
-              <span className="lbl">in pipeline</span>
-            </div>
-
-            {/* Pending fixes */}
-            <div className="header-stat">
-              <span className="val" style={{ color: pendingFixes > 0 ? '#dc2626' : 'var(--text4)' }}>{pendingFixes}</span>
-              <span className="lbl">pending fixes</span>
-            </div>
-
-            <div style={{ fontSize: 10, color: 'var(--text3)', borderLeft: '1px solid var(--border)', paddingLeft: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span>Crawled {meta?.last_crawl?.slice(0, 10) || '—'}</span>
-              {ago && <span style={{ color: 'var(--border2)' }}>· {ago}</span>}
-              <button
-                onClick={onRefresh}
-                title="Refresh data now"
-                style={{ fontSize: 11, color: 'var(--text3)', padding: '1px 5px', borderRadius: 4, background: 'var(--bg3)', border: '1px solid var(--border)' }}
-              >↻</button>
-            </div>
-          </div>
+        {/* Brand */}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 5, flexShrink: 0 }}>
+          <span style={{ fontWeight: 800, fontSize: 13, color: 'var(--text)', letterSpacing: '-0.01em' }}>Merryfair</span>
+          <span style={{ width: 1, height: 11, background: 'var(--border)', display: 'inline-block', marginBottom: -2 }} />
+          <span style={{ fontSize: 11, color: 'var(--text3)', fontWeight: 500 }}>SEO</span>
         </div>
 
-        {/* Bottom row — tabs + actions */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 0,
-          height: 44, padding: '0 20px',
-        }}>
-          <div className="tab-strip">
-            {tabs.map(t => (
-              <button
-                key={t.id}
-                onClick={() => setView(t.id)}
-                className={`tab-btn${view === t.id ? ' active' : ''}${t.warn ? ' warn' : ''}`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button
-              onClick={() => setShowCommands(true)}
-              className="btn btn-ghost"
-              style={{ fontSize: 12 }}
-              title="Claude Code commands reference"
-            >
-              Commands ?
-            </button>
-            <button
-              onClick={onAddIdea}
-              className="btn btn-primary"
-              style={{ fontSize: 12 }}
-              title="Add a new blog idea to the pipeline"
-            >
-              ＋ Add Idea
-            </button>
-          </div>
+        {/* Tab strip with group separators */}
+        <div className="tab-strip" style={{ flexShrink: 0 }}>
+          {groups.map((group, gi) => (
+            <div key={gi} style={{ display: 'contents' }}>
+              {gi > 0 && <div className="tab-sep" />}
+              {group.map(t => (
+                <button
+                  key={t.id}
+                  onClick={() => setView(t.id)}
+                  className={`tab-btn${view === t.id ? ' active' : ''}${t.warn ? ' warn' : ''}`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          ))}
         </div>
+
+        {/* Search */}
+        <div className="header-search">
+          <span className="header-search-icon">⌕</span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => onSearchChange(e.target.value)}
+            placeholder="Filter posts…"
+            className="header-search-input"
+          />
+          {searchQuery && (
+            <button className="header-search-clear" onClick={() => onSearchChange('')}>×</button>
+          )}
+        </div>
+
+        {/* Spacer */}
+        <div style={{ flex: 1 }} />
+
+        {/* Crawl info + refresh */}
+        {meta?.last_crawl && (
+          <div style={{ fontSize: 10, color: 'var(--text3)', display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
+            <span>Crawled {meta.last_crawl.slice(0, 10)}</span>
+            {ago && <span style={{ color: 'var(--border2)' }}>· {ago}</span>}
+            <button
+              onClick={onRefresh}
+              title="Refresh data now"
+              style={{ fontSize: 11, color: 'var(--text3)', padding: '1px 6px', borderRadius: 4, background: 'var(--bg3)', border: '1px solid var(--border)' }}
+            >↻</button>
+          </div>
+        )}
+
+        {/* Commands */}
+        <button
+          onClick={() => setShowCommands(true)}
+          className="btn btn-ghost"
+          style={{ fontSize: 11, padding: '5px 10px', flexShrink: 0 }}
+          title="Claude Code commands reference"
+        >
+          ? Help
+        </button>
+
+        {/* Add Idea */}
+        <button
+          onClick={onAddIdea}
+          className="btn btn-primary"
+          style={{ fontSize: 12, flexShrink: 0 }}
+          title="Add a new blog idea to the pipeline"
+        >
+          ＋ Add Idea
+        </button>
       </div>
+
       {showCommands && <CommandsPanel onClose={() => setShowCommands(false)} />}
     </>
   )
