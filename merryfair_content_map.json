@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_crawl": "2026-05-08 10:18:40",
+    "last_crawl": "2026-05-08 10:30:41",
     "posts_crawled": 42,
     "summaries_date": "2026-03-17",
     "last_monthly_update": "2026-05-04",
@@ -2164,10 +2164,10 @@
     {
       "id": "link-effects-of-poor-sitting-posture-and-how--to-standing-desk-vs-ergonomic-chair",
       "reason": "Readers learning about effects of poor posture benefit from knowing when a standing desk is a better tool than a chair alone — the comparison covers both options.",
-      "status": "pending",
+      "status": "verified",
       "to_slug": "standing-desk-vs-ergonomic-chair",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
       "added_date": "2026-05-08",
       "action_type": "hyperlink_existing",
@@ -3115,12 +3115,12 @@
           "anchor": "the correct sitting posture to pair with an ergonomic chair"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "Correcting your workstation setup"
-        },
-        {
           "slug": "office-furniture-supplier-malaysia-corporate-guide",
           "anchor": "correct sitting posture and office chair setup"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "Correcting your workstation setup"
         }
       ],
       "ga4_referral_views": 0,
@@ -3531,8 +3531,16 @@
       "ga4_organic_views": 32,
       "internal_links_in": [
         {
+          "slug": "ergonomic-home-office-setup-guide",
+          "anchor": "Do I need a sit-stand desk for my home office?"
+        },
+        {
           "slug": "correct-sitting-posture-guide",
           "anchor": "comparison of standing desks and ergonomic chairs"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "reducing prolonged static sitting"
         }
       ],
       "ga4_referral_views": 0,
@@ -3567,7 +3575,7 @@
         }
       ],
       "product_links_count": 38,
-      "internal_links_in_count": 1,
+      "internal_links_in_count": 3,
       "internal_links_out_count": 7
     },
     "ergonomic-home-office-setup-guide": {
@@ -3639,13 +3647,17 @@
           "anchor": "compare ergonomic chairs across every budget tier"
         },
         {
+          "slug": "standing-desk-vs-ergonomic-chair",
+          "anchor": "Do I need a sit-stand desk for my home office?"
+        },
+        {
           "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
           "anchor": "affordable ergonomic chairs that deliver real support under RM1,000"
         }
       ],
       "product_links_count": 37,
       "internal_links_in_count": 2,
-      "internal_links_out_count": 4
+      "internal_links_out_count": 5
     },
     "office-chair-tilt-mechanism-guide": {
       "url": "https://www.merryfair.com/latest_updates/blog/office-chair-tilt-mechanism-guide/",
@@ -4177,12 +4189,12 @@
           "anchor": "fit the chair to your body"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "how to choose the right ergonomic chair for your body shape and sitting habits"
-        },
-        {
           "slug": "ergonomic-chair-size-guide",
           "anchor": "3-layer body fit test to confirm the chair fits your body"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "how to choose the right ergonomic chair for your body shape and sitting habits"
         }
       ],
       "ga4_referral_views": 0,
@@ -4335,10 +4347,6 @@
           "anchor": "ergonomic chairs across every budget tier"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "ergonomic chairs across every budget that address posture-related pain"
-        },
-        {
           "slug": "ergonomic-chair-size-guide",
           "anchor": "ergonomic chairs across every budget tier in Malaysia"
         },
@@ -4353,6 +4361,10 @@
         {
           "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
           "anchor": "ergonomic chair that fits your needs and budget"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "ergonomic chairs across every budget that address posture-related pain"
         }
       ],
       "ga4_referral_views": 6,
@@ -5294,12 +5306,16 @@
         {
           "slug": "correct-sitting-posture-guide",
           "anchor": "Correcting your workstation setup"
+        },
+        {
+          "slug": "standing-desk-vs-ergonomic-chair",
+          "anchor": "reducing prolonged static sitting"
         }
       ],
       "product_links_count": 37,
       "internal_links_in_count": 3,
       "ahrefs_referring_domains": 0,
-      "internal_links_out_count": 5
+      "internal_links_out_count": 6
     },
     "the-role-of-ergonomic-office-chairs-in-preventing-back-pain": {
       "url": "https://www.merryfair.com/latest_updates/blog/the-role-of-ergonomic-office-chairs-in-preventing-back-pain/",
@@ -6064,12 +6080,12 @@
           "anchor": "the health benefits of ergonomic seating during long work sessions"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "ergonomic chair does it"
-        },
-        {
           "slug": "correct-sitting-posture-guide",
           "anchor": "physical benefits of ergonomics"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "ergonomic chair does it"
         }
       ],
       "ga4_referral_views": 1,
