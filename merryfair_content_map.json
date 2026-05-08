@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_crawl": "2026-05-07 17:45:25",
+    "last_crawl": "2026-05-08 10:18:40",
     "posts_crawled": 42,
     "summaries_date": "2026-03-17",
     "last_monthly_update": "2026-05-04",
@@ -2051,371 +2051,371 @@
     },
     {
       "id": "link-how-to-know-when-its-time-for-an-ergonom-to-the-ultimate-guide-to-ergonomic-chairs-m",
-      "from_slug": "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade",
-      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
-      "anchor_text": "What to look for in a replacement",
-      "priority": "high",
       "reason": "Readers deciding whether to upgrade need a feature checklist — the ultimate guide covers every adjustment category they should evaluate in a new chair.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "What to look for in a replacement",
-      "existing_anchor_context": "What to look for in a replacement\nPrioritise chairs with adjustable lumbar support, ideally height-adjustable and with depth or pressure control, so the support can be positioned precisely against your lower back.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "What to look for in a replacement",
+      "existing_anchor": "What to look for in a replacement",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "What to look for in a replacement\nPrioritise chairs with adjustable lumbar support, ideally height-adjustable and with depth or pressure control, so the support can be positioned precisely against your lower back."
     },
     {
       "id": "link-how-to-adjust-office-chair-to-the-ultimate-guide-to-ergonomic-chairs-m",
-      "from_slug": "how-to-adjust-office-chair",
-      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
-      "anchor_text": "full range of adjustable ergonomic chair features",
-      "priority": "high",
       "reason": "Readers who've just set up their chair need next-level feature knowledge — the ultimate guide covers every adjustment category in detail.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "full range of adjustable ergonomic chair features",
-      "existing_anchor_context": "For the full picture of the full range of adjustable ergonomic chair features, that guide covers every feature category in detail.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "how-to-adjust-office-chair",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "full range of adjustable ergonomic chair features",
+      "existing_anchor": "full range of adjustable ergonomic chair features",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "For the full picture of the full range of adjustable ergonomic chair features, that guide covers every feature category in detail."
     },
     {
       "id": "link-best-office-chair-short-people-to-the-ultimate-guide-to-ergonomic-chairs-m",
-      "from_slug": "best-office-chair-short-people",
-      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
-      "anchor_text": "must-have ergonomic features",
-      "priority": "high",
       "reason": "Short-frame buyers need to understand general ergonomic features to evaluate chairs beyond just seat height — the guide covers all adjustment categories.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Our guide to must-have ergonomic chair features covers every adjustment category you’ll need to evaluate before buying.",
-      "insertion_location": "After the introduction paragraph, before the first chair comparison section.",
       "status": "pending",
+      "to_slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "best-office-chair-short-people",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "must-have ergonomic features",
+      "existing_anchor": null,
+      "insertion_location": "After the introduction paragraph, before the first chair comparison section.",
+      "insertion_suggestion": "Our guide to must-have ergonomic chair features covers every adjustment category you’ll need to evaluate before buying.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-correct-sitting-posture-guide-to-the-physical-benefits-of-ergonomics-why-",
-      "from_slug": "correct-sitting-posture-guide",
-      "to_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
-      "anchor_text": "physical benefits of ergonomics",
-      "priority": "high",
       "reason": "Readers learning how to sit correctly will want to understand the broader health outcomes — the pillar covers circulation, lung capacity, and cognitive effects.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "The physical benefits of ergonomics go well past posture, covering circulation, lung capacity, and cognitive sharpness.",
-      "insertion_location": "In the concluding section, or at the end of the opening section that establishes why posture matters.",
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
+      "priority": "high",
+      "done_date": "2026-05-08",
+      "from_slug": "correct-sitting-posture-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "physical benefits of ergonomics",
+      "existing_anchor": null,
+      "insertion_location": "In the concluding section, or at the end of the opening section that establishes why posture matters.",
+      "insertion_suggestion": "The physical benefits of ergonomics go well past posture, covering circulation, lung capacity, and cognitive sharpness.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-best-ergonomic-chair-back-pain-to-the-physical-benefits-of-ergonomics-why-",
-      "from_slug": "best-ergonomic-chair-back-pain",
-      "to_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
-      "anchor_text": "physical benefits of ergonomics",
-      "priority": "high",
       "reason": "Readers choosing a chair for back pain benefit from knowing the full-body health case for ergonomic seating — the pillar covers effects beyond pain relief.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "The physical benefits of ergonomics go beyond back pain: circulation, energy, and cognitive focus are all affected.",
-      "insertion_location": "In the introduction, after the first summary paragraph that sets up why chair choice matters.",
       "status": "pending",
+      "to_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "best-ergonomic-chair-back-pain",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "physical benefits of ergonomics",
+      "existing_anchor": null,
+      "insertion_location": "In the introduction, after the first summary paragraph that sets up why chair choice matters.",
+      "insertion_suggestion": "The physical benefits of ergonomics go beyond back pain: circulation, energy, and cognitive focus are all affected.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-the-role-of-ergonomic-office-chairs-in-p-to-best-ergonomic-chair-back-pain",
-      "from_slug": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
-      "to_slug": "best-ergonomic-chair-back-pain",
-      "anchor_text": "a chair for lower back pain",
-      "priority": "high",
       "reason": "Readers who understand why ergonomic chairs prevent back pain will naturally want specific chair recommendations — the destination covers which chairs to get by pain pattern.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "a chair for lower back pain",
-      "existing_anchor_context": "What features should I look for in a chair for lower back pain? The features with the clearest effect on lower back strain are height-adjustable lumbar support, seat depth adjustment, and controlled recline.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "best-ergonomic-chair-back-pain",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "the-role-of-ergonomic-office-chairs-in-preventing-back-pain",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "a chair for lower back pain",
+      "existing_anchor": "a chair for lower back pain",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "What features should I look for in a chair for lower back pain? The features with the clearest effect on lower back strain are height-adjustable lumbar support, seat depth adjustment, and controlled recline."
     },
     {
       "id": "link-6-affordable-ergonomic-chairs-for-your-h-to-best-study-chairs-students-guide",
-      "from_slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
-      "to_slug": "best-study-chairs-students-guide",
-      "anchor_text": "best study chairs for students",
-      "priority": "high",
       "reason": "Readers shopping for affordable home/office chairs include students — the study chairs guide covers study-specific priorities distinct from the general office pick.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Buying for long study sessions? The best study chairs for students prioritize different features than a general office pick.",
-      "insertion_location": "In the introduction, after the paragraph about rising demand for affordable ergonomic chairs in 2026.",
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "best-study-chairs-students-guide",
+      "priority": "high",
+      "done_date": "2026-05-08",
+      "from_slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "best study chairs for students",
+      "existing_anchor": null,
+      "insertion_location": "In the introduction, after the paragraph about rising demand for affordable ergonomic chairs in 2026.",
+      "insertion_suggestion": "Buying for long study sessions? The best study chairs for students prioritize different features than a general office pick.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-effects-of-poor-sitting-posture-and-how--to-standing-desk-vs-ergonomic-chair",
-      "from_slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-      "to_slug": "standing-desk-vs-ergonomic-chair",
-      "anchor_text": "reducing prolonged static sitting",
-      "priority": "high",
       "reason": "Readers learning about effects of poor posture benefit from knowing when a standing desk is a better tool than a chair alone — the comparison covers both options.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "reducing prolonged static sitting",
-      "existing_anchor_context": "Correcting your workstation setup, strengthening your core and back muscles, and reducing prolonged static sitting are all effective.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "standing-desk-vs-ergonomic-chair",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "reducing prolonged static sitting",
+      "existing_anchor": "reducing prolonged static sitting",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Correcting your workstation setup, strengthening your core and back muscles, and reducing prolonged static sitting are all effective."
     },
     {
       "id": "link-correct-sitting-posture-guide-to-standing-desk-vs-ergonomic-chair",
-      "from_slug": "correct-sitting-posture-guide",
-      "to_slug": "standing-desk-vs-ergonomic-chair",
-      "anchor_text": "comparison of standing desks and ergonomic chairs",
-      "priority": "high",
       "reason": "The post covers dynamic posture including standing breaks — readers will want to know if a standing desk is worth adding to their ergonomic setup.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Considering a sit-stand routine? Our comparison of standing desks and ergonomic chairs covers when each approach works best.",
-      "insertion_location": "In the section on dynamic sitting, near the note about standing up to stretch throughout the day.",
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "standing-desk-vs-ergonomic-chair",
+      "priority": "high",
+      "done_date": "2026-05-08",
+      "from_slug": "correct-sitting-posture-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "comparison of standing desks and ergonomic chairs",
+      "existing_anchor": null,
+      "insertion_location": "In the section on dynamic sitting, near the note about standing up to stretch throughout the day.",
+      "insertion_suggestion": "Considering a sit-stand routine? Our comparison of standing desks and ergonomic chairs covers when each approach works best.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-ergonomic-home-office-setup-guide-to-how-to-adjust-office-chair",
-      "from_slug": "ergonomic-home-office-setup-guide",
-      "to_slug": "how-to-adjust-office-chair",
-      "anchor_text": "Set seat height so your feet rest flat on the floor",
-      "priority": "high",
       "reason": "Readers setting up a home office need detailed chair adjustment guidance — the destination covers every setting in sequence with proper technique.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "Set seat height so your feet rest flat on the floor",
-      "existing_anchor_context": "Set seat height so your feet rest flat on the floor.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "how-to-adjust-office-chair",
+      "priority": "high",
+      "done_date": "2026-05-08",
+      "from_slug": "ergonomic-home-office-setup-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "Set seat height so your feet rest flat on the floor",
+      "existing_anchor": "Set seat height so your feet rest flat on the floor",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Set seat height so your feet rest flat on the floor."
     },
     {
       "id": "link-ergonomic-home-office-setup-guide-to-standing-desk-vs-ergonomic-chair",
-      "from_slug": "ergonomic-home-office-setup-guide",
-      "to_slug": "standing-desk-vs-ergonomic-chair",
-      "anchor_text": "Do I need a sit-stand desk for my home office",
-      "priority": "high",
       "reason": "This FAQ in the home office setup guide directly invites readers to compare sitting vs standing — the destination answers the question in depth.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "Do I need a sit-stand desk for my home office",
-      "existing_anchor_context": "Do I need a sit-stand desk for my home office?",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "standing-desk-vs-ergonomic-chair",
+      "priority": "high",
+      "done_date": null,
+      "from_slug": "ergonomic-home-office-setup-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "Do I need a sit-stand desk for my home office",
+      "existing_anchor": "Do I need a sit-stand desk for my home office",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Do I need a sit-stand desk for my home office?"
     },
     {
       "id": "link-office-chair-tilt-mechanism-guide-to-how-to-adjust-office-chair",
-      "from_slug": "office-chair-tilt-mechanism-guide",
-      "to_slug": "how-to-adjust-office-chair",
-      "anchor_text": "guide to adjusting your office chair",
-      "priority": "medium",
       "reason": "Readers learning about tilt mechanics need the full chair adjustment picture — the destination covers height, armrests, and lumbar alongside tilt.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Tilt is one setting among several. Our guide to adjusting your office chair covers the full process.",
-      "insertion_location": "In the conclusion section or at the end of the section on how to configure your tilt settings.",
       "status": "pending",
+      "to_slug": "how-to-adjust-office-chair",
+      "priority": "medium",
+      "done_date": null,
+      "from_slug": "office-chair-tilt-mechanism-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "guide to adjusting your office chair",
+      "existing_anchor": null,
+      "insertion_location": "In the conclusion section or at the end of the section on how to configure your tilt settings.",
+      "insertion_suggestion": "Tilt is one setting among several. Our guide to adjusting your office chair covers the full process.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-ergonomic-chair-size-guide-to-best-office-chair-short-people",
-      "from_slug": "ergonomic-chair-size-guide",
-      "to_slug": "best-office-chair-short-people",
-      "anchor_text": "minimum seat height below 40 cm",
-      "priority": "medium",
       "reason": "Size-guide readers who are shorter need specific chair picks — the destination breaks down which chairs actually achieve sub-40 cm seat heights.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "minimum seat height below 40 cm",
-      "existing_anchor_context": "Look for chairs with a minimum seat height below 40 cm (16 in).",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "best-office-chair-short-people",
+      "priority": "medium",
+      "done_date": "2026-05-08",
+      "from_slug": "ergonomic-chair-size-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "minimum seat height below 40 cm",
+      "existing_anchor": "minimum seat height below 40 cm",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Look for chairs with a minimum seat height below 40 cm (16 in)."
     },
     {
       "id": "link-ergonomic-chair-size-guide-to-how-to-adjust-office-chair",
-      "from_slug": "ergonomic-chair-size-guide",
-      "to_slug": "how-to-adjust-office-chair",
-      "anchor_text": "seat height, seat depth, and seat width",
-      "priority": "medium",
       "reason": "After sizing chair dimensions, readers need to know how to actually set each adjustment correctly — the destination walks through every setting.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "seat height, seat depth, and seat width",
-      "existing_anchor_context": "These map directly to seat height, seat depth, and seat width.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "how-to-adjust-office-chair",
+      "priority": "medium",
+      "done_date": "2026-05-08",
+      "from_slug": "ergonomic-chair-size-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "seat height, seat depth, and seat width",
+      "existing_anchor": "seat height, seat depth, and seat width",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "These map directly to seat height, seat depth, and seat width."
     },
     {
       "id": "link-the-physical-benefits-of-ergonomics-why--to-best-ergonomic-chair-back-pain",
-      "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
-      "to_slug": "best-ergonomic-chair-back-pain",
-      "anchor_text": "reduces back pain",
-      "priority": "medium",
       "reason": "Readers of the health benefits pillar who see back pain relief mentioned will want specific chair recommendations — the destination covers options by pain pattern.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "reduces back pain",
-      "existing_anchor_context": "Ergonomics reduces back pain, prevents musculoskeletal disorders, improves blood circulation, and sharpens cognitive focus by aligning your workstation to how your body was built to function.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "best-ergonomic-chair-back-pain",
+      "priority": "medium",
+      "done_date": null,
+      "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "reduces back pain",
+      "existing_anchor": "reduces back pain",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Ergonomics reduces back pain, prevents musculoskeletal disorders, improves blood circulation, and sharpens cognitive focus by aligning your workstation to how your body was built to function."
     },
     {
       "id": "link-the-physical-benefits-of-ergonomics-why--to-correct-sitting-posture-guide",
-      "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
-      "to_slug": "correct-sitting-posture-guide",
-      "anchor_text": "correct sitting posture",
-      "priority": "medium",
       "reason": "The health pillar explains WHY posture matters; readers need the companion guide on HOW to actually sit correctly — a natural next step from the theory.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Our guide to correct sitting posture covers body angles, lumbar placement, and daily habits that protect your spine.",
-      "insertion_location": "In the section on musculoskeletal benefits, after the paragraph on the connection between poor posture and MSD risk.",
       "status": "pending",
+      "to_slug": "correct-sitting-posture-guide",
+      "priority": "medium",
+      "done_date": null,
+      "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "correct sitting posture",
+      "existing_anchor": null,
+      "insertion_location": "In the section on musculoskeletal benefits, after the paragraph on the connection between poor posture and MSD risk.",
+      "insertion_suggestion": "Our guide to correct sitting posture covers body angles, lumbar placement, and daily habits that protect your spine.",
+      "existing_anchor_context": null
     },
     {
       "id": "link-what-is-lumbar-support-to-lumbar-cushion-vs-built-in-support",
-      "from_slug": "what-is-lumbar-support",
-      "to_slug": "lumbar-cushion-vs-built-in-support",
-      "anchor_text": "Lumbar cushions and back support pillows",
-      "priority": "medium",
       "reason": "Readers learning what lumbar support is will want to know which form — external cushion vs built-in — is better for their specific chair and body.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "Lumbar cushions and back support pillows",
-      "existing_anchor_context": "Lumbar cushions and back support pillows attach to most office chairs and provide a basic level of lower back support.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "lumbar-cushion-vs-built-in-support",
+      "priority": "medium",
+      "done_date": null,
+      "from_slug": "what-is-lumbar-support",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "Lumbar cushions and back support pillows",
+      "existing_anchor": "Lumbar cushions and back support pillows",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Lumbar cushions and back support pillows attach to most office chairs and provide a basic level of lower back support."
     },
     {
       "id": "link-lumbar-cushion-vs-built-in-support-to-best-ergonomic-chair-back-pain",
-      "from_slug": "lumbar-cushion-vs-built-in-support",
-      "to_slug": "best-ergonomic-chair-back-pain",
-      "anchor_text": "make back pain worse",
-      "priority": "medium",
       "reason": "Readers asking whether a cushion can worsen back pain are ready for chair-specific recommendations — the destination guides them to the right chair by pain pattern.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "make back pain worse",
-      "existing_anchor_context": "Can a lumbar cushion make back pain worse?",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "best-ergonomic-chair-back-pain",
+      "priority": "medium",
+      "done_date": null,
+      "from_slug": "lumbar-cushion-vs-built-in-support",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "make back pain worse",
+      "existing_anchor": "make back pain worse",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Can a lumbar cushion make back pain worse?"
     },
     {
       "id": "link-office-furniture-supplier-malaysia-corpo-to-bifma-certified-office-furniture-malaysi",
-      "from_slug": "office-furniture-supplier-malaysia-corporate-guide",
-      "to_slug": "bifma-certified-office-furniture-malaysia",
-      "anchor_text": "BIFMA compliance",
-      "priority": "medium",
       "reason": "Corporate buyers evaluating suppliers need to understand BIFMA certification — the destination covers what BIFMA means and how to verify it before procurement.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "BIFMA compliance",
-      "existing_anchor_context": "BIFMA compliance and Greenguard Gold certification confirm furniture built for 9+ hours of commercial use daily.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "bifma-certified-office-furniture-malaysia",
+      "priority": "medium",
+      "done_date": "2026-05-08",
+      "from_slug": "office-furniture-supplier-malaysia-corporate-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "BIFMA compliance",
+      "existing_anchor": "BIFMA compliance",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "BIFMA compliance and Greenguard Gold certification confirm furniture built for 9+ hours of commercial use daily."
     },
     {
       "id": "link-office-furniture-supplier-malaysia-corpo-to-best-office-furniture-supplier-malaysia",
-      "from_slug": "office-furniture-supplier-malaysia-corporate-guide",
-      "to_slug": "best-office-furniture-supplier-malaysia",
-      "anchor_text": "separate reliable suppliers from risky ones",
-      "priority": "medium",
       "reason": "Corporate buyers following the supplier fit test need a curated shortlist of vetted suppliers in Malaysia to apply it to.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "separate reliable suppliers from risky ones",
-      "existing_anchor_context": "Over five decades of supplying corporate clients, we've identified five dimensions that separate reliable suppliers from risky ones.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "best-office-furniture-supplier-malaysia",
+      "priority": "medium",
+      "done_date": "2026-05-08",
+      "from_slug": "office-furniture-supplier-malaysia-corporate-guide",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "separate reliable suppliers from risky ones",
+      "existing_anchor": "separate reliable suppliers from risky ones",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Over five decades of supplying corporate clients, we've identified five dimensions that separate reliable suppliers from risky ones."
     },
     {
       "id": "link-effects-of-poor-sitting-posture-and-how--to-correct-sitting-posture-guide",
-      "from_slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-      "to_slug": "correct-sitting-posture-guide",
-      "anchor_text": "Correcting your workstation setup",
-      "priority": "medium",
       "reason": "Readers learning what poor posture does to their body need the natural next step — how to actually fix their sitting position and workspace arrangement.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "Correcting your workstation setup",
-      "existing_anchor_context": "Correcting your workstation setup, strengthening your core and back muscles, and reducing prolonged static sitting are all effective.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
-      "status": "pending",
+      "status": "verified",
+      "to_slug": "correct-sitting-posture-guide",
+      "priority": "medium",
+      "done_date": "2026-05-08",
+      "from_slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "Correcting your workstation setup",
+      "existing_anchor": "Correcting your workstation setup",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "Correcting your workstation setup, strengthening your core and back muscles, and reducing prolonged static sitting are all effective."
     },
     {
       "id": "link-why-executive-comfort-is-the-new-product-to-ergonomic-home-office-setup-guide",
-      "from_slug": "why-executive-comfort-is-the-new-productivity",
-      "to_slug": "ergonomic-home-office-setup-guide",
-      "anchor_text": "home offices",
-      "priority": "low",
       "reason": "Brand post readers working from home will benefit from the practical home office setup guide to implement ergonomic changes.",
-      "action_type": "hyperlink_existing",
-      "existing_anchor": "home offices",
-      "existing_anchor_context": "They toggle between boardrooms, home offices, and hybrid video calls.",
-      "insertion_suggestion": null,
-      "insertion_location": null,
       "status": "pending",
+      "to_slug": "ergonomic-home-office-setup-guide",
+      "priority": "low",
+      "done_date": null,
+      "from_slug": "why-executive-comfort-is-the-new-productivity",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "hyperlink_existing",
+      "anchor_text": "home offices",
+      "existing_anchor": "home offices",
+      "insertion_location": null,
+      "insertion_suggestion": null,
+      "existing_anchor_context": "They toggle between boardrooms, home offices, and hybrid video calls."
     },
     {
       "id": "link-why-everyones-switching-to-ergonomics-sw-to-ergonomic-home-office-setup-guide",
-      "from_slug": "why-everyones-switching-to-ergonomics-swivel-chairs-in-2025",
-      "to_slug": "ergonomic-home-office-setup-guide",
-      "anchor_text": "ergonomic home office setup",
-      "priority": "low",
       "reason": "Readers interested in switching to ergonomics need the practical home office setup guide to implement it fully.",
-      "action_type": "insert_new",
-      "existing_anchor": null,
-      "existing_anchor_context": null,
-      "insertion_suggestion": "Setting up at home? Our guide to ergonomic home office setup covers desk height, chair settings, and monitor position.",
-      "insertion_location": "In the conclusion or near the end of the post where it addresses making the switch to ergonomic furniture.",
       "status": "pending",
+      "to_slug": "ergonomic-home-office-setup-guide",
+      "priority": "low",
+      "done_date": null,
+      "from_slug": "why-everyones-switching-to-ergonomics-swivel-chairs-in-2025",
       "added_date": "2026-05-08",
-      "done_date": null
+      "action_type": "insert_new",
+      "anchor_text": "ergonomic home office setup",
+      "existing_anchor": null,
+      "insertion_location": "In the conclusion or near the end of the post where it addresses making the switch to ergonomic furniture.",
+      "insertion_suggestion": "Setting up at home? Our guide to ergonomic home office setup covers desk height, chair settings, and monitor position.",
+      "existing_anchor_context": null
     }
   ],
   "post_details": {
@@ -2773,12 +2773,20 @@
       "ga4_referral_views": 1,
       "internal_links_out": [
         {
+          "slug": "how-to-adjust-office-chair",
+          "anchor": "seat height, seat depth, and seat width"
+        },
+        {
           "slug": "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade",
           "anchor": "signs that your current office chair no longer fits your body"
         },
         {
           "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
           "anchor": "must-have ergonomic chair features to look for once you have your size"
+        },
+        {
+          "slug": "best-office-chair-short-people",
+          "anchor": "minimum seat height below 40 cm (16 in)"
         },
         {
           "slug": "how-to-choose-the-best-ergonomic-chair-in-malaysia",
@@ -2796,7 +2804,7 @@
       "product_links_count": 36,
       "internal_links_in_count": 4,
       "ahrefs_referring_domains": 0,
-      "internal_links_out_count": 5
+      "internal_links_out_count": 7
     },
     "how-to-adjust-office-chair": {
       "url": "https://www.merryfair.com/latest_updates/blog/how-to-adjust-office-chair/",
@@ -2848,6 +2856,14 @@
         {
           "slug": "best-office-chair-short-people",
           "anchor": "the proper sequence for setting seat height, depth, and lumbar"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "seat height, seat depth, and seat width"
+        },
+        {
+          "slug": "ergonomic-home-office-setup-guide",
+          "anchor": "Set seat height so your feet rest flat on the floor"
         }
       ],
       "ga4_referral_views": 0,
@@ -2874,7 +2890,7 @@
         }
       ],
       "product_links_count": 36,
-      "internal_links_in_count": 2,
+      "internal_links_in_count": 4,
       "internal_links_out_count": 5
     },
     "footrest-office-chair-guide": {
@@ -3091,20 +3107,28 @@
           "anchor": "step-by-step guide to correct sitting posture"
         },
         {
-          "slug": "office-furniture-supplier-malaysia-corporate-guide",
-          "anchor": "correct sitting posture and office chair setup"
-        },
-        {
           "slug": "best-office-furniture-supplier-malaysia",
           "anchor": "correct sitting posture breaks down within twenty minutes"
         },
         {
           "slug": "best-ergonomic-chair-back-pain",
           "anchor": "the correct sitting posture to pair with an ergonomic chair"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "Correcting your workstation setup"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "correct sitting posture and office chair setup"
         }
       ],
       "ga4_referral_views": 0,
       "internal_links_out": [
+        {
+          "slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
+          "anchor": "physical benefits of ergonomics"
+        },
         {
           "slug": "how-to-choose-the-best-ergonomic-chair-in-malaysia",
           "anchor": "how to choose the right ergonomic chair"
@@ -3114,13 +3138,17 @@
           "anchor": "ergonomic chair features that affect posture"
         },
         {
+          "slug": "standing-desk-vs-ergonomic-chair",
+          "anchor": "comparison of standing desks and ergonomic chairs"
+        },
+        {
           "slug": "office-chair-tilt-mechanism-guide",
           "anchor": "how tilt mechanisms support dynamic sitting"
         }
       ],
       "product_links_count": 36,
-      "internal_links_in_count": 4,
-      "internal_links_out_count": 3
+      "internal_links_in_count": 5,
+      "internal_links_out_count": 5
     },
     "best-ergonomic-chair-back-pain": {
       "url": "https://www.merryfair.com/latest_updates/blog/best-ergonomic-chair-back-pain/",
@@ -3269,7 +3297,12 @@
         "Spinelly",
         "Velo"
       ],
-      "internal_links_in": [],
+      "internal_links_in": [
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "minimum seat height below 40 cm (16 in)"
+        }
+      ],
       "internal_links_out": [
         {
           "slug": "ergonomic-chair-size-guide",
@@ -3281,7 +3314,7 @@
         }
       ],
       "product_links_count": 38,
-      "internal_links_in_count": 0,
+      "internal_links_in_count": 1,
       "internal_links_out_count": 2
     },
     "best-ergonomic-chair-long-hours": {
@@ -3418,7 +3451,12 @@
         "Rookee"
       ],
       "ga4_organic_views": 63,
-      "internal_links_in": [],
+      "internal_links_in": [
+        {
+          "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
+          "anchor": "for the kid students, there are limited best ergonomic chair options"
+        }
+      ],
       "ga4_referral_views": 1,
       "internal_links_out": [
         {
@@ -3439,7 +3477,7 @@
         }
       ],
       "product_links_count": 36,
-      "internal_links_in_count": 0,
+      "internal_links_in_count": 1,
       "ahrefs_referring_domains": 1,
       "internal_links_out_count": 4
     },
@@ -3491,7 +3529,12 @@
         "Aire"
       ],
       "ga4_organic_views": 32,
-      "internal_links_in": [],
+      "internal_links_in": [
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "comparison of standing desks and ergonomic chairs"
+        }
+      ],
       "ga4_referral_views": 0,
       "internal_links_out": [
         {
@@ -3524,7 +3567,7 @@
         }
       ],
       "product_links_count": 38,
-      "internal_links_in_count": 0,
+      "internal_links_in_count": 1,
       "internal_links_out_count": 7
     },
     "ergonomic-home-office-setup-guide": {
@@ -3584,6 +3627,10 @@
       "ga4_referral_views": 0,
       "internal_links_out": [
         {
+          "slug": "how-to-adjust-office-chair",
+          "anchor": "Set seat height so your feet rest flat on the floor"
+        },
+        {
           "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
           "anchor": "how to choose the right ergonomic chair for your work style"
         },
@@ -3598,7 +3645,7 @@
       ],
       "product_links_count": 37,
       "internal_links_in_count": 2,
-      "internal_links_out_count": 3
+      "internal_links_out_count": 4
     },
     "office-chair-tilt-mechanism-guide": {
       "url": "https://www.merryfair.com/latest_updates/blog/office-chair-tilt-mechanism-guide/",
@@ -3648,16 +3695,8 @@
       "ga4_organic_views": 137,
       "internal_links_in": [
         {
-          "slug": "correct-sitting-posture-guide",
-          "anchor": "how tilt mechanisms support dynamic sitting"
-        },
-        {
           "slug": "how-to-adjust-office-chair",
           "anchor": "how synchro tilt mechanisms work and how to set tension"
-        },
-        {
-          "slug": "office-furniture-supplier-malaysia-corporate-guide",
-          "anchor": "what each tilt mechanism does"
         },
         {
           "slug": "best-ergonomic-office-chairs-every-budget",
@@ -3686,6 +3725,14 @@
         {
           "slug": "bifma-certified-office-furniture-malaysia",
           "anchor": "how tilt mechanisms affect daily chair performance"
+        },
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "how tilt mechanisms support dynamic sitting"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "what each tilt mechanism does"
         }
       ],
       "ga4_referral_views": 4,
@@ -4024,6 +4071,10 @@
         {
           "slug": "bifma-certified-office-furniture-malaysia",
           "anchor": "best office furniture supplier in Malaysia for your specific business type"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "separate reliable suppliers from risky ones"
         }
       ],
       "internal_links_out": [
@@ -4049,7 +4100,7 @@
         }
       ],
       "product_links_count": 36,
-      "internal_links_in_count": 1,
+      "internal_links_in_count": 2,
       "internal_links_out_count": 5
     },
     "how-to-choose-office-chair-body-fit-test": {
@@ -4110,16 +4161,8 @@
           "anchor": "how to match a chair to your body using a three-point measurement test"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "how to choose the right ergonomic chair for your body shape and sitting habits"
-        },
-        {
           "slug": "office-chair-cost-calculator",
           "anchor": "how to test whether a chair actually fits your body before buying"
-        },
-        {
-          "slug": "ergonomic-chair-size-guide",
-          "anchor": "3-layer body fit test to confirm the chair fits your body"
         },
         {
           "slug": "lumbar-cushion-vs-built-in-support",
@@ -4132,6 +4175,14 @@
         {
           "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
           "anchor": "fit the chair to your body"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "how to choose the right ergonomic chair for your body shape and sitting habits"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "3-layer body fit test to confirm the chair fits your body"
         }
       ],
       "ga4_referral_views": 0,
@@ -4232,10 +4283,6 @@
           "anchor": "Budget mesh chairs (under RM300)"
         },
         {
-          "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
-          "anchor": "ergonomic chair that fits your needs and budget"
-        },
-        {
           "slug": "upgrade-your-workspace-affordable-working-chairs-under-rm1000",
           "anchor": "Ergonomic chairs from different budget tiers"
         },
@@ -4248,10 +4295,6 @@
           "anchor": "a comparison of ergonomic chairs at every price point in Malaysia"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "ergonomic chairs across every budget that address posture-related pain"
-        },
-        {
           "slug": "office-chair-cost-calculator",
           "anchor": "ergonomic chairs across every price tier in Malaysia"
         },
@@ -4260,24 +4303,12 @@
           "anchor": "find the right ergonomic chair across every price range"
         },
         {
-          "slug": "ergonomic-chair-size-guide",
-          "anchor": "ergonomic chairs across every budget tier in Malaysia"
-        },
-        {
-          "slug": "ergonomic-home-office-setup-guide",
-          "anchor": "compare ergonomic chairs across every budget tier"
-        },
-        {
           "slug": "small-home-office-ideas",
           "anchor": "Finding the right ergonomic chair for your budget and sitting hours"
         },
         {
           "slug": "standing-desk-vs-ergonomic-chair",
           "anchor": "how to find the right ergonomic chair for your budget tier"
-        },
-        {
-          "slug": "office-furniture-supplier-malaysia-corporate-guide",
-          "anchor": "ergonomic chairs across every budget tier"
         },
         {
           "slug": "how-to-choose-the-best-ergonomic-chair-in-malaysia",
@@ -4302,6 +4333,26 @@
         {
           "slug": "bifma-certified-office-furniture-malaysia",
           "anchor": "ergonomic chairs across every budget tier"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "ergonomic chairs across every budget that address posture-related pain"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "ergonomic chairs across every budget tier in Malaysia"
+        },
+        {
+          "slug": "ergonomic-home-office-setup-guide",
+          "anchor": "compare ergonomic chairs across every budget tier"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "ergonomic chairs across every budget tier"
+        },
+        {
+          "slug": "6-affordable-ergonomic-chairs-for-your-home-and-office",
+          "anchor": "ergonomic chair that fits your needs and budget"
         }
       ],
       "ga4_referral_views": 6,
@@ -4404,6 +4455,10 @@
         {
           "slug": "best-office-furniture-supplier-malaysia",
           "anchor": "what BIFMA compliance actually tests on an office chair"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "BIFMA compliance"
         }
       ],
       "internal_links_out": [
@@ -4433,7 +4488,7 @@
         }
       ],
       "product_links_count": 36,
-      "internal_links_in_count": 3,
+      "internal_links_in_count": 4,
       "internal_links_out_count": 6
     },
     "why-executive-comfort-is-the-new-productivity": {
@@ -4579,14 +4634,6 @@
           "anchor": "what to look for in an ergonomic office chair"
         },
         {
-          "slug": "ergonomic-chair-size-guide",
-          "anchor": "choosing an ergonomic chair in Malaysia"
-        },
-        {
-          "slug": "correct-sitting-posture-guide",
-          "anchor": "how to choose the right ergonomic chair"
-        },
-        {
           "slug": "how-to-clean-office-chair-malaysia",
           "anchor": "choosing the right ergonomic chair for Malaysia’s climate"
         },
@@ -4601,6 +4648,14 @@
         {
           "slug": "bifma-certified-office-furniture-malaysia",
           "anchor": "choosing the right ergonomic chair in Malaysia"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "choosing an ergonomic chair in Malaysia"
+        },
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "how to choose the right ergonomic chair"
         }
       ],
       "ga4_referral_views": 1,
@@ -4710,6 +4765,14 @@
           "anchor": "correct sitting posture and office chair setup"
         },
         {
+          "slug": "best-office-furniture-supplier-malaysia",
+          "anchor": "separate reliable suppliers from risky ones"
+        },
+        {
+          "slug": "bifma-certified-office-furniture-malaysia",
+          "anchor": "BIFMA compliance"
+        },
+        {
           "slug": "best-ergonomic-office-chairs-every-budget",
           "anchor": "ergonomic chairs across every budget tier"
         },
@@ -4724,7 +4787,7 @@
       ],
       "product_links_count": 39,
       "internal_links_in_count": 2,
-      "internal_links_out_count": 4
+      "internal_links_out_count": 6
     },
     "office-chairs-to-sit-with-power-focus-and-intention": {
       "url": "https://www.merryfair.com/latest_updates/blog/office-chairs-to-sit-with-power-focus-and-intention/",
@@ -4839,10 +4902,6 @@
           "anchor": "affordable ergonomic options under RM1,000 to include in your cost comparison"
         },
         {
-          "slug": "ergonomic-home-office-setup-guide",
-          "anchor": "affordable ergonomic chairs that deliver real support under RM1,000"
-        },
-        {
           "slug": "small-home-office-ideas",
           "anchor": "affordable ergonomic chairs with a small footprint for compact setups"
         },
@@ -4857,10 +4916,18 @@
         {
           "slug": "best-ergonomic-chair-long-hours",
           "anchor": "affordable ergonomic chairs for all-day use"
+        },
+        {
+          "slug": "ergonomic-home-office-setup-guide",
+          "anchor": "affordable ergonomic chairs that deliver real support under RM1,000"
         }
       ],
       "ga4_referral_views": 1,
       "internal_links_out": [
+        {
+          "slug": "best-study-chairs-students-guide",
+          "anchor": "for the kid students, there are limited best ergonomic chair options"
+        },
         {
           "slug": "best-ergonomic-office-chairs-every-budget",
           "anchor": "ergonomic chair that fits your needs and budget"
@@ -4869,7 +4936,7 @@
       "product_links_count": 40,
       "internal_links_in_count": 7,
       "ahrefs_referring_domains": 0,
-      "internal_links_out_count": 1
+      "internal_links_out_count": 2
     },
     "how-to-know-when-its-time-for-an-ergonomic-chair-upgrade": {
       "url": "https://www.merryfair.com/latest_updates/blog/how-to-know-when-its-time-for-an-ergonomic-chair-upgrade/",
@@ -4928,10 +4995,6 @@
           "anchor": "signs that your current chair is making your posture worse"
         },
         {
-          "slug": "ergonomic-chair-size-guide",
-          "anchor": "signs that your current office chair no longer fits your body"
-        },
-        {
           "slug": "how-to-clean-office-chair-malaysia",
           "anchor": "signs your chair is beyond what cleaning can fix"
         },
@@ -4942,6 +5005,10 @@
         {
           "slug": "the-ultimate-guide-to-ergonomic-chairs-must-have-features-and-best-types-for-every-workspace",
           "anchor": "few signs of discomfort in your body"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "signs that your current office chair no longer fits your body"
         }
       ],
       "ga4_referral_views": 0,
@@ -5223,12 +5290,16 @@
         {
           "slug": "best-ergonomic-office-chairs-every-budget",
           "anchor": "ergonomic chairs across every budget that address posture-related pain"
+        },
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "Correcting your workstation setup"
         }
       ],
       "product_links_count": 37,
       "internal_links_in_count": 3,
       "ahrefs_referring_domains": 0,
-      "internal_links_out_count": 4
+      "internal_links_out_count": 5
     },
     "the-role-of-ergonomic-office-chairs-in-preventing-back-pain": {
       "url": "https://www.merryfair.com/latest_updates/blog/the-role-of-ergonomic-office-chairs-in-preventing-back-pain/",
@@ -5981,10 +6052,6 @@
           "anchor": "ergonomic chair reduces the mechanical strain"
         },
         {
-          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
-          "anchor": "ergonomic chair does it"
-        },
-        {
           "slug": "do-posture-correctors-work",
           "anchor": "benefits from investing in an ergonomic chair"
         },
@@ -5995,6 +6062,14 @@
         {
           "slug": "standing-desk-vs-ergonomic-chair",
           "anchor": "the health benefits of ergonomic seating during long work sessions"
+        },
+        {
+          "slug": "effects-of-poor-sitting-posture-and-how-ergonomics-can-help",
+          "anchor": "ergonomic chair does it"
+        },
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "physical benefits of ergonomics"
         }
       ],
       "ga4_referral_views": 1,
@@ -6025,7 +6100,7 @@
         }
       ],
       "product_links_count": 38,
-      "internal_links_in_count": 5,
+      "internal_links_in_count": 6,
       "ahrefs_referring_domains": 0,
       "internal_links_out_count": 6
     },
@@ -6078,16 +6153,16 @@
       "ga4_organic_views": 14,
       "internal_links_in": [
         {
-          "slug": "office-furniture-supplier-malaysia-corporate-guide",
-          "anchor": "eco-friendly ergonomic chairs for a sustainable office"
-        },
-        {
           "slug": "best-ergonomic-office-chairs-every-budget",
           "anchor": "sustainability into every chair’s lifecycle"
         },
         {
           "slug": "bifma-certified-office-furniture-malaysia",
           "anchor": "Greenguard Gold certification for healthier indoor air quality"
+        },
+        {
+          "slug": "office-furniture-supplier-malaysia-corporate-guide",
+          "anchor": "eco-friendly ergonomic chairs for a sustainable office"
         }
       ],
       "ga4_referral_views": 0,
@@ -6165,24 +6240,12 @@
           "anchor": "how ergonomic chair features protect your back during long hours"
         },
         {
-          "slug": "ergonomic-chair-size-guide",
-          "anchor": "must-have ergonomic chair features to look for once you have your size"
-        },
-        {
-          "slug": "ergonomic-home-office-setup-guide",
-          "anchor": "how to choose the right ergonomic chair for your work style"
-        },
-        {
           "slug": "small-home-office-ideas",
           "anchor": "how to match ergonomic chair features to your work pattern and body"
         },
         {
           "slug": "standing-desk-vs-ergonomic-chair",
           "anchor": "the must-have features of a proper ergonomic chair explained"
-        },
-        {
-          "slug": "correct-sitting-posture-guide",
-          "anchor": "ergonomic chair features that affect posture"
         },
         {
           "slug": "how-to-clean-office-chair-malaysia",
@@ -6203,6 +6266,18 @@
         {
           "slug": "footrest-office-chair-guide",
           "anchor": "the must-have features in an ergonomic chair that adjusts to your body"
+        },
+        {
+          "slug": "ergonomic-chair-size-guide",
+          "anchor": "must-have ergonomic chair features to look for once you have your size"
+        },
+        {
+          "slug": "ergonomic-home-office-setup-guide",
+          "anchor": "how to choose the right ergonomic chair for your work style"
+        },
+        {
+          "slug": "correct-sitting-posture-guide",
+          "anchor": "ergonomic chair features that affect posture"
         }
       ],
       "ga4_referral_views": 1,
@@ -6269,9 +6344,6 @@
   "linking_health": {
     "orphan_posts": [
       "best-ergonomic-chair-back-pain",
-      "best-office-chair-short-people",
-      "best-study-chairs-students-guide",
-      "standing-desk-vs-ergonomic-chair",
       "office-chairs-to-sit-with-power-focus-and-intention",
       "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
     ],
