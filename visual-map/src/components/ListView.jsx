@@ -171,7 +171,7 @@ export default function ListView({ clusters, postDetails, selected, onSelect, se
               </div>
 
               {isOpen && (
-                <div style={{ padding: '8px 16px 16px' }}>
+                <div className="cluster-content" style={{ padding: '8px 16px 16px' }}>
                   {pillar && <PostRow {...pillar} color={cluster.color} maxClicks={maxClicks} maxImpressions={maxImpressions} selected={selected} onSelect={onSelect} />}
                   {clusterPosts.map(({ slug, post }) => (
                     <PostRow key={slug} slug={slug} post={post} color={cluster.color} maxClicks={maxClicks} maxImpressions={maxImpressions} selected={selected} onSelect={onSelect} />

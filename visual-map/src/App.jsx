@@ -163,84 +163,93 @@ export default function App() {
 
       {/* Main content — position:relative so DetailPanel can overlay */}
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
-        {view === 'graph' && (
-          <GraphView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-            dataVersion={dataVersion}
-          />
-        )}
-        {view === 'list' && (
-          <ListView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-            searchQuery={searchQuery}
-          />
-        )}
-        {view === 'gaps' && (
-          <GapsView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-            onAddIdea={() => setShowAddIdea(true)}
-          />
-        )}
-        {view === 'pipeline' && (
-          <PipelineView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-            onAddIdea={() => setShowAddIdea(true)}
-          />
-        )}
-        {view === 'triage' && (
-          <TriageView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-            searchQuery={searchQuery}
-          />
-        )}
-        {view === 'optimize' && (
-          <OptimizeView
-            clusters={data.clusters}
-            postDetails={data.post_details}
-            selected={selected}
-            onSelect={setSelected}
-          />
-        )}
-        {view === 'links' && (
-          <LinkQueueView
-            linkQueue={data.link_queue || []}
-            linkHealthIssues={data.link_health_issues || []}
-            postDetails={data.post_details}
-            clusters={data.clusters}
-            onQueueUpdate={(updatedItem) => {
-              setData(prev => ({
-                ...prev,
-                link_queue: (prev.link_queue || []).map(i =>
-                  i.id === updatedItem.id ? updatedItem : i
-                ),
-              }))
-              setDataVersion(v => v + 1)
-            }}
-            onHealthUpdate={(updatedItem) => {
-              setData(prev => ({
-                ...prev,
-                link_health_issues: (prev.link_health_issues || []).map(i =>
-                  i.id === updatedItem.id ? updatedItem : i
-                ),
-              }))
-              setDataVersion(v => v + 1)
-            }}
-          />
+
+        {/* Keyed by view so switching tabs triggers viewEnter animation */}
+        <div key={view} className="view-enter">
+          {view === 'graph' && (
+            <GraphView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              dataVersion={dataVersion}
+            />
+          )}
+          {view === 'list' && (
+            <ListView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              searchQuery={searchQuery}
+            />
+          )}
+          {view === 'gaps' && (
+            <GapsView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              onAddIdea={() => setShowAddIdea(true)}
+            />
+          )}
+          {view === 'pipeline' && (
+            <PipelineView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              onAddIdea={() => setShowAddIdea(true)}
+            />
+          )}
+          {view === 'triage' && (
+            <TriageView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+              searchQuery={searchQuery}
+            />
+          )}
+          {view === 'optimize' && (
+            <OptimizeView
+              clusters={data.clusters}
+              postDetails={data.post_details}
+              selected={selected}
+              onSelect={setSelected}
+            />
+          )}
+          {view === 'links' && (
+            <LinkQueueView
+              linkQueue={data.link_queue || []}
+              linkHealthIssues={data.link_health_issues || []}
+              postDetails={data.post_details}
+              clusters={data.clusters}
+              onQueueUpdate={(updatedItem) => {
+                setData(prev => ({
+                  ...prev,
+                  link_queue: (prev.link_queue || []).map(i =>
+                    i.id === updatedItem.id ? updatedItem : i
+                  ),
+                }))
+                setDataVersion(v => v + 1)
+              }}
+              onHealthUpdate={(updatedItem) => {
+                setData(prev => ({
+                  ...prev,
+                  link_health_issues: (prev.link_health_issues || []).map(i =>
+                    i.id === updatedItem.id ? updatedItem : i
+                  ),
+                }))
+                setDataVersion(v => v + 1)
+              }}
+            />
+          )}
+        </div>
+
+        {/* Backdrop — click to dismiss panel */}
+        {(selectedPost || selectedGap) && (
+          <div className="panel-backdrop" onClick={() => setSelected(null)} />
         )}
 
         {/* Detail panel overlays content — no layout reflow */}

@@ -96,17 +96,24 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.15s, transform 0.12s;
-}
-.card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  transition: box-shadow 0.18s ease, transform 0.15s ease, border-color 0.15s ease;
 }
 .card.selected {
-  box-shadow: 0 0 0 2px var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow-sm);
   background: var(--bg4) !important;
+  border-color: transparent;
 }
-.card-clickable { cursor: pointer; }
+.card-clickable { cursor: pointer; user-select: none; }
+.card-clickable:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--border2);
+}
+.card-clickable:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
 
 /* ── Stat blocks ─────────────────────────────────────────────────── */
 .stat-block {
@@ -115,6 +122,12 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius-sm);
   padding: 12px 14px;
   box-shadow: var(--shadow-xs);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.stat-block:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--border2);
 }
 .stat-block .stat-label {
   font-size: 10px;
@@ -250,6 +263,11 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 4px 12px rgba(245,158,11,0.40);
   transform: translateY(-1px);
 }
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  transition: transform 0.06s, box-shadow 0.06s;
+}
 .btn-secondary {
   background: var(--bg2);
   color: var(--text2);
@@ -260,12 +278,17 @@ a:hover { text-decoration: underline; }
   background: var(--bg4);
   border-color: var(--border2);
 }
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.97);
+  transition: transform 0.06s;
+}
 .btn-ghost {
   background: transparent;
   color: var(--text3);
   border: 1px solid var(--border);
 }
 .btn-ghost:hover { background: var(--bg3); color: var(--text2); }
+.btn-ghost:active { transform: scale(0.97); transition: transform 0.06s; }
 
 /* ── Tab strip ───────────────────────────────────────────────────── */
 .tab-strip {
@@ -294,6 +317,7 @@ a:hover { text-decoration: underline; }
 }
 .tab-btn.warn { color: var(--gap-color); }
 .tab-btn.warn.active { color: var(--gap-color); }
+.tab-btn:active:not(.active) { transform: scale(0.95); transition: transform 0.06s; }
 
 /* ── Tab separator ───────────────────────────────────────────────── */
 .tab-sep {
@@ -354,7 +378,8 @@ a:hover { text-decoration: underline; }
 .progress-fill {
   height: 100%;
   border-radius: 2px;
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: left center;
+  animation: progressGrow 0.7s cubic-bezier(0.16,1,0.3,1) both;
 }
 
 /* ── Empty state ─────────────────────────────────────────────────── */
@@ -380,14 +405,40 @@ a:hover { text-decoration: underline; }
 
 /* ── Animations ──────────────────────────────────────────────────── */
 @keyframes panel-slide-in {
-  from { transform: translateX(20px); opacity: 0; }
+  from { transform: translateX(28px); opacity: 0; }
   to   { transform: translateX(0);    opacity: 1; }
 }
 @keyframes toast-in {
-  from { transform: translateY(6px); opacity: 0; }
-  to   { transform: translateY(0);   opacity: 1; }
+  from { transform: translateY(8px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0)   scale(1);    opacity: 1; }
 }
-.detail-panel { animation: panel-slide-in 0.16s cubic-bezier(0.16,1,0.3,1); }
+@keyframes progressGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes viewEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes clusterOpen {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.detail-panel    { animation: panel-slide-in 0.22s cubic-bezier(0.16,1,0.3,1); }
+.view-enter      { animation: viewEnter 0.22s cubic-bezier(0.16,1,0.3,1); height: 100%; overflow: hidden; }
+.cluster-content { animation: clusterOpen 0.2s cubic-bezier(0.16,1,0.3,1); }
+.panel-backdrop  {
+  position: absolute; inset: 0;
+  background: rgba(13,17,23,0.18);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+  cursor: pointer;
+}
 
 /* ── Toasts ──────────────────────────────────────────────────────── */
 .toast-container {
