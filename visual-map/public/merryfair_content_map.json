@@ -2091,10 +2091,10 @@
       "from_slug": "best-office-chair-short-people",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
-      "anchor_text": "must-have ergonomic features",
+      "anchor_text": "seat height and lumbar depth",
       "existing_anchor": null,
-      "insertion_location": "After the introduction paragraph, before the first chair comparison section.",
-      "insertion_suggestion": "Our guide to must-have ergonomic chair features covers every adjustment category you’ll need to evaluate before buying.",
+      "insertion_location": "After the Key Takeaways section, before the first chair comparison, where the article explains the 3-spec framework.",
+      "insertion_suggestion": "Seat height is the entry point. Lumbar depth, seat depth, and armrest range need to pass the same test: do they reach where your specific body needs them to?",
       "existing_anchor_context": null
     },
     {
@@ -2123,10 +2123,10 @@
       "from_slug": "best-ergonomic-chair-back-pain",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
-      "anchor_text": "physical benefits of ergonomics",
+      "anchor_text": "circulation, breathing, and how clearly you think",
       "existing_anchor": null,
-      "insertion_location": "In the introduction, after the first summary paragraph that sets up why chair choice matters.",
-      "insertion_suggestion": "The physical benefits of ergonomics go beyond back pain: circulation, energy, and cognitive focus are all affected.",
+      "insertion_location": "In the introduction, after the paragraph about first-hour comfort vs. back-pain relief.",
+      "insertion_suggestion": "Back pain is the most visible symptom, but the right chair also affects circulation, breathing, and how clearly you think.",
       "existing_anchor_context": null
     },
     {
@@ -2235,10 +2235,10 @@
       "from_slug": "office-chair-tilt-mechanism-guide",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
-      "anchor_text": "guide to adjusting your office chair",
+      "anchor_text": "seat height and lumbar depth",
       "existing_anchor": null,
-      "insertion_location": "In the conclusion section or at the end of the section on how to configure your tilt settings.",
-      "insertion_suggestion": "Tilt is one setting among several. Our guide to adjusting your office chair covers the full process.",
+      "insertion_location": "In the conclusion section, or at the end of the section explaining how to configure tilt tension.",
+      "insertion_suggestion": "Tilt tension is the most intuitive adjustment. Most people set it wrong because seat height and lumbar depth were not calibrated first.",
       "existing_anchor_context": null
     },
     {
@@ -2299,10 +2299,10 @@
       "from_slug": "the-physical-benefits-of-ergonomics-why-it-matters-for-your-health",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
-      "anchor_text": "correct sitting posture",
+      "anchor_text": "sitting angles that are slightly off",
       "existing_anchor": null,
-      "insertion_location": "In the section on musculoskeletal benefits, after the paragraph on the connection between poor posture and MSD risk.",
-      "insertion_suggestion": "Our guide to correct sitting posture covers body angles, lumbar placement, and daily habits that protect your spine.",
+      "insertion_location": "In the musculoskeletal section, immediately after the statistic about 80% of office workers showing MSD signs.",
+      "insertion_suggestion": "MSDs accumulate from sitting angles that are slightly off, repeated for hours at a time.",
       "existing_anchor_context": null
     },
     {
@@ -2411,10 +2411,10 @@
       "from_slug": "why-everyones-switching-to-ergonomics-swivel-chairs-in-2025",
       "added_date": "2026-05-08",
       "action_type": "insert_new",
-      "anchor_text": "ergonomic home office setup",
+      "anchor_text": "desk height, monitor position, and keyboard reach",
       "existing_anchor": null,
-      "insertion_location": "In the conclusion or near the end of the post where it addresses making the switch to ergonomic furniture.",
-      "insertion_suggestion": "Setting up at home? Our guide to ergonomic home office setup covers desk height, chair settings, and monitor position.",
+      "insertion_location": "In the conclusion or near the end, where the article addresses the broader shift to ergonomic furniture.",
+      "insertion_suggestion": "Swapping to an ergonomic chair delivers the most benefit when desk height, monitor position, and keyboard reach are calibrated to match.",
       "existing_anchor_context": null
     }
   ],
