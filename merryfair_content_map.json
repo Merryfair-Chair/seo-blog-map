@@ -2212,10 +2212,10 @@
     {
       "id": "link-ergonomic-home-office-setup-guide-to-standing-desk-vs-ergonomic-chair",
       "reason": "This FAQ in the home office setup guide directly invites readers to compare sitting vs standing — the destination answers the question in depth.",
-      "status": "pending",
+      "status": "verified",
       "to_slug": "standing-desk-vs-ergonomic-chair",
       "priority": "high",
-      "done_date": null,
+      "done_date": "2026-05-08",
       "from_slug": "ergonomic-home-office-setup-guide",
       "added_date": "2026-05-08",
       "action_type": "hyperlink_existing",
