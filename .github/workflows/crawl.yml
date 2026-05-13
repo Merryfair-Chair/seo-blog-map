@@ -1,11 +1,8 @@
 name: Crawl and sync to Supabase
 
 on:
-  workflow_dispatch:        # manual trigger from GitHub Actions UI
-  repository_dispatch:
-    types: [wordpress-publish]   # triggered by /api/webhook when WP publishes
-  schedule:
-    - cron: '0 2 * * *'   # daily at 2am UTC = 10am Malaysia time
+  workflow_dispatch:  # kept for manual use only — daily schedule moved to seo-pa repo
+  # schedule and repository_dispatch disabled — crawler now lives in Merryfair-Chair/seo-pa
 
 permissions:
   contents: write
