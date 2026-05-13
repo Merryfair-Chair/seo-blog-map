@@ -4,6 +4,37 @@ Append a new entry at the top after every Claude Code session. One entry per ses
 
 ---
 
+## 2026-05-08 — /sync-links run #3 (all 12 done items verified)
+
+**Links verified (12 newly confirmed — all items previously marked done in app):**
+- how-to-know-when-its-time-for-an-ergonomic-chair-upgrade → the-ultimate-guide-to-ergonomic-chairs ✓
+- how-to-adjust-office-chair → the-ultimate-guide-to-ergonomic-chairs ✓
+- best-office-chair-short-people → the-ultimate-guide-to-ergonomic-chairs ✓
+- best-ergonomic-chair-back-pain → the-physical-benefits-of-ergonomics ✓
+- the-role-of-ergonomic-office-chairs-in-preventing-back-pain → best-ergonomic-chair-back-pain ✓
+- office-chair-tilt-mechanism-guide → how-to-adjust-office-chair ✓
+- the-physical-benefits-of-ergonomics → best-ergonomic-chair-back-pain ✓
+- the-physical-benefits-of-ergonomics → correct-sitting-posture-guide ✓
+- what-is-lumbar-support → lumbar-cushion-vs-built-in-support ✓
+- lumbar-cushion-vs-built-in-support → best-ergonomic-chair-back-pain ✓
+- why-executive-comfort-is-the-new-productivity → ergonomic-home-office-setup-guide ✓
+- why-everyones-switching-to-ergonomics-swivel-chairs-in-2025 → ergonomic-home-office-setup-guide ✓
+
+**Reset to pending:** 0
+
+**Queue:** 31 verified / 0 pending / 31 total — queue fully complete.
+
+**Orphans:** 2 remaining — both brand/seasonal islands (office-chairs-to-sit-with-power-focus-and-intention, redefine-holiday-gifting-with-merryfair-ergonomic-chairs). Expected.
+
+**Infrastructure fixes this session:**
+- push_to_supabase.py: now merges statuses from Supabase before pushing — prevents done/verified marks being overwritten
+- sync-links.md: _sync_reset flag added so deliberate pending resets survive the merge
+- full_sync.sh: updated to use status-merge push
+- linking-audit.md Step 10a: 6-gate hyperlink_existing validation added (heading exclusion, primary placement, context relevance, destination clarity, no meta-context, surprise test)
+- 5 queue items reclassified from hyperlink_existing to insert_new (anchors were headings, FAQ questions, or announcing the destination)
+
+---
+
 ## 2026-05-08 — /sync-links run #2 (after crawl script heading fix)
 
 **Links verified (1 newly confirmed):**

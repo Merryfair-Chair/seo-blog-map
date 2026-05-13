@@ -130,13 +130,15 @@ bash /Users/merryfair/seo-blog-map/.claude/full_sync.sh
 
 ---
 
-## Step 6 — Update session-log.md
+## Step 6 — Update session-log.md and log to Weekly SEO Log
 
-Append an entry to the TOP of `session-log.md`:
+**session-log.md:** Append an entry to the TOP of `session-log.md`:
 - Date
 - Which gaps were enriched (IDs and titles)
 - Key research findings (keyword volumes, SERP intent, cannibalization risks found)
 - Any conflicts between user input and research (summarise the `userNote` content)
+
+**Weekly SEO Log:** Read `~/.claude/skills/seo-log/SKILL.md` and follow its insertion procedure using the research/strategy type. Include: which gaps were enriched (IDs and titles), key research findings (keyword volumes, SERP intent), any conflicts between user input and research.
 
 ---
 

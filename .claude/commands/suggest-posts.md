@@ -170,9 +170,9 @@ to copy the JSON to visual-map/public/, push to Supabase, and commit+push to Git
 
 ---
 
-## Step 6 — Append to session-log.md
+## Step 6 — Append to session-log.md and log to Weekly SEO Log
 
-Append an entry to the TOP of `session-log.md`:
+**session-log.md:** Append an entry to the TOP of `session-log.md`:
 - Date
 - Number of suggestions produced and their titles
 - Any gaps formally rejected or closed based on today's analysis
@@ -217,3 +217,5 @@ End with:
 - Summary table: Title | Cluster | Purpose | MY vol | SERP validated | Priority
 - Next recommended action for each (approve / owner decision needed / requires SERP check)
 - Any existing gaps recommended for status changes (e.g. should be rejected because existing content already covers them)
+
+**Weekly SEO Log:** Read `~/.claude/skills/seo-log/SKILL.md` and follow its insertion procedure using the research/strategy type. Include: number of gaps suggested, their titles and clusters, any gaps rejected and why, key SERP findings (AI Overviews detected, intent mismatches).

@@ -193,10 +193,9 @@ Priority:
 - Link health issues found
 - Over/under-linked posts flagged
 
-**14. Update Obsidian Vault — only if new link actions were generated or issues found.** Write to `/Users/merryfair/Documents/Obsidian Vault/Weekly SEO Log.md`:
-- Find/create the current week's `### Week of [date]` heading and today's `#### YYYY-MM-DD` subheading
-- Bullet entry: audit run, new queue items added (count by priority), orphans, health issues
-- Update `Research Status.md` — Weekly SEO Log entry: This Session, Key Findings, Next Steps
+**14. Update Obsidian Vault — only if new link actions were generated or issues found.**
+- Read `~/.claude/skills/seo-log/SKILL.md` and follow its insertion procedure using the tool-run type. Include: audit run, new queue items added (count by priority), orphan count, health issues found.
+- Update `Research Status.md` — Weekly SEO Log entry: This Session, Key Findings, Next Steps.
 
 **15. Print the full report** grouped by priority. For each action item:
 - `[Source post] → [Destination post]`

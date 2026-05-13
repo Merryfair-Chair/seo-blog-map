@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_crawl": "2026-05-13 06:01:57",
+    "last_crawl": "2026-05-13 05:44:04",
     "posts_crawled": 42,
     "summaries_date": "2026-03-17",
     "last_monthly_update": "2026-05-04",
@@ -6457,14 +6457,6 @@
     }
   },
   "linking_health": {
-    "orphan_posts_no_inbound_links": [
-      "office-chairs-to-sit-with-power-focus-and-intention",
-      "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
-    ],
-    "island_posts_no_links_at_all": [
-      "office-chairs-to-sit-with-power-focus-and-intention",
-      "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
-    ],
     "most_linked_to": [
       {
         "slug": "best-ergonomic-office-chairs-every-budget",
@@ -6487,7 +6479,15 @@
         "inbound_count": 10
       }
     ],
-    "average_outbound_links": 4.6
+    "average_outbound_links": 4.6,
+    "island_posts_no_links_at_all": [
+      "office-chairs-to-sit-with-power-focus-and-intention",
+      "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
+    ],
+    "orphan_posts_no_inbound_links": [
+      "office-chairs-to-sit-with-power-focus-and-intention",
+      "redefine-holiday-gifting-with-merryfair-ergonomic-chairs"
+    ]
   },
   "link_health_issues": []
 }
